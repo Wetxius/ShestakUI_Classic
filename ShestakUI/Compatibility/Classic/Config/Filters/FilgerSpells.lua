@@ -923,7 +923,7 @@ C["filger_spells"] = {
 			-- Fireball r12
 			{spellID = 25306, unitID = "target", caster = "player", filter = "DEBUFF", absID = true},
 			-- Fire Vulnerability (Improved Scorch)
-			{spellID = 22959, unitID = "target", caster = "all", filter = "DEBUFF"},
+			{spellID = 22959, unitID = "target", caster = "all", filter = "DEBUFF", absID = true},
 			-- Flamestrike
 			-- {spellID = 2120, unitID = "target", caster = "player", filter = "DEBUFF", absID = true},
 			-- Frost Nova
@@ -2889,6 +2889,12 @@ C["filger_spells"] = {
 			Alpha = 1,
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", SPECIAL_P_BUFF_ICON_Anchor},
+			
+			--额外添加
+			--手动惩戒器
+			{spellID = 13494, unitID = "player", caster = "player", filter = "BUFF"},
+			--灵感
+			{spellID = 15359, unitID = "player", caster = "all", filter = "BUFF"},
 
 			-- Potions: Classic
 			-- Greater Stoneshield Potion
