@@ -273,6 +273,8 @@ C["filger_spells"] = {
 			{spellID = 770, unitID = "target", caster = "all", filter = "DEBUFF"},
 			-- Faerie Fire (Feral)
 			{spellID = 16857, unitID = "target", caster = "all", filter = "DEBUFF"},
+			-- Faerie Fire (Feral Rank 4)
+			{spellID = 17392, unitID = "target", caster = "all", filter = "DEBUFF"},
 			-- Feral Charge Effect
 			{spellID = 19675, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Hurricane
@@ -291,6 +293,13 @@ C["filger_spells"] = {
 			{spellID = 1822, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Rip
 			{spellID = 1079, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Curse of Recklessness (Rank 4)
+			{spellID = 11717, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Curse of the Elements (Rank 4)
+			{spellID = 11722, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Sunder Armor (Rank 5)
+			{spellID = 11597, unitID = "target", caster = "player", filter = "DEBUFF"},
+			
 			-- Soothe Animal
 			-- {spellID = 2908, unitID = "target", caster = "player", filter = "DEBUFF"},
 
@@ -730,6 +739,8 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
+			-- Netherwind Focus
+			{spellID = 22008, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Arcane Power
 			{spellID = 12042, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Combustion
@@ -804,7 +815,7 @@ C["filger_spells"] = {
 			-- Arcane Resistance (Arcane Resistance, Proc) [Frostfire Regalia]
 			{spellID = 28770, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 			-- Netherwind Focus (Special, Proc) [Netherwind Regalia]
-			{spellID = 22008, unitID = "player", caster = "player", filter = "BUFF"},
+			-- {spellID = 22008, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Not There (Special, Proc) [Frostfire Regalia]
 			{spellID = 28762, unitID = "player", caster = "player", filter = "BUFF"},
 
