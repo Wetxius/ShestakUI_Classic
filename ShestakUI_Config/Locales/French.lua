@@ -365,18 +365,32 @@ L.loot_faster_loot = "Faster looting" -- Need review
 L.loot_faster_loot_desc = "Works only if enabled auto loot" -- Need review
 
 -- Filger
-L_GUI_FILGER = "Timers (Filger)" -- Need review
-L_GUI_FILGER_SUBTEXT = "Filger - analogue WeakAuras, but more simple and easy. Allows you to display in the form of icons and bars your auras and timers." -- Need review
+L_GUI_FILGER = "Temps de recharge (Filger)" -- Need review
+L_GUI_FILGER_SUBTEXT = "Filger - Semblable à WeakAuras, mais plus simple et facile d'utilisation. Vous permet d'afficher sous forme d'icones ou de barres vos auras et temps de recharge."
 L_GUI_FILGER_ENABLE = "Activer Filger"
-L_GUI_FILGER_TEST_MODE = "Activer le mode Test" -- Need review
+L_GUI_FILGER_TEST_MODE = "Activer le mode test"
 L_GUI_FILGER_MAX_TEST_ICON = "Nombre d'icône pour le mode Test"
 L_GUI_FILGER_SHOW_TOOLTIP = "Afficher l'info-bulle"
-L_GUI_FILGER_DISABLE_CD = "Ne pas afficher les temps de recharge"
-L_GUI_FILGER_DISABLE_PVP = "Disable PvP debuffs on Player and Target" -- Need review
-L_GUI_FILGER_EXPIRATION = "Sort cooldowns by expiration time" -- Need review
+L.filger_subheader_elements = "Showing elements" -- Need review
+L.filger_show_buff = "Player buffs" -- Need review
+L.filger_show_proc = "Player procs" -- Need review
+L.filger_show_debuff = "Debuffs on target" -- Need review
+L.filger_show_aura_bar = "Aura bars on target" -- Need review
+L.filger_show_special = "Special buffs on player" -- Need review
+L.filger_show_pvp_player = "SPvP debuffs on player" -- Need review
+L.filger_show_pvp_target = "PvP auras on target" -- Need review
+L.filger_show_cd = "Cooldowns" -- Need review
+L.filger_subheader_size = "Icons size" -- Need review
+L.filger_subheader_test = "Test mode" -- Need review
+L_GUI_FILGER_EXPIRATION = "Organiser les temps de recharge par temps d'expiration"
 L_GUI_FILGER_BUFFS_SIZE = "Taille des buffs"
 L_GUI_FILGER_COOLDOWN_SIZE = "Taille des temps de recharge"
 L_GUI_FILGER_PVP_SIZE = "Taille des debuffs JcJ"
+L.filger_buffs_space = "Buffs space" -- Need review
+L.filger_pvp_space = "PvP auras space" -- Need review
+L.filger_cooldown_space = "Cooldowns space" -- Need review
+L.filger_subheader_spells = "Adding new spells" -- Need review
+L.filger_category_list = "Spell list category" -- Need review
 
 -- Announcements options
 L_GUI_ANNOUNCEMENTS = "Annonces"

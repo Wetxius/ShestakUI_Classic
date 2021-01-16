@@ -367,17 +367,31 @@ L.loot_faster_loot_desc = "Funktioniert nur, wenn die automatische Beute aktivie
 
 -- Filger
 L_GUI_FILGER = "Timers (Filger)"
-L_GUI_FILGER_SUBTEXT = "Filger - analogue WeakAuras, but more simple and easy. Allows you to display in the form of icons and bars your auras and timers." -- Need review
+L_GUI_FILGER_SUBTEXT = "Filger - analog WeakAuras, aber einfacher und leichter. Ermöglicht es die, Auren und Timer in Form von Symbolen und Balken anzuzeigen."
 L_GUI_FILGER_ENABLE = "Aktiviere Filger"
 L_GUI_FILGER_TEST_MODE = "Test Icon Mode"
 L_GUI_FILGER_MAX_TEST_ICON = "Anzahl der Icons im Test Mode"
 L_GUI_FILGER_SHOW_TOOLTIP = "Zeige Tooltips"
-L_GUI_FILGER_DISABLE_CD = "Deaktiviere Cooldowns"
-L_GUI_FILGER_DISABLE_PVP = "Disable PvP debuffs on Player and Target" -- Need review
-L_GUI_FILGER_EXPIRATION = "Sort cooldowns by expiration time" -- Need review
-L_GUI_FILGER_BUFFS_SIZE = "Buffs größe ändern"
+L.filger_subheader_elements = "Zeige Elemente"
+L.filger_show_buff = "Spieler Buffs"
+L.filger_show_proc = "Spieler Procs"
+L.filger_show_debuff = "Debuffs auf Ziel"
+L.filger_show_aura_bar = "Aurabalken auf Ziel"
+L.filger_show_special = "Besondere Buffs auf Spieler"
+L.filger_show_pvp_player = "PvP-Debuffs auf Spieler"
+L.filger_show_pvp_target = "PvP-Auren auf Spieler"
+L.filger_show_cd = "Cooldowns"
+L.filger_subheader_size = "Icons größe"
+L.filger_subheader_test = "Test Modus"
+L_GUI_FILGER_EXPIRATION = "Abklingzeiten nach ablaufzeit sortieren"
+L_GUI_FILGER_BUFFS_SIZE = "Buff größe ändern"
 L_GUI_FILGER_COOLDOWN_SIZE = "Cooldowns größe ändern"
 L_GUI_FILGER_PVP_SIZE = "PvP Debuffs größe ändern"
+L.filger_buffs_space = "Buffs space"
+L.filger_pvp_space = "PvP Auren space"
+L.filger_cooldown_space = "Cooldowns space"
+L.filger_subheader_spells = "Hinzufügen neuer Zaubersprüche"
+L.filger_category_list = "Kategorie der Zauberliste"
 
 -- Announcements options
 L_GUI_ANNOUNCEMENTS = "Benachrichtigungen"

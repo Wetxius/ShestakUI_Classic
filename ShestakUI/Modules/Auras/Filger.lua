@@ -540,24 +540,47 @@ if C["filger_spells"] and C["filger_spells"]["ALL"] then
 	end
 end
 
-if T.CustomFilgerSpell then
-	for _, data in pairs(T.CustomFilgerSpell) do
-		for class, _ in pairs(C["filger_spells"]) do
-			if class == T.class then
-				for i = 1, #C["filger_spells"][class], 1 do
-					if C["filger_spells"][class][i]["Name"] == data[1] then
-						table.insert(C["filger_spells"][class][i], data[2])
-					end
-				end
-			end
-		end
+for _, spell in pairs(C.filger.buff_spells_list) do
+	if spell[2] == T.class then
+		tinsert(T.CustomFilgerSpell, {"P_BUFF_ICON", {spellID = spell[1], unitID = "player", caster = "player", filter = "BUFF"}})
+	end
+end
+
+for _, spell in pairs(C.filger.proc_spells_list) do
+	if spell[2] == T.class then
+		tinsert(T.CustomFilgerSpell, {"P_PROC_ICON", {spellID = spell[1], unitID = "player", caster = "player", filter = "BUFF"}})
+	end
+end
+
+for _, spell in pairs(C.filger.debuff_spells_list) do
+	if spell[2] == T.class then
+		tinsert(T.CustomFilgerSpell, {"T_DEBUFF_ICON", {spellID = spell[1], unitID = "target", caster = "player", filter = "DEBUFF"}})
+	end
+end
+
+for _, spell in pairs(C.filger.aura_bar_spells_list) do
+	if spell[2] == T.class then
+		tinsert(T.CustomFilgerSpell, {"T_DE/BUFF_BAR", {spellID = spell[1], unitID = "target", caster = "player", filter = "DEBUFF"}})
+	end
+end
+
+for _, spell in pairs(C.filger.cd_spells_list) do
+	if spell[2] == T.class then
+		tinsert(T.CustomFilgerSpell, {"COOLDOWN", {spellID = spell[1], filter = "CD"}})
+	end
+end
+
+local ignoreTable = {}
+for _, spell in pairs(C.filger.ignore_spells_list) do
+	if spell[2] == T.class then
+		ignoreTable[GetSpellInfo(spell[1])] = true
 	end
 end
 
 if C["filger_spells"] and C["filger_spells"][T.class] then
-	for index in pairs(C["filger_spells"]) do
-		if index ~= T.class then
-			C["filger_spells"][index] = nil
+	for class in pairs(C["filger_spells"]) do
+		if class ~= T.class then
+			C["filger_spells"][class] = nil
 		end
 	end
 
@@ -566,6 +589,12 @@ if C["filger_spells"] and C["filger_spells"][T.class] then
 		local jdx = {}
 		local data = C["filger_spells"][T.class][i]
 		local group = {spells = {}}
+
+		for _, import in pairs(T.CustomFilgerSpell) do
+			if data.Name == import[1] then
+				tinsert(data, import[2])
+			end
+		end
 
 		for j = 1, #data, 1 do
 			local name
@@ -577,22 +606,16 @@ if C["filger_spells"] and C["filger_spells"][T.class] then
 					name = GetItemInfo(slotLink)
 				end
 			end
-			if name or data[j].slotID then
-				local id
-				if data[j].absID then
-					id = data[j].spellID or data[j].slotID
-				else
-					id = GetSpellInfo(data[j].spellID) or data[j].slotID
-				end
+			if name and not ignoreTable[name] or data[j].slotID then
+				local id = data[j].absID and data[j].spellID or GetSpellInfo(data[j].spellID) or data[j].slotID
 				data[j].sort = j
 				group.spells[id] = data[j]
 			end
 			if not name and not data[j].slotID then
-				if not T.classic then
-					print("|cffff0000WARNING: spell/slot ID ["..(data[j].spellID or data[j].slotID or "UNKNOWN").."] no longer exists! Report this to Shestak.|r")
-				else
-					print("|cffff0000WARNING: spell/slot ID ["..(data[j].spellID or data[j].slotID or "UNKNOWN").."] no longer exists! Report this to EsreverWoW.|r")
-				end
+				print("|cffff0000WARNING: spell/slot ID ["..(data[j].spellID or data[j].slotID or "UNKNOWN").."] no longer exists! Report this to Shestak.|r")
+				table.insert(jdx, j)
+			end
+			if ignoreTable[name] then
 				table.insert(jdx, j)
 			end
 		end
@@ -605,11 +628,7 @@ if C["filger_spells"] and C["filger_spells"][T.class] then
 		table.insert(SpellGroups, i, group)
 
 		if #data == 0 then
-			if not T.classic then
-				print("|cffff0000WARNING: section ["..data.Name.."] is empty! Report this to Shestak.|r")
-			else
-				print("|cffff0000WARNING: section ["..data.Name.."] is empty! Report this to EsreverWoW.|r")
-			end
+			print("|cffff0000WARNING: section ["..data.Name.."] is empty! Report this to Shestak.|r")
 			table.insert(idx, i)
 		end
 	end
@@ -618,59 +637,73 @@ if C["filger_spells"] and C["filger_spells"][T.class] then
 		table.remove(C["filger_spells"][T.class], v)
 	end
 
+	local isEnabled = {
+		["P_BUFF_ICON"] = C.filger.show_buff,
+		["P_PROC_ICON"] = C.filger.show_proc,
+		["T_DEBUFF_ICON"] = C.filger.show_debuff,
+		["T_DE/BUFF_BAR"] = C.filger.show_aura_bar,
+		["PVE/PVP_CC"] = C.filger.show_aura_bar,
+		["SPECIAL_P_BUFF_ICON"] = C.filger.show_special,
+		["PVE/PVP_DEBUFF"] = C.filger.show_pvp_player,
+		["T_BUFF"] = C.filger.show_pvp_target,
+		["COOLDOWN"] = C.filger.show_cd,
+	}
+
 	for i = 1, #SpellGroups, 1 do
 		local data = SpellGroups[i].data
-		local frame = CreateFrame("Frame", "FilgerFrame"..i.."_"..data.Name, T_PetBattleFrameHider or UIParent)
-		frame.Id = i
-		frame.Name = data.Name
-		frame.Direction = data.Direction or "DOWN"
-		frame.IconSide = data.IconSide or "LEFT"
-		frame.Mode = data.Mode or "ICON"
-		frame.Interval = data.Interval or 3
-		frame:SetAlpha(data.Alpha or 1)
-		frame.IconSize = data.IconSize or C.filger.buffs_size
-		frame.BarWidth = data.BarWidth or 186
-		frame.Position = data.Position or "CENTER"
-		frame:SetPoint(unpack(data.Position))
-		frame.actives = {}
-
-		if C.filger.test_mode then
+		if isEnabled[data.Name] then
+			local frame = CreateFrame("Frame", "FilgerFrame"..i.."_"..data.Name, T_PetBattleFrameHider or UIParent)
+			frame.Id = i
+			frame.Name = data.Name
+			frame.Direction = data.Direction or "DOWN"
+			frame.IconSide = data.IconSide or "LEFT"
+			frame.Mode = data.Mode or "ICON"
+			frame.Interval = data.Interval or 3
+			frame:SetAlpha(data.Alpha or 1)
+			frame.IconSize = data.IconSize or C.filger.buffs_size
+			frame.BarWidth = data.BarWidth or 186
+			frame.Position = data.Position or "CENTER"
+			frame:SetPoint(unpack(data.Position))
 			frame.actives = {}
-			for j = 1, math.min(C.filger.max_test_icon, #C["filger_spells"][T.class][i]), 1 do
-				local data = C["filger_spells"][T.class][i][j]
-				local name, icon
-				if data.spellID then
-					name, _, icon = GetSpellInfo(data.spellID)
-				elseif data.slotID then
-					local slotLink = GetInventoryItemLink("player", data.slotID)
-					if slotLink then
-						name, _, _, _, _, _, _, _, _, icon = GetItemInfo(slotLink)
+
+			if C.filger.test_mode then
+				frame.actives = {}
+				for j = 1, math.min(C.filger.max_test_icon, #C["filger_spells"][T.class][i]), 1 do
+					local data = C["filger_spells"][T.class][i][j]
+					local name, icon
+					if data.spellID then
+						name, _, icon = GetSpellInfo(data.spellID)
+					elseif data.slotID then
+						local slotLink = GetInventoryItemLink("player", data.slotID)
+						if slotLink then
+							name, _, _, _, _, _, _, _, _, icon = GetItemInfo(slotLink)
+						end
+					end
+					frame.actives[j] = {data = data, name = name, icon = icon, count = 9, start = 0, duration = 0, spid = data.spellID or data.slotID, sort = data.sort}
+				end
+				Filger.DisplayActives(frame)
+			else
+				for j = 1, #C["filger_spells"][T.class][i], 1 do
+					local data = C["filger_spells"][T.class][i][j]
+					if data.filter == "CD" then
+						frame:RegisterEvent("SPELL_UPDATE_COOLDOWN")
+						break
+					elseif data.trigger == "NONE" then
+						frame:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+						break
+					end
+					if data.filter ~= "CD" then
+						frame:RegisterEvent("UNIT_AURA")
+						break
 					end
 				end
-				frame.actives[j] = {data = data, name = name, icon = icon, count = 9, start = 0, duration = 0, spid = data.spellID or data.slotID, sort = data.sort}
-			end
-			Filger.DisplayActives(frame)
-		else
-			for j = 1, #C["filger_spells"][T.class][i], 1 do
-				local data = C["filger_spells"][T.class][i][j]
-				if data.filter == "CD" then
-					frame:RegisterEvent("SPELL_UPDATE_COOLDOWN")
-					break
-				elseif data.trigger == "NONE" then
-					frame:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
-					break
+				if not T.classic then
+					frame:RegisterEvent("PLAYER_FOCUS_CHANGED")
 				end
-				if data.filter ~= "CD" then
-					frame:RegisterEvent("UNIT_AURA")
-					break
-				end
+				frame:RegisterEvent("PLAYER_TARGET_CHANGED")
+				frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+				frame:SetScript("OnEvent", Filger.OnEvent)
 			end
-			if not T.classic then
-				frame:RegisterEvent("PLAYER_FOCUS_CHANGED")
-			end
-			frame:RegisterEvent("PLAYER_TARGET_CHANGED")
-			frame:RegisterEvent("PLAYER_ENTERING_WORLD")
-			frame:SetScript("OnEvent", Filger.OnEvent)
 		end
 	end
 end
