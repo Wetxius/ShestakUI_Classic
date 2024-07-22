@@ -13,7 +13,7 @@ function T.GetSpecialization(isInspect, isPet, specGroup)
 		local specIndex
 		local max = 0
 		for tabIndex = 1, GetNumTalentTabs() do
-			local spent = select(3, GetTalentTabInfo(tabIndex, "player", T.Wrath and specGroup))
+			local spent = select(5, GetTalentTabInfo(tabIndex, "player", T.Wrath and specGroup))
 			if spent > max then
 				specIndex = tabIndex
 				max = spent

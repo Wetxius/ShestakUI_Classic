@@ -103,16 +103,18 @@ local function Enable(self)
 						_G["TotemFrameTotem"..i.."Icon"]:Hide()
 					end
 				end
-				hooksecurefunc("TotemFrame_Update", function()
-					for i = 1, MAX_TOTEMS do
-						local t = _G["TotemFrameTotem"..i]
-						local slot = t.slot
-						if slot and slot > 0 then
-							t:ClearAllPoints()
-							t:SetAllPoints(element[slot])
+				if not oUF:IsCata() then
+					hooksecurefunc("TotemFrame_Update", function()
+						for i = 1, MAX_TOTEMS do
+							local t = _G["TotemFrameTotem"..i]
+							local slot = t.slot
+							if slot and slot > 0 then
+								t:ClearAllPoints()
+								t:SetAllPoints(element[slot])
+							end
 						end
-					end
-				end)
+					end)
+				end
 			else
 				anchorTotems(element)
 				hooksecurefunc(TotemFrame, "Update", function()

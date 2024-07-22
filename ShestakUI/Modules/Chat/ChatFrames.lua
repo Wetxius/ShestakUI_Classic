@@ -117,7 +117,7 @@ local function SetChatStyle(frame)
 	if T.Cata then
 		_G[format("ChatFrame%sMinimizeButton", id)]:Kill()
 	else
-		_G[format("ChatFrame%sButtonFrameMinimizeButton", id)]:Kill()
+		-- _G[format("ChatFrame%sButtonFrameMinimizeButton", id)]:Kill() -- FIXME
 	end
 	_G[format("ChatFrame%sButtonFrame", id)]:Kill()
 
