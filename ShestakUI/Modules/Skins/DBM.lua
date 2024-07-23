@@ -177,7 +177,9 @@ DBMSkin:SetScript("OnEvent", function()
 		_G["DBM_GUI_OptionsFrameList"]:HookScript("OnShow", function(self) self:SetTemplate("Overlay") end)
 		_G["DBM_GUI_OptionsFrameDBMOptions"]:HookScript("OnShow", function(self) self:SetTemplate("Overlay") end)
 
-		T.SkinCloseButton(DBM_GUI_OptionsFrameClosePanelButton)
+		if DBM_GUI_OptionsFrameClosePanelButton then
+			T.SkinCloseButton(DBM_GUI_OptionsFrameClosePanelButton)
+		end
 
 		local dbmbskins = {
 			"DBM_GUI_OptionsFrameWebsiteButton",
