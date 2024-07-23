@@ -3116,7 +3116,7 @@ C["filger_spells"] = {
 			-- Last Stand
 			{spellID = 12975, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Rampage [Season of Discovery]
-			{spellID = 426942, unitID = "player", caster = "player", filter = "BUFF", absID = true},
+			--FIXME {spellID = 426942, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 			-- Recklessness
 			{spellID = 1719, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Retaliation
