@@ -114,11 +114,7 @@ local function SetChatStyle(frame)
 		_G[format("ChatFrame%sTabSelectedMiddle", id)]:Kill()
 		_G[format("ChatFrame%sTabSelectedRight", id)]:Kill()
 	end
-	if T.Cata then
-		_G[format("ChatFrame%sMinimizeButton", id)]:Kill()
-	else
-		-- _G[format("ChatFrame%sButtonFrameMinimizeButton", id)]:Kill() -- FIXME
-	end
+	_G[format("ChatFrame%sMinimizeButton", id)]:Kill()
 	_G[format("ChatFrame%sButtonFrame", id)]:Kill()
 
 	-- Kills off the retarded new circle around the editbox
