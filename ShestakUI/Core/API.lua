@@ -183,6 +183,8 @@ local StripTexturesBlizzFrames = {
 	"Portrait",
 	"portrait",
 	"ScrollFrameBorder",
+	"EdgeShadows",
+	"Background"
 }
 
 local function StripTextures(object, kill)
@@ -724,6 +726,28 @@ function T.SkinEditBox(frame, width, height)
 end
 
 function T.SkinDropDownBox(frame, width, pos)
+	if frame.Arrow then
+		frame.Background:SetAlpha(0)
+		frame:CreateBackdrop("Overlay")
+		frame.backdrop:SetPoint("TOPLEFT", -2, -1)
+		frame.backdrop:SetPoint("BOTTOMRIGHT", 0, 1)
+		frame:SetFrameLevel(frame:GetFrameLevel() + 2)
+		frame.Arrow:SetAlpha(0)
+		if frame.TabHighlight then frame.TabHighlight:SetAlpha(0) end
+
+		local tex = frame:CreateTexture(nil, "ARTWORK")
+		tex:SetPoint("RIGHT", frame, -4, 0)
+		tex:SetSize(15, 15)
+		tex:SetTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up")
+		tex:SetTexCoord(0.3, 0.29, 0.3, 0.81, 0.65, 0.29, 0.65, 0.81)
+
+		local f = CreateFrame("Frame", nil, frame)
+		f:SetOutside(tex)
+		f:SetTemplate("Default")
+		tex:SetParent(f)
+	return
+	end
+
 	local frameName = frame.GetName and frame:GetName()
 	local button = frame.Button or frame.MenuButton or frameName and (_G[frameName.."Button"] or _G[frameName.."_Button"])
 	local text = frameName and _G[frameName.."Text"] or frame.Text

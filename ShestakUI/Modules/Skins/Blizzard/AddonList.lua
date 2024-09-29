@@ -57,7 +57,7 @@ local function LoadSkin()
 		T.SkinScrollBar(AddonList.ScrollBar)
 	end
 	T.SkinCloseButton(AddonListCloseButton)
-	T.SkinDropDownBox(AddonCharacterDropDown)
+	T.SkinDropDownBox(AddonList.Dropdown)
 	T.SkinCheckBox(AddonListForceLoad)
 	AddonListForceLoad:SetSize(25, 25)
 end

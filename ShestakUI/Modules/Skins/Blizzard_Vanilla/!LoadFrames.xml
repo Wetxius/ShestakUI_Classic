@@ -15,6 +15,7 @@
 	<Script file="..\Blizzard\Loot.lua"/>
 	<Script file="..\Blizzard\Macro.lua"/>
 	<Script file="..\Blizzard\Mail.lua"/>
+	<Script file="..\Blizzard\Menu.lua"/>
 	<Script file="..\Blizzard\Merchant.lua"/>
 	<Script file="..\Blizzard\Options.lua"/>
 	<Script file="..\Blizzard\Petition.lua"/>
