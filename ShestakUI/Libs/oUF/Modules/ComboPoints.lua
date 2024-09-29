@@ -12,21 +12,21 @@ local function Update(self, _, unit, powerType)
 	local element = self.ComboPoints
 	local cur, max
 
-	if(oUF:IsClassic()) then
-		if UnitHasVehicleUI("player") then
-			local petID = select(6, strsplit("-", UnitGUID("pet")))
-			if petID and (petID == "30161" or petID == "32535") then -- Wyrmrest Skytalon
-				cur = GetComboPoints("pet", "pettarget")
-				max = UnitPowerMax("pet", 14)
-			else
-				cur = UnitPower("vehicle", 14)
-				max = UnitPowerMax("vehicle", 14)
-			end
-		else
-			cur = UnitPower("player", 14)
-			max = UnitPowerMax("player", 14)
-		end
-	else
+	-- if(oUF:IsClassic()) then
+		-- if UnitHasVehicleUI("player") then
+			-- local petID = select(6, strsplit("-", UnitGUID("pet")))
+			-- if petID and (petID == "30161" or petID == "32535") then -- Wyrmrest Skytalon
+				-- cur = GetComboPoints("pet", "pettarget")
+				-- max = UnitPowerMax("pet", 14)
+			-- else
+				-- cur = UnitPower("vehicle", 14)
+				-- max = UnitPowerMax("vehicle", 14)
+			-- end
+		-- else
+			-- cur = UnitPower("player", 14)
+			-- max = UnitPowerMax("player", 14)
+		-- end
+	-- else
 		if UnitHasVehicleUI("player") then
 			cur = UnitPower("vehicle", 4)
 			max = UnitPowerMax("vehicle", 4)
@@ -34,7 +34,7 @@ local function Update(self, _, unit, powerType)
 			cur = UnitPower("player", 4)
 			max = UnitPowerMax("player", 4)
 		end
-	end
+	-- end
 
 	if max == 0 or max > (oUF:IsClassic() and 5 or 7) then
 		max = MAX_COMBO_POINTS
