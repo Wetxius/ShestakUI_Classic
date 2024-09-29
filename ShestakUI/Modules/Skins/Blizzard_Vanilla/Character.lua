@@ -156,7 +156,7 @@ local function LoadSkin()
 			T.SkinTab(tab, true)
 		end
 	end
-	
+
 	PetPaperDollCloseButton:StripTextures()
 	PetPaperDollCloseButton:SkinButton()
 
@@ -354,9 +354,9 @@ local function LoadSkin()
 	T.SkinCloseButton(ReputationDetailCloseButton)
 	ReputationDetailCloseButton:SetPoint("TOPRIGHT", -4, -4)
 
-	T.SkinCheckBox(ReputationDetailAtWarCheckBox)
-	T.SkinCheckBox(ReputationDetailInactiveCheckBox)
-	T.SkinCheckBox(ReputationDetailMainScreenCheckBox)
+	T.SkinCheckBox(ReputationDetailAtWarCheckbox)
+	T.SkinCheckBox(ReputationDetailInactiveCheckbox)
+	T.SkinCheckBox(ReputationDetailMainScreenCheckbox)
 
 	-- Skill Frame
 	SkillFrame:StripTextures()

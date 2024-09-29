@@ -164,9 +164,9 @@ local function LoadSkin()
 	hooksecurefunc("ChatConfig_CreateCheckboxes", function(frame, checkBoxTable, checkBoxTemplate)
 		if frame.styled then return end
 
-		local checkBoxNameString = frame:GetName().."CheckBox"
+		local checkBoxNameString = frame:GetName().."Checkbox"
 
-		if checkBoxTemplate == "ChatConfigCheckBoxTemplate" then
+		if checkBoxTemplate == "ChatConfigCheckboxTemplate" then
 			for index in ipairs(checkBoxTable) do
 				local checkBoxName = checkBoxNameString..index
 				local checkbox = _G[checkBoxName]
@@ -179,7 +179,7 @@ local function LoadSkin()
 
 				T.SkinCheckBox(_G[checkBoxName.."Check"])
 			end
-		elseif checkBoxTemplate == "ChatConfigCheckBoxWithSwatchTemplate" or checkBoxTemplate == "ChatConfigWideCheckBoxWithSwatchTemplate" or checkBoxTemplate == "MovableChatConfigWideCheckBoxWithSwatchTemplate" then
+		elseif checkBoxTemplate == "ChatConfigCheckboxWithSwatchTemplate" or checkBoxTemplate == "ChatConfigWideCheckboxWithSwatchTemplate" or checkBoxTemplate == "MovableChatConfigWideCheckboxWithSwatchTemplate" then
 			for index in ipairs(checkBoxTable) do
 				local checkBoxName = checkBoxNameString..index
 				local checkbox = _G[checkBoxName]
@@ -200,10 +200,10 @@ local function LoadSkin()
 		frame.styled = true
 	end)
 
-	hooksecurefunc("ChatConfig_CreateTieredCheckboxes", function(frame, checkBoxTable)
+	hooksecurefunc("ChatConfig_CreateTieredCheckboxes", function(frame, checkBoxTable) -- combat log type of message
 		if frame.IsSkinned then return end
 
-		local nameString = frame:GetName().."CheckBox"
+		local nameString = frame:GetName().."Checkbox"
 		for index, value in ipairs(checkBoxTable) do
 			local checkBoxName = nameString..index
 			T.SkinCheckBox(_G[checkBoxName])
@@ -266,7 +266,7 @@ local function LoadSkin()
 					T.SkinCheckBox(_G["CombatConfigMessageTypesRightCheckBox"..i.."_"..j])
 				end
 			end
-			T.SkinCheckBox(_G["CombatConfigMessageTypesMiscCheckBox"..i])
+			T.SkinCheckBox(_G["CombatConfigMessageTypesMiscCheckbox"..i])
 		end
 	end)
 

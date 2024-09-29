@@ -260,9 +260,9 @@ local function LoadSkin()
 	--]]
 
 	T.SkinCloseButton(FriendsFrameCloseButton)
-	T.SkinDropDownBox(WhoFrameDropDown, 150)
-	T.SkinDropDownBox(FriendsFrameStatusDropDown, 70)
-	T.SkinDropDownBox(FriendsFriendsFrameDropDown)
+	T.SkinDropDownBox(WhoFrameDropdown, 150)
+	T.SkinDropDownBox(FriendsFrameStatusDropdown, 70)
+	T.SkinDropDownBox(FriendsFriendsFrameDropdown)
 
 	-- Bottom Tabs
 	FriendsFrameTab1:ClearAllPoints()
