@@ -534,24 +534,24 @@ end
 ----------------------------------------------------------------------------------------
 
 if T.Vanilla then
-	if C.minimap.tracking_icon then
-		MiniMapTrackingFrame:ClearAllPoints()
-		MiniMapTrackingFrame:SetPoint("BOTTOMLEFT", MinimapAnchor, "BOTTOMLEFT", -1, -5)
-		MiniMapTrackingFrame.SetPoint = T.dummy
-		MiniMapTrackingBorder:Hide()
-		MiniMapTrackingFrame:SetFrameStrata("HIGH")
-		MiniMapTrackingIcon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-		MiniMapTrackingIcon:SetSize(16, 16)
-		MiniMapTrackingIcon.SetPoint = T.dummy
+	-- if C.minimap.tracking_icon then
+		-- MiniMapTrackingFrame:ClearAllPoints()
+		-- MiniMapTrackingFrame:SetPoint("BOTTOMLEFT", MinimapAnchor, "BOTTOMLEFT", -1, -5)
+		-- MiniMapTrackingFrame.SetPoint = T.dummy
+		-- MiniMapTrackingBorder:Hide()
+		-- MiniMapTrackingFrame:SetFrameStrata("HIGH")
+		-- MiniMapTrackingIcon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+		-- MiniMapTrackingIcon:SetSize(16, 16)
+		-- MiniMapTrackingIcon.SetPoint = T.dummy
 
-		MiniMapTrackingFrame:CreateBackdrop("ClassColor")
-		MiniMapTrackingFrame.backdrop:SetPoint("TOPLEFT", MiniMapTrackingIcon, -2, 2)
-		MiniMapTrackingFrame.backdrop:SetPoint("BOTTOMRIGHT", MiniMapTrackingIcon, 2, -2)
-	else
-		MiniMapTrackingFrame:Hide()
-		MiniMapTrackingBorder:Hide()
-		MiniMapTrackingIcon:Hide()
-	end
+		-- MiniMapTrackingFrame:CreateBackdrop("ClassColor")
+		-- MiniMapTrackingFrame.backdrop:SetPoint("TOPLEFT", MiniMapTrackingIcon, -2, 2)
+		-- MiniMapTrackingFrame.backdrop:SetPoint("BOTTOMRIGHT", MiniMapTrackingIcon, 2, -2)
+	-- else
+		-- MiniMapTrackingFrame:Hide()
+		-- MiniMapTrackingBorder:Hide()
+		-- MiniMapTrackingIcon:Hide()
+	-- end
 elseif T.TBC or T.Wrath or T.Cata then
 	if C.minimap.tracking_icon then
 		MiniMapTrackingBackground:Hide()

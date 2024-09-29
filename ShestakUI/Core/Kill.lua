@@ -20,8 +20,8 @@ frame:SetScript("OnEvent", function(_, _, addon)
 
 	if C.unitframe.enable and C.raidframe.layout ~= "BLIZZARD" then
 		if T.Classic then
-			InterfaceOptionsFrameCategoriesButton11:SetScale(0.00001)
-			InterfaceOptionsFrameCategoriesButton11:SetAlpha(0)
+			-- InterfaceOptionsFrameCategoriesButton11:SetScale(0.00001)
+			-- InterfaceOptionsFrameCategoriesButton11:SetAlpha(0)
 
 			if not InCombatLockdown() then
 				if C.raidframe.show_raid or not IsAddOnLoaded("Grid2") then -- may need to add more addons here
@@ -59,9 +59,9 @@ frame:SetScript("OnEvent", function(_, _, addon)
 	end
 
 	if T.Classic then
-		Advanced_UseUIScale:Kill()
-		Advanced_UIScaleSlider:Kill()
-		BagHelpBox:Kill()
+		-- Advanced_UseUIScale:Kill()
+		-- Advanced_UIScaleSlider:Kill()
+		-- BagHelpBox:Kill()
 	else
 		TutorialFrameAlertButton:Kill()
 	end
@@ -74,12 +74,12 @@ frame:SetScript("OnEvent", function(_, _, addon)
 
 	SetCVar("countdownForCooldowns", 0)
 	if T.Classic then
-		InterfaceOptionsActionBarsPanelCountdownCooldowns:Hide()
+		-- InterfaceOptionsActionBarsPanelCountdownCooldowns:Hide()
 	end
 
 	if C.chat.enable then
 		if T.Classic then
-			InterfaceOptionsSocialPanelChatStyle:Hide()
+			-- InterfaceOptionsSocialPanelChatStyle:Hide()
 		end
 		SetCVar("chatStyle", "im")
 	end
@@ -89,20 +89,20 @@ frame:SetScript("OnEvent", function(_, _, addon)
 			RuneFrame:Kill()
 		end
 		if T.Classic then
-			InterfaceOptionsDisplayPanelDisplayDropDown:Hide()
-			InterfaceOptionsCombatPanelTargetOfTarget:Hide()
+			-- InterfaceOptionsDisplayPanelDisplayDropDown:Hide()
+			-- InterfaceOptionsCombatPanelTargetOfTarget:Hide()
 		end
 		SetCVar("showPartyBackground", 0)
 	end
 
 	if C.actionbar.enable then
 		if T.Classic then
-			InterfaceOptionsActionBarsPanelBottomLeft:Hide()
-			InterfaceOptionsActionBarsPanelBottomRight:Hide()
-			InterfaceOptionsActionBarsPanelRight:Hide()
-			InterfaceOptionsActionBarsPanelRightTwo:Hide()
-			InterfaceOptionsActionBarsPanelAlwaysShowActionBars:Hide()
-			InterfaceOptionsActionBarsPanelStackRightBars:Hide()
+			-- InterfaceOptionsActionBarsPanelBottomLeft:Hide()
+			-- InterfaceOptionsActionBarsPanelBottomRight:Hide()
+			-- InterfaceOptionsActionBarsPanelRight:Hide()
+			-- InterfaceOptionsActionBarsPanelRightTwo:Hide()
+			-- InterfaceOptionsActionBarsPanelAlwaysShowActionBars:Hide()
+			-- InterfaceOptionsActionBarsPanelStackRightBars:Hide()
 			if not InCombatLockdown() then
 				SetCVar("multiBarRightVerticalLayout", 0)
 			end
@@ -115,7 +115,7 @@ frame:SetScript("OnEvent", function(_, _, addon)
 
 	if C.minimap.enable then
 		if T.Classic then
-			InterfaceOptionsDisplayPanelRotateMinimap:Hide()
+			-- InterfaceOptionsDisplayPanelRotateMinimap:Hide()
 		else
 			SetCVar("minimapTrackingShowAll", 1)
 		end
@@ -130,7 +130,7 @@ frame:SetScript("OnEvent", function(_, _, addon)
 
 	if C.combattext.enable then
 		if T.Classic then
-			InterfaceOptionsCombatPanelEnableFloatingCombatText:Hide()
+			-- InterfaceOptionsCombatPanelEnableFloatingCombatText:Hide()
 		end
 		if C.combattext.incoming then
 			SetCVar("enableFloatingCombatText", 1)

@@ -215,34 +215,34 @@ SkinBlizzUI:SetScript("OnEvent", function(_, _, addon)
 		end
 
 		-- Reskin menu
-		local ChatMenus = {
-			"ChatMenu",
-			"EmoteMenu",
-			"LanguageMenu",
-			"VoiceMacroMenu"
-		}
+		-- local ChatMenus = {
+			-- "ChatMenu",
+			-- "EmoteMenu",
+			-- "LanguageMenu",
+			-- "VoiceMacroMenu"
+		-- }
 
-		for i = 1, getn(ChatMenus) do
-			if _G[ChatMenus[i]] == _G["ChatMenu"] then
-				_G[ChatMenus[i]]:HookScript("OnShow", function(self)
-					if self.NineSlice then
-						self.NineSlice:SetTemplate("Transparent")
-					else
-						self:SetTemplate("Transparent")
-					end
-					self:ClearAllPoints()
-					self:SetPoint("BOTTOMRIGHT", ChatFrame1, "BOTTOMRIGHT", 0, 30)
-				end)
-			else
-				_G[ChatMenus[i]]:HookScript("OnShow", function(self)
-					if self.NineSlice then
-						self.NineSlice:SetTemplate("Transparent")
-					else
-						self:SetTemplate("Transparent")
-					end
-				end)
-			end
-		end
+		-- for i = 1, getn(ChatMenus) do
+			-- if _G[ChatMenus[i]] == _G["ChatMenu"] then
+				-- _G[ChatMenus[i]]:HookScript("OnShow", function(self)
+					-- if self.NineSlice then
+						-- self.NineSlice:SetTemplate("Transparent")
+					-- else
+						-- self:SetTemplate("Transparent")
+					-- end
+					-- self:ClearAllPoints()
+					-- self:SetPoint("BOTTOMRIGHT", ChatFrame1, "BOTTOMRIGHT", 0, 30)
+				-- end)
+			-- else
+				-- _G[ChatMenus[i]]:HookScript("OnShow", function(self)
+					-- if self.NineSlice then
+						-- self.NineSlice:SetTemplate("Transparent")
+					-- else
+						-- self:SetTemplate("Transparent")
+					-- end
+				-- end)
+			-- end
+		-- end
 
 		-- Hide header textures and move text/buttons
 		local BlizzardHeader = {
