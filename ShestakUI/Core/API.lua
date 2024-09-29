@@ -780,6 +780,25 @@ function T.SkinDropDownBox(frame, width, pos)
 	frame.backdrop:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 2, -2)
 end
 
+function T.SkinFilter(frame, height)
+	frame:SkinButton(nil, "Text")
+
+	local tex = frame:CreateTexture(nil, "ARTWORK")
+	tex:SetPoint("RIGHT", frame, -4, 0)
+	tex:SetSize(14, 14)
+	tex:SetTexture("Interface\\ChatFrame\\ChatFrameExpandArrow")
+
+	if frame.ResetButton then
+		T.SkinCloseButton(frame.ResetButton)
+		frame.ResetButton:ClearAllPoints()
+		frame.ResetButton:SetPoint("CENTER", frame, "TOPRIGHT", 0, 0)
+	end
+
+	if height then
+		frame:SetHeight(22)
+	end
+end
+
 function T.SkinCheckBox(frame, size, default)
 	if size then
 		frame:SetSize(size, size)

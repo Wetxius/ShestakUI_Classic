@@ -66,17 +66,16 @@ local function LoadSkin()
 	AchievementFrameComparisonStatsContainer.backdrop:SetPoint("BOTTOMRIGHT", -2, -3)
 
 	T.SkinCloseButton(AchievementFrameCloseButton, AchievementFrame.backdrop)
-	T.SkinDropDownBox(AchievementFrameFilterDropDown)
-	AchievementFrameFilterDropDown:ClearAllPoints()
-	AchievementFrameFilterDropDown:SetPoint("TOPLEFT", AchievementFrameAchievements, "TOPLEFT", -19, 24)
+	T.SkinFilter(AchievementFrameFilterDropdown, true)
+	AchievementFrameFilterDropdown:ClearAllPoints()
+	AchievementFrameFilterDropdown:SetPoint("TOPLEFT", AchievementFrameAchievements, "TOPLEFT", -19, 24)
 
 	local frame = CreateFrame("Frame")
 	frame:RegisterEvent("ADDON_LOADED")
 	frame:SetScript("OnEvent", function()
 		if not IsAddOnLoaded("Overachiever") then return end
-		AchievementFrameFilterDropDownButton:SetWidth(17)
-		AchievementFrameFilterDropDown:ClearAllPoints()
-		AchievementFrameFilterDropDown:SetPoint("TOPLEFT", AchievementFrameAchievements, "TOPLEFT", -19, 24)
+		AchievementFrameFilterDropdown:ClearAllPoints()
+		AchievementFrameFilterDropdown:SetPoint("TOPLEFT", AchievementFrameAchievements, "TOPLEFT", -19, 24)
 	end)
 
 	if T.Mainline then
