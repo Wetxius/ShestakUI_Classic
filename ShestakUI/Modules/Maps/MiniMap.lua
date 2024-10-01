@@ -481,10 +481,20 @@ Minimap:SetScript("OnMouseUp", function(self, button)
 		end
 	elseif not T.Vanilla and button == "MiddleButton" then
 		if T.Classic then
-			if position:match("LEFT") then
-				ToggleDropDownMenu(nil, nil, MiniMapTrackingDropDown, "cursor", 0, 0, "MENU", 2)
+			if MiniMapTrackingDropDown then
+				if position:match("LEFT") then
+					ToggleDropDownMenu(nil, nil, MiniMapTrackingDropDown, "cursor", 0, 0, "MENU", 2)
+				else
+					ToggleDropDownMenu(nil, nil, MiniMapTrackingDropDown, "cursor", -160, 0, "MENU", 2)
+				end
 			else
-				ToggleDropDownMenu(nil, nil, MiniMapTrackingDropDown, "cursor", -160, 0, "MENU", 2)
+				MiniMapTrackingButton:OpenMenu()
+				MiniMapTrackingButton.menu:ClearAllPoints()
+				if position:match("LEFT") then
+					MiniMapTrackingButton.menu:SetPoint("TOPLEFT", Minimap, "RIGHT", 4, 0)
+				else
+					MiniMapTrackingButton.menu:SetPoint("TOPRIGHT", Minimap, "LEFT", -4, 0)
+				end
 			end
 		else
 			if position:match("LEFT") then
@@ -559,6 +569,7 @@ elseif T.TBC or T.Wrath or T.Cata then
 		if T.Wrath or T.Cata then
 			MiniMapTracking:SetPoint("BOTTOMLEFT", MinimapAnchor, "BOTTOMLEFT", -1, -5)
 			MiniMapTrackingButtonBorder:Hide()
+			MiniMapTrackingButton:SetHighlightTexture(0)
 		else
 			MiniMapTracking:SetPoint("BOTTOMLEFT", MinimapAnchor, "BOTTOMLEFT", -4, 0)
 			MiniMapTrackingBorder:Hide()
