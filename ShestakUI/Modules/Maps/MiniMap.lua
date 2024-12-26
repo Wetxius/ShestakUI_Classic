@@ -187,6 +187,17 @@ frame:SetScript("OnEvent", function(self, event)
 			MiniMapLFGBorder:Hide()
 		end
 	end
+	if LFGMinimapFrame then
+		LFGMinimapFrame:SetClampedToScreen(true)
+		LFGMinimapFrame:SetFrameStrata("TOOLTIP")
+		LFGMinimapFrame:ClearAllPoints()
+		LFGMinimapFrame:SetPoint("TOP", Minimap, "TOP", 1, 6)
+		LFGMinimapFrame:SetScale(0.8)
+		LFGMinimapFrame:SetHighlightTexture(0)
+		if LFGMinimapFrameBorder then
+			LFGMinimapFrameBorder:Hide()
+		end
+	end
 end)
 
 -- Adjusting for patch 9.0.1 Minimap.xml
@@ -225,7 +236,7 @@ else
 end
 
 -- Hide world map button
-if T.Classic then
+if T.Classic and MiniMapWorldMapButton then
 	MiniMapWorldMapButton:Hide()
 	MiniMapWorldMapButton.Show = T.dummy
 end
