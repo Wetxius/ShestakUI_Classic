@@ -13,10 +13,7 @@ local function LoadSkin()
 	T.SkinEditBox(EngravingFrameSearchBox)
 	EngravingFrameSearchBoxSearchIcon:SetPoint("LEFT", EngravingFrameSearchBox, "LEFT", 2, -2)
 
-	T.SkinDropDownBox(EngravingFrameFilterDropDown)
-	EngravingFrameFilterDropDown:SetSize(212, 34)
-	EngravingFrameFilterDropDown:SetPoint("TOPLEFT", EngravingFrameSearchBox, "BOTTOMLEFT", -22, -3)
-	EngravingFrameFilterDropDownText:SetPoint("LEFT", EngravingFrameFilterDropDown, "LEFT", 28, 1)
+	T.SkinDropDownBox(EngravingFrame.FilterDropdown)
 
 	EngravingFrameSideInset:StripTextures()
 	EngravingFrameScrollFrame:StripTextures()
@@ -37,8 +34,7 @@ local function LoadSkin()
 		for i = 1, #EngravingFrame.scrollFrame.buttons do
 			if not _G["EngravingFrameScrollFrameButton"..i].isSkinned then
 				_G["EngravingFrameScrollFrameButton"..i]:SkinButton()
-				-- _G["EngravingFrameScrollFrameButton"..i.."Icon"]:SkinIcon(true)
-				-- _G["EngravingFrameScrollFrameButton"..i.."Icon"]:SetSize(32, 32)
+				_G["EngravingFrameScrollFrameButton"..i.."Icon"]:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 				_G["EngravingFrameScrollFrameButton"..i].isSkinned = true
 			end
 		end
