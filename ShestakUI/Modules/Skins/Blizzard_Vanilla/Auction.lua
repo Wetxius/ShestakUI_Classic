@@ -28,9 +28,11 @@ local function LoadSkin()
 	T.SkinScrollBar(AuctionsScrollFrameScrollBar)
 	T.SkinScrollBar(BidScrollFrameScrollBar)
 
-	T.SkinDropDownBox(BrowseDropDown)
-	T.SkinDropDownBox(PriceDropDown)
+	T.SkinDropDownBox(BrowseDropdown)
+	-- T.SkinDropDownBox(PriceDropDown)
 	-- T.SkinDropDownBox(DurationDropDown, 80)
+
+	BrowseResetButton:SkinButton()
 
 	T.SkinCheckBox(IsUsableCheckButton)
 	T.SkinCheckBox(ShowOnPlayerCheckButton)
