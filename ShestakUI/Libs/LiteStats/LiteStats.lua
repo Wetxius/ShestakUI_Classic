@@ -882,8 +882,8 @@ if guild.enabled then
 		text = {
 			string = function()
 				if IsInGuild() then
-					local total, _, online = GetNumGuildMembers()
-					return format(guild.fmt, online, total)
+					local total, numOnline, allOnline = GetNumGuildMembers()
+					return format(guild.fmt, allOnline or numOnline, total)
 				else return T.Classic and L_STATS_NO_GUILD or LOOKINGFORGUILD end
 			end, update = 5
 		},
@@ -983,8 +983,9 @@ if guild.enabled then
 				self.hovered = true
 				C_GuildInfo.GuildRoster()
 				local name, rank, level, zone, note, officernote, connected, status, class, isMobile, zone_r, zone_g, zone_b, classc, levelc, grouped
-				local total, _, online = GetNumGuildMembers()
+				local total, numOnline, online = GetNumGuildMembers()
 				local gmotd = GetGuildRosterMOTD()
+				if not online then online = numOnline > 0 and numOnline or 0 end
 
 				GameTooltip:SetOwner(self, "ANCHOR_NONE")
 				GameTooltip:ClearAllPoints()
