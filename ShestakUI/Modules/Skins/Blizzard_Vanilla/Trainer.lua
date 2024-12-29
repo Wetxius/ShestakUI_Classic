@@ -22,9 +22,9 @@ local function LoadSkin()
 	ClassTrainerTrainButton:ClearAllPoints()
 	ClassTrainerTrainButton:SetPoint("RIGHT", ClassTrainerCancelButton, "LEFT", -2, 0)
 
-	T.SkinDropDownBox(ClassTrainerFrameFilterDropDown)
-	ClassTrainerFrameFilterDropDown:ClearAllPoints()
-	ClassTrainerFrameFilterDropDown:SetPoint("TOPLEFT", ClassTrainerFrame.backdrop, "TOPRIGHT", -182, -56)
+	T.SkinFilter(ClassTrainerFrame.FilterDropdown)
+	-- ClassTrainerFrameFilterDropdown:ClearAllPoints()
+	-- ClassTrainerFrameFilterDropdown:SetPoint("TOPLEFT", ClassTrainerFrame.backdrop, "TOPRIGHT", -182, -56)
 
 	ClassTrainerListScrollFrame:StripTextures()
 	T.SkinScrollBar(ClassTrainerListScrollFrameScrollBar)
