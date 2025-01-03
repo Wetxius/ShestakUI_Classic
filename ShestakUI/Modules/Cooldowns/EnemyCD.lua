@@ -136,10 +136,10 @@ local StartTimer = function(sGUID, sID, sName)
 		local wandSpeed = select(2, C_Container.GetItemCooldown(wandID)) or 0
 		if wandSpeed < 1.5 then wandSpeed = 1.5 end
 		if (T.enemy_spells[sID] or 0) > wandSpeed then
-			return CooldownFrame_Set(icon.Cooldown, GetTime(), T.EnemySpells[sID], 1)
+			CooldownFrame_Set(icon.Cooldown, GetTime(), T.EnemySpells[sID], 1)
 		end
 	else
-		return CooldownFrame_Set(icon.Cooldown, GetTime(), T.EnemySpells[sID], 1)
+		CooldownFrame_Set(icon.Cooldown, GetTime(), T.EnemySpells[sID], 1)
 	end
 	tinsert(icons, icon)
 	table.sort(icons, sortByExpiration)
@@ -188,9 +188,9 @@ addon:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 SlashCmdList.EnemyCD = function()
 	if T.Classic then
 		StartTimer(UnitGUID(T.name), 6552)
-		StartTimer(UnitGUID(T.name), 19647)
+		StartTimer(UnitGUID(T.name), 19244)
 		StartTimer(UnitGUID(T.name), 15487)
-		StartTimer(UnitGUID(T.name), 1499)
+		StartTimer(UnitGUID(T.name), 8122)
 	else
 		StartTimer(UnitGUID(T.name), 47528)
 		StartTimer(UnitGUID(T.name), 19647)
