@@ -147,8 +147,10 @@ local function LoadSkin()
 		end
 	end
 	hooksecurefunc(FriendsFrameFriendsScrollFrame.invitePool, "Acquire", function()
-		for object in pairs(FriendsFrameFriendsScrollFrame.invitePool.activeObjects) do
-			SkinFriendRequest(object)
+		if FriendsFrameFriendsScrollFrame.invitePool.activeObjects then
+			for object in pairs(FriendsFrameFriendsScrollFrame.invitePool.activeObjects) do
+				SkinFriendRequest(object)
+			end
 		end
 	end)
 
