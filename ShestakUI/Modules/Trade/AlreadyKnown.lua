@@ -257,7 +257,6 @@ end
 
 -- Auction frame
 local _hookNewAH
-if T.Classic then
 if T.Vanilla then
 	_hookNewAH = function(self)
 		local numResults = self.getNumEntries()
