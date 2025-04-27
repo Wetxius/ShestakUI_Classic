@@ -124,9 +124,9 @@ end
 
 local function checkAgain(self)
 	C_Timer.After(1, function()
-		local f = GetMouseFocus()
+		local f = GetMouseFoci()
 		if f then
-			local name = GetMouseFocus():GetName()
+			local name = GetMouseFoci():GetName()
 			if name and not name:match("HCIC") then
 				hcic:ChatOnLeave(self)
 			end
@@ -136,7 +136,7 @@ end
 
 function hcic:ChatOnLeave(self)
 	if InCombatLockdown() or C_PetBattles.IsInBattle() then
-		local f = GetMouseFocus()
+		local f = GetMouseFoci()
 		if f then
 			if f.messageInfo then
 				return nil
