@@ -202,6 +202,16 @@ local function LoadSkin()
 		SkinStatsPane(CharacterStatsPane.EnhancementsCategory)
 	end
 
+	--Skin Stats Pane for Cata Classic
+	if T.Classic then
+		for i = 1, 7 do
+			local paneNumber = _G["CharacterStatsPaneCategory"..i]
+			if paneNumber then
+				paneNumber:StripTextures()
+			end
+		end
+	end
+
 	-- Titles
 	hooksecurefunc(_G.PaperDollFrame.TitleManagerPane.ScrollBox, "Update", function(frame)
 		for _, child in next, {frame.ScrollTarget:GetChildren()} do
@@ -212,7 +222,7 @@ local function LoadSkin()
 		end
 	end)
 
-	-- Equipement Manager
+	-- Equipment Manager
 	PaperDollFrameEquipSet:SkinButton()
 	PaperDollFrameSaveSet:SkinButton()
 	PaperDollFrameEquipSet:SetWidth(PaperDollFrameEquipSet:GetWidth() - 8)
@@ -332,9 +342,9 @@ local function LoadSkin()
 			ReputationDetailFrame:SetTemplate("Transparent")
 			ReputationDetailFrame:SetPoint("TOPLEFT", ReputationFrame, "TOPRIGHT", 3, 0)
 			T.SkinCloseButton(ReputationDetailCloseButton)
-			T.SkinCheckBox(ReputationDetailMainScreenCheckBox)
-			T.SkinCheckBox(ReputationDetailInactiveCheckBox)
-			T.SkinCheckBox(ReputationDetailAtWarCheckBox)
+			T.SkinCheckBox(ReputationDetailMainScreenCheckbox)
+			T.SkinCheckBox(ReputationDetailInactiveCheckbox)
+			T.SkinCheckBox(ReputationDetailAtWarCheckbox)
 		end
 		ReputationFrame:HookScript("OnShow", UpdateFactionSkins)
 		hooksecurefunc("ExpandFactionHeader", UpdateFactionSkins)
@@ -367,9 +377,9 @@ local function LoadSkin()
 		ReputationDetailFrame:SetTemplate("Transparent")
 		ReputationDetailFrame:SetPoint("TOPLEFT", ReputationFrame, "TOPRIGHT", 3, 0)
 		T.SkinCloseButton(ReputationDetailCloseButton)
-		T.SkinCheckBox(ReputationDetailMainScreenCheckBox)
-		T.SkinCheckBox(ReputationDetailInactiveCheckBox)
-		T.SkinCheckBox(ReputationDetailAtWarCheckBox)
+		T.SkinCheckBox(ReputationDetailMainScreenCheckbox)
+		T.SkinCheckBox(ReputationDetailInactiveCheckbox)
+		T.SkinCheckBox(ReputationDetailAtWarCheckbox)
 		ReputationDetailViewRenownButton:SkinButton()
 	end
 
@@ -396,8 +406,8 @@ local function LoadSkin()
 			TokenFramePopup:SetTemplate("Transparent")
 			TokenFramePopup:SetPoint("TOPLEFT", TokenFrame, "TOPRIGHT", 3, 0)
 			T.SkinCloseButton(TokenFramePopupCloseButton)
-			T.SkinCheckBox(TokenFramePopupBackpackCheckBox)
-			T.SkinCheckBox(TokenFramePopupInactiveCheckBox)
+			T.SkinCheckBox(TokenFramePopupBackpackCheckbox)
+			T.SkinCheckBox(TokenFramePopupInactiveCheckbox)
 		end)
 	else
 		TokenFramePopup:StripTextures()
@@ -406,8 +416,8 @@ local function LoadSkin()
 		if TokenFramePopup.CloseButton then
 			T.SkinCloseButton(TokenFramePopup.CloseButton)
 		end
-		T.SkinCheckBox(TokenFramePopup.InactiveCheckBox)
-		T.SkinCheckBox(TokenFramePopup.BackpackCheckBox)
+		T.SkinCheckBox(TokenFramePopup.InactiveCheckbox)
+		T.SkinCheckBox(TokenFramePopup.BackpackCheckbox)
 
 		hooksecurefunc(_G.TokenFrame.ScrollBox, "Update", function(frame)
 			for _, child in next, {frame.ScrollTarget:GetChildren()} do
