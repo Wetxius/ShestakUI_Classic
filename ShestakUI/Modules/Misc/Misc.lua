@@ -136,7 +136,7 @@ strip:SetScript("OnClick", function(_, button)
 	PlaySound(SOUNDKIT.GS_TITLE_OPTION_OK)
 end)
 
-if T.Classic then
+if T.Vanilla then
 	strip:RegisterEvent("AUCTION_HOUSE_SHOW")
 	strip:RegisterEvent("AUCTION_HOUSE_CLOSED")
 	strip:SetScript("OnEvent", function(self)
