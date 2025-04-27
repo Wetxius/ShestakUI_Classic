@@ -188,7 +188,7 @@ L_WELCOME_LINE_1 = "Bienvenue sur ShestakUI "
 L_WELCOME_LINE_2_1 = "Tapez /cfg pour configurer l'interface, ou visitez https://github.com/Wetxius/ShestakUI_Help/wiki/English"
 L_WELCOME_LINE_2_2 = "pour plus d'informations"
 L_WELCOME_LINE_1_CLASSIC = "Bienvenue sur ShestakUI (Classic) "
-L_WELCOME_LINE_2_1_CLASSIC = "Tapez /cfg pour configurer l'interface, ou visitez https://github.com/EsreverWoW/ShestakUI_Classic"
+L_WELCOME_LINE_2_1_CLASSIC = "Tapez /cfg pour configurer l'interface, ou visitez https://github.com/Wetxius/ShestakUI_Classic"
 L_WELCOME_LINE_2_2_CLASSIC = "pour plus d'informations"
 
 -- Combat text

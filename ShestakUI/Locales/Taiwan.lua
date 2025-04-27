@@ -188,7 +188,7 @@ L_WELCOME_LINE_1 = "歡迎使用ShestakUI "
 L_WELCOME_LINE_2_1 = "鍵入 /cfg 進行UI設置, 或者訪問 https://github.com/Wetxius/ShestakUI_Help/wiki/English"
 L_WELCOME_LINE_2_2 = "獲取更多信息。"
 L_WELCOME_LINE_1_CLASSIC = "歡迎使用ShestakUI (Classic) "
-L_WELCOME_LINE_2_1_CLASSIC = "鍵入 /cfg 進行UI設置, 或者訪問 https://github.com/EsreverWoW/ShestakUI_Classic"
+L_WELCOME_LINE_2_1_CLASSIC = "鍵入 /cfg 進行UI設置, 或者訪問 https://github.com/Wetxius/ShestakUI_Classic"
 L_WELCOME_LINE_2_2_CLASSIC = "獲取更多信息。"
 
 -- Combat text
