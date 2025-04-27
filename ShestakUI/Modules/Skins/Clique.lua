@@ -4,69 +4,61 @@ if C.skins.blizzard_frames ~= true or C.skins.clique ~= true then return end
 ----------------------------------------------------------------------------------------
 --	Clique skin
 ----------------------------------------------------------------------------------------
-local function LoadSkin()
-	if not IsAddOnLoaded("Clique") then return end
-	CliqueConfig:StripTextures()
-	CliqueConfig:SetTemplate("Transparent")
-	CliqueConfigPortrait:SetAlpha(0)
+if not C_AddOns.IsAddOnLoaded("Clique") then return end
+local isStyled = false
+hooksecurefunc(Clique, "ShowBindingConfig", function(self)
+	if isStyled then return end
+	T.SkinFrame(CliqueUIBindingFrame)
 
-	CliqueConfigPage1Column1:StripTextures()
-	CliqueConfigPage1Column2:StripTextures()
-	CliqueConfigInset:StripTextures()
-	CliqueConfigPage1_VSlider:StripTextures()
+	CliqueConfigUIBrowseScrollBackground.NineSlice:StripTextures()
 
-	CliqueClickGrabber:StripTextures()
-	CliqueClickGrabber:CreateBackdrop("Overlay")
-	CliqueClickGrabber.backdrop:SetPoint("TOPLEFT", -1, 0)
-	CliqueClickGrabber.backdrop:SetPoint("BOTTOMRIGHT", 2, 3)
+	hooksecurefunc(_G.CliqueConfigUIScrollFrame, "Update", function(frame)
+		for _, button in next, {frame.ScrollTarget:GetChildren()} do
+			if not button.isSkinned then
+				button.Background:SetAlpha(0)
+				button.FrameHighlight:SetAlpha(0)
 
-	CliqueDialog:StripTextures()
-	CliqueDialog:SetTemplate("Transparent")
+				button.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+				button.DeleteButton:SkinButton()
 
-	T.SkinCloseButton(CliqueConfigCloseButton)
-	if CliqueDialog.CloseButton then T.SkinCloseButton(CliqueDialog.CloseButton) end
-	if CliqueDialogCloseButton then T.SkinCloseButton(CliqueDialogCloseButton) end
+				button:CreateBackdrop("Overlay")
+				button.backdrop:SetInside()
+				button:StyleButton(nil, 4)
 
-	CliqueConfigPage1ButtonOptions:SkinButton(true)
-	CliqueConfigPage1ButtonOther:SkinButton(true)
-	CliqueConfigPage1ButtonSpell:SkinButton(true)
-	CliqueConfigPage2ButtonBinding:SkinButton()
-	CliqueConfigPage2ButtonSave:SkinButton(true)
-	CliqueConfigPage2ButtonCancel:SkinButton(true)
-	CliqueDialogButtonBinding:SkinButton()
-	CliqueDialogButtonAccept:SkinButton()
-
-	if T.client == "ruRU" then
-		CliqueConfigPage1ButtonSpell:SetWidth(130)
-		CliqueConfigPage1ButtonSpellText:SetWidth(CliqueConfigPage1ButtonSpell:GetWidth())
-		CliqueConfigPage1ButtonSpellText:SetHeight(CliqueConfigPage1ButtonSpell:GetHeight())
-		CliqueConfigPage1ButtonOther:SetWidth(110)
-	end
-
-	CliqueSpellTab:GetRegions():SetSize(0.1, 0.1)
-	CliqueSpellTab:GetNormalTexture():SetTexCoord(0.1, 0.9, 0.1, 0.9)
-	CliqueSpellTab:GetNormalTexture():ClearAllPoints()
-	CliqueSpellTab:GetNormalTexture():SetPoint("TOPLEFT", 2, -2)
-	CliqueSpellTab:GetNormalTexture():SetPoint("BOTTOMRIGHT", -2, 2)
-	CliqueSpellTab:CreateBackdrop("Default")
-	CliqueSpellTab.backdrop:SetAllPoints()
-	CliqueSpellTab:StyleButton()
-
-	CliqueConfigPage1:SetScript("OnShow", function()
-		for i = 1, 12 do
-			if _G["CliqueRow"..i] then
-				_G["CliqueRow"..i.."Icon"]:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-				_G["CliqueRow"..i.."Bind"]:ClearAllPoints()
-				if _G["CliqueRow"..i] == CliqueRow1 then
-					_G["CliqueRow"..i.."Bind"]:SetPoint("RIGHT", _G["CliqueRow"..i], 8, 0)
-				else
-					_G["CliqueRow"..i.."Bind"]:SetPoint("RIGHT", _G["CliqueRow"..i], -8, 0)
-				end
+				button.isSkinned = true
 			end
 		end
-		CliqueRow1:ClearAllPoints()
-		CliqueRow1:SetPoint("TOPLEFT", 5, -(CliqueConfigPage1Column1:GetHeight() + 3))
 	end)
-end
 
-tinsert(T.SkinFuncs["ShestakUI"], LoadSkin)
+	CliqueConfigUIBindingFrameBrowsePage.OptionsButton:SkinButton()
+	CliqueConfigUIBindingFrameBrowsePage.AddButton:SkinButton()
+	CliqueConfigUIBindingFrameBrowsePage.EditButton:SkinButton()
+	CliqueConfigUIBindingFrameBrowsePage.QuickbindMode:SkinButton()
+
+	CliqueConfigUIBindingFrameEditPage.changeBinding:SkinButton()
+	CliqueConfigUIBindingFrameEditPage.CancelButton:SkinButton()
+	CliqueConfigUIBindingFrameEditPage.SaveButton:SkinButton()
+
+	T.SkinScrollBar(CliqueConfigUIScrollBar)
+
+	T.SkinFrame(CliqueConfigUIActionCatalogFrame, true)
+	CliqueConfigUIActionCatalogFrameTitleBg:SetTexture("Transparent")
+	CliqueConfigUIActionCatalogFrame.backdrop:SetPoint("TOPLEFT", 6, 0)
+	CliqueConfigUISpellbookFilterButton:SkinButton()
+	T.SkinEditBox(CliqueConfigUISpellbookSearch)
+
+	for i = 1, 16 do
+		local button = _G["CliqueUICatalogFrameButton"..i]
+		if button then
+			button:StyleButton()
+			button.background:SkinIcon()
+		end
+	end
+
+	T.SkinNextPrevButton(CliqueConfigUIActionCatalogFrame.prev, true)
+	T.SkinNextPrevButton(CliqueConfigUIActionCatalogFrame.next)
+
+
+	CliqueBindOtherDropdownBackdrop:SetTemplate("Transparent")
+	isStyled = true
+end)
