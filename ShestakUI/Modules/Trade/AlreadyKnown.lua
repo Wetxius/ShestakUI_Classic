@@ -194,7 +194,6 @@ local function QuestInfo_ShowRewards()
 	end
 end
 
-if IsAddOnLoaded("Pawn") then
 	hooksecurefunc("PawnUI_OnQuestInfo_ShowRewards", QuestInfo_ShowRewards)
 else
 	hooksecurefunc("QuestInfo_ShowRewards", QuestInfo_ShowRewards)
@@ -221,7 +220,6 @@ local function GuildRewards_Update()
 end
 
 local isBlizzard_GuildUILoaded
-if IsAddOnLoaded("Blizzard_GuildUI") then
 	isBlizzard_GuildUILoaded = true
 	hooksecurefunc("GuildRewards_Update", GuildRewards_Update)
 	hooksecurefunc(GuildRewardsContainer, "update", GuildRewards_Update)
@@ -253,7 +251,6 @@ local function GuildBankFrame_Update()
 end
 
 local isBlizzard_GuildBankUILoaded
-if IsAddOnLoaded("Blizzard_GuildBankUI") then
 	isBlizzard_GuildBankUILoaded = true
 	hooksecurefunc(GuildBankFrame, "Update", GuildBankFrame_Update)
 end
@@ -261,6 +258,7 @@ end
 -- Auction frame
 local _hookNewAH
 if T.Classic then
+if T.Vanilla then
 	_hookNewAH = function(self)
 		local numResults = self.getNumEntries()
 		local buttons = HybridScrollFrame_GetButtons(self.ScrollFrame)
@@ -324,7 +322,6 @@ else
 end
 
 local isBlizzard_AuctionHouseUILoaded
-if IsAddOnLoaded("Blizzard_AuctionUI") then
 	isBlizzard_AuctionHouseUILoaded = true
 	hooksecurefunc(AuctionHouseFrame.BrowseResultsFrame.ItemList, "RefreshScrollFrame", _hookNewAH)
 end
@@ -384,7 +381,6 @@ local function AuctionFrameAuctions_Update()
 end
 
 local isBlizzard_AuctionUILoaded
-if IsAddOnLoaded("Blizzard_AuctionUI") then
 	isBlizzard_AuctionUILoaded = true
 	hooksecurefunc("AuctionFrameBrowse_Update", AuctionFrameBrowse_Update)
 	hooksecurefunc("AuctionFrameBid_Update", AuctionFrameBid_Update)
@@ -410,7 +406,6 @@ local function BlackMarketScrollFrame_Update(self, elementData)
 end
 
 local isBlizzard_BlackMarketUILoaded
-if IsAddOnLoaded("Blizzard_BlackMarketUI") then
 	isBlizzard_BlackMarketUILoaded = true
 	hooksecurefunc("BlackMarketFrame_UpdateHotItem", BlackMarketFrame_UpdateHotItem)
 	hooksecurefunc(BlackMarketItemMixin, "Init", BlackMarketScrollFrame_Update)
@@ -429,7 +424,9 @@ if not (isBlizzard_GuildUILoaded and isBlizzard_GuildBankUILoaded and isBlizzard
 		elseif addon == "Blizzard_AuctionHouseUI" then
 			isBlizzard_AuctionHouseUILoaded = true
 			hooksecurefunc(AuctionHouseFrame.BrowseResultsFrame.ItemList, "RefreshScrollFrame", _hookNewAH)
-			hooksecurefunc(AuctionHouseFrame.BrowseResultsFrame.ItemList, "OnScrollBoxRangeChanged", _hookNewAH)
+			if not T.Cata then
+				hooksecurefunc(AuctionHouseFrame.BrowseResultsFrame.ItemList, "OnScrollBoxRangeChanged", _hookNewAH)
+			end
 		elseif addon == "Blizzard_AuctionUI" then
 			isBlizzard_AuctionUILoaded = true
 			hooksecurefunc("AuctionFrameBrowse_Update", AuctionFrameBrowse_Update)
