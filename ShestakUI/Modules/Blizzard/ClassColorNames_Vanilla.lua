@@ -132,12 +132,10 @@ local function whoFrame()
 				if race == playerRace then
 					race = "|cff00ff00"..race
 				end
-				local columnTable = {zone, guild, race}
 
 				local c = classColorRaw[classFileName]
 				nameText:SetTextColor(c.r, c.g, c.b)
 				levelText:SetText(diffColor[level]..level)
-				variableText:SetText(columnTable[UIDropDownMenu_GetSelectedID(WhoFrameDropDown)])
 			end
 		end
 	end
