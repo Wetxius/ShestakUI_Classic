@@ -1,5 +1,5 @@
 local T, C, L = unpack(ShestakUI)
-if C.skins.blizzard_frames ~= true then return else return end -- incomplete
+if C.skins.blizzard_frames ~= true then return end -- incomplete
 
 ----------------------------------------------------------------------------------------
 --	Quest skin
@@ -83,17 +83,58 @@ local function LoadSkin()
 		T.SkinScrollBar(_G[scrollbar])
 	end
 
-	QuestInfoTitleHeader:SetTextColor(1, 0.8, 0)
-	QuestInfoTitleHeader:SetShadowColor(0, 0, 0)
-	QuestInfoDescriptionText:SetTextColor(1, 1, 1)
-	QuestInfoObjectivesHeader:SetTextColor(1, 0.8, 0)
-	QuestInfoObjectivesHeader:SetShadowColor(0, 0, 0)
-	QuestInfoObjectivesText:SetTextColor(1, 1, 1)
-	QuestInfoRewardText:SetTextColor(1, 1, 1)
-	QuestInfoRewardsFrame.Header:SetTextColor(1, 0.8, 0)
-	QuestInfoRewardsFrame.Header:SetShadowColor(0, 0, 0)
-	QuestInfoRewardsFrame.ItemChooseText:SetTextColor(1, 1, 1)
-	QuestInfoRewardsFrame.ItemReceiveText:SetTextColor(1, 1, 1)
+	local textR, textG, textB = 1, 1, 1
+	local titleR, titleG, titleB = 1, 0.80, 0
+	hooksecurefunc('QuestInfo_Display', function()
+		-- Headers
+		_G.QuestInfoTitleHeader:SetTextColor(titleR, titleG, titleB)
+		_G.QuestInfoDescriptionHeader:SetTextColor(titleR, titleG, titleB)
+		_G.QuestInfoObjectivesHeader:SetTextColor(titleR, titleG, titleB)
+		_G.QuestInfoRewardsFrame.Header:SetTextColor(titleR, titleG, titleB)
+
+		-- Other text
+		_G.QuestInfoDescriptionText:SetTextColor(textR, textG, textB)
+		_G.QuestInfoObjectivesText:SetTextColor(textR, textG, textB)
+		_G.QuestInfoGroupSize:SetTextColor(textR, textG, textB)
+		_G.QuestInfoRewardText:SetTextColor(textR, textG, textB)
+		_G.QuestInfoQuestType:SetTextColor(textR, textG, textB)
+
+		local numObjectives = GetNumQuestLeaderBoards()
+		for i = 1, numObjectives do
+			local text = _G['QuestInfoObjective'..i]
+			if not text then break end
+
+			text:SetTextColor(textR, textG, textB)
+		end
+
+		-- Reward frame text
+		_G.QuestInfoRewardsFrame.ItemChooseText:SetTextColor(textR, textG, textB)
+		_G.QuestInfoRewardsFrame.ItemReceiveText:SetTextColor(textR, textG, textB)
+		_G.QuestInfoRewardsFrame.XPFrame.ReceiveText:SetTextColor(textR, textG, textB)
+		--_G.QuestInfoTalentFrame.ReceiveText:SetTextColor(textR, textG, textB)
+		--_G.QuestInfoRewardsFrameHonorReceiveText:SetTextColor(textR, textG, textB)
+		--_G.QuestInfoRewardsFrameReceiveText:SetTextColor(textR, textG, textB)
+
+		_G.QuestInfoRewardsFrame.spellHeaderPool.textR, _G.QuestInfoRewardsFrame.spellHeaderPool.textG, _G.QuestInfoRewardsFrame.spellHeaderPool.textB = textR, textG, textB
+
+		for spellHeader, _ in _G.QuestInfoFrame.rewardsFrame.spellHeaderPool:EnumerateActive() do
+			spellHeader:SetVertexColor(1, 1, 1)
+		end
+		for spellIcon, _ in _G.QuestInfoFrame.rewardsFrame.spellRewardPool:EnumerateActive() do
+			if not spellIcon.template then
+				handleItemButton(spellIcon)
+			end
+		end
+
+		local requiredMoney = GetQuestLogRequiredMoney()
+		if requiredMoney > 0 then
+			if requiredMoney > GetMoney() then
+				_G.QuestInfoRequiredMoneyText:SetTextColor(0.6, 0.6, 0.6)
+			else
+				_G.QuestInfoRequiredMoneyText:SetTextColor(1, 0.80, 0.10)
+			end
+		end
+	end)
 
 	local function SkinReward(button, mapReward)
 		if button.NameFrame then button.NameFrame:Hide() end
