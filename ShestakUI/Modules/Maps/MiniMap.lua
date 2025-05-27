@@ -34,7 +34,7 @@ frame:SetScript("OnEvent", function(self, event)
 	MinimapBackdrop:SetSize(MinimapAnchor:GetWidth(), MinimapAnchor:GetWidth())
 
 	-- Instance Difficulty icon
-	if T.Wrath or T.Cata then
+	if T.Wrath or T.Cata or T.Mists then
 		MiniMapInstanceDifficulty:SetParent(Minimap)
 		MiniMapInstanceDifficulty:ClearAllPoints()
 		MiniMapInstanceDifficulty:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 3, 2)
@@ -89,7 +89,7 @@ frame:SetScript("OnEvent", function(self, event)
 	end
 
 	-- Invites icon
-	if T.Wrath or T.Cata then
+	if T.Wrath or T.Cata or T.Mists then
 		GameTimeCalendarInvitesTexture:ClearAllPoints()
 		GameTimeCalendarInvitesTexture:SetParent(Minimap)
 		GameTimeCalendarInvitesTexture:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, 0)
@@ -181,7 +181,7 @@ frame:SetScript("OnEvent", function(self, event)
 		MiniMapLFGFrame:SetPoint("TOP", Minimap, "TOP", 1, 6)
 		MiniMapLFGFrame:SetScale(0.8)
 		MiniMapLFGFrame:SetHighlightTexture(0)
-		if T.Wrath or T.Cata then
+		if T.Wrath or T.Cata or T.Mists then
 			MiniMapLFGFrameBorder:Hide()
 		else
 			MiniMapLFGBorder:Hide()
@@ -283,7 +283,7 @@ if StreamingIcon then
 end
 
 -- GhostFrame
-if T.Cata or T.Mainline then
+if T.Cata or T.Mists or T.Mainline then
 	GhostFrame:StripTextures()
 	GhostFrame:SetTemplate("Overlay")
 	GhostFrame:StyleButton()
@@ -577,11 +577,11 @@ if T.Vanilla then
 			MiniMapTrackingIcon:Hide()
 		end
 	end
-elseif T.TBC or T.Wrath or T.Cata then
+elseif T.TBC or T.Wrath or T.Cata or T.Mists then
 	if C.minimap.tracking_icon then
 		MiniMapTrackingBackground:Hide()
 		MiniMapTracking:ClearAllPoints()
-		if T.Wrath or T.Cata then
+		if T.Wrath or T.Cata or T.Mists then
 			MiniMapTracking:SetPoint("BOTTOMLEFT", MinimapAnchor, "BOTTOMLEFT", -1, -5)
 			MiniMapTrackingButtonBorder:Hide()
 			MiniMapTrackingButton:SetHighlightTexture(0)

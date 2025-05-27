@@ -10,7 +10,7 @@ local T, C, L = unpack(ShestakUI)
 local SkinBlizzUI = CreateFrame("Frame")
 SkinBlizzUI:RegisterEvent("ADDON_LOADED")
 SkinBlizzUI:SetScript("OnEvent", function(_, _, addon)
-	if IsAddOnLoaded("Skinner") or IsAddOnLoaded("Aurora") then return end
+	if C_AddOns.IsAddOnLoaded("Skinner") or C_AddOns.IsAddOnLoaded("Aurora") then return end
 
 	-- Stuff not in Blizzard load-on-demand
 	if addon == "ShestakUI" then

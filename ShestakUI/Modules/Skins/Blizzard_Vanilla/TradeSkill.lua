@@ -235,7 +235,7 @@ local function LoadSkin()
 		--[[
 		local skillLink = GetTradeSkillItemLink(id) -- Causing crashes
 		if skillLink then
-			local _, _, quality = GetItemInfo(string.match(skillLink, "item:(%d+)"))
+			local _, _, quality = C_Item.GetItemInfo(string.match(skillLink, "item:(%d+)"))
 			if quality then
 				local R, G, B = GetItemQualityColor(quality)
 				TradeSkillSkillIcon:SetBackdropBorderColor(R, G, B)
@@ -257,7 +257,7 @@ local function LoadSkin()
 			local count = _G["TradeSkillReagent"..i.."Count"]
 
 			if reagentLink then
-				local _, _, quality = GetItemInfo(string.match(reagentLink, "item:(%d+)"))
+				local _, _, quality = C_Item.GetItemInfo(string.match(reagentLink, "item:(%d+)"))
 				if quality then
 					local R, G, B = GetItemQualityColor(quality)
 					icon.backdrop:SetBackdropBorderColor(R, G, B)

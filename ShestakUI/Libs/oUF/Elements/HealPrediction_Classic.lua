@@ -5,7 +5,7 @@ local oUF = ns.oUF
 
 if(oUF:IsMainline()) then return end
 
-local HealComm = not oUF:IsCata() and LibStub("LibHealComm-4.0")
+local HealComm = not (oUF:IsCata() or oUF:IsMists()) and LibStub("LibHealComm-4.0")
 
 local function Update(self, event, unit)
 	if(self.unit ~= unit) then return end

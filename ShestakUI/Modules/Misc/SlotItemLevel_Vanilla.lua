@@ -5,10 +5,11 @@ if C.misc.item_level ~= true then return end
 --	Item level on slot buttons in Character/InspectFrame(by Tukz)
 ----------------------------------------------------------------------------------------
 local time = 3
+
 local slots = {
 	"HeadSlot", "NeckSlot", "ShoulderSlot", "BackSlot", "ChestSlot", "ShirtSlot", "TabardSlot",
 	"WristSlot", "MainHandSlot", "SecondaryHandSlot", "HandsSlot", "WaistSlot",
-	"LegsSlot", "FeetSlot", "Finger0Slot", "Finger1Slot", "Trinket0Slot", "Trinket1Slot", "RangedSlot"
+	"LegsSlot", "FeetSlot", "Finger0Slot", "Finger1Slot", "Trinket0Slot", "Trinket1Slot"
 }
 
 local function CreateButtonsText(frame)
@@ -39,8 +40,8 @@ local function UpdateButtonsText(frame)
 				text:SetText("")
 			elseif item then
 				local oldilevel = text:GetText()
-				local ilevel = select(4, GetItemInfo(item))
-				local heirloom = select(3, GetItemInfo(item))
+				local ilevel = select(4, C_Item.GetItemInfo(item))
+				local heirloom = select(3, C_Item.GetItemInfo(item))
 
 				if ilevel then
 					if ilevel ~= oldilevel then

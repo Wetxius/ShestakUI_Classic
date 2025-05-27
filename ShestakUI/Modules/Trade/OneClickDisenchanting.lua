@@ -198,7 +198,7 @@ function button:PLAYER_LOGIN()
 		local auctionFrame = T.Classic and AuctionFrame or AuctionHouseFrame
 
 		if link and not InCombatLockdown() and IsAltKeyDown() and not (auctionFrame and auctionFrame:IsShown()) then
-			local itemID = GetItemInfoFromHyperlink(link)
+			local itemID = C_Item.GetItemInfoFromHyperlink(link)
 			if not itemID then return end
 			local spell, r, g, b
 			if milling and GetItemCount(itemID) >= 5 and herbs[itemID] then
@@ -209,7 +209,7 @@ function button:PLAYER_LOGIN()
 				if enchantingItems[itemID] then
 					spell, r, g, b = GetSpellInfo(13262), 0.5, 0.5, 1
 				else
-					local _, _, quality, _, _, _, _, _, _, _, _, class, subClass = GetItemInfo(link)
+					local _, _, quality, _, _, _, _, _, _, _, _, class, subClass = C_Item.GetItemInfo(link)
 					if quality and ((quality >= Enum.ItemQuality.Uncommon and quality <= Enum.ItemQuality.Epic)
 						and C_Item.GetItemInventoryTypeByID(itemID) ~= Enum.InventoryType.IndexBodyType
 						and (class == Enum.ItemClass.Weapon

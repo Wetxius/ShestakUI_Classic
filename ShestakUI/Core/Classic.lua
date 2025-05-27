@@ -6,6 +6,8 @@ local T, C, L = unpack(ShestakUI)
 function T.GetSpecialization(isInspect, isPet, specGroup)
 	if T.Cata then
 		return GetPrimaryTalentTree(isInspect, isPet, specGroup)
+	elseif T.Mists then
+		-- return _G.GetSpecialization(isInspect, isPet, specGroup)
 	else
 		if (isInspect or isPet) then
 			return

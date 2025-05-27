@@ -1,5 +1,5 @@
 local T, C, L = unpack(ShestakUI)
-if T.Classic or C.skins.my_role_play ~= true or not IsAddOnLoaded("MyRolePlay") then return end -- FIXME for Classic
+if T.Classic or C.skins.my_role_play ~= true or not C_AddOns.IsAddOnLoaded("MyRolePlay") then return end -- FIXME for Classic
 
 ----------------------------------------------------------------------------------------
 --	MyRolePlay skin

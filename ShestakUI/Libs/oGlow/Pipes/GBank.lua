@@ -45,7 +45,7 @@ end
 local enable = function(self)
 	_E = true
 
-	if(IsAddOnLoaded("Blizzard_GuildBankUI")) then
+	if(C_AddOns.IsAddOnLoaded("Blizzard_GuildBankUI")) then
 		doHook()
 	else
 		self:RegisterEvent("ADDON_LOADED", ADDON_LOADED)

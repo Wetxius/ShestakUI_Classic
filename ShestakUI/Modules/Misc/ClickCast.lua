@@ -103,7 +103,7 @@ SpellBinder.makeSpellsList = function(_, delete)
 			bf.tex:SetSize(22, 22)
 			bf.tex:SetPoint("LEFT")
 			bf.tex:SetTexture(spell.texture)
-			if IsAddOnLoaded("Aurora") or C.skins.blizzard_frames == true then
+			if C_AddOns.IsAddOnLoaded("Aurora") or C.skins.blizzard_frames == true then
 				bf.tex:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 			end
 
@@ -383,7 +383,7 @@ SpellBinder:SetScript("OnEvent", function(self, event)
 	end
 end)
 
-if IsAddOnLoaded("Aurora") then
+if C_AddOns.IsAddOnLoaded("Aurora") then
 	local F, C = unpack(Aurora)
 	SpellBinder:StripTextures()
 	SpellBinderInset:StripTextures()

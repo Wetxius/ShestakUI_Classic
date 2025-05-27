@@ -18,7 +18,7 @@ SLASH_TICKET1 = "/gm"
 SLASH_TICKET2 = "/гм"
 SLASH_TICKET3 = "/пь"
 
-if T.Cata or T.Mainline then
+if T.Cata or T.Mists or T.Mainline then
 	SlashCmdList.JOURNAL = function() ToggleEncounterJournal() end
 	SLASH_JOURNAL1 = "/ej"
 	SLASH_JOURNAL2 = "/уо"
@@ -156,7 +156,7 @@ SLASH_PARTYTORAID4 = "/сщтмуке"
 ----------------------------------------------------------------------------------------
 --	Instance teleport
 ----------------------------------------------------------------------------------------
-if T.Wrath or T.Cata or T.Mainline then
+if T.Wrath or T.Cata or T.Mists or T.Mainline then
 	SlashCmdList.INSTTELEPORT = function()
 		local inInstance = IsInInstance()
 		if inInstance then
@@ -172,7 +172,7 @@ end
 ----------------------------------------------------------------------------------------
 --	Spec switching(by Monolit)
 ----------------------------------------------------------------------------------------
-if T.SoD or T.Wrath or T.Cata then
+if T.SoD or T.Wrath or T.Cata or T.Mists then
 	SlashCmdList.SPEC = function()
 		local spec = GetActiveTalentGroup()
 		if spec == 1 then SetActiveTalentGroup(2) elseif spec == 2 then SetActiveTalentGroup(1) end
@@ -212,7 +212,7 @@ SLASH_NPCID1 = "/getid"
 ----------------------------------------------------------------------------------------
 --	Demo mode for DBM
 ----------------------------------------------------------------------------------------
-SlashCmdList.DBMTEST = function() if IsAddOnLoaded("DBM-Core") then DBM:DemoMode() end end
+SlashCmdList.DBMTEST = function() if C_AddOns.IsAddOnLoaded("DBM-Core") then DBM:DemoMode() end end
 SLASH_DBMTEST1 = "/dbmtest"
 SLASH_DBMTEST2 = "/виьеуые"
 
@@ -320,7 +320,7 @@ SLASH_CLEAR_CHAT2 = "/сдуфк"
 ----------------------------------------------------------------------------------------
 --	Test Blizzard Alerts
 ----------------------------------------------------------------------------------------
-if T.Wrath or T.Cata then
+if T.Wrath or T.Cata or T.Mists then
 	SlashCmdList.TEST_ACHIEVEMENT = function()
 		PlaySound(SOUNDKIT.LFG_REWARDS)
 		if not AchievementFrame then

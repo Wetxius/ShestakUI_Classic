@@ -52,8 +52,9 @@ local isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 local isWrath = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 local isCata = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
 local isEra = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
+local isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 local InCombatLockdownRestriction
-if isRetail or isEra or isCata then
+if isRetail or isEra or isCata or isMists then
     InCombatLockdownRestriction = function(unit) return InCombatLockdown() and not UnitCanAttack("player", unit) end
 else
     InCombatLockdownRestriction = function() return false end
@@ -76,7 +77,7 @@ local GetSpellInfo = GetSpellInfo
 local GetSpellBookItemName = GetSpellBookItemName
 local GetNumSpellTabs = GetNumSpellTabs
 local GetSpellTabInfo = GetSpellTabInfo
-local GetItemInfo = GetItemInfo
+local GetItemInfo = C_Item.GetItemInfo
 local UnitCanAttack = UnitCanAttack
 local UnitCanAssist = UnitCanAssist
 local UnitExists = UnitExists
@@ -681,7 +682,7 @@ local function createCheckerList(spellList, itemList, interactList)
         for range, items in pairs(itemList) do
             for i = 1, #items do
                 local item = items[i]
-                if Item:CreateFromItemID(item):IsItemDataCached() and GetItemInfo(item) then
+                if Item:CreateFromItemID(item):IsItemDataCached() and C_Item.GetItemInfo(item) then
                     addChecker(res, range, nil, checkers_Item[item], "item:" .. item)
                     break
                 end
@@ -917,7 +918,7 @@ local function createSmartChecker(friendChecker, harmChecker, miscChecker)
 end
 
 local minItemChecker = function(item)
-    if GetItemInfo(item) then
+    if C_Item.GetItemInfo(item) then
         return function(unit)
             return IsItemInRange(item, unit)
         end
@@ -1268,7 +1269,7 @@ function lib:processItemRequests(itemRequests)
                 tremove(items, i)
             elseif pendingItemRequest[item] and GetTime() < itemRequestTimeoutAt[item] then
                 return true -- still waiting for server response
-            elseif GetItemInfo(item) then
+            elseif C_Item.GetItemInfo(item) then
                 -- print("### processItemRequests: found: " .. tostring(item))
                 foundNewItems = true
                 itemRequestTimeoutAt[item] = nil
@@ -1351,11 +1352,11 @@ function lib:activate()
         frame:RegisterEvent("CHARACTER_POINTS_CHANGED")
         frame:RegisterEvent("SPELLS_CHANGED")
 
-        if isEra or isWrath or isCata then
+        if isEra or isWrath or isCata or isMists then
             frame:RegisterEvent("CVAR_UPDATE")
         end
 
-        if isRetail or isWrath or isCata then
+        if isRetail or isWrath or isCata or isMists then
             frame:RegisterEvent("PLAYER_TALENT_UPDATE")
         end
 

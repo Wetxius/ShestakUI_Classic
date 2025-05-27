@@ -106,19 +106,7 @@ local function LoadSkin()
 			end
 		end
 	end
-if not T.Mists then 
-	hooksecurefunc("SpellBookFrame_UpdateSkillLineTabs", function()
-		for i = 1, MAX_SKILLLINE_TABS do
-			local tab = _G["SpellBookSkillLineTab"..i]
-			if tab:GetNormalTexture() then
-				tab:GetNormalTexture():ClearAllPoints()
-				tab:GetNormalTexture():SetPoint("TOPLEFT", 2, -2)
-				tab:GetNormalTexture():SetPoint("BOTTOMRIGHT", -2, 2)
-				tab:GetNormalTexture():SetTexCoord(0.1, 0.9, 0.1, 0.9)
-			end
-		end
-	end)
-end
+
 	SpellBookFrame:CreateBackdrop("Transparent")
 	SpellBookFrame.backdrop:SetPoint("TOPLEFT", 5, -1)
 	SpellBookFrame.backdrop:SetPoint("BOTTOMRIGHT", 15, -1)

@@ -8,7 +8,7 @@ local queuedMessages = {}
 local function GetLinkColor(data)
 	local type, arg1, arg2, arg3 = string.split(":", data)
 	if type == "item" then
-		local _, _, quality = GetItemInfo(arg1)
+		local _, _, quality = C_Item.GetItemInfo(arg1)
 		if quality then
 			local _, _, _, color = GetItemQualityColor(quality)
 			return "|c"..color

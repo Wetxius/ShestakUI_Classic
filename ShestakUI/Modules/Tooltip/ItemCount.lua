@@ -9,9 +9,9 @@ local function OnTooltipSetItem(self, data)
 	local num
 	if T.Classic then
 		local _, link = self:GetItem()
-		num = GetItemCount(link, true)
+		num = C_Item.GetItemCount(link, true)
 	else
-		num = GetItemCount(data.id, true)
+		num = C_Item.GetItemCount(data.id, true)
 	end
 
 	if num > 1 then

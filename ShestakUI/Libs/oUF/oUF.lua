@@ -444,6 +444,15 @@ function oUF:IsCata()
 	return _G.WOW_PROJECT_ID == _G.WOW_PROJECT_CATACLYSM_CLASSIC
 end
 
+--[[ oUF:IsMists()
+Used to determine if running Cataclysm Classic.
+
+* self - the global oUF object
+--]]
+function oUF:IsMists()
+	return _G.WOW_PROJECT_ID == _G.WOW_PROJECT_MISTS_CLASSIC
+end
+
 --[[ oUF:RegisterInitCallback(func)
 Used to add a function to a table to be executed upon unit frame/header initialization.
 

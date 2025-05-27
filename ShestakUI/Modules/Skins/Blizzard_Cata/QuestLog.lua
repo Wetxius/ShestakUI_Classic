@@ -91,7 +91,7 @@ local function LoadSkin()
 
 		local function QuestQualityColors(frame, text, quality, link)
 			if link and not quality then
-				quality = select(3, GetItemInfo(link))
+				quality = select(3, C_Item.GetItemInfo(link))
 			end
 
 			if frame then

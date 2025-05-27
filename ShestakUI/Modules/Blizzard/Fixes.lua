@@ -54,7 +54,7 @@ _G.SettingsPanel.TransitionBackOpeningPanel = _G.HideUIPanel
 -- !!NoTaint2 (Code by warbaby 2022-11 http://abyui.top https://github.com/aby-ui)
 ----------------------------------------------------------------------------------------
 if T.Mainline then
-	if IsAddOnLoaded("!!NoTaint2") then return end
+	if C_AddOns.IsAddOnLoaded("!!NoTaint2") then return end
 	if not NoTaint2_Proc_ResetActionButtonAction then
 		NoTaint2_Proc_ResetActionButtonAction = 1
 

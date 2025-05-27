@@ -80,7 +80,7 @@ load:RegisterEvent("PLAYER_ENTERING_WORLD")
 load:SetScript("OnEvent", function(self)
 	self:UnregisterAllEvents()
 
-	if IsAddOnLoaded("ColorPickerPlus") then return end
+	if C_AddOns.IsAddOnLoaded("ColorPickerPlus") then return end
 
 	ColorPickerFrame:HookScript("OnShow", function()
 		-- Get color that will be replaced

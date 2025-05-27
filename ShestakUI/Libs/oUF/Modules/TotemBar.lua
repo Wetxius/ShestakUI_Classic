@@ -103,7 +103,7 @@ local function Enable(self)
 						_G["TotemFrameTotem"..i.."Icon"]:Hide()
 					end
 				end
-				if not oUF:IsCata() then
+				if not (oUF:IsCata() or oUF:IsMists()) then
 					hooksecurefunc("TotemFrame_Update", function()
 						for i = 1, MAX_TOTEMS do
 							local t = _G["TotemFrameTotem"..i]
