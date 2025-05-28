@@ -401,7 +401,7 @@ EventHandler:Register('GOSSIP_SHOW', function()
 	end
 end)
 
-if T.Cata or T.Mainline then
+if T.Cata or T.Mists or T.Mainline then
 	EventHandler:Register('QUEST_GREETING', function()
 		-- triggered when the player interacts with an NPC that hands in/out quests
 		if paused then
@@ -556,7 +556,7 @@ EventHandler:Register('QUEST_COMPLETE', function()
 	EventHandler:Unregister('QUEST_ITEM_UPDATE', 'QUEST_COMPLETE')
 end)
 
-if T.Cata or T.Mainline then
+if T.Cata or T.Mists or T.Mainline then
 	EventHandler:Register('QUEST_WATCH_LIST_CHANGED', function()
 		-- triggered when the player's quest log has been altered
 		if paused then

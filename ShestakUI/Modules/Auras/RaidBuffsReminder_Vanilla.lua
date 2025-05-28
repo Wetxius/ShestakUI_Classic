@@ -205,7 +205,7 @@ local function OnAuraChange(_, event, unit)
 	if (not IsInGroup() or instanceType ~= "raid") and C.reminder.raid_buffs_always == false then
 		RaidBuffReminder:SetAlpha(0)
 		visible = false
-	elseif isPresent.flask == true and isPresent.food == true and isPresent.spell3 == true and isPresent.spell4 == true and isPresent.spell5 == true and (T.Cata or isPresent.spell6 == true) and (T.Wrath or T.Cata or isPresent.spell7 == true) and isPresent.custom == true then
+	elseif isPresent.flask == true and isPresent.food == true and isPresent.spell3 == true and isPresent.spell4 == true and isPresent.spell5 == true and (T.Cata or isPresent.spell6 == true) and (T.Wrath or T.Cata or T.Mists or isPresent.spell7 == true) and isPresent.custom == true then
 		if not visible then
 			RaidBuffReminder:SetAlpha(0)
 			visible = false
@@ -248,10 +248,10 @@ local buffButtons = {
 	"CustomFrame"
 }
 
-if T.Wrath or T.Cata then
+if T.Wrath or T.Cata or T.Mists then
 	tremove(buffButtons, 7)
 end
-if T.Cata then
+if T.Cata or T.Mists then
 	tremove(buffButtons, 6)
 end
 

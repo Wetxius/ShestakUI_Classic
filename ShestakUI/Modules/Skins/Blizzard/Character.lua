@@ -163,8 +163,10 @@ local function LoadSkin()
 	local scrollbars = {
 		PaperDollFrame.TitleManagerPane.ScrollBar,
 		PaperDollFrame.EquipmentManagerPane.ScrollBar,
-		ReputationFrame.ScrollBar,
-		TokenFrame.ScrollBar
+		ReputationListScrollFrame,
+		ReputationListScrollFrame.ScrollBar,	
+		TokenFrameContainer.scrollBar,
+		CharacterStatsPane.ScrollBar
 	}
 
 	for i = 1, #scrollbars do

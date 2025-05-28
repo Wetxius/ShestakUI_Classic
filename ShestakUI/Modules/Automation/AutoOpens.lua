@@ -22,7 +22,7 @@ frame:Register("BANKFRAME_CLOSED", function()
 	atBank = false
 end)
 
-if T.TBC or T.Wrath or T.Cata then
+if T.TBC or T.Wrath or T.Cata or T.Mists then
 	frame:Register("GUILDBANKFRAME_OPENED", function()
 		atBank = true
 	end)
