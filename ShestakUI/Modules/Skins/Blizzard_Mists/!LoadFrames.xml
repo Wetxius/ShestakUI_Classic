@@ -49,7 +49,7 @@
 	<Script file="..\Blizzard\Calendar.lua"/>
 	<Script file="..\Blizzard\Character.lua"/>
 	<Script file="..\Blizzard\Gossip.lua"/>
-	<Script file="..\Blizzard_Cata\Quest.lua"/>
+	<Script file="..\Blizzard_Mists\Quest.lua"/>
 <!-- TODO - Moving files as needed into Blizzard_Cata -->
 	<Script file="..\Blizzard_Mists\Collections.lua"/>
 	<Script file="..\Blizzard_Cata\QuestLog.lua"/>
