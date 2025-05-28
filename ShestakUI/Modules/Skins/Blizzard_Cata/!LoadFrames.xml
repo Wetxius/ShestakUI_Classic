@@ -57,6 +57,6 @@
     <Script file="..\Blizzard_Cata\Talent.lua"/> 
 	<Script file="..\Blizzard_Cata\WorldMap.lua"/>
 	<Script file="..\Blizzard_Cata\Glyph.lua"/> 
-<!--	<Script file="..\Blizzard_Cata\Auction.lua"/> 		Disabling due to changes in 4.4.2 AH updates --> 
+	<Script file="..\Blizzard_Cata\Auction.lua"/>
 
 </Ui>

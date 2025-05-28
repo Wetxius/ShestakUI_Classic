@@ -178,7 +178,6 @@ local function LoadSkin()
 	AuctionHouseFrame.ItemBuyFrame.ItemDisplay:StripTextures()
 	SkinItemIcon(AuctionHouseFrame.ItemBuyFrame.ItemDisplay.ItemButton)
 
-
 	local buyFrame = AuctionHouseFrame.CommoditiesBuyFrame
 	buyFrame.BackButton:SkinButton()
 	buyFrame.BuyDisplay.BuyButton:SkinButton()
@@ -196,7 +195,6 @@ local function LoadSkin()
 	local itemDisplay = buyFrame.BuyDisplay.ItemDisplay
 	itemDisplay:StripTextures()
 	itemDisplay.ItemButton.Icon:SkinIcon()
-	itemDisplay.ItemButton.CircleMask:Hide()
 	itemDisplay.ItemButton.IconBorder:SetAlpha(0)
 
 	local function SkinMoneyBox(frame)
@@ -231,11 +229,13 @@ local function LoadSkin()
 
 	SkinItemIcon(AuctionHouseFrameAuctionsFrame.ItemDisplay.ItemButton)
 
-	T.SkinEditBox(AuctionHouseFrameAuctionsFrameGold)
-	T.SkinEditBox(AuctionHouseFrameAuctionsFrameSilver)
-
 	AuctionHouseFrame.BuyDialog:StripTextures()
 	AuctionHouseFrame.BuyDialog:SetTemplate("Transparent")
+
+	T.SkinEditBox(BidAmountGold)	-- FIXME: There are another frames with the same name on bids page and are unskinned
+	BidAmountGold.backdrop:SetPoint("BOTTOMRIGHT", 0, 0)
+	T.SkinEditBox(BidAmountSilver)
+	BidAmountSilver.backdrop:SetPoint("BOTTOMRIGHT", -10, 0)
 
 	-- WoW Token
 	AuctionHouseFrame.WoWTokenResults:StripTextures()
@@ -434,7 +434,7 @@ local function LoadSkin()
 		end)
 		local frame = CreateFrame("Frame")
 		frame:RegisterEvent("TRADE_SKILL_SHOW")
-		frame:SetScript("OnEvent", function(_, event)
+		frame:SetScript("OnEvent", function()
 			AuctionatorCraftingInfoProfessionsFrame.SearchButton:SkinButton()
 		end)
 	end
