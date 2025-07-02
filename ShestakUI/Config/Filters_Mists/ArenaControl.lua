@@ -20,7 +20,6 @@ T.ArenaControl = {
 	-- Crowd Controls
 	-- Death Knight
 	[SpellName(47481)] = 5,		-- Gnaw (Ghoul)
-	[SpellName(49203)] = 5,		-- Hungering Cold
 	-- Druid
 	[SpellName(5211)] = 5,		-- Bash
 	[SpellName(33786)] = 5,		-- Cyclone
@@ -35,7 +34,6 @@ T.ArenaControl = {
 	[SpellName(19386)] = 5,		-- Wyvern Sting
 	-- Mage
 	[SpellName(31661)] = 5,		-- Dragon's Breath
-	[SpellName(12355)] = 5,		-- Impact
 	[SpellName(118)] = 5,		-- Polymorph
 	-- [SpellName(61305)] = 5,		-- Polymorph: Black Cat
 	-- [SpellName(28272)] = 5,		-- Polymorph: Pig
@@ -43,7 +41,6 @@ T.ArenaControl = {
 	-- [SpellName(61025)] = 5,		-- Polymorph: Serpent
 	-- [SpellName(61780)] = 5,		-- Polymorph: Turkey
 	-- [SpellName(28271)] = 5,		-- Polymorph: Turtle
-	[SpellName(59634)] = 5,		-- Polymorph - Penguin
 	-- Paladin
 	[SpellName(853)] = 5,		-- Hammer of Justice
 	[SpellName(20066)] = 5,		-- Repentance
@@ -62,13 +59,10 @@ T.ArenaControl = {
 	[SpellName(408)] = 5,		-- Kidney Shot
 	[SpellName(6770)] = 5,		-- Sap
 	-- Shaman
-	[SpellName(58861)] = 5,		-- Bash (Spirit Wolf)
 	[SpellName(76780)] = 5,		-- Bind Elemental
 	[SpellName(53019)] = 5,		-- Earth's Grasp
 	[SpellName(51514)] = 5,		-- Hex
-	[SpellName(39796)] = 5,		-- Stoneclaw Totem
 	-- Warlock
-	[SpellName(93975)] = 5,		-- Aura of Foreboding
 	[SpellName(6789)] = 5,		-- Death Coil
 	[SpellName(5782)] = 5,		-- Fear
 	[SpellName(5484)] = 5,		-- Howl of Terror
@@ -76,11 +70,8 @@ T.ArenaControl = {
 	[SpellName(30283)] = 5,		-- Shadowfury
 	-- Warrior
 	[SpellName(7922)] = 5,		-- Charge Stun
-	[SpellName(12809)] = 5,		-- Concussion Blow
-	[SpellName(20253)] = 5,		-- Intercept
 	[SpellName(5246)] = 5,		-- Intimidating Shout
 	[SpellName(46968)] = 5,		-- Shockwave
-	[SpellName(85388)] = 5,		-- Throwdown
 	-- Racial
 	[SpellName(20549)] = 5,		-- War Stomp
 
@@ -90,10 +81,8 @@ T.ArenaControl = {
 	[SpellName(80965)] = 4,		-- Skull Bash (Cat)
 	[SpellName(81261)] = 4,		-- Solar Beam
 	[SpellName(34490)] = 4,		-- Silencing Shot
-	[SpellName(18469)] = 4,		-- Silenced - Improved Counterspell
 	[SpellName(15487)] = 4,		-- Silence
 	[SpellName(1330)] = 4,		-- Garrote - Silence
-	[SpellName(18425)] = 4,		-- Silenced - Improved Kick
 	[SpellName(24259)] = 4,		-- Spell Lock (Felhunter)
 	[SpellName(18498)] = 4,		-- Silenced - Gag Order
 	[SpellName(28730)] = 4,		-- Arcane Torrent (Mana)
@@ -111,12 +100,8 @@ T.ArenaControl = {
 	[SpellName(33395)] = 3,		-- Freeze (Water Elemental)
 	[SpellName(122)] = 3,		-- Frost Nova
 	[SpellName(82691)] = 3,		-- Ring of Frost
-	[SpellName(55080)] = 3,		-- Shattered Barrier
-	[SpellName(58373)] = 3,		-- Glyph of Hamstring
-	[SpellName(23694)] = 3,		-- Improved Hamstring
 
 	-- Disarms
-	[SpellName(64346)] = 1,		-- Fiery Payback
 	[SpellName(51722)] = 1,		-- Dismantle
 	[SpellName(676)] = 1,		-- Disarm
 
@@ -135,14 +120,12 @@ T.ArenaControl = {
 	-- Druid
 	[SpellName(50334)] = 1,		-- Berserk
 	[SpellName(29166)] = 1,		-- Innervate
-	[SpellName(17116)] = 1,		-- Nature's Swiftness
 	[SpellName(48505)] = 1,		-- Starfall
 	[SpellName(61336)] = 1,		-- Survival Instincts
 	[SpellName(740)] = 1,		-- Tranquility
 	-- Hunter
 	[SpellName(19574)] = 1,		-- Bestial Wrath
 	[SpellName(3045)] = 1,		-- Rapid Fire
-	[SpellName(35098)] = 1,		-- Rapid Killing
 	[SpellName(34471)] = 1,		-- The Beast Within
 	--Mage
 	[SpellName(12042)] = 1,		-- Arcane Power
@@ -156,13 +139,11 @@ T.ArenaControl = {
 	[SpellName(1022)] = 1,		-- Hand of Protection
 	[SpellName(6940)] = 1,		-- Hand of Sacrifice
 	[SpellName(1038)] = 1,		-- Hand of Salvation
-	[SpellName(85696)] = 1,		-- Zealotry
 	-- Priest
 	[SpellName(64843)] = 1,		-- Divine Hymn
 	[SpellName(6346)] = 1,		-- Fear Ward
 	[SpellName(47788)] = 1,		-- Guardian Spirit
 	[SpellName(33206)] = 1,		-- Pain Suppression
-	[SpellName(87193)] = 5,		-- Paralysis
 	[SpellName(10060)] = 1,		-- Power Infusion
 	[SpellName(64901)] = 1,		-- Hymn of Hope
 	-- Rogue
@@ -174,15 +155,11 @@ T.ArenaControl = {
 	-- Shaman
 	[SpellName(8178)] = 1,		-- Grounding Totem Effect
 	[SpellName(16190)] = 1,		-- Mana Tide Totem
-	[SpellName(55198)] = 1,		-- Tidal Force
 	-- Warlock
-	[SpellName(18708)] = 1,		-- Fel Domination
-	[SpellName(47241)] = 1,		-- Metamorphosis
 	-- Warrior
 	[SpellName(18499)] = 1,		-- Berserker Rage
 	[SpellName(12292)] = 1,		-- Death Wish
 	[SpellName(1719)] = 1,		-- Recklessness
-	[SpellName(20230)] = 1,		-- Retaliation
 	[SpellName(12328)] = 1,		-- Sweeping Strikes
 	-- Racial
 	[SpellName(26297)] = 1,		-- Berserking
@@ -203,7 +180,6 @@ T.ArenaControl = {
 	[SpellName(19263)] = 1,		-- Deterrence
 	[SpellName(66)] = 1,		-- Invisibility
 	[SpellName(31821)] = 1,		-- Aura Mastery
-	[SpellName(64205)] = 1,		-- Divine Sacrifice
 	[SpellName(47585)] = 1,		-- Dispersion
 	[SpellName(62618)] = 1,		-- Power Word: Barrier
 	[SpellName(31224)] = 1,		-- Cloak of Shadows
@@ -211,7 +187,6 @@ T.ArenaControl = {
 	[SpellName(1856)] = 1,		-- Vanish
 	[SpellName(30823)] = 1,		-- Shamanistic Rage
 	[SpellName(46924)] = 1,		-- Bladestorm
-	[SpellName(12976)] = 1,		-- Last Stand
 	[SpellName(2565)] = 1,		-- Shield Block
 	[SpellName(871)] = 1,		-- Shield Wall
 	[SpellName(23920)] = 1,		-- Spell Reflection

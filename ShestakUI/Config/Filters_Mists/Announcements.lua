@@ -11,7 +11,6 @@ if C.announcements.spells == true then
 		20484,	-- Rebirth
 		20707,	-- Soulstone
 		31821,	-- Aura Mastery
-		64205,	-- Divine Sacrifice
 		633,	-- Lay on Hands
 		34477,	-- Misdirection
 		57934,	-- Tricks of the Trade

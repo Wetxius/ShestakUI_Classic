@@ -41,7 +41,7 @@ if C.reminder.raid_buffs_enable == true or C.announcements.flask_food == true th
 			SpellName(60340),	-- Elixir of Accuracy (+45 Hit Rating)
 			SpellName(60341),	-- Elixir of Deadly Strikes (+45 Critical Rating)
 			SpellName(60344),	-- Elixir of Expertise (+45 Expertise Rating)
-			SpellName(60345),	-- Elixir of Armor Piercing (+45 Armor Penetration Rating)
+			-- SpellName(60345),	-- Elixir of Armor Piercing (+45 Armor Penetration Rating)
 			SpellName(60346),	-- Elixir of Lightning Speed (+45 Haste Rating)
 		},
 		GuardianElixir = {
@@ -82,20 +82,20 @@ if C.reminder.raid_buffs_enable == true or C.announcements.flask_food == true th
 			SpellName(66623),	-- Well Fed (+40 Attack Power / 47 Spell Power / +40 Stamina) [Bountiful Feast]
 		},
 		Mp5 = {
-			SpellName(5677),	-- Mana Spring
+			-- SpellName(5677),	-- Mana Spring
 			SpellName(19740),	-- Blessing of Might
-			SpellName(54424),	-- Fel Intelligence
+			-- SpellName(54424),	-- Fel Intelligence
 		},
 		AP = {
 			SpellName(19740),	-- Blessing of Might
-			SpellName(53138),	-- Abomination's Might
+			-- SpellName(53138),	-- Abomination's Might
 			SpellName(19506),	-- Trueshot Aura
-			SpellName(30808),	-- Unleashed Rage
+			-- SpellName(30808),	-- Unleashed Rage
 		},
 		Intellect = {
 			SpellName(1459),	-- Arcane Intellect
 			SpellName(61316),	-- Dalaran Brilliance
-			SpellName(54424),	-- Fel Intelligence
+			-- SpellName(54424),	-- Fel Intelligence
 			SpellName(46302),	-- K'iru's Song of Victory
 			SpellName(8096),	-- Intellect [Scroll of Intellect]
 		},
@@ -108,7 +108,7 @@ if C.reminder.raid_buffs_enable == true or C.announcements.flask_food == true th
 		Stamina = {
 			SpellName(21562),	-- Prayer of Fortitude
 			SpellName(90364),	-- Qiraji Fortitude
-			SpellName(6307),	-- Blood Pact
+			-- SpellName(6307),	-- Blood Pact
 			SpellName(469),		-- Commanding Shout
 			SpellName(46302),	-- K'iru's Song of Victory
 			SpellName(69377),	-- Fortitude [Runescroll of Fortitude]
@@ -173,7 +173,7 @@ if C.reminder.solo_buffs_enable == true then
 				["spells"] = {
 					SpellName(57330),	-- Horn of Winter
 					SpellName(93435),	-- Roar of Courage
-					SpellName(8076),	-- Strength of Earth
+					-- SpellName(8076),	-- Strength of Earth
 					SpellName(6673),	-- Battle Shout
 				},
 				["combat"] = true,
@@ -197,9 +197,9 @@ if C.reminder.solo_buffs_enable == true then
 				["spells"] = {
 					SpellName(13165),	-- Aspect of the Hawk
 					SpellName(5118),	-- Aspect of the Cheetah
-					SpellName(82661),	-- Aspect of the Fox
+					-- SpellName(82661),	-- Aspect of the Fox
 					SpellName(13159),	-- Aspect of the Pack
-					SpellName(20043),	-- Aspect of the Wild
+					-- SpellName(20043),	-- Aspect of the Wild
 				},
 				["combat"] = true,
 				["instance"] = true,
@@ -210,8 +210,8 @@ if C.reminder.solo_buffs_enable == true then
 				["spells"] = {
 					SpellName(19506),	-- Trueshot Aura
 					SpellName(19740),	-- Blessing of Might
-					SpellName(53138),	-- Abomination's Might
-					SpellName(30808),	-- Unleashed Rage
+					-- SpellName(53138),	-- Abomination's Might
+					-- SpellName(30808),	-- Unleashed Rage
 				},
 				["combat"] = true,
 				["instance"] = true,
@@ -234,7 +234,7 @@ if C.reminder.solo_buffs_enable == true then
 				["spells"] = {
 					SpellName(1459),	-- Arcane Intellect
 					SpellName(61316),	-- Dalaran Brilliance
-					SpellName(54424),	-- Fel Intelligence
+					-- SpellName(54424),	-- Fel Intelligence
 					SpellName(46302),	-- K'iru's Song of Victory
 				},
 				["combat"] = true,
@@ -254,10 +254,10 @@ if C.reminder.solo_buffs_enable == true then
 			},
 			[2] = {	-- Auras group
 				["spells"] = {
-					SpellName(465),		-- Devotion Aura
-					SpellName(7294),	-- Retribution Aura
-					SpellName(19746),	-- Concentration Aura
-					SpellName(19891),	-- Resistance Aura
+					-- SpellName(465),		-- Devotion Aura
+					-- SpellName(7294),	-- Retribution Aura
+					-- SpellName(19746),	-- Concentration Aura
+					-- SpellName(19891),	-- Resistance Aura
 				},
 				["combat"] = true,
 				["instance"] = true,
@@ -266,7 +266,7 @@ if C.reminder.solo_buffs_enable == true then
 				["spells"] = {
 					SpellName(20217),	-- Blessing of Kings
 					SpellName(19740),	-- Blessing of Might
-					SpellName(20911),	-- Blessing of Sanctuary
+					-- SpellName(20911),	-- Blessing of Sanctuary
 				},
 				["combat"] = true,
 				["instance"] = true,
@@ -300,7 +300,7 @@ if C.reminder.solo_buffs_enable == true then
 				["spells"] = {
 					SpellName(21562),	-- Prayer of Fortitude
 					SpellName(90364),	-- Qiraji Fortitude
-					SpellName(6307),	-- Blood Pact
+					-- SpellName(6307),	-- Blood Pact
 					SpellName(469),		-- Commanding Shout
 					SpellName(46302),	-- K'iru's Song of Victory
 				},
@@ -309,7 +309,7 @@ if C.reminder.solo_buffs_enable == true then
 			},
 			[3] = {	-- Shadow Resistance group
 				["spells"] = {
-					SpellName(27683),		-- Shadow Protection
+					-- SpellName(27683),		-- Shadow Protection
 				},
 				["combat"] = true,
 				["instance"] = true,
@@ -342,7 +342,7 @@ if C.reminder.solo_buffs_enable == true then
 					SpellName(2823),	-- Deadly Poison
 					SpellName(3408),	-- Crippling Poison
 					SpellName(5761),	-- Mind-numbing Poison
-					SpellName(13219),	-- Wound Poison
+					-- SpellName(13219),	-- Wound Poison
 				},
 				["mainhand"] = true,
 				["combat"] = true,
@@ -356,7 +356,7 @@ if C.reminder.solo_buffs_enable == true then
 					SpellName(2823),	-- Deadly Poison
 					SpellName(3408),	-- Crippling Poison
 					SpellName(5761),	-- Mind-numbing Poison
-					SpellName(13219),	-- Wound Poison
+					-- SpellName(13219),	-- Wound Poison
 				},
 				["offhand"] = true,
 				["combat"] = true,
@@ -407,8 +407,8 @@ if C.reminder.solo_buffs_enable == true then
 		WARLOCK = {
 			[1] = {	-- Armors group
 				["spells"] = {
-					SpellName(28176),	-- Fel Armor
-					SpellName(687),		-- Demon Armor
+					-- SpellName(28176),	-- Fel Armor
+					-- SpellName(687),		-- Demon Armor
 				},
 				["combat"] = true,
 				["instance"] = true,

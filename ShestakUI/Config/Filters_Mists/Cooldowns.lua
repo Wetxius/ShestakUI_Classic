@@ -34,7 +34,6 @@ if C.raidcooldown.enable == true then
 		{61336, 180},	-- Survival Instincts
 		{31850, 180},	-- Ardent Defender
 		{31821, 120},	-- Aura Mastery
-		{64205, 120},	-- Divine Sacrifice
 		{498, 60},		-- Divine Protection (60sec base / -30sec from talents / -30sec from 4pc T9)
 		{86659, 300},	-- Guardian of Ancient Kings (300sec base / -120sec from talents)
 		{1022, 300},	-- Hand of Protection (300sec base / -120sec from talents)
@@ -49,8 +48,7 @@ if C.raidcooldown.enable == true then
 		{2565, 60},		-- Shield Block (60sec base / -20sec from talents / -10sec from 4pc T9)
 		{871, 300},		-- Shield Wall (300sec base / -180sec from talents)
 		-- Taunts
-		{5209, 180},	-- Challenging Roar (180sec base / -30sec from glyph)
-		{1161, 180},	-- Challenging Shout
+		-- {1161, 180},	-- Challenging Shout
 		-- Mana Regeneration
 		{29166, 180},	-- Innervate (180sec base / -48sec from 4pc T4)
 		{64901, 360},	-- Hymn of Hope
@@ -107,9 +105,7 @@ if C.enemycooldown.enable == true then
 		{2094, 120},	-- Blind (180sec base / -60sec from talents)
 		{5484, 32},		-- Howl of Terror (40sec base / -8sec from glyph)
 		{30283, 20},	-- Shadowfury
-		{12809, 30},	-- Concussion Blow
 		{46968, 17},	-- Shockwave (20sec base / -3sec from glyph)
-		{85388, 45},	-- Throwdown
 		-- Defense abilities
 		{48707, 45},	-- Anti-Magic Shell
 		{51052, 120},	-- Anti-Magic Zone
@@ -151,7 +147,6 @@ if C.enemycooldown.enable == true then
 		-- Heals
 		-- {28880, 180},	-- Gift of the Naaru
 		-- Disarms
-		{64346, 60},	-- Fiery Payback
 		{51722, 60},	-- Dismantle
 		{676, 60},		-- Disarm
 		-- Mana Regeneration

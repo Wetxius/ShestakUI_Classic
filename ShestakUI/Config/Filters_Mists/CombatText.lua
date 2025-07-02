@@ -128,7 +128,6 @@ elseif T.class == "PRIEST" then
 		T.aoespam[64844] = 3		-- Divine Hymn
 		T.aoespam[32546] = 3		-- Binding Heal
 		T.aoespam[596] = 0			-- Prayer of Healing
-		T.aoespam[56161] = 0		-- Glyph of Prayer of Healing
 		T.aoespam[33110] = 3		-- Prayer of Mending
 		T.aoespam[81751] = 3		-- Atonement
 		-- Damaging spells
@@ -137,7 +136,6 @@ elseif T.class == "PRIEST" then
 		T.aoespam[15407] = 3		-- Mind Flay
 		T.aoespam[47666] = 2.5		-- Penance
 		T.aoespam[14914] = 3		-- Holy Fire
-		T.aoespam[87532] = 3		-- Shadowy Apparition
 	end
 	if C.combattext.healing then
 		T.healfilter[15290] = false	-- Vampiric Embrace

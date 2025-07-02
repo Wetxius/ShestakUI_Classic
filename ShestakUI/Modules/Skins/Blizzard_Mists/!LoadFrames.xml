@@ -29,7 +29,7 @@
 	<Script file="..\Blizzard_Vanilla\ItemText.lua"/>
 	<!-- <Script file="..\Blizzard_Vanilla\PetStable.lua"/> -->
 	<Script file="..\Blizzard_Vanilla\Tabard.lua"/>
-	<!-- <Script file="..\Blizzard_Vanilla\Taxi.lua"/> TO DO -->
+	<Script file="..\Blizzard\Taxi.lua"/>
 	<Script file="..\Blizzard_Vanilla\TradeSkill.lua"/>
 	<Script file="..\Blizzard_Vanilla\Trainer.lua"/>
 	<Script file="..\Blizzard_Vanilla\Tutorial.lua"/>
@@ -47,7 +47,7 @@
 	<Script file="..\Blizzard\Calendar.lua"/>
 	<Script file="..\Blizzard\Character.lua"/>
 	<Script file="..\Blizzard\Gossip.lua"/>
-	
+
 	<Script file="..\Blizzard_Mists\Quest.lua"/>
 	<Script file="..\Blizzard_Mists\Collections.lua"/>
 	<Script file="..\Blizzard_Mists\Communities.lua"/>

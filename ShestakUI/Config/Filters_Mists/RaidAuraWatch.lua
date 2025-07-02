@@ -1178,7 +1178,6 @@ if C.raidframe.plugins_pvp_debuffs == true then
 		-- Death Knight
 		[SpellName(53534)] = 2,		-- Chains of Ice
 		[SpellName(47481)] = 3,		-- Gnaw (Ghoul)
-		[SpellName(49203)] = 3,		-- Hungering Cold
 		[SpellName(47476)] = 3,		-- Strangulate
 		-- Druid
 		[SpellName(5211)] = 3,		-- Bash
@@ -1193,7 +1192,6 @@ if C.raidframe.plugins_pvp_debuffs == true then
 		[SpellName(80965)] = 3,		-- Skull Bash (Cat)
 		[SpellName(81261)] = 2,		-- Solar Beam
 		-- Hunter
-		[SpellName(19306)] = 2,		-- Counterattack
 		[SpellName(19185)] = 2,		-- Entrapment
 		[SpellName(3355)] = 3,		-- Freezing Trap Effect
 		[SpellName(2637)] = 3,		-- Hibernate
@@ -1204,10 +1202,8 @@ if C.raidframe.plugins_pvp_debuffs == true then
 		[SpellName(19386)] = 3,		-- Wyvern Sting
 		-- Mage
 		[SpellName(31661)] = 3,		-- Dragon's Breath
-		[SpellName(64346)] = 3,		-- Fiery Payback
 		[SpellName(33395)] = 2,		-- Freeze (Water Elemental)
 		[SpellName(122)] = 2,		-- Frost Nova
-		[SpellName(12355)] = 3,		-- Impact
 		[SpellName(118)] = 3,		-- Polymorph
 		[SpellName(61305)] = 3,		-- Polymorph: Black Cat
 		[SpellName(28272)] = 3,		-- Polymorph: Pig
@@ -1215,9 +1211,6 @@ if C.raidframe.plugins_pvp_debuffs == true then
 		[SpellName(61025)] = 3,		-- Polymorph: Serpent
 		[SpellName(61780)] = 3,		-- Polymorph: Turkey
 		[SpellName(28271)] = 3,		-- Polymorph: Turtle
-		[SpellName(59634)] = 3,		-- Polymorph - Penguin
-		[SpellName(55080)] = 2,		-- Shattered Barrier
-		[SpellName(18469)] = 3,		-- Silenced - Improved Counterspell
 		-- Paladin
 		[SpellName(853)] = 3,		-- Hammer of Justice
 		[SpellName(20066)] = 3,		-- Repentance
@@ -1225,7 +1218,6 @@ if C.raidframe.plugins_pvp_debuffs == true then
 		-- Priest
 		[SpellName(88625)] = 3,		-- Holy Word: Chastise
 		[SpellName(605)] = 3,		-- Mind Control
-		[SpellName(87193)] = 3,		-- Paralysis
 		[SpellName(64044)] = 3,		-- Psychic Horror
 		[SpellName(8122)] = 3,		-- Psychic Scream
 		[SpellName(9484)] = 3,		-- Shackle Undead
@@ -1239,16 +1231,12 @@ if C.raidframe.plugins_pvp_debuffs == true then
 		[SpellName(32747)] = 3,		-- Interrupt
 		[SpellName(408)] = 3,		-- Kidney Shot
 		[SpellName(6770)] = 3,		-- Sap
-		[SpellName(18425)] = 3,		-- Silenced - Improved Kick
 		[SpellName(76577)] = 5,		-- Smoke Bomb
 		-- Shaman
-		[SpellName(58861)] = 3,		-- Bash (Spirit Wolf)
 		[SpellName(76780)] = 3,		-- Bind Elemental
 		[SpellName(53019)] = 3,		-- Earth's Grasp
 		[SpellName(51514)] = 3,		-- Hex
-		[SpellName(39796)] = 3,		-- Stoneclaw Totem
 		-- Warlock
-		[SpellName(93975)] = 3,		-- Aura of Foreboding
 		[SpellName(6789)] = 3,		-- Death Coil
 		[SpellName(60995)] = 3,		-- Demon Leap (Metamorphosis)
 		[SpellName(5782)] = 3,		-- Fear
@@ -1259,15 +1247,10 @@ if C.raidframe.plugins_pvp_debuffs == true then
 		[SpellName(24259)] = 3,		-- Spell Lock (Felhunter)
 		-- Warrior
 		[SpellName(7922)] = 3,		-- Charge Stun
-		[SpellName(12809)] = 3,		-- Concussion Blow
 		[SpellName(676)] = 3,		-- Disarm
-		[SpellName(58373)] = 2,		-- Glyph of Hamstring
-		[SpellName(23694)] = 2,		-- Improved Hamstring
 		[SpellName(5246)] = 3,		-- Intimidating Shout
-		[SpellName(20253)] = 3,		-- Intercept
 		[SpellName(46968)] = 3,		-- Shockwave
 		[SpellName(18498)] = 3,		-- Silenced - Gag Order
-		[SpellName(85388)] = 3,		-- Throwdown
 		-- Racial
 		[SpellName(28730)] = 3,		-- Arcane Torrent
 		[SpellName(20549)] = 3,		-- War Stomp

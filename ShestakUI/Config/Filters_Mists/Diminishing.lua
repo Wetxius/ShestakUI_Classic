@@ -15,19 +15,14 @@ T.DiminishingSpells = {
 	[44572] = {"stun"},				-- Deep Freeze
 	[853] = {"stun"},				-- Hammer of Justice
 	[1833] = {"stun"},				-- Cheap Shot
-	[58861] = {"stun"},				-- Bash (Spirit Wolf)
-	[93975] = {"stun"},				-- Aura of Foreboding r1
 	[93986] = {"stun"},				-- Aura of Foreboding r2
-	[60995] = {"stun"},				-- Demon Leap (Metamorphosis)
+	-- [60995] = {"stun"},				-- Demon Leap (Metamorphosis)
 	[22703] = {"stun"},				-- Inferno Effect
 	[30153] = {"stun"},				-- Intercept (Felguard)
 	[30283] = {"stun"},				-- Shadowfury
 	[7922] = {"stun"},				-- Charge Stun
 	[96273] = {"stun"},				-- Charge Stun
-	[12809] = {"stun"},				-- Concussion Blow
-	[20253] = {"stun"},				-- Intercept
 	[46968] = {"stun"},				-- Shockwave
-	[85388] = {"stun"},				-- Throwdown
 	[20549] = {"stun"},				-- War Stomp (Racial)
 	[835] = {"stun"},				-- Tidal Charm
 	[4064] = {"stun"},				-- Rough Copper Bomb
@@ -52,16 +47,13 @@ T.DiminishingSpells = {
 
 	--[[
 	-- Stun Procs
-	[12355] = {"stunproc"},			-- Impact
 	[77505] = {"stunproc"},			-- Earthquake
-	[39796] = {"stunproc"},			-- Stoneclaw Totem
 	[56] = {"stunproc"},			-- Stun (The Chief's Enforcer / Bludgeon of the Grinning Dog / The Judge's Gavel / Hammer of the Titans)
 	[15283] = {"stunproc"},			-- Stunning Blow (Dark Iron Pulverizer)
 	[21152] = {"stunproc"},			-- Earthshaker (Earthshaker)
 	--]]
 
 	-- Disorients
-	[49203] = {"disorient"},		-- Hungering Cold
 	[22570] = {"disorient"},		-- Maim
 	[118] = {"disorient"},			-- Polymorph
 	[61305] = {"disorient"},		-- Polymorph: Black Cat
@@ -70,7 +62,6 @@ T.DiminishingSpells = {
 	[61025] = {"disorient"},		-- Polymorph: Serpent
 	[61780] = {"disorient"},		-- Polymorph: Turkey
 	[28271] = {"disorient"},		-- Polymorph: Turtle
-	[59634] = {"disorient"},		-- Polymorph - Penguin
 	[88625] = {"disorient"},		-- Holy Word: Chastise
 	[1776] = {"disorient"},			-- Gouge
 	[6770] = {"disorient"},			-- Sap
@@ -111,26 +102,20 @@ T.DiminishingSpells = {
 	-- [45334] = {"root"},				-- Feral Charge Effect
 	[339] = {"root"},				-- Entangling Roots
 	[19975] = {"root"},				-- Entangling Roots (Nature's Grasp)
-	[19306] = {"root"},				-- Counterattack
 	[19185] = {"root"},				-- Entrapment
 	[33395] = {"root"},				-- Freeze (Water Elemental)
 	[122] = {"root"},				-- Frost Nova
 	[82691] = {"root"},				-- Ring of Frost
-	[55080] = {"root"},				-- Shattered Barrier r1
 	[83073] = {"root"},				-- Shattered Barrier r2
-	[87193] = {"root"},				-- Paralysis r1
 	[87194] = {"root"},				-- Paralysis r2
 	[93974] = {"root"},				-- Aura of Foreboding r1
 	[93987] = {"root"},				-- Aura of Foreboding r2
 	[53019] = {"root"},				-- Earth's Grasp
-	-- [58373] = {"root"},				-- Glyph of Hamstring
-	-- [23694] = {"root"},				-- Improved Hamstring
 	-- [27868] = {"root"},				-- Freeze (Magister's Regalia / Sorcerer's Regalia / Deadman's Hand)
 	[39965] = {"root"},				-- Frost Grenade
 
 	--[[
 	-- Disarms
-	[64346] = {"disarm"},			-- Fiery Payback
 	[64058] = {"disarm"},			-- Psychic Horror
 	[51722] = {"disarm"},			-- Dismantle
 	[676] = {"disarm"},				-- Disarm
@@ -142,13 +127,11 @@ T.DiminishingSpells = {
 	[80964] = {"silence"},			-- Skull Bash (Bear)
 	[80965] = {"silence"},			-- Skull Bash (Cat)
 	[34490] = {"silence"},			-- Silencing Shot
-	[18469] = {"silence"},			-- Silenced - Improved Counterspell
 	[31935] = {"silence"},			-- Avenger's Shield
 	[15487] = {"silence"},			-- Silence
 	[1330] = {"silence"},			-- Garrote - Silence
 	[24259] = {"silence"},			-- Spell Lock (Felhunter)
 	[18498] = {"silence"},			-- Silenced - Gag Order
-	[18425] = {"silence"},			-- Silenced - Improved Kick
 	[28730] = {"silence"},			-- Arcane Torrent (Mana)
 	[25046] = {"silence"},			-- Arcane Torrent (Energy)
 	[50613] = {"silence"},			-- Arcane Torrent (Runic Power)
