@@ -22,16 +22,14 @@
 	<Script file="..\Blizzard\TimeManager.lua"/>
 	<Script file="..\Blizzard\Trade.lua"/>
 
-	<Script file="..\Blizzard_Vanilla\Communities.lua"/>
 	<Script file="..\Blizzard_Vanilla\Container.lua"/>
 	<Script file="..\Blizzard_Vanilla\DressUp.lua"/>
 	<Script file="..\Blizzard_Vanilla\Friends.lua"/>
 	<Script file="..\Blizzard_Vanilla\GMSurvey.lua"/>
-	<Script file="..\Blizzard_Vanilla\Inspect.lua"/>			
 	<Script file="..\Blizzard_Vanilla\ItemText.lua"/>
 	<!-- <Script file="..\Blizzard_Vanilla\PetStable.lua"/> -->
 	<Script file="..\Blizzard_Vanilla\Tabard.lua"/>
-	<Script file="..\Blizzard_Vanilla\Taxi.lua"/>
+	<!-- <Script file="..\Blizzard_Vanilla\Taxi.lua"/> TO DO -->
 	<Script file="..\Blizzard_Vanilla\TradeSkill.lua"/>
 	<Script file="..\Blizzard_Vanilla\Trainer.lua"/>
 	<Script file="..\Blizzard_Vanilla\Tutorial.lua"/>
@@ -49,14 +47,16 @@
 	<Script file="..\Blizzard\Calendar.lua"/>
 	<Script file="..\Blizzard\Character.lua"/>
 	<Script file="..\Blizzard\Gossip.lua"/>
+	
 	<Script file="..\Blizzard_Mists\Quest.lua"/>
-<!-- TODO - Moving files as needed into Blizzard_Cata -->
 	<Script file="..\Blizzard_Mists\Collections.lua"/>
+	<Script file="..\Blizzard_Mists\Communities.lua"/>
 	<Script file="..\Blizzard_Cata\QuestLog.lua"/>
 	<Script file="..\Blizzard_Mists\SpellBook.lua"/>
-    <Script file="..\Blizzard_Cata\Talent.lua"/> 
-	<Script file="..\Blizzard_Cata\WorldMap.lua"/>
-	<Script file="..\Blizzard_Cata\Glyph.lua"/> 
-<!--	<Script file="..\Blizzard_Cata\Auction.lua"/> 		Disabling due to changes in 4.4.2 AH updates --> 
+    <Script file="..\Blizzard_Mists\Talent.lua"/> 
+	<Script file="..\Blizzard_Mists\WorldMap.lua"/>
+	<Script file="..\Blizzard_Mists\Glyph.lua"/> 
+	<Script file="..\Blizzard_Mists\Auction.lua"/>
+	<Script file="..\Blizzard_Mists\Inspect.lua"/>			
 
 </Ui>
