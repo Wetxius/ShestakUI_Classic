@@ -622,7 +622,7 @@ end
 ----------------------------------------------------------------------------------------
 --	Battlefield icon (Classic)
 ----------------------------------------------------------------------------------------
-if T.Classic then
+if T.Classic and not T.Mists then
 	MiniMapBattlefieldFrame:ClearAllPoints()
 	MiniMapBattlefieldFrame:SetPoint("TOPRIGHT", MinimapAnchor, "TOPRIGHT", 2, 2)
 	MiniMapBattlefieldBorder:Hide()
