@@ -14,7 +14,7 @@
 	<Script file="Config\Settings.lua"/>
 	<Script file="Config\Positions.lua"/>
 	<Script file="Config\Fonts.lua"/>
-	<Script file="Config\Profiles_Wrath.lua"/>
+	<Script file="Config\Profiles_Mists.lua"/>
 
 	<Script file="Core\GUI.lua"/>
 	<Script file="Core\PixelPerfect.lua"/>
@@ -30,7 +30,7 @@
 	<Script file="Modules\Blizzard\LibShowUIPanel.lua"/>
 	<Script file="Libs\LitePanels\LitePanels.lua"/>
 	<Script file="Libs\LitePanels\Layout.lua"/>
-	<Script file="Config\DataText_Wrath.lua"/>
+	<Script file="Config\DataText_Mists.lua"/>
 	<Script file="Libs\LiteStats\LiteStats.lua"/>
 	<Script file="Modules\UnitFrames\Colors.lua"/>
 
@@ -177,7 +177,7 @@
 
 	<Script file="Modules\Maps\BattlefieldMap.lua"/>
 	<Script file="Modules\Maps\ButtonCollect.lua"/>
-	<Script file="Modules\Maps\FogOfWar_Wrath.lua"/>
+	<Script file="Modules\Maps\FogOfWar_Mists.lua"/>
 	<Script file="Modules\Maps\MiniMap.lua"/>
 	<Script file="Modules\Maps\MiniMapButtons.lua"/>
 	<Script file="Modules\Maps\ToggleMenu.lua"/>
@@ -185,7 +185,7 @@
 
 	<Script file="Modules\Quests\AutoAccept.lua"/>
 	<Script file="Modules\Quests\AutoButton.lua"/>
-	<Script file="Modules\Quests\ObjectiveTracker_Wrath.lua"/>
+	<Script file="Modules\Quests\ObjectiveTracker_Mists.lua"/>
 
 	<Include file="Modules\Skins\Blizzard_Mists\!LoadFrames.xml"/>
 	<Script file="Modules\Skins\Ace3.lua"/>
