@@ -6,7 +6,7 @@ local T, C, L = unpack(ShestakUI)
 local LoadTootlipSkin = CreateFrame("Frame")
 LoadTootlipSkin:RegisterEvent("ADDON_LOADED")
 LoadTootlipSkin:SetScript("OnEvent", function(self, _, addon)
-	if IsAddOnLoaded("Skinner") or IsAddOnLoaded("Aurora") or not C.tooltip.enable then
+	if C_AddOns.IsAddOnLoaded("Skinner") or C_AddOns.IsAddOnLoaded("Aurora") or not C.tooltip.enable then
 		self:UnregisterEvent("ADDON_LOADED")
 		return
 	end
@@ -544,7 +544,7 @@ local function LoadSkin()
 
 	local function SetItemQuality(_, itemFrame)
 		if (itemFrame.backdrop) then
-			local _, _, quality = GetItemInfo(itemFrame.itemID);
+			local _, _, quality = C_Item.GetItemInfo(itemFrame.itemID);
 			local alpha = 1
 			if (not itemFrame.collected) then
 				alpha = 0.4

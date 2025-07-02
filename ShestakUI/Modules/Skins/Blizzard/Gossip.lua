@@ -70,13 +70,13 @@ local function LoadSkin()
 
 	GossipFrame:CreateBackdrop("Transparent")
 	GossipFrame.backdrop:SetAllPoints()
-	if T.Classic then
+	if T.Classic and not T.Mists then
 		GossipFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
 		GossipFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 66)
 	end
 	GossipFrame:DisableDrawLayer("BACKGROUND")
 
-	if T.Classic then
+	if T.Classic and not T.Mists then
 		T.SkinCloseButton(GossipFrame.CloseButton, GossipFrame.backdrop)
 	else
 		T.SkinCloseButton(GossipFrameCloseButton, GossipFrame.backdrop)

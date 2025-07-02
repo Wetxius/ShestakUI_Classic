@@ -12,7 +12,7 @@ local function LoadSkin()
 
 		QuestLogFrame:SetAttribute("UIPanelLayout-width", T.Scale(685))
 		QuestLogFrame:SetAttribute("UIPanelLayout-height", T.Scale(490))
-		QuestLogFrame:SetSize(685, 490)
+		QuestLogFrame:SetSize(700, 500)
 		QuestLogFrame:CreateBackdrop("Transparent")
 		QuestLogFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
 		QuestLogFrame.backdrop:SetPoint("BOTTOMRIGHT", -1, 8)
@@ -26,8 +26,10 @@ local function LoadSkin()
 
 		QuestLogListScrollFrame:StripTextures()
 		QuestLogListScrollFrame:CreateBackdrop("Default", true)
-		QuestLogListScrollFrame.backdrop:SetPoint("TOPLEFT", -4, 4)
-		QuestLogListScrollFrame:SetSize(301, 373)
+		QuestLogListScrollFrame.backdrop:SetPoint("TOPLEFT", -4, 2)
+		QuestLogListScrollFrame:SetSize(300, 375)
+		QuestLogListScrollFrame:ClearAllPoints()
+		QuestLogListScrollFrame:SetPoint("TOPLEFT", QuestLogFrame, 32, -65)
 
 		QuestLogDetailScrollFrame:StripTextures()
 		QuestLogDetailScrollFrame:CreateBackdrop("Default", true)
@@ -38,21 +40,25 @@ local function LoadSkin()
 
 		QuestLogNoQuestsText:ClearAllPoints()
 		QuestLogNoQuestsText:SetPoint("CENTER", EmptyQuestLogFrame, "CENTER", -45, 65)
-
-		QuestLogFrameAbandonButton:SetPoint("BOTTOMLEFT", 15, 15)
-		QuestLogFrameAbandonButton:SetWidth(101)
+		
+		QuestLogFrameAbandonButton:SetPoint("LEFT", 24, 10)
+		QuestLogFrameAbandonButton:SetWidth(100)
 		QuestLogFrameAbandonButton:SetText(ABANDON_QUEST)
 
 		QuestFramePushQuestButton:ClearAllPoints()
 		QuestFramePushQuestButton:SetPoint("LEFT", QuestLogFrameAbandonButton, "RIGHT", 2, 0)
-		QuestFramePushQuestButton:SetWidth(101)
+		QuestFramePushQuestButton:SetWidth(100)
 		QuestFramePushQuestButton:SetText(SHARE_QUEST)
 
-		--QuestLogFrameShowMapButton:SetPoint("LEFT", QuestLogFrame, "LEFT", 4, 0)
+		--	QuestLogFrameShowMapButton:SetPoint("CENTER", 4, 0)
 
 		QuestLogFrameCancelButton:SkinButton()
-		QuestLogFrameCancelButton:SetPoint("BOTTOMRIGHT", -31, 15)
+		QuestLogFrameCancelButton:SetPoint("BOTTOMRIGHT", -30, 15)
 		QuestLogFrameCancelButton:SetWidth(100)
+		
+		QuestLogFrameTrackButton:SkinButton()
+		QuestLogFrameTrackButton:SetPoint("LEFT", QuestFramePushQuestButton, "RIGHT", 2, 0)
+		QuestLogFrameTrackButton:SetWidth(100)
 
 		T.SkinScrollBar(QuestLogDetailScrollFrameScrollBar)
 		T.SkinScrollBar(QuestLogListScrollFrameScrollBar)
@@ -91,7 +97,7 @@ local function LoadSkin()
 
 		local function QuestQualityColors(frame, text, quality, link)
 			if link and not quality then
-				quality = select(3, GetItemInfo(link))
+				quality = select(3, C_Item.GetItemInfo(link))
 			end
 
 			if frame then
@@ -204,9 +210,6 @@ local function LoadSkin()
 		end)
 		
 
-
-		QuestLogFrameTrackButton:SkinButton()
-		QuestLogFrameTrackButton:SetPoint("LEFT", QuestFramePushQuestButton, "RIGHT", 2, 0)
 
 		--[[
         local function UpdateQuests() -- causing issues

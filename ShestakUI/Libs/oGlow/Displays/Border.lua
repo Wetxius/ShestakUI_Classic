@@ -8,7 +8,7 @@ end
 local colorTable = setmetatable(
 	{},
 	{__index = function(self, val)
-		local r, g, b = GetItemQualityColor(val)
+		local r, g, b = C_Item.GetItemQualityColor(val)
 		rawset(self, val, {r, g, b})
 
 		return self[val]
@@ -18,7 +18,7 @@ local colorTable = setmetatable(
 local createBorder = function(self, point)
 	local bc = self.oGlowBorder
 	if not bc then
-		if C.skins.blizzard_frames == true or IsAddOnLoaded("Aurora") then
+		if C.skins.blizzard_frames == true or C_AddOns.IsAddOnLoaded("Aurora") then
 			if not self:IsObjectType("Frame") then
 				bc = CreateFrame("Frame", nil, self:GetParent(), BackdropTemplateMixin and "BackdropTemplate")
 			else
@@ -64,7 +64,7 @@ local borderDisplay = function(frame, color)
 		local rgb = colorTable[color]
 
 		if rgb then
-			if C.skins.blizzard_frames == true or IsAddOnLoaded("Aurora") then
+			if C.skins.blizzard_frames == true or C_AddOns.IsAddOnLoaded("Aurora") then
 				bc:SetBackdropBorderColor(rgb[1], rgb[2], rgb[3])
 				if bc.backdrop then
 					bc.backdrop:SetBackdropBorderColor(rgb[1], rgb[2], rgb[3])

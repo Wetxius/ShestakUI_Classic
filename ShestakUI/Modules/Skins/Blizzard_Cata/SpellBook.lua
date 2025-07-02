@@ -106,7 +106,7 @@ local function LoadSkin()
 			end
 		end
 	end
-
+if not T.Mists then 
 	hooksecurefunc("SpellBookFrame_UpdateSkillLineTabs", function()
 		for i = 1, MAX_SKILLLINE_TABS do
 			local tab = _G["SpellBookSkillLineTab"..i]
@@ -118,7 +118,7 @@ local function LoadSkin()
 			end
 		end
 	end)
-
+end
 	SpellBookFrame:CreateBackdrop("Transparent")
 	SpellBookFrame.backdrop:SetPoint("TOPLEFT", 5, -1)
 	SpellBookFrame.backdrop:SetPoint("BOTTOMRIGHT", 15, -1)

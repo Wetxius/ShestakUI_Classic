@@ -107,7 +107,7 @@ local function UnitGear(unit)
 				if not itemLink then
 					delay = true
 				else
-					local _, _, quality, level, _, _, _, _, slot = GetItemInfo(itemLink)
+					local _, _, quality, level, _, _, _, _, slot = C_Item.GetItemInfo(itemLink)
 
 					if (not quality) or (not level) then
 						delay = true

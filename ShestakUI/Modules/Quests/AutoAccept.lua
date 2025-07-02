@@ -401,7 +401,7 @@ EventHandler:Register('GOSSIP_SHOW', function()
 	end
 end)
 
-if T.Cata or T.Mainline then
+if T.Cata or T.Mists or T.Mainline then
 	EventHandler:Register('QUEST_GREETING', function()
 		-- triggered when the player interacts with an NPC that hands in/out quests
 		if paused then
@@ -483,7 +483,7 @@ EventHandler:Register('QUEST_PROGRESS', function()
 		local itemLink = GetQuestItemLink('required', index)
 		if itemLink then
 			-- check to see if the item is blocked
-			local questItemID = GetItemInfoFromHyperlink(itemLink)
+			local questItemID = C_Item.GetItemInfoFromHyperlink(itemLink)
 			if QuickQuestDB.blocklist.items[questItemID] then
 				-- item is blocked, prevent this quest from opening again and close it
 				ignoredQuests[GetQuestID()] = true
@@ -529,8 +529,8 @@ EventHandler:Register('QUEST_COMPLETE', function()
 		local itemLink = GetQuestItemLink('choice', index)
 		if itemLink then
 			-- check the value on the item and compare it to the others
-			local _, _, _, _, _, _, _, _, _, _, itemValue = GetItemInfo(itemLink)
-			local itemID = GetItemInfoFromHyperlink(itemLink)
+			local _, _, _, _, _, _, _, _, _, _, itemValue = C_Item.GetItemInfo(itemLink)
+			local itemID = C_Item.GetItemInfoFromHyperlink(itemLink)
 
 			-- some items are containers that contains currencies of worth
 			itemValue = cashRewards[itemID] or itemValue
@@ -556,7 +556,7 @@ EventHandler:Register('QUEST_COMPLETE', function()
 	EventHandler:Unregister('QUEST_ITEM_UPDATE', 'QUEST_COMPLETE')
 end)
 
-if T.Cata or T.Mainline then
+if T.Cata or T.Mists or T.Mainline then
 	EventHandler:Register('QUEST_WATCH_LIST_CHANGED', function()
 		-- triggered when the player's quest log has been altered
 		if paused then

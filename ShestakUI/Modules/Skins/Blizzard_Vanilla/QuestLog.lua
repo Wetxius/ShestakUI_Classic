@@ -1,11 +1,11 @@
 local T, C, L = unpack(ShestakUI)
-if C.skins.blizzard_frames ~= true or IsAddOnLoaded("QuestLogEx") then return end -- incomplete
+if C.skins.blizzard_frames ~= true or C_AddOns.IsAddOnLoaded("QuestLogEx") then return end -- incomplete
 
 ----------------------------------------------------------------------------------------
 --	QuestLog skin
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
-	if T.Wrath or T.Cata then
+	if T.Wrath or T.Cata or T.Mists then
 		return -- TODO
 	else
 		QuestLogTimerText:SetTextColor(1, 1, 1)
@@ -108,7 +108,7 @@ local function LoadSkin()
 
 		local function QuestQualityColors(frame, text, quality, link)
 			if link and not quality then
-				quality = select(3, GetItemInfo(link))
+				quality = select(3, C_Item.GetItemInfo(link))
 			end
 
 			if frame then

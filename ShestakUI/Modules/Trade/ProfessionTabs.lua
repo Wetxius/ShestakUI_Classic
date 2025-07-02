@@ -142,7 +142,7 @@ local function UpdateTab(object, name, rank, texture, hat)
 
 	tab:ClearAllPoints()
 
-	if IsAddOnLoaded("Aurora") then
+	if C_AddOns.IsAddOnLoaded("Aurora") then
 		tab:SetPoint("TOPLEFT", object, "TOPRIGHT", 11, (-44 * index) + 10)
 
 		tab:DisableDrawLayer("BACKGROUND")
@@ -269,7 +269,7 @@ local isLoaded
 function handler:TRADE_SKILL_SHOW(event)
 	local owner = ATSWFrame or MRTSkillFrame or SkilletFrame or TradeSkillFrame or ProfessionsFrame
 
-	if IsAddOnLoaded("TradeSkillDW") and owner == (TradeSkillFrame or ProfessionsFrame) then
+	if C_AddOns.IsAddOnLoaded("TradeSkillDW") and owner == (TradeSkillFrame or ProfessionsFrame) then
 		self:UnregisterEvent(event)
 	else
 		HandleTabs(owner)

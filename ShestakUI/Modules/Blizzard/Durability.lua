@@ -4,7 +4,7 @@ local T, C, L = unpack(ShestakUI)
 --	Durability value on slot buttons in CharacterFrame(tekability by Tekkub)
 ----------------------------------------------------------------------------------------
 local SLOTIDS = {}
-if T.Classic then
+if T.Classic and not T.Mists then
 	for _, slot in pairs({"Head", "Shoulder", "Chest", "Waist", "Legs", "Feet", "Wrist", "Hands", "MainHand", "SecondaryHand", "Ranged"}) do
 		SLOTIDS[slot] = GetInventorySlotInfo(slot.."Slot")
 	end

@@ -1,5 +1,5 @@
 local T, C, L = unpack(ShestakUI)
-if C.trade.enchantment_scroll ~= true or IsAddOnLoaded("OneClickEnchantScroll") then return end
+if C.trade.enchantment_scroll ~= true or C_AddOns.IsAddOnLoaded("OneClickEnchantScroll") then return end
 
 ----------------------------------------------------------------------------------------
 --	Enchantment scroll on TradeSkill frame(OneClickEnchantScroll by Sara.Festung)
@@ -8,7 +8,7 @@ if T.Classic then
 	local frame = CreateFrame("Frame")
 	frame:RegisterEvent("ADDON_LOADED")
 	frame:SetScript("OnEvent", function(self, event, addon)
-		if addon == "Blizzard_TradeSkillUI" and not IsAddOnLoaded("OneClickEnchantScroll") then
+		if addon == "Blizzard_TradeSkillUI" and not C_AddOns.IsAddOnLoaded("OneClickEnchantScroll") then
 			local button = CreateFrame("Button", "TradeSkillCreateScrollButton", TradeSkillFrame, "MagicButtonTemplate")
 			if C.skins.blizzard_frames == true then
 				button:SkinButton(true)

@@ -5,7 +5,7 @@ if C.skins.blizzard_frames ~= true then return end
 --	Bank/Container skin
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
-	if IsAddOnLoaded("AdiBags") or IsAddOnLoaded("ArkInventory") or IsAddOnLoaded("cargBags_Nivaya") or IsAddOnLoaded("cargBags") or IsAddOnLoaded("Bagnon") or IsAddOnLoaded("Combuctor") or IsAddOnLoaded("TBag") or IsAddOnLoaded("BaudBag") or IsAddOnLoaded("Baganator") then return end
+	if C_AddOns.IsAddOnLoaded("AdiBags") or C_AddOns.IsAddOnLoaded("ArkInventory") or C_AddOns.IsAddOnLoaded("cargBags_Nivaya") or C_AddOns.IsAddOnLoaded("cargBags") or C_AddOns.IsAddOnLoaded("Bagnon") or C_AddOns.IsAddOnLoaded("Combuctor") or C_AddOns.IsAddOnLoaded("TBag") or C_AddOns.IsAddOnLoaded("BaudBag") or C_AddOns.IsAddOnLoaded("Baganator") then return end
 
 	-- Container Frame
 	for i = 1, NUM_CONTAINER_FRAMES do
@@ -48,7 +48,7 @@ local function LoadSkin()
 	BankFrameMoneyFrame:StripTextures()
 
 	BankFramePurchaseButton:SkinButton()
-	T.SkinCloseButton(BankCloseButton, BankFrame.backdrop)
+	--T.SkinCloseButton(BankCloseButton, BankFrame.backdrop)
 
 	BankSlotsFrame:StripTextures()
 

@@ -289,7 +289,7 @@ frame:SetScript("OnEvent", function(self, event)
 		StyleNormalButton(_G["MultiBarLeftButton"..i], C.actionbar.editor and C.actionbar.bar3_size)
 		StyleNormalButton(_G["MultiBarRightButton"..i], C.actionbar.editor and C.actionbar.bar4_size)
 		StyleNormalButton(_G["MultiBarBottomRightButton"..i], C.actionbar.editor and C.actionbar.bar5_size)
-		if T.Wrath or T.Cata then
+		if T.Wrath or T.Cata or T.Mists then
 			StyleNormalButton(_G["MultiCastActionButton"..i])
 		end
 		if T.Mainline then
@@ -397,7 +397,7 @@ if C.actionbar.hotkey == true then
 			UpdateHotkey(_G["MultiBarBottomRightButton"..i])
 			UpdateHotkey(_G["MultiBarLeftButton"..i])
 			UpdateHotkey(_G["MultiBarRightButton"..i])
-			if T.Wrath or T.Cata then
+			if T.Wrath or T.Cata or T.Mists then
 				UpdateHotkey(_G["MultiCastActionButton"..i])
 			end
 			if T.Mainline then
@@ -416,7 +416,7 @@ if C.actionbar.hotkey == true then
 	end)
 end
 
-if T.Cata or T.Mainline then
+if T.Cata or T.Mists or T.Mainline then
 	if C.actionbar.hide_highlight == true then
 		local function HideHighlightButton(self)
 			if self.overlay then

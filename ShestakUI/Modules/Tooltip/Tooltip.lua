@@ -44,7 +44,7 @@ local backdrop = {
 }
 
 for _, tt in pairs(tooltips) do
-	if not IsAddOnLoaded("Aurora") then
+	if not C_AddOns.IsAddOnLoaded("Aurora") then
 		tt.NineSlice:SetAlpha(0)
 		local bg = CreateFrame("Frame", nil, tt)
 		bg:SetPoint("TOPLEFT")
@@ -66,7 +66,7 @@ end
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_LOGIN")
 frame:SetScript("OnEvent", function()
-	if not IsAddOnLoaded("Auc-Advanced") then return end
+	if not C_AddOns.IsAddOnLoaded("Auc-Advanced") then return end
 
 	local LT = LibStub("LibExtraTip-1")
 	for _, Tooltip in pairs({GameTooltip, ItemRefTooltip}) do
@@ -89,7 +89,7 @@ frame:SetScript("OnEvent", function()
 	end
 end)
 
-if IsAddOnLoaded("RaiderIO") then
+if C_AddOns.IsAddOnLoaded("RaiderIO") then
 	PVEFrame:HookScript("OnShow", function(self)
 		if not RaiderIO_ProfileTooltip.styled then
 			RaiderIO_ProfileTooltip.NineSlice:SetAlpha(0)

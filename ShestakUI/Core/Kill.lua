@@ -24,7 +24,7 @@ frame:SetScript("OnEvent", function(_, _, addon)
 			-- InterfaceOptionsFrameCategoriesButton11:SetAlpha(0)
 
 			if not InCombatLockdown() then
-				if C.raidframe.show_raid or not IsAddOnLoaded("Grid2") then -- may need to add more addons here
+				if C.raidframe.show_raid or not C_AddOns.IsAddOnLoaded("Grid2") then -- may need to add more addons here
 					CompactRaidFrameManager:Kill()
 					CompactRaidFrameContainer:Kill()
 				end

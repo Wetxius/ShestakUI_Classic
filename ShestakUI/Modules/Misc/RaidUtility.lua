@@ -127,7 +127,7 @@ end
 -- Raid Control Panel
 CreateButton("RaidUtilityRaidControlButton", RaidUtilityPanel, "UIPanelButtonTemplate", (RaidUtilityPanel:GetWidth() * 0.8), 18, "TOPLEFT", RaidUtilityReadyCheckButton, "BOTTOMLEFT", 0, -5, RAID_CONTROL)
 RaidUtilityRaidControlButton:SetScript("OnMouseUp", function()
-	if T.Cata then
+	if T.Cata or T.Mists then
 		ToggleFriendsFrame(3)
 	else
 		ToggleFriendsFrame(4)
@@ -165,7 +165,7 @@ LeadershipCheck:RegisterEvent("GROUP_ROSTER_UPDATE")
 LeadershipCheck:SetScript("OnEvent", ToggleRaidUtil)
 
 -- Support Aurora
-if IsAddOnLoaded("Aurora") then
+if C_AddOns.IsAddOnLoaded("Aurora") then
 	local F = unpack(Aurora)
 	RaidUtilityPanel:SetBackdropColor(0, 0, 0, 0)
 	RaidUtilityPanel:SetBackdropBorderColor(0, 0, 0, 0)

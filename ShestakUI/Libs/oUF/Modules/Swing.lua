@@ -8,7 +8,7 @@ local _, ns = ...
 local oUF = ns.oUF
 
 local swingResets = {}
-if T.Classic then
+if T.Classic and not T.Mists then
 	swingResets = {
 		[GetSpellInfo(6807)]	= true, -- Maul
 		[GetSpellInfo(2973)] 	= true, -- Raptor Strike
@@ -47,7 +47,7 @@ local function Melee(self)
 	local mhSpeed, ohSpeed = UnitAttackSpeed(self.unit)
 	local itemId = GetInventoryItemID("player", 17)
 
-	local itemType = itemId and select(9, GetItemInfo(itemId)) or ""
+	local itemType = itemId and select(9, C_Item.GetItemInfo(itemId)) or ""
 	local isWeapon = itemId and (itemType == "INVTYPE_WEAPON" or itemType == "INVTYPE_WEAPONOFFHAND")
 
 	if UnitGUID(self.unit) == tarGUID and event == "SWING_MISSED" then

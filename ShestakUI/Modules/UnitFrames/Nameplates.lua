@@ -266,6 +266,25 @@ elseif T.Cata then
 		[GetSpellInfo(87718)]  = 136013,	-- Totem of Tranquil Mind
 		[GetSpellInfo(98008)]  = 237586,	-- Spirit Link Totem
 	}
+	elseif T.Mists then
+	totemData = {
+		-- Earth
+		[GetSpellInfo(2062)]   = 136024,	-- Earth Elemental Totem
+		[GetSpellInfo(2484)]   = 136102,	-- Earthbind Totem
+		[GetSpellInfo(8143)]   = 136108,	-- Tremor Totem
+		-- Fire
+		[GetSpellInfo(2894)]   = 135790,	-- Fire Elemental Totem
+		[GetSpellInfo(3599)]   = 135825,	-- Searing Totem
+		[GetSpellInfo(8190)]   = 135826,	-- Magma Totem
+		-- Water
+		[GetSpellInfo(5394)]   = 135127,	-- Healing Stream Totem
+		[GetSpellInfo(16190)]  = 135861,	-- Mana Tide Totem
+		-- Air
+		[GetSpellInfo(8177)]   = 136039,	-- Grounding Totem
+											-- Stormlash Totem
+											-- Capacitor Totem
+
+	}
 else
 	totemData = {
 		[GetSpellInfo(192058)] = 136013,	-- Capacitor Totem

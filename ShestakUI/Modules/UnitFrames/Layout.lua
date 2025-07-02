@@ -295,7 +295,7 @@ local function Shared(self, unit)
 		end
 
 		-- LFD role icons
-		if (T.Wrath or T.Cata or T.Mainline) and C.raidframe.icons_role == true then
+		if (T.Wrath or T.Cata or T.Mists or T.Mainline) and C.raidframe.icons_role == true then
 			self.GroupRoleIndicator = self.Health:CreateTexture(nil, "OVERLAY")
 			self.GroupRoleIndicator:SetSize(12, 12)
 			self.GroupRoleIndicator:SetPoint("TOPLEFT", 10, 8)
@@ -401,7 +401,7 @@ local function Shared(self, unit)
 		end
 
 		-- Holy Power bar
-		if (T.Cata or T.Mainline) and C.unitframe_class_bar.holy == true and T.class == "PALADIN" then
+		if (T.Cata or T.Mists or T.Mainline) and C.unitframe_class_bar.holy == true and T.class == "PALADIN" then
 			self.HolyPower = CreateFrame("Frame", self:GetName().."_HolyPowerBar", self)
 			self.HolyPower:CreateBackdrop("Default")
 			self.HolyPower:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
@@ -427,7 +427,7 @@ local function Shared(self, unit)
 		end
 
 		-- Soul Shards bar
-		if (T.Cata or T.Mainline) and C.unitframe_class_bar.shard == true and T.class == "WARLOCK" then
+		if (T.Cata or T.Mists or T.Mainline) and C.unitframe_class_bar.shard == true and T.class == "WARLOCK" then
 			self.SoulShards = CreateFrame("Frame", self:GetName().."_SoulShardsBar", self)
 			self.SoulShards:CreateBackdrop("Default")
 			self.SoulShards:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
@@ -568,7 +568,7 @@ local function Shared(self, unit)
 		end
 
 		-- Eclipse bar
-		if T.Cata and T.class == "DRUID" then
+		if (T.Cata or T.Mists) and T.class == "DRUID" then
 			if C.unitframe_class_bar.eclipse == true then
 				self.EclipseBar = CreateFrame("Frame", self:GetName().."_EclipseBar", self)
 				self.EclipseBar:CreateBackdrop("Default")
@@ -1176,7 +1176,7 @@ local function Shared(self, unit)
 	end
 
 	if C.unitframe.show_boss and unit == "boss" then
-		if T.Cata or T.Mainline then
+		if T.Cata or T.Mists or T.Mainline then
 			self.AlternativePower = CreateFrame("StatusBar", nil, self.Health, BackdropTemplateMixin and "BackdropTemplate")
 			self.AlternativePower:SetFrameLevel(self.Health:GetFrameLevel() + 1)
 			self.AlternativePower:SetHeight(5)
@@ -1619,11 +1619,11 @@ if C.raidframe.auto_position == "DYNAMIC" then
 			if maxGroup >= C.raidframe.raid_groups then
 				maxGroup = C.raidframe.raid_groups
 			end
-			if C.raidframe.layout == "AUTO" and (((T.Wrath or T.Cata) and not T.Role == "Healer") or (T.Mainline and not T.IsHealerSpec())) then maxGroup = 5 end
+			if C.raidframe.layout == "AUTO" and (((T.Wrath or T.Cata or T.Mists) and not T.Role == "Healer") or (T.Mainline and not T.IsHealerSpec())) then maxGroup = 5 end
 			if prevNum ~= maxGroup then
 				-- local offset = (maxGroup - 5) * (C.raidframe.heal_raid_height + 7) + ((maxGroup - ((maxGroup - 5))) * (C.raidframe.heal_raid_height - 26))
 				local offset = (maxGroup - 5) * (C.raidframe.heal_raid_height + 7)
-				if C.raidframe.layout == "AUTO" and (((T.Wrath or T.Cata) and not T.Role == "Healer") or (T.Mainline and not T.IsHealerSpec())) then offset = 0 end
+				if C.raidframe.layout == "AUTO" and (((T.Wrath or T.Cata or T.Mists) and not T.Role == "Healer") or (T.Mainline and not T.IsHealerSpec())) then offset = 0 end
 				if C.unitframe.unit_castbar then
 					if C.unitframe.castbar_icon == true then
 						if oUF_Player_Castbar then
@@ -1651,7 +1651,7 @@ if C.raidframe.auto_position == "DYNAMIC" then
 	local frame = CreateFrame("Frame")
 	frame:RegisterEvent("PLAYER_LOGIN")
 	frame:RegisterEvent("GROUP_ROSTER_UPDATE")
-	if C.raidframe.layout == "AUTO" and (T.Wrath or T.Cata or T.Mainline) then
+	if C.raidframe.layout == "AUTO" and (T.Wrath or T.Cata or T.Mists or T.Mainline) then
 		frame:RegisterUnitEvent("PLAYER_SPECIALIZATION_CHANGED", "player", "")
 	end
 	frame:SetScript("OnEvent", Reposition)
@@ -1660,7 +1660,7 @@ elseif C.raidframe.auto_position == "STATIC" then
 		if (C.raidframe.layout == "HEAL" or C.raidframe.layout == "AUTO") and not C.raidframe.raid_groups_vertical and C.raidframe.raid_groups > 5 then
 			-- local offset = (C.raidframe.raid_groups - 5) * (C.raidframe.heal_raid_height + 7) + ((C.raidframe.raid_groups - ((C.raidframe.raid_groups - 5))) * (C.raidframe.heal_raid_height - 26))
 			local offset = (C.raidframe.raid_groups - 5) * (C.raidframe.heal_raid_height + 7)
-			if C.raidframe.layout == "AUTO" and (((T.Wrath or T.Cata) and not T.Role == "Healer") or (T.Mainline and not T.IsHealerSpec())) then offset = 0 end
+			if C.raidframe.layout == "AUTO" and (((T.Wrath or T.Cata or T.Mists) and not T.Role == "Healer") or (T.Mainline and not T.IsHealerSpec())) then offset = 0 end
 			if C.unitframe.unit_castbar then
 				if C.unitframe.castbar_icon == true then
 					if oUF_Player_Castbar then
@@ -1682,7 +1682,7 @@ elseif C.raidframe.auto_position == "STATIC" then
 
 	local frame = CreateFrame("Frame")
 	frame:RegisterEvent("PLAYER_LOGIN")
-	if C.raidframe.layout == "AUTO" and (T.Wrath or T.Cata or T.Mainline) then
+	if C.raidframe.layout == "AUTO" and (T.Wrath or T.Cata or T.Mists or T.Mainline) then
 		frame:RegisterUnitEvent("PLAYER_SPECIALIZATION_CHANGED", "player", "")
 	end
 	frame:SetScript("OnEvent", Reposition)

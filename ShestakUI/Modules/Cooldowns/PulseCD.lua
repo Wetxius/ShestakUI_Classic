@@ -90,7 +90,7 @@ local function OnUpdate(_, update)
 					getCooldownDetails = memoize(function()
 						local start, duration, enabled = C_Container.GetItemCooldown(i)
                         return {
-                            name = GetItemInfo(i),
+                            name = C_Item.GetItemInfo(i),
                             texture = v[3],
                             start = start,
                             duration = duration,
@@ -254,7 +254,7 @@ if T.Classic then
 	hooksecurefunc(_G.C_Container, "UseContainerItem", function(bag, slot)
 		local itemID = C_Container.GetContainerItemID(bag, slot)
 		if itemID then
-			local texture = select(10, GetItemInfo(itemID))
+			local texture = select(10, C_Item.GetItemInfo(itemID))
 			if texture == 136235 then return end -- prevent temp icon
 			watching[itemID] = {GetTime(), "item", texture}
 		end

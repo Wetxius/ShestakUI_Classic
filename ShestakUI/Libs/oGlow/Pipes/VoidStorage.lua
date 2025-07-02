@@ -5,7 +5,7 @@ local _E
 local hooked
 
 local updateContents = function(self)
-	if not IsAddOnLoaded("Blizzard_VoidStorageUI") then return end
+	if not C_AddOns.IsAddOnLoaded("Blizzard_VoidStorageUI") then return end
 
 	for slot = 1, VOID_WITHDRAW_MAX or 80 do
 		local slotFrame = _G["VoidStorageStorageButton"..slot]
@@ -20,14 +20,14 @@ local updateContents = function(self)
 end
 
 local updateDeposit = function(self, event, slot)
-	if not IsAddOnLoaded("Blizzard_VoidStorageUI") then return end
+	if not C_AddOns.IsAddOnLoaded("Blizzard_VoidStorageUI") then return end
 
 	local slotFrame = _G["VoidStorageDepositButton"..slot]
 	self:CallFilters("voidstore", slotFrame, _E and GetVoidTransferDepositInfo(slot))
 end
 
 local update = function(self)
-	if not IsAddOnLoaded("Blizzard_VoidStorageUI") then return end
+	if not C_AddOns.IsAddOnLoaded("Blizzard_VoidStorageUI") then return end
 
 	for slot = 1, VOID_DEPOSIT_MAX or 9 do
 		updateDeposit(self, nil, slot)

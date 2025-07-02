@@ -24,7 +24,7 @@ local function SetPrice(tt, count, item)
 	item = item or select(2, tt:GetItem())
 	if not item then return end
 
-	local price = select(11, GetItemInfo(item))
+	local price = select(11, C_Item.GetItemInfo(item))
 
 	if price and price > 0 then
 		tt:AddDoubleLine(SELL_PRICE..": ", FormatCurrency(count and price * count or price), nil, nil, nil, 1, 1, 1)

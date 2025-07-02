@@ -73,7 +73,7 @@ local function LoadSkin()
 	local frame = CreateFrame("Frame")
 	frame:RegisterEvent("ADDON_LOADED")
 	frame:SetScript("OnEvent", function()
-		if not IsAddOnLoaded("Overachiever") then return end
+		if not C_AddOns.IsAddOnLoaded("Overachiever") then return end
 		AchievementFrameFilterDropdown:ClearAllPoints()
 		AchievementFrameFilterDropdown:SetPoint("TOPLEFT", AchievementFrameAchievements, "TOPLEFT", -19, 24)
 	end)
@@ -179,7 +179,7 @@ local function LoadSkin()
 				frame.isSkinned = true
 			end
 		end
-		if IsAddOnLoaded("Krowi_AchievementFilter") then
+		if C_AddOns.IsAddOnLoaded("Krowi_AchievementFilter") then
 			local tab = _G["AchievementFrameTab4"]
 			if tab and not tab.isSkinned then
 				T.SkinTab(tab)
@@ -187,7 +187,7 @@ local function LoadSkin()
 				numTab = 1
 			end
 		end
-		if IsAddOnLoaded("Overachiever_Tabs") then
+		if C_AddOns.IsAddOnLoaded("Overachiever_Tabs") then
 			for i = 4 + numTab, 6 + numTab do
 				local tab = _G["AchievementFrameTab"..i]
 				if tab and not tab.isSkinned then

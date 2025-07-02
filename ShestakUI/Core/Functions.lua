@@ -114,7 +114,7 @@ if T.Vanilla or T.TBC then
 	if T.SoD then
 		RoleUpdater:RegisterEvent("RUNE_UPDATED")
 	end
-elseif T.Wrath or T.Cata then
+elseif T.Wrath or T.Cata or T.Mists then
 	RoleUpdater:RegisterEvent("PLAYER_TALENT_UPDATE")
 	RoleUpdater:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player", "")
 	RoleUpdater:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
