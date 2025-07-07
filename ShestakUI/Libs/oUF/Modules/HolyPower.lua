@@ -4,7 +4,7 @@ if C.unitframe.enable ~= true or T.class ~= "PALADIN" then return end
 local _, ns = ...
 local oUF = ns.oUF
 
-if(oUF:IsClassic() and not oUF:IsCata()) then return end
+if(oUF:IsClassic() and not oUF:IsCata() and not oUF:IsMists()) then return end
 
 local SPELL_POWER_HOLY_POWER = Enum.PowerType.HolyPower or 9
 
