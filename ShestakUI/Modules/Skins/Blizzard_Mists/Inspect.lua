@@ -126,7 +126,7 @@ local function LoadSkin()
 		T.SkinScrollBar(InspectTalentFrameScrollFrameScrollBar)
 		InspectTalentFrameScrollFrameScrollBar:SetPoint("TOPLEFT", InspectTalentFrameScrollFrame, "TOPRIGHT", 10, -16)
 
-		if not T.Wrath and not T.Cata then
+		if not T.Wrath and not T.Cata and not T.Mists then
 			InspectTalentFrameSpentPoints:SetPoint("BOTTOMLEFT", InspectTalentFrame, "BOTTOMLEFT", 8, 84)
 		end
 
