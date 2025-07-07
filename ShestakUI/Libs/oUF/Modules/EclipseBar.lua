@@ -4,7 +4,7 @@ if C.unitframe.enable ~= true or T.class ~= "DRUID" then return end
 local _, ns = ...
 local oUF = ns.oUF
 
-if(not oUF:IsCata()) then return end
+if(not oUF:IsCata() and not oUF:IsMists()) then return end
 
 local POWERTYPE_BALANCE = Enum.PowerType.Balance
 local MOONKIN_FORM = MOONKIN_FORM
