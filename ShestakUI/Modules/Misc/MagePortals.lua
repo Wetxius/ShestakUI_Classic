@@ -50,7 +50,7 @@ if T.Classic then
 			[6] = {33690,33691},		-- Shattrath
 			[7] = {53140,53142},		-- Dalaran
 		}
-	elseif T.Cata then
+	elseif T.Cata or T.Mists then
 		spells = (UnitFactionGroup("player") == "Horde") and {
 			[1] = {3567,11417},			-- Orgrimmar
 			[2] = {3563,11418},			-- Undercity
