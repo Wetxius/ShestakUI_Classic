@@ -407,9 +407,9 @@ if fps.enabled then
 		local totalMemory = 0
 		UpdateAddOnMemoryUsage()
 		wipe(memoryt)
-		for i = 1, GetNumAddOns() do
+		for i = 1, C_AddOns.GetNumAddOns() do
 			local memory = GetAddOnMemoryUsage(i)
-			local addon, name = GetAddOnInfo(i)
+			local addon, name = C_AddOns.GetAddOnInfo(i)
 			if C_AddOns.IsAddOnLoaded(i) then tinsert(memoryt, {name or addon, memory}) end
 			totalMemory = totalMemory + memory
 		end
@@ -430,9 +430,9 @@ if fps.enabled then
 		local totalCPU = 0
 		UpdateAddOnCPUUsage()
 		wipe(cput)
-		for i = 1, GetNumAddOns() do
+		for i = 1, C_AddOns.GetNumAddOns() do
 			local cpu = GetAddOnCPUUsage(i)
-			local addon, name = GetAddOnInfo(i)
+			local addon, name = C_AddOns.GetAddOnInfo(i)
 			local cpus = cpu / (GetTime() - startTime)
 			local cpur = cpu - (lastCPU[i] and lastCPU[i] or cpu)
 			lastCPU[i] = cpu
@@ -728,7 +728,6 @@ if friends.enabled then
 			end
 		end,
 		OnEnter = function(self)
-			-- C_FriendList.ShowFriends() --FIXME not needed?
 			self.hovered = true
 			local online, total = C_FriendList.GetNumOnlineFriends(), C_FriendList.GetNumFriends()
 			local status, classc, levelc, zone_r, zone_g, zone_b, grouped, realm_r, realm_g, realm_b
@@ -1300,8 +1299,9 @@ if experience.enabled then
 				playedtotal, playedlevel = ...
 				playedmsg = GetTime()
 			elseif (event == "UPDATE_FACTION" or event == "PLAYER_LOGIN") and conf.ExpMode == "rep" then
-				local standing, factionID, standingText
-				repname, standing, minrep, maxrep, currep, factionID = GetWatchedFactionInfo()
+				local standing, factionID, standingText = 0, 0
+				repname, standing, minrep, maxrep, currep = NONE, 0, 0, 0, 0, 0
+				local data = C_Reputation.GetWatchedFactionData()
 				if T.Mainline then
 					local reputationInfo = C_GossipInfo.GetFriendshipReputation(factionID)
 					local friendshipID = reputationInfo and reputationInfo.friendshipFactionID
@@ -1326,7 +1326,7 @@ if experience.enabled then
 						minrep, maxrep = 0, majorFactionData.renownLevelThreshold
 						currep = C_MajorFactions.HasMaximumRenown(factionID) and majorFactionData.renownLevelThreshold or majorFactionData.renownReputationEarned or 0
 						standing = 7
-						standingText = RENOWN_LEVEL_LABEL..majorFactionData.renownLevel
+						standingText = RENOWN_LEVEL_LABEL:format(majorFactionData.renownLevel)
 					else
 						local value, nextThreshold = C_Reputation.GetFactionParagonInfo(factionID)
 						if value then
@@ -1341,11 +1341,11 @@ if experience.enabled then
 				if not repname then repname = NONE end
 				local color = {}
 				if standing == 0 then
-					color.r, color.g, color.b = GetItemQualityColor(0)
+					color.r, color.g, color.b = C_Item.GetItemQualityColor(0)
 				elseif standing == 7 then
-					color.r, color.g, color.b = GetItemQualityColor(3)
+					color.r, color.g, color.b = C_Item.GetItemQualityColor(3)
 				elseif standing == 8 then
-					color.r, color.g, color.b = GetItemQualityColor(4)
+					color.r, color.g, color.b = C_Item.GetItemQualityColor(4)
 				else
 					color = FACTION_BAR_COLORS[standing]
 				end
@@ -1407,8 +1407,8 @@ if experience.enabled then
 			elseif conf.ExpMode == "rep" then
 				if repname == NONE then GameTooltip:Hide() return end
 				local desc, war, watched
-				for i = 1, GetNumFactions() do
-					_, desc, _, _, _, _, war, _, _, _, _, watched = GetFactionInfo(i)
+				for i = 1, C_Reputation.GetNumFactions() do
+					_, desc, _, _, _, _, war, _, _, _, _, watched = C_Reputation.GetFactionDataByIndex(i)
 					if watched then break end
 				end
 				GameTooltip:AddLine(repname, tthead.r, tthead.g, tthead.b)
@@ -1648,12 +1648,7 @@ if location.enabled then
 			self.neutral = {"", {1, 0.93, 0.76}}
 		end,
 		OnEvent = function(self, event)
-			if T.Mists then 
 			self.subzone, self.zone, self.pvp = GetSubZoneText(), GetZoneText(), {C_PvP.GetZonePVPInfo()}
-			else 
-			self.subzone, self.zone, self.pvp = GetSubZoneText(), GetZoneText(), {GetZonePVPInfo()}
-			end
-
 			if not self.pvp[1] then self.pvp[1] = "neutral" end
 			local label = (self.subzone ~= "" and location.subzone) and self.subzone or self.zone
 			local r, g, b = unpack(self.pvp[1] and (self[self.pvp[1]][2] or self.other) or self.other)
@@ -1894,7 +1889,7 @@ if gold.enabled then
 						currencies = currencies + 1
 					end
 				end
-				if T.Mainline and archaeology and C.stats.currency_archaeology then
+				if (T.Mainline or T.Cata or T.Mists) and archaeology and C.stats.currency_archaeology then
 					titleName = PROFESSIONS_ARCHAEOLOGY
 					Currency(384)	-- Dwarf Archaeology Fragment
 					Currency(385)	-- Troll
@@ -2053,7 +2048,7 @@ if stats.enabled then
 			local range = RangedBase + RangedPosBuff + RangedNegBuff
 			local heal = GetSpellBonusHealing()
 			local spell = 0
-			if T.Classic then
+			if T.Classic and not T.Mists then
 				for i = 1, 7 do spell = max(spell, GetSpellBonusDamage(i)) end
 			else
 				spell = GetSpellBonusDamage(7)
@@ -2092,7 +2087,7 @@ if stats.enabled then
 			end
 			string = hit
 		elseif sub == "haste" then
-			if T.Classic then
+			if T.Classic and not T.Mists then
 				local haste
 				local melee, ranged, spell = GetMeleeHaste(), GetRangedHaste(), GetHaste()
 				if melee > spell and T.class ~= "HUNTER" then
@@ -2112,7 +2107,7 @@ if stats.enabled then
 				string, percent = GetCombatRating(16)
 			end
 		elseif sub == "crit" then
-			if T.Classic then
+			if T.Classic and not T.Mists then
 				local melee, range, spell = GetCritChance(), GetRangedCritChance(), 0
 				for i = 1, 7 do spell = max(spell, GetSpellCritChance(i)) end
 				if melee > spell and T.class ~= "HUNTER" then
