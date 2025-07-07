@@ -13,7 +13,7 @@ local function UpdateColor(self, event, unit)
 		t = self.colors.disconnected
 	elseif(element.colorTapping and not UnitPlayerControlled(unit) and UnitIsTapDenied(unit)) then
 		t = self.colors.tapped
-	elseif(element.colorHappiness and oUF:IsClassic() and not oUF:IsCata() and UnitIsUnit(unit, 'pet') and GetPetHappiness()) then
+	elseif(element.colorHappiness and oUF:IsClassic() and not oUF:IsCata() and not oUF:IsMists() and UnitIsUnit(unit, 'pet') and GetPetHappiness()) then
 		t = self.colors.happiness[GetPetHappiness()]
 	elseif(element.colorThreat and not UnitPlayerControlled(unit) and UnitThreatSituation('player', unit)) then
 		t =  self.colors.threat[UnitThreatSituation('player', unit)]
@@ -278,7 +278,7 @@ local function Disable(self)
 
 		if(oUF:IsClassic()) then
 			self:UnregisterEvent('UNIT_HEALTH_FREQUENT', Path)
-			if(not oUF:IsCata()) then
+			if(not oUF:IsCata() and not oUF:IsMists()) then
 				self:UnregisterEvent('UNIT_HAPPINESS', ColorPath)
 			end
 		end
