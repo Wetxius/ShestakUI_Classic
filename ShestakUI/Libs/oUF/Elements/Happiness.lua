@@ -1,7 +1,7 @@
 local _, ns = ...
 local oUF = ns.oUF
 
-if(oUF:IsMainline() or oUF:IsCata()) then return end
+if(oUF:IsMainline() or oUF:IsCata() or oUF:IsMists()) then return end
 
 local Update = function(self, event, unit, powerType)
 	if(self.unit ~= unit) then return end
