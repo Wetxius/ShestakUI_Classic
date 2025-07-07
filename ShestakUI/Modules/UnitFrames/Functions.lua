@@ -698,6 +698,7 @@ T.PostCreateButton = function(element, button)
 	if C.aura.show_spiral == true then
 		element.disableCooldown = false
 		button.Cooldown:SetReverse(true)
+		button.Cooldown:SetHideCountdownNumbers(true)
 		button.Cooldown:SetPoint("TOPLEFT", button, "TOPLEFT", 2, -2)
 		button.Cooldown:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -2, 2)
 		button.parent = CreateFrame("Frame", nil, button)
