@@ -7,7 +7,7 @@ function T.GetSpecialization(isInspect, isPet, specGroup)
 	if T.Cata then
 		return GetPrimaryTalentTree(isInspect, isPet, specGroup)
 	elseif T.Mists then
-		-- return _G.GetSpecialization(isInspect, isPet, specGroup)
+		return GetActiveTalentGroup(isInspect, isPet, specGroup)
 	else
 		if (isInspect or isPet) then
 			return
@@ -38,7 +38,8 @@ local isCaster = {
 	ROGUE = {nil, nil, nil},
 	SHAMAN = {true},				-- Elemental
 	WARLOCK = {true, true, true},
-	WARRIOR = {nil, nil, nil}
+	WARRIOR = {nil, nil, nil},
+	MONK = {nil, true, nil}
 }
 
 function T.GetSpecializationRole()
