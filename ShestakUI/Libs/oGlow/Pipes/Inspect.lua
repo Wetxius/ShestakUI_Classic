@@ -2,7 +2,7 @@ if C_AddOns.IsAddOnLoaded("Fizzle") then return end
 
 local _E
 local slots = {}
-if not oGlow:IsClassic() then
+if not oGlow:IsClassic() and not oGlow:IsMists() then
 	slots = {
 		"Head", "Neck", "Shoulder", "Shirt", "Chest", "Waist", "Legs", "Feet", "Wrist", "Hands",
 		"Finger0", "Finger1", "Trinket0", "Trinket1", "Back", "MainHand", "SecondaryHand", [19] = "Tabard"

@@ -35,6 +35,13 @@ function oGlow:IsWrath()
 	return _G.WOW_PROJECT_ID == _G.WOW_PROJECT_WRATH_CLASSIC
 end
 
+function oGlow:IsCata()
+	return _G.WOW_PROJECT_ID == _G.WOW_PROJECT_CATACLYSM_CLASSIC
+end
+function oGlow:IsMists()
+	return _G.WOW_PROJECT_ID == _G.WOW_PROJECT_MISTS_CLASSIC
+end
+
 function oGlow:ADDON_LOADED(event, addon)
 	if addon == "ShestakUI" then
 		for pipe in next, pipesTable do
