@@ -1,12 +1,12 @@
-# ShestakUI (Wrath Classic / Burning Crusade Classic / Classic) [!["Open Issues"](https://img.shields.io/github/issues-raw/EsreverWoW/ShestakUI_Classic.svg)](https://github.com/EsreverWoW/ShestakUI_Classic/issues) [![Discord](https://img.shields.io/discord/610506253306822663.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/mWGp4ac)
+# ShestakUI (MoP Classic / Cata Classic / Wrath Classic / Burning Crusade Classic / Classic) [!["Open Issues"](https://img.shields.io/github/issues-raw/EsreverWoW/ShestakUI_Classic.svg)](https://github.com/Wetxius/ShestakUI_Classic/issues) [![Discord](https://img.shields.io/discord/610506253306822663.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/mWGp4ac)
 ShestakUI is a modular, lightweight, all-in-one overhaul for the World of Warcraft interface. It aims to streamline and clean up the interface, removing unnecessary frills and wasted space as well as fill in some of the holes left in the default UI.
 
 This version of ShestakUI is meant to retain compatibility modern WoW, while also providing compatibility so that it may additionally function in Wrath Classic, Burning Crusade Classic, and WoW Classic.
 
 ## BUGS:
-**If you encounter any bugs, please report them on the [issue tracker](https://github.com/EsreverWoW/ShestakUI_Classic/issues) and I will do my best to correct them.**
+**If you encounter any bugs, please report them on the [issue tracker](https://github.com/Wetxius/ShestakUI_Classic/issues) and I will do my best to correct them.**
 
-**Download from [here](https://github.com/EsreverWoW/ShestakUI_Classic/archive/master.zip). Extract `ShestakUI` and `ShestakUI_Config` to your `Interface\AddOns` folder.**
+**Download from [here](https://github.com/Wetxius/ShestakUI_Classic/archive/master.zip). Extract `ShestakUI` and `ShestakUI_Config` to your `Interface\AddOns` folder.**
 
 ## Screenshots (current images from retail):
 <img src="https://i.imgur.com/Nm7tcgd.jpg" align="right" width="48.5%">
@@ -83,7 +83,7 @@ ShestakUI supports and contains language specific code for the following game cl
 - [Raid Frames](https://web.archive.org/web/20201117195736/http://shestak.org/forum/showpost.php?p=12661&postcount=21)
 
 ## Links:
-- [Changelog](https://github.com/EsreverWoW/ShestakUI_Classic/commits)
+- [Changelog](https://github.com/Wetxius/ShestakUI_Classic/commits)
 
 ## Credits:
 AcidWeb, Aezay, Affli, Ailae, Allez, ALZA, Ammo, Astromech, Beoko, Bitbyte, Blamdarot, Bozo, Caellian, Califpornia, Camealion, Cloudyfa, Chiril, CrusaderHeimdall, Cybey, d87, Dawn, Don Kaban, Dridzt, Duffed, Durcyn, Eclipse, Egingell, Elv22, Es (EsreverWoW), Evilpaul, Evl, Favorit, Fernir, Foof, Freebaser, g0st, Gethe, Gorlasch, Gsuz, Haleth, Haste, Hoochie, Hungtar, Hydra, HyPeRnIcS, Ildyria, iSpawnAtHome, Jaslm, Kanegasi, Karl_w_w, Karudon, Katae, Kellett, Kemayo, Ketho, Killakhan, Kraftman, Leatrix, m2jest1c, Magdain, mitch0, Monolit, MrRuben5, Nathanyel, Nefarion, Nightcracker, Nils Ruesch, p3lim, Partha, Phanx, Renstrom, RustamIrzaev, Safturento, Sanex, Sara.Festung, SDPhantom, Semlar, Sildor, Silverwind, SinaC, siweia, Slakah, Soeters, Starlon, Suicidal Katt, Syzgyn, Tekkub, Telroth, Thalyra, Thizzelle, Tia Lynn, Tohveli, Tukz, Tuller, Urtgard, Veev, Villiv, Wetxius, Woffle of Dark Iron, WoWUIDev Community, Wrug, Xuerian, Yleaf, Zork
