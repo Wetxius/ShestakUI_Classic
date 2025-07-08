@@ -2,15 +2,15 @@
 ## Title: ShestakUI (Classic) Config
 ## Notes: In-game configuration for ShestakUI
 ## Author: Shestak
-## Version: 2.15
-## X-Curse-Project-ID: 468754
-## X-WoWI-ID: 25934
-## X-Wago-ID: WqKQbyGx
+## Version: 2.16
+## X-Curse-Project-ID: 1302482
+## X-WoWI-ID: *****
+## X-Wago-ID: ****
 
 ## SavedVariables: ShestakUIOptionsGlobal, ShestakUIOptions
 ## SavedVariablesPerCharacter: ShestakUIOptionsPerChar
 
-## X-Website: https://github.com/EsreverWoW/ShestakUI_Classic
+## X-Website: https://github.com/Wetxius/ShestakUI_Classic
 ## X-Credits: Haleth, Solor
 ## X-Thanks: Tryllemann, Wetxius
 
