@@ -19,11 +19,24 @@ jobs:
         with:
           fetch-depth: 100
 
+      - name: Create Mists of Pandaria Classic Package
+        uses: BigWigsMods/packager@master
+        if: ${{ success() && github.event_name != 'pull_request' && contains(github.ref, 'tags/') }}
+        with:
+          args: -g mists -p 1302482 -w 25934 -a WqKQbyGx
+          # -p for Curse ID, -w for Wowhead ID, -a for Wago IO
+        env:
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+          WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
+          WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+
       - name: Create Cataclysm Classic Package
         uses: BigWigsMods/packager@master
         if: ${{ success() && github.event_name != 'pull_request' && contains(github.ref, 'tags/') }}
         with:
-          args: -g cata -p 468754 -w 25934 -a WqKQbyGx
+          args: -g cata -p 1302482 -w 25934 -a WqKQbyGx
+          # -p for Curse ID, -w for Wowhead ID, -a for Wago IO
         env:
           CF_API_KEY: ${{ secrets.CF_API_KEY }}
           GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
@@ -34,18 +47,18 @@ jobs:
         uses: BigWigsMods/packager@master
         if: ${{ success() && github.event_name != 'pull_request' && contains(github.ref, 'tags/') }}
         with:
-          args: -g wrath -p 468754 -w 25934 -a WqKQbyGx
+          args: -g wrath -p 1302482 -w 25934 -a WqKQbyGx
         env:
           CF_API_KEY: ${{ secrets.CF_API_KEY }}
           GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
           WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
           WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
 
-      - name: Create BCC Package
+      - name: Create TBC Package
         uses: BigWigsMods/packager@master
         if: ${{ success() && github.event_name != 'pull_request' && contains(github.ref, 'tags/') }}
         with:
-          args: -g bcc -p 468754 -w 25934 -a WqKQbyGx
+          args: -g tbc -p 1302482 -w 25934 -a WqKQbyGx
         env:
           CF_API_KEY: ${{ secrets.CF_API_KEY }}
           GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
@@ -56,7 +69,7 @@ jobs:
         uses: BigWigsMods/packager@master
         if: ${{ success() && github.event_name != 'pull_request' && contains(github.ref, 'tags/') }}
         with:
-          args: -g classic -p 468754 -w 25934 -a WqKQbyGx
+          args: -g classic -p 1302482 -w 25934 -a WqKQbyGx
         env:
           CF_API_KEY: ${{ secrets.CF_API_KEY }}
           GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
