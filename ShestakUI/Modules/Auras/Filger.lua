@@ -123,7 +123,7 @@ function Filger:DisplayActives()
 					bar.cooldown:SetAllPoints(bar.icon)
 					bar.cooldown:SetReverse(true)
 					bar.cooldown:SetDrawEdge(false)
-					bar.cooldown:SetFrameLevel(3)
+					bar.cooldown:SetFrameLevel(1)
 				end
 
 				if bar.count then
