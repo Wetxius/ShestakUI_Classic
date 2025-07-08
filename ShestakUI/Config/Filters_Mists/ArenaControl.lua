@@ -107,7 +107,7 @@ T.ArenaControl = {
 
 	-- Immunities
 	[SpellName(34471)] = 2,		-- The Beast Within
-	[SpellName(45438)] = 2,		-- Ice Block
+	-- [SpellName(45438)] = 2,        -- Ice Block
 	[SpellName(642)] = 2,		-- Divine Shield
 
 	-- Buffs
@@ -165,7 +165,7 @@ T.ArenaControl = {
 	[SpellName(26297)] = 1,		-- Berserking
 	-- [SpellName(20572)] = 1,		-- Blood Fury (Physical)
 	[SpellName(33697)] = 1,		-- Blood Fury (Both)
-	-- [SpellName(33702)] = 1,		-- Blood Fury (Spell)
+	-- [SpellName(33702)] = 1,        -- Blood Fury (Spell)
 	[SpellName(28880)] = 1,		-- Gift of the Naaru
 	[SpellName(65116)] = 1,		-- Stoneform
 	[SpellName(7744)] = 1,		-- Will of the Forsaken

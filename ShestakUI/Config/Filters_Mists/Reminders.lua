@@ -224,7 +224,6 @@ if C.reminder.solo_buffs_enable == true then
 					SpellName(30482),	-- Molten Armor
 					SpellName(7302),	-- Frost Armor
 					SpellName(6117),	-- Mage Armor
-					SpellName(7302),	-- Ice Armor
 				},
 				["combat"] = true,
 				["instance"] = true,

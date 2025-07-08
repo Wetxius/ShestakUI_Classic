@@ -41,8 +41,7 @@ if T.class == "DEATHKNIGHT" then
 		T.merge[66215] = 45902		-- Blood Strike OH
 		T.aoespam[56815] = 0.5		-- Rune Strike MH
 		T.merge[66217] = 56815		-- Rune Strike OH
-		T.aoespam[85948] = 0.5		-- Festering Strike MH
-		T.merge[86061] = 85948		-- Festering Strike OH
+		-- T.merge[86061] = 85948        -- Festering Strike OH
 	end
 elseif T.class == "DRUID" then
 	if C.combattext.merge_aoe_spam then
@@ -78,14 +77,12 @@ elseif T.class == "HUNTER" then
 		T.aoespam[136] = 9			-- Mend Pet
 	end
 	if C.combattext.healing then
-		T.healfilter[19579] = true	-- Spirit Bond r1
-		T.healfilter[24529] = true	-- Spirit Bond r2
+		-- T.healfilter[19579] = true    -- Spirit Bond r1
 	end
 elseif T.class == "MAGE" then
 	if C.combattext.merge_aoe_spam then
 		T.aoespam[44457] = 3.5		-- Living Bomb
 		T.aoespam[2120] = 0			-- Flamestrike
-		T.merge[88148] = 2120		-- Flamestrike (Improved Flamestrike)
 		T.aoespam[12654] = 3		-- Ignite
 		T.merge[413841] = 12654		-- Ignite
 		T.merge[413843] = 12654		-- Ignite
@@ -96,14 +93,11 @@ elseif T.class == "MAGE" then
 		T.aoespam[120] = 0			-- Cone of Cold
 		T.aoespam[7268] = 1.6		-- Arcane Missiles
 		T.aoespam[11113] = 0		-- Blast Wave
-		T.aoespam[82731] = 1		-- Flame Orb
-		T.aoespam[92283] = 1		-- Frostfire Orb
-		T.aoespam[59637] = 3		-- Fire Blast (Mirror Image)
 		T.aoespam[59638] = 3		-- Frostbolt (Mirror Image)
 		T.aoespam[44425] = 1.2		-- Arcane Barrage
 	end
 	if C.combattext.healing then
-		T.healfilter[91394] = true	-- Permafrost
+		-- T.healfilter[91394] = true    -- Permafrost
 	end
 elseif T.class == "PALADIN" then
 	if C.combattext.merge_aoe_spam then
@@ -114,7 +108,7 @@ elseif T.class == "PALADIN" then
 		T.aoespam[26573] = 3		-- Consecration
 		T.aoespam[53385] = 0		-- Divine Storm
 		T.aoespam[53595] = 1		-- Hammer of the Righteous
-		T.aoespam[20424] = 1		-- Seal of Command
+		-- T.aoespam[20424] = 1        -- Seal of Command
 		T.aoespam[20925] = 3		-- Holy Shield
 	end
 elseif T.class == "PRIEST" then
@@ -138,7 +132,7 @@ elseif T.class == "PRIEST" then
 		T.aoespam[14914] = 3		-- Holy Fire
 	end
 	if C.combattext.healing then
-		T.healfilter[15290] = false	-- Vampiric Embrace
+		-- T.healfilter[15290] = false    -- Vampiric Embrace
 	end
 elseif T.class == "ROGUE" then
 	if C.combattext.merge_aoe_spam then
@@ -165,7 +159,7 @@ elseif T.class == "SHAMAN" then
 		T.aoespam[51945] = 3		-- Earthliving
 		T.aoespam[98021] = 3		-- Spirit Link
 		-- Damaging spells
-		-- T.aoespam[26545] = 3		-- Lightning Shield
+		-- T.aoespam[26545] = 3        -- Lightning Shield
 		T.aoespam[421] = 1			-- Chain Lightning
 		T.aoespam[8349] = 0			-- Fire Nova
 		T.aoespam[51490] = 0		-- Thunderstorm
@@ -184,18 +178,18 @@ elseif T.class == "WARLOCK" then
 		T.aoespam[172] = 3			-- Corruption
 		T.aoespam[348] = 3			-- Immolate
 		T.aoespam[980] = 3			-- Agony
-		T.aoespam[63108] = 3		-- Siphon Life
+		-- T.aoespam[63108] = 3        -- Siphon Life
 		T.aoespam[42223] = 3		-- Rain of Fire
 		T.aoespam[5857] = 3			-- Hellfire Effect
 		T.aoespam[20153] = 3		-- Immolation (Infernal)
 		T.aoespam[22703] = 0		-- Infernal Awakening
 	end
 	if C.combattext.healing then
-		T.healfilter[689] = true	-- Drain Life
-		T.healfilter[89420] = true	-- Drain Life
-		T.healfilter[63108] = true	-- Siphon Life
-		T.healfilter[63106] = true	-- Siphon Life
-		T.healfilter[54181] = true	-- Fel Synergy
+		-- T.healfilter[689] = true    -- Drain Life
+		-- T.healfilter[89420] = true    -- Drain Life
+		-- T.healfilter[63108] = true    -- Siphon Life
+		-- T.healfilter[63106] = true    -- Siphon Life
+		-- T.healfilter[54181] = true    -- Fel Synergy
 	end
 elseif T.class == "WARRIOR" then
 	if C.combattext.merge_aoe_spam then
@@ -206,12 +200,12 @@ elseif T.class == "WARRIOR" then
 		T.aoespam[5308] = 0.5		-- Execute (Sweeping Strikes)
 		T.aoespam[7384] = 0.5		-- Overpower (Sweeping Strikes)
 		T.aoespam[1464] = 0.5		-- Slam (Sweeping Strikes)
-		T.merge[81101] = 1464		-- Slam Off-Hand
-		T.merge[97992] = 1464		-- Slam Off-Hand
+		-- T.merge[81101] = 1464		-- Slam Off-Hand
+		-- T.merge[97992] = 1464        -- Slam Off-Hand
 		T.aoespam[12294] = 0.5		-- Mortal Strike (Sweeping Strikes)
-		T.aoespam[12162] = 3		-- Deep Wounds r1
-		T.merge[12850] = 12162		-- Deep Wounds r2
-		T.merge[12868] = 12162		-- Deep Wounds r3
+		-- T.aoespam[12162] = 3        -- Deep Wounds r1
+		-- T.merge[12850] = 12162        -- Deep Wounds r2
+		-- T.merge[12868] = 12162        -- Deep Wounds r3
 		T.aoespam[1680] = 1.5		-- Whirlwind
 		T.merge[44949] = 1680		-- Whirlwind Off-Hand
 		T.merge[95738] = 1680		-- Whirlwind Off-Hand
@@ -220,10 +214,10 @@ elseif T.class == "WARRIOR" then
 		T.merge[85384] = 96103		-- Raging Blow Off-Hand
 		T.aoespam[6343] = 0			-- Thunder Clap
 		T.aoespam[6572] = 0			-- Revenge
-		T.aoespam[772] = 3			-- Rend
+		-- T.aoespam[772] = 3            -- Rend
 		T.aoespam[23881] = 0		-- Bloodthirst
 	end
 	if C.combattext.healing then
-		T.healfilter[23880] = true	-- Bloodthirst Heal
+		-- T.healfilter[23880] = true    -- Bloodthirst Heal
 	end
 end

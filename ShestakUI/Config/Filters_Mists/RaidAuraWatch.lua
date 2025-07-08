@@ -43,7 +43,7 @@ T.RaidBuffs = {
 	SHAMAN = {
 		{61295, "TOPRIGHT", {0.7, 0.3, 0.7}, true},			-- Riptide
 		{974, "BOTTOMLEFT", {0.2, 0.7, 0.2}, true},			-- Earth Shield
-		{16177, "TOPLEFT", {0.4, 0.7, 0.2}},				-- Ancestral Fortitude
+		-- {16177, "TOPLEFT", {0.4, 0.7, 0.2}},				-- Ancestral Fortitude
 		{51945, "BOTTOMRIGHT", {0.7, 0.4, 0}},				-- Earthliving
 	},
 	ROGUE = {
@@ -54,11 +54,11 @@ T.RaidBuffs = {
 	},
 	MAGE = {
 															-- Curse Immunity
-		{54646, "TOPRIGHT", {0.2, 0.2, 0.1}},				-- Focus Magic
+		-- {54646, "TOPRIGHT", {0.2, 0.2, 0.1}},				-- Focus Magic
 	},
 	WARRIOR = {
 		{3411, "TOPRIGHT", {0.89, 0.1, 0.1}},				-- Intervene
-		{59665, "TOPLEFT", {0.2, 0.2, 0.1}},				-- Vigilance
+		-- {59665, "TOPLEFT", {0.2, 0.2, 0.1}},				-- Vigilance
 	},
 	WARLOCK = {
 		{20707, "TOPRIGHT", {0.7, 0.32, 0.75}},				-- Soulstone
