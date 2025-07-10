@@ -77,7 +77,7 @@ local function Shared(self, unit)
 		self.Health.colorReaction = true
 	end
 
-	if T.Classic and not T.Cata and unit == "pet" and C.unitframe.bar_color_happiness == true then
+	if T.Classic and not T.Cata and not T.Mists and unit == "pet" and C.unitframe.bar_color_happiness == true then
 		self.Health.colorHappiness = true
 	else
 		self.Health.colorHappiness = false
@@ -356,7 +356,7 @@ local function Shared(self, unit)
 			end
 		end
 
-		if T.Mainline and T.class == "MONK" then
+		if (T.Mainline or T.Mists) and T.class == "MONK" then
 			-- Chi bar
 			if C.unitframe_class_bar.chi == true then
 				self.HarmonyBar = CreateFrame("Frame", self:GetName().."_HarmonyBar", self)

@@ -473,6 +473,7 @@ if T.Classic then
 			end
 		else
 			SetCVar("alwaysShowActionBars", 0)
+			
 		end
 	end)
 else

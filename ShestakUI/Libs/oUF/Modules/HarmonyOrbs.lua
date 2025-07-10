@@ -24,7 +24,10 @@ local function Update(self, _, unit, powerType)
 	if element.max ~= max then
 		if max == 5 then
 			element[6]:Hide()
-		else
+		elseif max == 4 then 
+			element[5]:Hide()
+			element[6]:Hide()
+		else 
 			element[6]:Show()
 		end
 
@@ -65,7 +68,7 @@ local function Visibility(self)
 	local element = self.HarmonyBar
 	local spec = T.GetSpecialization()
 
-	if spec == SPEC_MONK_WINDWALKER then
+	if spec == SPEC_MONK_WINDWALKER or (T.Mists)  then
 		element:Show()
 		if self.Debuffs then self.Debuffs:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", 2, 19) end
 	else

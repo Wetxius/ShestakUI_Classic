@@ -8,7 +8,7 @@ local oUF = ns.oUF
 if(oUF:IsClassic() and not oUF:IsMists()) then return end
 
 -- sourced from FrameXML/Constants.lua
-local SPEC_MONK_BREWMASTER = SPEC_MONK_BREWMASTER or 1
+local SPEC_MONK_BREWMASTER = (SPEC_MONK_BREWMASTER or 1)
 
 -- sourced from FrameXML/MonkStaggerBar.lua
 local BREWMASTER_POWER_BAR_NAME = BREWMASTER_POWER_BAR_NAME or 'STAGGER'
@@ -104,7 +104,7 @@ local function Path(self, ...)
 end
 
 local function Visibility(self, event, unit)
-	if(SPEC_MONK_BREWMASTER ~= T.GetSpecialization() or UnitHasVehiclePlayerFrameUI('player')) then
+	if(SPEC_MONK_BREWMASTER ~= T.GetSpecialization() or UnitHasVehiclePlayerFrameUI('player') or (T.level < 10)) then
 		if(self.Stagger:IsShown()) then
 			self.Stagger:Hide()
 			self:UnregisterEvent('UNIT_AURA', Path)

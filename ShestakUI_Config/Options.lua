@@ -29,6 +29,10 @@ local function IsCataBuild()
 	return _G.WOW_PROJECT_ID == _G.WOW_PROJECT_CATACLYSM_CLASSIC
 end
 
+local function IsMistsBuild()
+	return _G.WOW_PROJECT_ID == _G.WOW_PROJECT_MISTS_CLASSIC
+end
+
 local function HideOptions(list)
 	for i = 1, #list do
 		local frame = list[i]
@@ -189,7 +193,7 @@ local CollapseTable = {
 	"RAID",
 	"RELOAD",
 	"SCENARIO",
-	"NONE",
+	"NONE"
 }
 
 local RaidTable = {
@@ -199,7 +203,7 @@ local RaidTable = {
 	"BLIZZARD"
 }
 
-if IsClassicBuild() then
+if IsClassicBuild() and not IsMistsBuild() then
 	tremove(CollapseTable, 3)
 	tremove(RaidTable, 3)
 end
@@ -225,6 +229,7 @@ local FilgerTable = {
 	L.filger_show_proc,
 	L.filger_show_debuff,
 	L.filger_show_aura_bar,
+	L.filger_show_aura_bar_player,
 	L.filger_show_cd,
 	IGNORE
 }
@@ -736,7 +741,7 @@ do
 
 	-- Blizzard UI
 	local subheader = ns.addSubCategory(parent, L.general_subheader_blizzard)
-	subheader:SetPoint("TOPLEFT", uiscale, "BOTTOMLEFT", 0, -10)
+	subheader:SetPoint("TOPLEFT", uiscale, "BOTTOMLEFT", 0, -11)
 
 	local error_filter = ns.CreateDropDown(parent, "error_filter", true, nil, ErrorTable)
 	error_filter:SetPoint("TOPLEFT", subheader, "BOTTOMLEFT", -16, -10)
@@ -1666,7 +1671,7 @@ do
 
 	-- Cast bars
 	local subheader = ns.addSubCategory(parent, L_GUI_UF_SUBHEADER_CAST)
-	subheader:SetPoint("TOPLEFT", (IsClassicBuild() and not IsCataBuild()) and bar_color_happiness or player_name, "BOTTOMLEFT", 0, -16)
+	subheader:SetPoint("TOPLEFT", (IsClassicBuild() and not IsCataBuild() and not IsMistsBuild()) and bar_color_happiness or player_name, "BOTTOMLEFT", 0, -16)
 
 	local unit_castbar = ns.CreateCheckBox(parent, "unit_castbar", L_GUI_UF_UNIT_CASTBAR)
 	unit_castbar:SetPoint("TOPLEFT", subheader, "BOTTOMLEFT", 0, -8)
@@ -1685,7 +1690,7 @@ do
 
 	-- Frames
 	local subheader = ns.addSubCategory(parent, L_GUI_UF_SUBHEADER_FRAMES)
-	subheader:SetPoint("TOPLEFT", castbar_focus_type, "BOTTOMLEFT", 16, -11)
+	subheader:SetPoint("TOPLEFT", castbar_focus_type, "BOTTOMLEFT", 16, -6)
 
 	local show_pet = ns.CreateCheckBox(parent, "show_pet", L_GUI_UF_SHOW_PET)
 	show_pet:SetPoint("TOPLEFT", subheader, "BOTTOMLEFT", 0, -8)
@@ -1843,6 +1848,12 @@ do
 		plugins_absorbs
 	}
 
+	local mists = {
+		bar_color_happiness,
+		plugins_enemy_spec,
+		plugins_absorbs
+	}
+
 	local mainline = {
 		bar_color_happiness,
 		plugins_power_spark
@@ -1855,6 +1866,8 @@ do
 		HideOptions(classic)
 	elseif IsCataBuild() then
 		HideOptions(cata)
+	elseif IsMistsBuild() then 
+		HideOptions(mists)
 	else
 		HideOptions(mainline)
 	end
@@ -1885,7 +1898,7 @@ do
 	essence:SetPoint("TOPLEFT", chi, "BOTTOMLEFT", 0, 0)
 
 	local eclipse = ns.CreateCheckBox(parent, "eclipse", L_GUI_UF_PLUGINS_ECLIPSE_BAR)
-	eclipse:SetPoint("TOPLEFT", essence, "BOTTOMLEFT", IsCataBuild() and -20 or 0, 0)
+	eclipse:SetPoint("TOPLEFT", essence, "BOTTOMLEFT", (IsCataBuild() or IsMistsBuild()) and -20 or 0, 0)
 
 	local stagger = ns.CreateCheckBox(parent, "stagger", L_GUI_UF_PLUGINS_STAGGER_BAR)
 	stagger:SetPoint("TOPLEFT", eclipse, "BOTTOMLEFT", 0, 0)
@@ -1897,7 +1910,7 @@ do
 	shard:SetPoint("TOPLEFT", holy, "BOTTOMLEFT", 0, 0)
 
 	local rune = ns.CreateCheckBox(parent, "rune", L_GUI_UF_PLUGINS_RUNE_BAR)
-	rune:SetPoint("TOPLEFT", shard, "BOTTOMLEFT", IsWrathBuild() and -20 or 0, 0)
+	rune:SetPoint("TOPLEFT", shard, "BOTTOMLEFT", (IsWrathBuild() or IsCataBuild() or IsMistsBuild()) and -20 or 0, 0)
 
 	local totem = ns.CreateCheckBox(parent, "totem", L_GUI_UF_PLUGINS_TOTEM_BAR)
 	totem:SetPoint("TOPLEFT", rune, "BOTTOMLEFT", 0, 0)
@@ -1937,7 +1950,11 @@ do
 		stagger,
 		totem_other
 	}
-
+	local mists = {
+		arcane,
+		essence,
+		totem_other
+	}
 	local mainline = {
 		eclipse
 	}
@@ -1949,6 +1966,8 @@ do
 		HideOptions(wrath)
 	elseif IsCataBuild() then
 		HideOptions(cata)
+	elseif IsMistsBuild() then
+		HideOptions(mists)
 	elseif IsMainlineBuild() then
 		HideOptions(mainline)
 	end
@@ -2163,6 +2182,10 @@ do
 		plugins_over_absorb,
 		plugins_over_heal_absorb,
 	}
+	local mists = {
+		plugins_over_absorb,
+		plugins_over_heal_absorb,
+	}
 
 	if IsVanillaBuild() or IsTBCBuild() then
 		HideOptions(classic)
@@ -2179,6 +2202,8 @@ do
 		plugins_auto_resurrection:SetPoint("TOPLEFT", plugins_over_heal_absorb, "BOTTOMLEFT", 0, 0)
 	elseif IsCataBuild() then
 		HideOptions(cata)
+	elseif IsMistsBuild() then
+		HideOptions(mists)
 	end
 end
 
@@ -3378,15 +3403,21 @@ do
 		screenshot,
 		auto_role
 	}
+	local mists = {
+		screenshot,
+		auto_role
+	}
 
 	local mainline = {
 		dismount_stand,
 	}
 
-	if IsClassicBuild() and not IsCataBuild() then
+	if IsClassicBuild() and not IsCataBuild() and not IsMistsBuild() then
 		HideOptions(classic)
 	elseif IsCataBuild() then
 		HideOptions(cata)
+	elseif IsMistsBuild() then
+		HideOptions(mists)
 	else
 		HideOptions(mainline)
 	end
@@ -3793,12 +3824,18 @@ do
 		profession_tabs -- TODO: Fix for Classic
 	}
 
+	local mists = {
+		profession_tabs -- TODO: Fix for Classic
+	}
+
 	if IsVanillaBuild() or IsTBCBuild() then
 		HideOptions(classic)
 	elseif IsWrathBuild() then
 		HideOptions(wrath)
 	elseif IsCataBuild() then
 		HideOptions(cata)
+	elseif IsMistsBuild() then
+		HideOptions(mists)
 	end
 end
 

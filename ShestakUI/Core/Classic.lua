@@ -39,7 +39,7 @@ local isCaster = {
 	SHAMAN = {true},				-- Elemental
 	WARLOCK = {true, true, true},
 	WARRIOR = {nil, nil, nil},
-	MONK = {nil, true, nil}
+	MONK = {nil, nil, nil}
 }
 
 function T.GetSpecializationRole()
