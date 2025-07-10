@@ -33,7 +33,7 @@ end
 
 local spells
 
-if T.Classic then
+if T.Classic and not T.Mists then
 	spells = {
 		["DEATHKNIGHT"] = 45902,
 		["DRUID"] = 1126,
