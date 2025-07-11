@@ -7,8 +7,8 @@ if C_AddOns.IsAddOnLoaded("OmniCC") or C_AddOns.IsAddOnLoaded("ncCooldown") or C
 local format = string.format
 local floor = math.floor
 
+local day, hour, minute = 86400, 3600, 60
 local function GetFormattedTime(s)
-	local day, hour, minute = 86400, 3600, 60
 	if s >= day then
 		return format("%dd", floor(s / day + 0.5)), s % day
 	elseif s >= hour then
@@ -95,6 +95,9 @@ if IsWetxius then
 		Timer_OnSizeChanged(timer, scaler:GetSize())
 		scaler:SetScript("OnSizeChanged", function(_, ...) Timer_OnSizeChanged(timer, ...) end)
 
+		self:SetHideCountdownNumbers(true)
+		self:GetRegions():SetAlpha(0)	-- Hide Blizzard cd text
+
 		self.timer = timer
 		return timer
 	end
@@ -117,6 +120,9 @@ else
 		Timer_OnSizeChanged(timer, scaler:GetSize())
 		scaler:SetScript("OnSizeChanged", function(_, ...) Timer_OnSizeChanged(timer, ...) end)
 
+		self:SetHideCountdownNumbers(true)
+		self:GetRegions():SetAlpha(0)	-- Hide Blizzard cd text
+
 		self.timer = timer
 		return timer
 	end
@@ -133,7 +139,9 @@ local function deactivateDisplay(cooldown)
 end
 
 local function setHideCooldownNumbers(cooldown, hide)
-	if hide then
+	local disable = not (hide or cooldown.noCooldownCount or cooldown:IsForbidden())
+
+	if disable then
 		hideNumbers[cooldown] = true
 		deactivateDisplay(cooldown)
 	else
@@ -143,6 +151,12 @@ end
 
 hooksecurefunc(Cooldown_MT, "SetCooldown", function(cooldown, start, duration, modRate)
 	if cooldown.noCooldownCount or cooldown:IsForbidden() or hideNumbers[cooldown] then return end
+
+	local frameName = cooldown.GetName and cooldown:GetName()
+	if frameName and strfind(frameName, "WeakAuras") then
+		cooldown.noCooldownCount = true
+		return
+	end
 
 	local show = (start and start > 0) and (duration and duration > 2) and (modRate == nil or modRate > 0)
 
@@ -155,7 +169,7 @@ hooksecurefunc(Cooldown_MT, "SetCooldown", function(cooldown, start, duration, m
 		timer.duration = duration
 		timer.enabled = true
 		timer.nextUpdate = 0
-		if timer.fontScale and timer.fontScale >= 0.5 then timer:Show() end
+		if timer.fontScale >= 0.5 then timer:Show() end
 	else
 		deactivateDisplay(cooldown)
 	end
@@ -166,5 +180,5 @@ hooksecurefunc(Cooldown_MT, "Clear", deactivateDisplay)
 hooksecurefunc(Cooldown_MT, "SetHideCountdownNumbers", setHideCooldownNumbers)
 
 hooksecurefunc("CooldownFrame_SetDisplayAsPercentage", function(cooldown)
-	setHideCooldownNumbers(cooldown, true)
+	setHideCooldownNumbers(cooldown, false)
 end)

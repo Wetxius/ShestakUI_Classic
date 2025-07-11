@@ -123,7 +123,7 @@ function Filger:DisplayActives()
 					bar.cooldown:SetAllPoints(bar.icon)
 					bar.cooldown:SetReverse(true)
 					bar.cooldown:SetDrawEdge(false)
-					bar.cooldown:SetFrameLevel(1)
+					bar.cooldown:SetFrameLevel(3)
 				end
 
 				if bar.count then
@@ -174,6 +174,7 @@ function Filger:DisplayActives()
 
 				if bar.time then
 					bar.time = _G[bar.time:GetName()]
+					
 				else
 					bar.time = bar.statusbar:CreateFontString("$parentTime", "OVERLAY")
 					bar.time:SetFont(C.font.filger_font, C.font.filger_font_size, C.font.filger_font_style)
