@@ -3,7 +3,7 @@ name: Bug Report
 about: Create a report to help ShestakUI improve
 title: "[BUG]"
 labels: bug
-assignees: EsreverWoW
+assignees: Hehooisbored
 
 ---
 
