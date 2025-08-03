@@ -39,7 +39,7 @@
 
 	<!-- <Script file="..\Blizzard_TBC\Arena.lua"/> -->
 	<!-- <Script file="..\Blizzard_TBC\Battlefield.lua"/> -->
-	<Script file="..\Blizzard_TBC\ItemSocketing.lua"/>
+	<Script file="..\Blizzard_Mists\ItemSocketing.lua"/>
 	<Script file="..\Blizzard_Wrath\Achievement.lua"/>
 
 	<Script file="..\Blizzard\AlertFrames.lua"/>
