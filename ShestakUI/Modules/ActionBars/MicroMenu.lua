@@ -18,19 +18,19 @@ if C.actionbar.micromenu_mouseover then
 	frame:SetScript("OnLeave", function() frame:SetAlpha(0) end)
 end
 
-local MICRO_BUTTONS = T.Classic and MICRO_BUTTONS or {
+local MICRO_BUTTONS = T.Vanilla and MICRO_BUTTONS or {
 	"CharacterMicroButton",
 	"SpellbookMicroButton",
 	"TalentMicroButton",
 	"AchievementMicroButton",
 	"QuestLogMicroButton",
 	"GuildMicroButton",
-	"LFDMicroButton",
+	"PVPMicroButton",
+	"LFGMicroButton",
 	"EJMicroButton",
 	"CollectionsMicroButton",
 	"StoreMicroButton",
 	"MainMenuMicroButton",
-	"HelpMicroButton",
 }
 
 for i, button in pairs(MICRO_BUTTONS) do
