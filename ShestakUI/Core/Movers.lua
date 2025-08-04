@@ -69,7 +69,8 @@ local unitFrames = {
 	PartyDPSAnchor,
 	PartyTargetDPSAnchor,
 	PartyPetDPSAnchor,
-	RaidTankDPSAnchor
+	RaidTankDPSAnchor,
+	PetBattleBarHolder
 }
 
 for i = 1, 5 do

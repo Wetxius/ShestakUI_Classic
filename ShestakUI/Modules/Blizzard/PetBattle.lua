@@ -294,7 +294,7 @@ local function SkinPetButton(self)
 
 	self.checked = true
 	self:StyleButton()
-	self.SelectedHighlight:SetTexture(0)
+	self.SelectedHighlight:SetTexture("")
 
 	self.CooldownShadow:SetAllPoints()
 	self.CooldownFlash:SetAllPoints()
@@ -362,10 +362,10 @@ for _, tt in pairs(tooltips) do
 	end
 
 	if tt.Delimiter1 then
-		tt.Delimiter1:SetTexture(0)
-		tt.Delimiter2:SetTexture(0)
+		tt.Delimiter1:SetTexture(nil)
+		tt.Delimiter2:SetTexture(nil)
 	elseif tt.Delimiter then
-		tt.Delimiter:SetTexture(0)
+		tt.Delimiter:SetTexture(nil)
 	end
 end
 
@@ -391,9 +391,9 @@ hooksecurefunc("PetBattleUnitFrame_UpdateDisplay", function(self)
 	if self:GetName() == "PetBattlePrimaryUnitTooltip" then isTooltip = true end
 
 	-- Set the color for the Glow
-	local nQuality = C_PetBattles.GetBreedQuality(self.petOwner, self.petIndex) - 1
-	local r, g, b, hex = GetItemQualityColor(nQuality)
-	if nQuality >= 2 and not isTooltip and self.IconBackdrop then
+	local quality = C_PetBattles.GetBreedQuality(self.petOwner, self.petIndex) or 1
+	local r, g, b, hex = C_Item.GetItemQualityColor(quality)
+	if quality >= 2 and not isTooltip and self.IconBackdrop then
 		self.IconBackdrop:SetBackdropBorderColor(r, g, b)
 	elseif self.IconBackdrop then
 		self.IconBackdrop:SetBackdropBorderColor(unpack(C.media.border_color))
