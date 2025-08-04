@@ -101,7 +101,7 @@ local function LoadSkin()
 
 	for _, slot in pairs(slots) do
 		local icon = _G["Character"..slot.."IconTexture"]
-		-- local cooldown = _G["Character"..slot.."Cooldown"]
+		local cooldown = _G["Character"..slot.."Cooldown"]
 
 		slot = _G["Character"..slot]
 		slot:StripTextures()
@@ -113,9 +113,9 @@ local function LoadSkin()
 
 		slot:SetFrameLevel(PaperDollFrame:GetFrameLevel() + 2)
 
-		-- if(cooldown and C.unitframe.enable) then
-			-- T.CreateAuraWatch(cooldown)
-		-- end
+		if(cooldown and C.unitframe.enable) then
+			T.CreateAuraWatch(cooldown)
+		end
 	end
 
 	local function ColorItemBorder()
