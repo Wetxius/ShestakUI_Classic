@@ -186,16 +186,16 @@ addon:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 addon:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 
 SlashCmdList.EnemyCD = function()
-	if T.Classic then
+	if T.Classic and not T.Mists then
 		StartTimer(UnitGUID(T.name), 6552)
 		StartTimer(UnitGUID(T.name), 19244)
 		StartTimer(UnitGUID(T.name), 15487)
 		StartTimer(UnitGUID(T.name), 8122)
 	else
-		StartTimer(UnitGUID(T.name), 47528)
-		StartTimer(UnitGUID(T.name), 19647)
-		StartTimer(UnitGUID(T.name), 47476)
-		StartTimer(UnitGUID(T.name), 51514)
+		StartTimer(UnitGUID(T.name), 48707)
+		StartTimer(UnitGUID(T.name), 1022)
+		StartTimer(UnitGUID(T.name), 22812)
+		StartTimer(UnitGUID(T.name), 30283)
 	end
 end
 SLASH_EnemyCD1 = "/enemycd"

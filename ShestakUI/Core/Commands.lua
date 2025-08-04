@@ -366,7 +366,7 @@ end
 ----------------------------------------------------------------------------------------
 --	Test Blizzard Extra Action Button
 ----------------------------------------------------------------------------------------
-if T.Mainline then
+if T.Mainline or T.Mists or T.Cata then
 	SlashCmdList.TEST_EXTRABUTTON = function()
 		if ExtraActionBarFrame:IsShown() then
 			ExtraActionBarFrame:Hide()
@@ -375,7 +375,7 @@ if T.Mainline then
 			ExtraActionBarFrame:SetAlpha(1)
 			ExtraActionButton1:Show()
 			ExtraActionButton1:SetAlpha(1)
-			ExtraActionButton1.icon:SetTexture("Interface\\Icons\\spell_deathknight_breathofsindragosa")
+			ExtraActionButton1.icon:SetTexture("Interface\\Icons\\spell_deathknight_strangulate.blp")
 			ExtraActionButton1.icon:Show()
 			ExtraActionButton1.icon:SetAlpha(1)
 			ExtraActionButton1.Count:SetText("2")
