@@ -426,6 +426,32 @@ local function Shared(self, unit)
 			end
 		end
 
+		-- Shadow Orbs bar
+		if (T.Cata or T.Mists or T.Mainline) and C.unitframe_class_bar.shadow == true and T.class == "PRIEST" then
+			self.ShadowOrbs = CreateFrame("Frame", self:GetName().."_ShadowOrbs", self)
+			self.ShadowOrbs:CreateBackdrop("Default")
+			self.ShadowOrbs:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
+			self.ShadowOrbs:SetSize(player_width, 7)
+
+			local maxShadowOrbs = T.Classic and 3 or 5
+			for i = 1, maxShadowOrbs do
+				self.ShadowOrbs[i] = CreateFrame("StatusBar", self:GetName().."_ShadowOrbs"..i, self.ShadowOrbs)
+				self.ShadowOrbs[i]:SetSize((player_width - (T.Classic and 2 or 4)) / maxShadowOrbs, 7)
+				if i == 1 then
+					self.ShadowOrbs[i]:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
+				else
+					self.ShadowOrbs[i]:SetPoint("TOPLEFT", self.ShadowOrbs[i-1], "TOPRIGHT", 1, 0)
+				end
+				self.ShadowOrbs[i]:SetStatusBarTexture(C.media.texture)
+				self.ShadowOrbs[i]:SetStatusBarColor(0.769, 0.02, 0.949)
+
+				self.ShadowOrbs[i].bg = self.ShadowOrbs[i]:CreateTexture(nil, "BORDER")
+				self.ShadowOrbs[i].bg:SetAllPoints()
+				self.ShadowOrbs[i].bg:SetTexture(C.media.texture)
+				self.ShadowOrbs[i].bg:SetVertexColor(.89, .88, 0.1, 0.2)
+			end
+		end
+
 		-- Soul Shards bar
 		if T.Mists and C.unitframe_class_bar.shard == true and T.class == "WARLOCK" then
 			if C_SpecializationInfo.GetSpecialization() == (1 or 3) then 
