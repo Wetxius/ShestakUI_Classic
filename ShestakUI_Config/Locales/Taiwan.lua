@@ -180,6 +180,7 @@ L_GUI_UF_PLUGINS_HOLY_BAR = "聖光能量"
 L_GUI_UF_PLUGINS_SHARD_BAR = "靈魂碎片"
 L_GUI_UF_PLUGINS_RUNE_BAR = "符文"
 L_GUI_UF_PLUGINS_TOTEM_BAR = "圖騰"
+L_GUI_UF_PLUGINS_SHADOW_BAR = "啟動暗影球條"
 L.unitframe_class_bar_totem_other = "其他職業圖騰"
 L.unitframe_class_bar_essence = "龍能"
 

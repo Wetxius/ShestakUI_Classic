@@ -177,6 +177,8 @@ C["unitframe_class_bar"] = {
 	["rune"] = true,							-- Rune bar
 	["totem"] = true,							-- Totem bar for Shaman
 	["totem_other"] = true,						-- Totem bar for other classes
+	["shadow"] = true,							-- Shadow Orbs bar for Shadow Priest
+
 }
 
 if T.Classic then

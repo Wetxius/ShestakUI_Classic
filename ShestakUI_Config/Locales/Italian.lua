@@ -179,6 +179,7 @@ L_GUI_UF_PLUGINS_HOLY_BAR = "Attiva la barra di classe del paladino"
 L_GUI_UF_PLUGINS_SHARD_BAR = "Attiva la barra di classe dello stregone"
 L_GUI_UF_PLUGINS_RUNE_BAR = "Attiva la barra di classe del cavaliere della morte"
 L_GUI_UF_PLUGINS_TOTEM_BAR = "Attiva la barra dei totems dello sciamano"
+L_GUI_UF_PLUGINS_SHADOW_BAR = "Attiva la barra delle sfere ombra"
 L.unitframe_class_bar_totem_other = "Enable Totem bar for other classes" -- Need review
 L.unitframe_class_bar_essence = "Enable Essence bar for Evoker" -- Need review
 

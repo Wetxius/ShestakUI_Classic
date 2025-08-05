@@ -180,6 +180,7 @@ L_GUI_UF_PLUGINS_HOLY_BAR = "Activer la barre de Puissance sacrée"
 L_GUI_UF_PLUGINS_SHARD_BAR = "Activier la barre de Fragment d'âme"
 L_GUI_UF_PLUGINS_RUNE_BAR = "Activer la barre de Rune"
 L_GUI_UF_PLUGINS_TOTEM_BAR = "Activer la barre totem pour Shaman"
+L_GUI_UF_PLUGINS_SHADOW_BAR = "Activer la barre des orbes d'ombre"
 L.unitframe_class_bar_totem_other = "Activer la barre totem pour les autres classes"
 L.unitframe_class_bar_essence = "Activer la barre d'essence pour l'Evoker"
 

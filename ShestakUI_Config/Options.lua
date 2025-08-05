@@ -1917,6 +1917,9 @@ do
 
 	local totem_other = ns.CreateCheckBox(parent, "totem_other")
 	totem_other:SetPoint("TOPLEFT", totem, "BOTTOMLEFT", 20, 0)
+	
+	local shadow = ns.CreateCheckBox(parent, "shadow", L_GUI_UF_PLUGINS_SHADOW_BAR)
+	shadow:SetPoint("TOPLEFT", totem_other, "BOTTOMLEFT", 0, 0)
 
 	totem.children = {totem_other}
 
@@ -1929,7 +1932,8 @@ do
 		holy,
 		shard,
 		rune,
-		totem_other
+		totem_other,
+		shadow
 	}
 
 	local wrath = {

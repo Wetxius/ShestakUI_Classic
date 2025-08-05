@@ -180,6 +180,7 @@ L_GUI_UF_PLUGINS_HOLY_BAR = "Aktivere Heilige Kraft Leiste"
 L_GUI_UF_PLUGINS_SHARD_BAR = "Aktiviere Splitter Leiste"
 L_GUI_UF_PLUGINS_RUNE_BAR = "Runenleiste"
 L_GUI_UF_PLUGINS_TOTEM_BAR = "Totemleiste"
+L_GUI_UF_PLUGINS_SHADOW_BAR = "Schattenkugelleiste aktivieren"
 L.unitframe_class_bar_totem_other = "Enable Totem bar for other classes" -- Need review
 L.unitframe_class_bar_essence = "Enable Essence bar for Evoker" -- Need review
 
