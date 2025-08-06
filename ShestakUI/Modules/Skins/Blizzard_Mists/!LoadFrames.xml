@@ -21,12 +21,14 @@
 	<Script file="..\Blizzard\RaidInfo.lua"/>
 	<Script file="..\Blizzard\TimeManager.lua"/>
 	<Script file="..\Blizzard\Trade.lua"/>
-
+	<Script file="..\Blizzard\PVE.lua"/>
+	<Script file="..\Blizzard\PVP.lua"/>
+	<Script file="..\Blizzard\EncounterJournal.lua"/>
 	<Script file="..\Blizzard_Vanilla\Container.lua"/>
 	<Script file="..\Blizzard_Vanilla\DressUp.lua"/>
 	<Script file="..\Blizzard_Vanilla\Friends.lua"/>
 	<Script file="..\Blizzard_Vanilla\GMSurvey.lua"/>
-	<Script file="..\Blizzard_Vanilla\ItemText.lua"/>
+	<Script file="..\Blizzard\ItemText.lua"/>
 	<!-- <Script file="..\Blizzard_Vanilla\PetStable.lua"/> -->
 	<Script file="..\Blizzard_Vanilla\Tabard.lua"/>
 	<Script file="..\Blizzard\Taxi.lua"/>

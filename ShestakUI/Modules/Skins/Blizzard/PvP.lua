@@ -12,7 +12,7 @@ LoadTootlipSkin:SetScript("OnEvent", function(self, _, addon)
 	end
 
 	if addon == "Blizzard_PVPUI" then
-		ConquestTooltip:SetTemplate("Transparent")
+		ConquestTooltip.NineSlice:SetTemplate("Transparent")
 	end
 end)
 
@@ -57,174 +57,174 @@ local function LoadSkin()
 	end)
 
 	-- HonorFrame
-	HonorFrame.Inset:StripTextures()
-	HonorFrame.BonusFrame:StripTextures()
-	HonorFrame.BonusFrame.ShadowOverlay:StripTextures()
+	if T.Mainline then 
+		HonorFrame.Inset:StripTextures()
+		HonorFrame.BonusFrame:StripTextures()
+		HonorFrame.BonusFrame.ShadowOverlay:StripTextures()
+		
+		T.SkinDropDownBox(HonorFrameTypeDropdown, 165)
+		HonorFrameTypeDropdown:SetPoint("BOTTOMRIGHT", HonorFrame.Inset, "TOPRIGHT", -14, -1)
+		T.SkinScrollBar(HonorFrame.SpecificScrollBar)
+		HonorFrame.SpecificScrollBar:SetPoint("TOPLEFT", HonorFrame, "TOPRIGHT", -19, -92)
+		HonorFrame.SpecificScrollBar:SetPoint("BOTTOMLEFT", HonorFrame, "BOTTOMRIGHT", -19, 27)
+		HonorFrameQueueButton:SkinButton(true)
+		
+		PVPQueueFrame.HonorInset:StripTextures()
+		PVPQueueFrame.HonorInset.Background:SetAlpha(0)
+		
+		local RewardFrameSeason = PVPQueueFrame.HonorInset.RatedPanel.SeasonRewardFrame
+		RewardFrameSeason.Ring:Hide()
+		RewardFrameSeason.CircleMask:Hide()
+		RewardFrameSeason.Icon:SkinIcon()
 
-	T.SkinDropDownBox(HonorFrameTypeDropDown, 165)
-	HonorFrameTypeDropDown:SetPoint("BOTTOMRIGHT", HonorFrame.Inset, "TOPRIGHT", -6, -1)
-	T.SkinScrollBar(HonorFrame.SpecificScrollBar)
-	--HonorFrame.SpecificScrollBar:SetPoint("TOPLEFT", HonorFrameSpecificFrame, "TOPRIGHT", 0, -15)
-	--HonorFrame.SpecificScrollBar:SetPoint("BOTTOMLEFT", HonorFrameSpecificFrame, "BOTTOMRIGHT", 0, 15)
-	HonorFrameQueueButton:SkinButton(true)
 
-	PVPQueueFrame.HonorInset:StripTextures()
-	PVPQueueFrame.HonorInset.RatedPanel.Label:SetWidth(160)
+		for _, i in pairs({"RandomBGButton", "RandomEpicBGButton", "Arena1Button", "BrawlButton", "BrawlButton2"}) do
+			local button = HonorFrame.BonusFrame[i]
+			button:StripTextures()
+			button:SetTemplate("Overlay")
+			button:StyleButton()
+			button.SelectedTexture:SetDrawLayer("ARTWORK")
+			button.SelectedTexture:ClearAllPoints()
+			button.SelectedTexture:SetPoint("TOPLEFT", 2, -2)
+			button.SelectedTexture:SetPoint("BOTTOMRIGHT", -2, 2)
+			button.SelectedTexture:SetColorTexture(1, 0.82, 0, 0.3)
 
-	local RewardFrameSeason = PVPQueueFrame.HonorInset.RatedPanel.SeasonRewardFrame
-	RewardFrameSeason.Ring:Hide()
-	RewardFrameSeason.CircleMask:Hide()
-	RewardFrameSeason.Icon:SkinIcon()
+			local reward = button.Reward
+			reward:StripTextures()
+			reward:SetTemplate("Default")
+			reward:SetSize(40, 40)
+			reward:SetPoint("RIGHT", button, "RIGHT", -8, 0)
+			reward.CircleMask:Hide()
 
-	for _, i in pairs({"RandomBGButton", "RandomEpicBGButton", "Arena1Button", "BrawlButton", "BrawlButton2"}) do
-		local button = HonorFrame.BonusFrame[i]
-		button:StripTextures()
-		button:SetTemplate("Overlay")
-		button:StyleButton()
-		button.SelectedTexture:SetDrawLayer("ARTWORK")
-		button.SelectedTexture:ClearAllPoints()
-		button.SelectedTexture:SetAllPoints()
-		button.SelectedTexture:SetPoint("TOPLEFT", 2, -2)
-		button.SelectedTexture:SetPoint("BOTTOMRIGHT", -2, 2)
-		button.SelectedTexture:SetColorTexture(1, 0.82, 0, 0.3)
+			reward.Icon:SetAllPoints()
+			reward.Icon:SetPoint("TOPLEFT", 2, -2)
+			reward.Icon:SetPoint("BOTTOMRIGHT", -2, 2)
+			reward.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 
-		local reward = button.Reward
-		reward:StripTextures()
-		reward:SetTemplate("Default")
-		reward:SetSize(40, 40)
-		reward:SetPoint("RIGHT", button, "RIGHT", -8, 0)
-		reward.CircleMask:Hide()
+			reward.EnlistmentBonus:StripTextures()
+			reward.EnlistmentBonus:SetTemplate("Default")
+			reward.EnlistmentBonus:SetSize(20, 20)
+			reward.EnlistmentBonus:SetPoint("TOPRIGHT", 2, 2)
 
-		reward.Icon:SetAllPoints()
-		reward.Icon:SetPoint("TOPLEFT", 2, -2)
-		reward.Icon:SetPoint("BOTTOMRIGHT", -2, 2)
-		reward.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+			local EnlistmentBonusIcon = reward.EnlistmentBonus:CreateTexture()
+			EnlistmentBonusIcon:SetPoint("TOPLEFT", reward.EnlistmentBonus, "TOPLEFT", 2, -2)
+			EnlistmentBonusIcon:SetPoint("BOTTOMRIGHT", reward.EnlistmentBonus, "BOTTOMRIGHT", -2, 2)
+			EnlistmentBonusIcon:SetTexture("Interface\\Icons\\achievement_guildperk_honorablemention_rank2")
+			EnlistmentBonusIcon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+		end
 
-		reward.EnlistmentBonus:StripTextures()
-		reward.EnlistmentBonus:SetTemplate("Default")
-		reward.EnlistmentBonus:SetSize(20, 20)
-		reward.EnlistmentBonus:SetPoint("TOPRIGHT", 2, 2)
+		hooksecurefunc("PVPUIFrame_ConfigureRewardFrame", function(rewardFrame, _, _, itemRewards, currencyRewards)
+			local rewardTexture, rewardQuaility, _ = nil, 1
 
-		local EnlistmentBonusIcon = reward.EnlistmentBonus:CreateTexture()
-		EnlistmentBonusIcon:SetPoint("TOPLEFT", reward.EnlistmentBonus, "TOPLEFT", 2, -2)
-		EnlistmentBonusIcon:SetPoint("BOTTOMRIGHT", reward.EnlistmentBonus, "BOTTOMRIGHT", -2, 2)
-		EnlistmentBonusIcon:SetTexture("Interface\\Icons\\achievement_guildperk_honorablemention_rank2")
-		EnlistmentBonusIcon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-	end
-
-	hooksecurefunc("PVPUIFrame_ConfigureRewardFrame", function(rewardFrame, _, _, itemRewards, currencyRewards)
-		local rewardTexture, rewardQuaility, _ = nil, 1
-
-		if currencyRewards then
-			for _, reward in ipairs(currencyRewards) do
-				local info = C_CurrencyInfo.GetCurrencyInfo(reward.id)
-				if info and info.quality == ITEMQUALITY_ARTIFACT then
-					_, rewardTexture, _, rewardQuaility = CurrencyContainerUtil_GetCurrencyContainerInfo(reward.id, reward.quantity, info.name, info.iconFileID, info.quality)
+			if currencyRewards then
+				for _, reward in ipairs(currencyRewards) do
+					local info = C_CurrencyInfo.GetCurrencyInfo(reward.id)
+					if info and info.quality == ITEMQUALITY_ARTIFACT then
+						_, rewardTexture, _, rewardQuaility = CurrencyContainerUtil_GetCurrencyContainerInfo(reward.id, reward.quantity, info.name, info.iconFileID, info.quality)
+					end
 				end
 			end
-		end
 
-		if not rewardTexture and itemRewards then
-			local reward = itemRewards[1]
-			if reward then
-				_, _, rewardQuaility, _, _, _, _, _, _, rewardTexture = C_Item.GetItemInfo(reward.id)
+			if not rewardTexture and itemRewards then
+				local reward = itemRewards[1]
+				if reward then
+					_, _, rewardQuaility, _, _, _, _, _, _, rewardTexture = C_Item.GetItemInfo(reward.id)
+				end
 			end
-		end
 
-		if rewardTexture then
-			local r, g, b = GetItemQualityColor(rewardQuaility)
-			rewardFrame.Icon:SetTexture(rewardTexture)
-			--rewardFrame.Icon.backdrop:SetBackdropBorderColor(r, g, b)
-		end
-	end)
-
-	hooksecurefunc(HonorFrame.SpecificScrollBox, "Update", function (self)
-		for i = 1, self.ScrollTarget:GetNumChildren() do
-			local button = select(i, self.ScrollTarget:GetChildren())
-			if not button.IsSkinned then
-				button:SetSize(368, 38)
-				button:StripTextures()
-				button:CreateBackdrop("Overlay")
-				button.backdrop:SetPoint("TOPLEFT", 0, 0)
-				button.backdrop:SetPoint("BOTTOMRIGHT", 0, 2)
-				button:StyleButton(nil, nil, true)
-				button.SelectedTexture:SetDrawLayer("ARTWORK")
-				button.SelectedTexture:SetColorTexture(1, 0.82, 0, 0.3)
-				button.SelectedTexture:SetInside(button.backdrop)
-				button.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-				button.Icon:SetPoint("TOPLEFT", 5, -3)
-				button.IsSkinned = true
-			end
-		end
-	end)
-
-	local checkButtons = {
-		HonorFrame.TankIcon,
-		HonorFrame.HealerIcon,
-		HonorFrame.DPSIcon,
-		ConquestFrame.TankIcon,
-		ConquestFrame.HealerIcon,
-		ConquestFrame.DPSIcon
-	}
-
-	for i = 1, #checkButtons do
-		local button = checkButtons[i].checkButton
-		button:SetSize(22, 22)
-		T.SkinCheckBox(button)
-	end
-
-	for _, bar in pairs({HonorFrame.ConquestBar, ConquestFrame.ConquestBar}) do
-		bar:StripTextures()
-		bar:CreateBackdrop("Overlay")
-		bar:SetStatusBarTexture(C.media.texture)
-		bar:SetFrameLevel(bar:GetFrameLevel() + 2)
-
-		bar.Reward:ClearAllPoints()
-		bar.Reward:SetPoint("LEFT", bar, "RIGHT", -1, 0)
-
-		bar.Reward.Ring:Hide()
-		bar.Reward.CircleMask:Hide()
-
-		bar.Reward:StripTextures()
-		bar.Reward.Icon:SkinIcon()
-		bar.Reward.Icon:SetSize(20, 20)
-
-		local faction = UnitFactionGroup("player") == "Horde" and [[Interface\Icons\UI_Horde_HonorboundMedal]] or [[Interface\Icons\UI_Alliance_7LegionMedal]]
-		hooksecurefunc(bar.Reward, "SetTexture", function(self, texture)
-			if not texture then
-				self.Icon:SetTexture(faction)
+			if rewardTexture then
+				local r, g, b = C_Item.GetItemQualityColor(rewardQuaility)
+				rewardFrame.Icon:SetTexture(rewardTexture)
+				rewardFrame:SetBackdropBorderColor(r, g, b)
 			end
 		end)
-		bar:SetStatusBarColor(unpack(UnitFactionGroup("player") == "Horde" and {0.8, 0.2, 0.2} or {0.2, 0.2, 0.8}))
-	end
 
-	-- ConquestFrame
-	ConquestFrame:StripTextures()
-	ConquestFrame.Inset:StripTextures()
-	ConquestFrame.ShadowOverlay:StripTextures()
+		hooksecurefunc(HonorFrame.SpecificScrollBox, "Update", function (self)
+			for i = 1, self.ScrollTarget:GetNumChildren() do
+				local button = select(i, self.ScrollTarget:GetChildren())
+				if not button.IsSkinned then
+					button:SetSize(368, 38)
+					button:StripTextures()
+					button:CreateBackdrop("Overlay")
+					button.backdrop:SetPoint("TOPLEFT", 0, 0)
+					button.backdrop:SetPoint("BOTTOMRIGHT", 0, 2)
+					button:StyleButton(nil, nil, true)
+					button.SelectedTexture:SetDrawLayer("ARTWORK")
+					button.SelectedTexture:SetColorTexture(1, 0.82, 0, 0.3)
+					button.SelectedTexture:SetInside(button.backdrop)
+					button.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+					button.Icon:SetPoint("TOPLEFT", 5, -3)
+					button.IsSkinned = true
+				end
+			end
+		end)
 
-	for _, button in pairs({ConquestFrame.RatedSoloShuffle, ConquestFrame.Arena2v2, ConquestFrame.Arena3v3, ConquestFrame.RatedBG}) do
-		button:StripTextures()
-		button:SetTemplate("Overlay")
-		button:StyleButton()
-		button.SelectedTexture:SetDrawLayer("ARTWORK")
-		button.SelectedTexture:ClearAllPoints()
-		button.SelectedTexture:SetAllPoints()
-		button.SelectedTexture:SetPoint("TOPLEFT", 2, -2)
-		button.SelectedTexture:SetPoint("BOTTOMRIGHT", -2, 2)
-		button.SelectedTexture:SetColorTexture(1, 0.82, 0, 0.3)
+		local checkButtons = {
+			HonorFrame.TankIcon,
+			HonorFrame.HealerIcon,
+			HonorFrame.DPSIcon,
+			ConquestFrame.TankIcon,
+			ConquestFrame.HealerIcon,
+			ConquestFrame.DPSIcon
+		}
 
-		button.Reward:StripTextures()
-		button.Reward:SetTemplate("Default")
-		button.Reward:SetSize(40, 40)
-		button.Reward:SetPoint("RIGHT", button, "RIGHT", -7, -1)
-		button.Reward.CircleMask:Hide()
+		for i = 1, #checkButtons do
+			local button = checkButtons[i].checkButton
+			button:SetSize(22, 22)
+			T.SkinCheckBox(button)
+		end
 
-		button.Reward.Icon:SetAllPoints()
-		button.Reward.Icon:SetPoint("TOPLEFT", 2, -2)
-		button.Reward.Icon:SetPoint("BOTTOMRIGHT", -2, 2)
-		button.Reward.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-	end
+		for _, bar in pairs({HonorFrame.ConquestBar, ConquestFrame.ConquestBar}) do
+			bar:StripTextures()
+			bar:CreateBackdrop("Overlay")
+			bar:SetStatusBarTexture(C.media.texture)
+			bar:SetFrameLevel(bar:GetFrameLevel() + 2)
+
+			bar.Reward:ClearAllPoints()
+			bar.Reward:SetPoint("LEFT", bar, "RIGHT", -1, 0)
+
+			bar.Reward.Ring:Hide()
+			bar.Reward.CircleMask:Hide()
+
+			bar.Reward:StripTextures()
+			bar.Reward.Icon:SkinIcon()
+			bar.Reward.Icon:SetSize(20, 20)
+
+			local faction = UnitFactionGroup("player") == "Horde" and [[Interface\Icons\UI_Horde_HonorboundMedal]] or [[Interface\Icons\UI_Alliance_7LegionMedal]]
+			hooksecurefunc(bar.Reward, "SetTexture", function(self, texture)
+				if not texture then
+					self.Icon:SetTexture(faction)
+				end
+			end)
+			bar:SetStatusBarColor(unpack(UnitFactionGroup("player") == "Horde" and {0.8, 0.2, 0.2} or {0.2, 0.2, 0.8}))
+		end
+
+		-- ConquestFrame
+		ConquestFrame:StripTextures()
+		ConquestFrame.Inset:StripTextures()
+		ConquestFrame.ShadowOverlay:StripTextures()
+
+		for _, button in pairs({ConquestFrame.RatedSoloShuffle, ConquestFrame.Arena2v2, ConquestFrame.Arena3v3, ConquestFrame.RatedBG, ConquestFrame.RatedBGBlitz}) do
+			button:StripTextures()
+			button:SetTemplate("Overlay")
+			button:StyleButton()
+			button.SelectedTexture:SetDrawLayer("ARTWORK")
+			button.SelectedTexture:ClearAllPoints()
+			button.SelectedTexture:SetPoint("TOPLEFT", 2, -2)
+			button.SelectedTexture:SetPoint("BOTTOMRIGHT", -2, 2)
+			button.SelectedTexture:SetColorTexture(1, 0.82, 0, 0.3)
+
+			button.Reward:StripTextures()
+			button.Reward:SetTemplate("Default")
+			button.Reward:SetSize(40, 40)
+			button.Reward:SetPoint("RIGHT", button, "RIGHT", -7, -1)
+			button.Reward.CircleMask:Hide()
+
+			button.Reward.Icon:SetAllPoints()
+			button.Reward.Icon:SetPoint("TOPLEFT", 2, -2)
+			button.Reward.Icon:SetPoint("BOTTOMRIGHT", -2, 2)
+			button.Reward.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+		end
 
 	ConquestFrame.Arena3v3:SetPoint("TOP", ConquestFrame.Arena2v2, "BOTTOM", 0, -3)
 
@@ -256,17 +256,17 @@ local function LoadSkin()
 
 	NewSeasonPopup.Leave:SkinButton()
 end
-
+end
 T.SkinFuncs["Blizzard_PVPUI"] = LoadSkin
 
 local function LoadSecondarySkin()
 	-- PvP Ready Dialog
 	PVPReadyDialog:StripTextures()
 	PVPReadyDialog:SetTemplate("Transparent")
-	PVPReadyDialogBackground:SetAlpha(0)
+	-- PVPReadyDialogBackground:SetAlpha(0)
 	PVPReadyDialogEnterBattleButton:SkinButton()
-	PVPReadyDialogLeaveQueueButton:SkinButton()
-	T.SkinCloseButton(PVPReadyDialogCloseButton, PVPReadyDialog, "-")
+	-- PVPReadyDialogLeaveQueueButton:SkinButton()
+	-- T.SkinCloseButton(PVPReadyDialogCloseButton, PVPReadyDialog, "-")
 end
 
 tinsert(T.SkinFuncs["ShestakUI"], LoadSecondarySkin)

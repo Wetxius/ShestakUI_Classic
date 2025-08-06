@@ -112,25 +112,27 @@ local function LoadSkin()
 	_G.GroupFinderFrame.groupButton2.icon:SetTexture("Interface\\LFGFrame\\UI-LFR-PORTRAIT")
 	_G.GroupFinderFrame.groupButton3.icon:SetTexture("Interface\\Icons\\Achievement_General_StayClassy")
 
-	for i = 1, 3 do
+	for i = 1, 4 do
 		local button = GroupFinderFrame["groupButton"..i]
 
-		button.ring:Hide()
-		button:CreateBackdrop("Overlay")
-		button.backdrop:SetAllPoints()
-		button:StyleButton()
+		if button then
+			button.ring:Hide()
+			button:CreateBackdrop("Overlay")
+			button.backdrop:SetAllPoints()
+			button:StyleButton()
 
-		button.bg:SetTexture("")
+			button.bg:SetTexture("")
 
-		button.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-		button.icon:SetPoint("LEFT", button, "LEFT", 10, 0)
-		button.icon:SetDrawLayer("OVERLAY")
-		button.icon:SetSize(40, 40)
+			button.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+			button.icon:SetPoint("LEFT", button, "LEFT", 10, 0)
+			button.icon:SetDrawLayer("OVERLAY")
+			button.icon:SetSize(40, 40)
 
-		button.border = CreateFrame("Frame", nil, button)
-		button.border:CreateBackdrop("Default")
-		button.border.backdrop:SetPoint("TOPLEFT", button.icon, -2, 2)
-		button.border.backdrop:SetPoint("BOTTOMRIGHT", button.icon, 2, -2)
+			button.border = CreateFrame("Frame", nil, button)
+			button.border:CreateBackdrop("Default")
+			button.border.backdrop:SetPoint("TOPLEFT", button.icon, -2, 2)
+			button.border.backdrop:SetPoint("BOTTOMRIGHT", button.icon, 2, -2)
+		end
 	end
 
 	hooksecurefunc("GroupFinderFrame_SelectGroupButton", function(index)
@@ -216,8 +218,11 @@ local function LoadSkin()
 		end
 	end)
 
-	for i = 1, 3 do
-		T.SkinTab(_G["PVEFrameTab"..i])
+	for i = 1, 4 do
+		local tab = _G["PVEFrameTab"..i]
+		if tab then
+			T.SkinTab(tab)
+		end
 	end
 
 	LFGListApplicationDialog:SetTemplate("Transparent")
@@ -244,12 +249,12 @@ local function LoadSkin()
 	RaidFinderQueueFramePartyBackfill.backdrop:SetPoint("TOPLEFT", 2, 6)
 	RaidFinderQueueFramePartyBackfill.backdrop:SetPoint("BOTTOMRIGHT", 0, 8)
 
-	T.SkinDropDownBox(LFDQueueFrameTypeDropDown, 300)
-	LFDQueueFrameTypeDropDown.backdrop:SetParent(LFDQueueFrame) -- fixed SetFrameLevel raise to 10000
-	LFDQueueFrameTypeDropDown:SetPoint("RIGHT", -10, 0)
+	T.SkinDropDownBox(LFDQueueFrameTypeDropdown, 300)
+	LFDQueueFrameTypeDropdown.backdrop:SetParent(LFDQueueFrame) -- fixed SetFrameLevel raise to 10000
+	LFDQueueFrameTypeDropdown:SetPoint("RIGHT", -10, 0)
 
-	T.SkinDropDownBox(RaidFinderQueueFrameSelectionDropDown, 300)
-	RaidFinderQueueFrameSelectionDropDown:SetPoint("RIGHT", -10, 0)
+	T.SkinDropDownBox(RaidFinderQueueFrameSelectionDropdown, 300)
+	RaidFinderQueueFrameSelectionDropdown:SetPoint("RIGHT", -10, 0)
 
 	LFGListFrame.SearchPanel.ResultsInset:StripTextures()
 	LFGListFrame.NothingAvailable:StripTextures()
@@ -263,8 +268,13 @@ local function LoadSkin()
 	LFGListFrame.SearchPanel.RefreshButton:SkinButton()
 	LFGListFrame.SearchPanel.RefreshButton:SetSize(24, 24)
 	LFGListFrame.SearchPanel.RefreshButton.Icon:SetPoint("CENTER")
-	LFGListFrame.SearchPanel.FilterButton:SkinButton()
-	LFGListFrame.SearchPanel.FilterButton:SetPoint("LEFT", LFGListFrame.SearchPanel.SearchBox, "RIGHT", 5, 0)
+	T.SkinFilter(LFGListFrame.SearchPanel.FilterButton, true)
+	if not T.newPatch then
+		LFGListFrame.SearchPanel.FilterButton:SetPoint("LEFT", LFGListFrame.SearchPanel.SearchBox, "RIGHT", 5, 0)
+	else
+		LFGListFrame.SearchPanel.SearchBox:ClearAllPoints()
+		LFGListFrame.SearchPanel.SearchBox:SetPoint("RIGHT", LFGListFrame.SearchPanel.FilterButton, "LEFT", -5, 0)
+	end
 
 	local function skinCreateButton(button)
 		local child = button:GetChildren()
@@ -292,6 +302,10 @@ local function LoadSkin()
 		if not button.InviteButtonSmall.isSkinned then
 			button.InviteButtonSmall:SkinButton()
 			button.InviteButtonSmall.isSkinned = true
+		end
+		if not button.InviteButton.isSkinned then
+			button.InviteButton:SkinButton()
+			button.InviteButton.isSkinned = true
 		end
 	end)
 
@@ -393,8 +407,8 @@ local function LoadSkin()
 	T.SkinEditBox(LFGListFrame.EntryCreation.ItemLevel.EditBox, nil, 17)
 	T.SkinEditBox(LFGListFrame.EntryCreation.VoiceChat.EditBox, nil, 17)
 	T.SkinEditBox(LFGListFrame.EntryCreation.Description)
-	T.SkinDropDownBox(LFGListFrame.EntryCreation.GroupDropDown)
-	T.SkinDropDownBox(LFGListFrame.EntryCreation.ActivityDropDown)
+	T.SkinDropDownBox(LFGListEntryCreationGroupDropdown)
+	T.SkinDropDownBox(LFGListEntryCreationActivityDropdown)
 	T.SkinCheckBox(LFGListFrame.EntryCreation.VoiceChat.CheckButton)
 	T.SkinCheckBox(LFGListFrame.EntryCreation.ItemLevel.CheckButton)
 	T.SkinCheckBox(LFGListFrame.EntryCreation.PrivateGroup.CheckButton)
@@ -477,8 +491,8 @@ tinsert(T.SkinFuncs["ShestakUI"], LoadSkin)
 local function LoadSecondarySkin()
 	ChallengesFrameInset:StripTextures()
 	ChallengesFrame:DisableDrawLayer("BACKGROUND")
-	ChallengesFrame.WeeklyInfo.Child:DisableDrawLayer("BACKGROUND")
-
+	-- ChallengesFrame.WeeklyInfo.Child:DisableDrawLayer("BACKGROUND")
+	if T.Mainline then
 	hooksecurefunc(ChallengesFrame, "Update", function(self)
 		for _, frame in ipairs(self.DungeonIcons) do
 			if not frame.backdrop then
@@ -551,6 +565,7 @@ local function LoadSecondarySkin()
 	NoticeFrame.Affix.Portrait:SkinIcon()
 
 	NoticeFrame.Leave:SkinButton()
+	end
 end
 
 T.SkinFuncs["Blizzard_ChallengesUI"] = LoadSecondarySkin
@@ -583,9 +598,8 @@ if C_AddOns.IsAddOnLoaded("PremadeGroupsFilter") then
 	local RaidPanel = _G.PremadeGroupsFilterRaidPanel
 	local RolePanel = _G.PremadeGroupsFilterRolePanel
 	local MiniPanel = _G.PremadeGroupsFilterMiniPanel
-	local PGFDialog = _G.PremadeGroupsFilterDialog
 
-	local names = {"Difficulty", "MPRating", "Members", "Tanks", "Heals", "DPS", "Partyfit", "BLFit", "BRFit", "Defeated", "MatchingId", "PvPRating"}
+	local names = {"Difficulty", "MPRating", "Members", "Tanks", "Heals", "DPS", "Partyfit", "BLFit", "BRFit", "Defeated", "MatchingId", "PvPRating", "NeedsBL", "NotDeclined"}
 
 	local function handleGroup(panel)
 		for _, name in pairs(names) do
