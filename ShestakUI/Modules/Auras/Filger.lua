@@ -392,7 +392,7 @@ function Filger:OnEvent(event, unit, _, castID)
 						start, duration = GetInventoryItemCooldown("player", data.slotID)
 					end
 				end
-				if T.Classic and HasWandEquipped() then
+				if T.Classic and not T.Mists and HasWandEquipped() then
 					local wandID = GetInventoryItemID("player", 18)
 					local wandSpeed = select(2, C_Container.GetItemCooldown(wandID)) or 0
 					if wandSpeed < 1.5 then wandSpeed = 1.5 end

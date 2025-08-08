@@ -222,7 +222,7 @@ function Stuffing:SlotUpdate(b)
 
 	if b.cooldown and StuffingFrameBags and StuffingFrameBags:IsShown() then
 		local start, duration, enable = C_Container.GetContainerItemCooldown(b.bag, b.slot)
-		if T.Classic and HasWandEquipped() then
+		if T.Classic and not T.Mists and HasWandEquipped() then
 			local wandID = GetInventoryItemID("player", 18)
 			local wandSpeed = select(2, C_Container.GetItemCooldown(wandID)) or 0
 			if wandSpeed == 0 then
@@ -383,7 +383,7 @@ end
 function Stuffing:UpdateCooldowns(b)
 	if b.cooldown and StuffingFrameBags and StuffingFrameBags:IsShown() then
 		local start, duration, enable = C_Container.GetContainerItemCooldown(b.bag, b.slot)
-		if T.Classic and HasWandEquipped() then
+		if T.Classic and not T.Mists and HasWandEquipped() then
 			local wandID = GetInventoryItemID("player", 18)
 			local wandSpeed = select(2, C_Container.GetItemCooldown(wandID)) or 0
 			if wandSpeed == 0 then
