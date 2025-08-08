@@ -50,9 +50,6 @@ local function LoadSkin()
 	bg:SetPoint("TOPLEFT", 10, -72)
 	bg:SetPoint("BOTTOMRIGHT", -8, 3)
 
-	-- CalendarContextMenu.NineSlice:SetTemplate("Transparent")
-	-- CalendarInviteStatusContextMenu.NineSlice:SetTemplate("Transparent")
-
 	-- Boost frame levels
 	for i = 1, 42 do
 		_G["CalendarDayButton"..i]:SetFrameLevel(_G["CalendarDayButton"..i]:GetFrameLevel() + 1)
@@ -143,7 +140,6 @@ local function LoadSkin()
 	T.SkinCloseButton(CalendarViewEventCloseButton)
 
 	CalendarEventPickerFrame:SetTemplate("Transparent")
-
 	CalendarEventPickerCloseButton:SkinButton(true)
 
 	local buttons = {

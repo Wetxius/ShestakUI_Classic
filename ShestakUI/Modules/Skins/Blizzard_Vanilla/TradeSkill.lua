@@ -37,11 +37,6 @@ local function LoadSkin()
 	TradeSkillRankFrame:SetPoint("TOP", -10, -38)
 	TradeSkillRankFrame:SetStatusBarTexture(C.media.blank)
 
-	TradeSkillRankFrameSkillName:Hide()
-	TradeSkillRankFrameSkillRank:ClearAllPoints()
-	TradeSkillRankFrameSkillRank:SetParent(TradeSkillRankFrame)
-	TradeSkillRankFrameSkillRank:SetPoint("CENTER", TradeSkillRankFrame, "CENTER", 58, 0)
-
 	TradeSkillListScrollFrame:StripTextures()
 	TradeSkillListScrollFrame:SetSize(310, 405)
 	TradeSkillListScrollFrame:ClearAllPoints()
@@ -60,12 +55,12 @@ local function LoadSkin()
 	T.SkinScrollBar(TradeSkillDetailScrollFrameScrollBar)
 	TradeSkillDetailScrollFrameScrollBar:SetPoint("TOPLEFT", TradeSkillDetailScrollFrame, "TOPRIGHT", 3, -16)
 
-	T.SkinDropDownBox(TradeSkillInvSlotDropDown, 160)
-	TradeSkillInvSlotDropDown:ClearAllPoints()
-	TradeSkillInvSlotDropDown:SetPoint("RIGHT", TradeSkillRankFrame, "RIGHT", 9, -30)
+--	T.SkinDropDownBox(TradeSkillInvSlotDropDown, 160)
+--	TradeSkillInvSlotDropDown:ClearAllPoints()
+--	TradeSkillInvSlotDropDown:SetPoint("RIGHT", TradeSkillRankFrame, "RIGHT", 9, -30)
 
-	T.SkinDropDownBox(TradeSkillSubClassDropDown, 160)
-	TradeSkillSubClassDropDown:SetPoint("RIGHT", TradeSkillInvSlotDropDown, "LEFT", 10, 0)
+--	T.SkinDropDownBox(TradeSkillSubClassDropDown, 160)
+--	TradeSkillSubClassDropDown:SetPoint("RIGHT", TradeSkillInvSlotDropDown, "LEFT", 10, 0)
 
 	TradeSkillCancelButton:SetWidth(75)
 	TradeSkillCancelButton:ClearAllPoints()
@@ -259,13 +254,13 @@ local function LoadSkin()
 			if reagentLink then
 				local _, _, quality = C_Item.GetItemInfo(string.match(reagentLink, "item:(%d+)"))
 				if quality then
-					local R, G, B = GetItemQualityColor(quality)
+					local R, G, B = C_Item.GetItemQualityColor(quality)
 					icon.backdrop:SetBackdropBorderColor(R, G, B)
 					reagent:SetBackdropBorderColor(R, G, B)
 					if playerReagentCount < reagentCount then
 						name:SetTextColor(0.5, 0.5, 0.5)
 					else
-						name:SetTextColor(GetItemQualityColor(quality))
+						--name:SetTextColor(R, B, G)
 					end
 					count:ClearAllPoints()
 					count:SetPoint("BOTTOMLEFT", icon, "BOTTOMLEFT", 0, -1)
