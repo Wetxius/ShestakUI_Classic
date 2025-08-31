@@ -7,7 +7,7 @@ if C.nameplate.enable ~= true then return end
 --	Take the number ID at the end of the URL, and add it to the list
 ----------------------------------------------------------------------------------------
 local function SpellName(id)
-	local name = GetSpellInfo(id)
+	local name = C_Spell.GetSpellInfo(id)
 	if name then
 		return name
 	else
@@ -415,11 +415,11 @@ T.BuffWhiteList = {
 	-- [SpellName(7294)] = true,	-- Retribution Aura
 	-- [SpellName(85433)] = true,	-- Sacred Duty
 	-- [SpellName(96263)] = true,	-- Sacred Shield
-	-- [SpellName(348704)] = true,	-- Seal of Corruption
-	-- [SpellName(20165)] = true,	-- Seal of Insight
-	-- [SpellName(20164)] = true,	-- Seal of Justice
-	-- [SpellName(20154)] = true,	-- Seal of Righteousness
-	-- [SpellName(31801)] = true,	-- Seal of Truth
+	[SpellName(348704)] = true,	-- Seal of Corruption
+	[SpellName(20165)] = true,	-- Seal of Insight
+	[SpellName(20164)] = true,	-- Seal of Justice
+	[SpellName(20154)] = true,	-- Seal of Righteousness
+	[SpellName(31801)] = true,	-- Seal of Truth
 	-- [SpellName(90811)] = true,    -- Selfless
 	-- [SpellName(5502)] = true,	-- Sense Undead
 	-- [SpellName(85497)] = true,	-- Speed of Light

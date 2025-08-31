@@ -174,7 +174,7 @@ T.DiminishingSpells = {
 }
 
 local function GetIcon(id)
-	local _, _, icon = GetSpellInfo(id)
+	local _, _, icon = C_Spell.GetSpellInfo(id)
 	return icon
 end
 

@@ -6,7 +6,7 @@ local T, C, L = unpack(ShestakUI)
 --	Take the number ID at the end of the URL, and add it to the list
 ----------------------------------------------------------------------------------------
 local function SpellName(id)
-	local name, _, icon = GetSpellInfo(id)
+	local name, _, icon = C_Spell.GetSpellInfo(id)
 	if name then
 		return {name, icon}
 	else
@@ -424,7 +424,6 @@ if C.reminder.solo_buffs_enable == true then
 				["instance"] = true,
 				["pvp"] = true,
 			},
-			--[[
 			[2] = {	-- Stance group
 				["spells"] = {
 					SpellName(2457),		-- Battle Stance
@@ -435,7 +434,6 @@ if C.reminder.solo_buffs_enable == true then
 				["instance"] = true,
 				["pvp"] = true,
 			},
-			--]]
 		},
 	}
 end

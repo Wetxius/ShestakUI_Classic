@@ -3259,22 +3259,11 @@ C["filger_spells"] = {
 			-- {spellID = 7294, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Sacred Shield
 			-- {spellID = 96263, unitID = "player", caster = "player", filter = "BUFF"},
-			--[[
-			-- Seal of Corruption
-			{spellID = 348704, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Seal of Insight
-			{spellID = 20165, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Seal of Justice
-			{spellID = 20164, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Seal of Righteousness
-			{spellID = 20154, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Seal of Truth
-			{spellID = 31801, unitID = "player", caster = "player", filter = "BUFF"},
-			--]]
+
 			-- Selfless
 			-- {spellID = 90811, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Speed of Light
-			-- {spellID = 85497, unitID = "player", caster = "player", filter = "BUFF"},
+			{spellID = 85499, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Item Sets
 			-- Aegis (Block Value, Shield of Righteousness) [Aegis Plate]
