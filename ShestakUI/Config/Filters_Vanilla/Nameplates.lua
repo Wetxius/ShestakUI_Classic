@@ -7,7 +7,7 @@ if C.nameplate.enable ~= true then return end
 --	Take the number ID at the end of the URL, and add it to the list
 ----------------------------------------------------------------------------------------
 local function SpellName(id)
-	local name = GetSpellInfo(id)
+	local name = C_Spell.GetSpellInfo(id)
 	if name then
 		return name
 	else

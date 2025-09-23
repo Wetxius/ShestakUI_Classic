@@ -6,7 +6,7 @@ local T, C, L = unpack(ShestakUI)
 --	Take the number ID at the end of the URL, and add it to the list
 ----------------------------------------------------------------------------------------
 local function SpellName(id)
-	local name, _, icon = GetSpellInfo(id)
+	local name, _, icon = C_Spell.GetSpellInfo(id)
 	if name then
 		return {name, icon}
 	else
