@@ -2533,11 +2533,11 @@ C["filger_spells"] = {
 			-- Icy Veins
 			{spellID = 12472, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Improved Blink
-			{spellID = 47000, unitID = "player", caster = "player", filter = "BUFF"},
+			-- {spellID = 47000, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Invisibility
 			-- {spellID = 32612, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 			-- Mage Ward
-			{spellID = 543, unitID = "player", caster = "player", filter = "BUFF"},
+			-- {spellID = 543, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Mana Shield
 			{spellID = 1463, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 			-- Mirror Image
@@ -2545,7 +2545,7 @@ C["filger_spells"] = {
 			-- Presence of Mind
 			{spellID = 12043, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Pyromaniac
-			{spellID = 83582, unitID = "player", caster = "player", filter = "BUFF"},
+			-- {spellID = 83582, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Item Sets
 			-- Quad Core (Increase Damage, Mirror Image) [Bloodmage's Regalia]
@@ -2564,23 +2564,23 @@ C["filger_spells"] = {
 			-- Arcane Potency
 			-- {spellID = 57529, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 			-- Blazing Speed
-			{spellID = 31643, unitID = "player", caster = "player", filter = "BUFF"},
+			-- {spellID = 31643, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Brain Freeze
 			{spellID = 57761, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Clearcasting [Arcane Concentration]
-			{spellID = 12536, unitID = "player", caster = "player", filter = "BUFF", absID = true},
+			-- {spellID = 12536, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 			-- Fingers of Frost
 			{spellID = 44544, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Firestarter
-			{spellID = 54741, unitID = "player", caster = "player", filter = "BUFF"},
+			-- {spellID = 54741, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Focus Magic
 			-- {spellID = 54648, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 			-- Hot Streak
 			{spellID = 48108, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Incanter's Absorption
-			{spellID = 44413, unitID = "player", caster = "player", filter = "BUFF"},
+			-- {spellID = 44413, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Invocation
-			{spellID = 87098, unitID = "player", caster = "player", filter = "BUFF"},
+			-- {spellID = 87098, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Item Sets
 			-- Arcane Madness (Spell Power, Proc) [Tirisfal Regalia]
@@ -2989,7 +2989,7 @@ C["filger_spells"] = {
 			-- Black Magic [Enchant Weapon - Black Magic]
 			{spellID = 59626, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Lightweave [Lightweave Embroidery]
-			{spellID = 55637, unitID = "player", caster = "player", filter = "BUFF"},
+			-- {spellID = 55637, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Spellsurge (Mana Regeneration to Party) [Enchant Weapon - Spellsurge]
 			{spellID = 27996, unitID = "player", caster = "all", filter = "BUFF"},
 		},
@@ -3015,7 +3015,7 @@ C["filger_spells"] = {
 			-- Cone of Cold
 			{spellID = 120, unitID = "target", caster = "player", filter = "DEBUFF", absID = true},
 			-- Critical Mass
-			{spellID = 22959, unitID = "target", caster = "all", filter = "DEBUFF"},
+			-- {spellID = 22959, unitID = "target", caster = "all", filter = "DEBUFF"},
 			-- Deep Freeze
 			{spellID = 44572, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Dragon's Breath
@@ -3035,25 +3035,25 @@ C["filger_spells"] = {
 			-- Ignite
 			{spellID = 12654, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Impact
-			{spellID = 12355, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- {spellID = 12355, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Living Bomb
 			{spellID = 44457, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Permafrost
-			{spellID = 68391, unitID = "target", caster = "all", filter = "DEBUFF", absID = true},
+			-- {spellID = 68391, unitID = "target", caster = "all", filter = "DEBUFF", absID = true},
 			-- Pyroblast
 			{spellID = 11366, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Pyroblast!
-			{spellID = 92315, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- {spellID = 92315, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Ring of Frost
 			{spellID = 82691, unitID = "target", caster = "all", filter = "DEBUFF"},
 			-- Shattered Barrier
-			{spellID = 55080, unitID = "target", caster = "all", filter = "DEBUFF"},
+			-- {spellID = 55080, unitID = "target", caster = "all", filter = "DEBUFF"},
 			-- Silenced - Improved Counterspell
-			{spellID = 18469, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- {spellID = 18469, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Slow
 			{spellID = 31589, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Winter's Chill
-			{spellID = 12579, unitID = "target", caster = "all", filter = "DEBUFF"},
+			-- {spellID = 12579, unitID = "target", caster = "all", filter = "DEBUFF"},
 
 			-- Item Sets
 			-- Elemental Vulnerability (Special, Proc) [Frostfire Regalia]
@@ -3083,7 +3083,7 @@ C["filger_spells"] = {
 			Position = {"LEFT", T_DE_BUFF_BAR_Anchor},
 
 			-- Curse Immunity
-			{spellID = 60803, unitID = "target", caster = "player", filter = "BUFF"},
+			{spellID = 130, unitID = "target", caster = "player", filter = "BUFF"},
 		},
 		{
 			Name = "PVE/PVP_CC",
@@ -3111,7 +3111,7 @@ C["filger_spells"] = {
 			-- Polymorph: Turtle
 			{spellID = 28271, unitID = "focus", caster = "all", filter = "DEBUFF", absID = true},
 			-- Polymorph - Penguin
-			{spellID = 59634, unitID = "focus", caster = "all", filter = "DEBUFF", absID = true},
+			-- {spellID = 59634, unitID = "focus", caster = "all", filter = "DEBUFF", absID = true},
 		},
 		{
 			Name = "COOLDOWN",
@@ -3146,11 +3146,11 @@ C["filger_spells"] = {
 			-- Fire Blast
 			{spellID = 2136, filter = "CD"},
 			-- Flame Orb
-			{spellID = 82731, filter = "CD"},
+			-- {spellID = 82731, filter = "CD"},
 			-- Freeze (Water Elemental)
 			{spellID = 33395, filter = "CD", absID = true},
 			-- Frostfire Orb
-			{spellID = 92283, filter = "CD"},
+			-- {spellID = 92283, filter = "CD"},
 			-- Frost Nova
 			{spellID = 122, filter = "CD"},
 			-- Ice Barrier
@@ -3160,13 +3160,13 @@ C["filger_spells"] = {
 			-- Icy Veins
 			{spellID = 12472, filter = "CD"},
 			-- Mage Ward
-			{spellID = 543, filter = "CD"},
+			-- {spellID = 543, filter = "CD"},
 			-- Mirror Image
 			{spellID = 55342, filter = "CD"},
 			-- Presence of Mind
 			{spellID = 12043, filter = "CD"},
 			-- Ring of Frost
-			{spellID = 82676, filter = "CD"},
+			-- {spellID = 82676, filter = "CD"},
 			-- Summon Water Elemental
 			{spellID = 31687, filter = "CD"},
 			-- Time Warp

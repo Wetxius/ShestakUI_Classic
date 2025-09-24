@@ -21,7 +21,7 @@ local function LoadSkin()
 		"IgnoreListFrame",
 		"FriendsFrameInset",
 		"WhoFrameListInset",
-		"WhoFrameEditBoxInset",
+		-- "WhoFrameEditBoxInset",
 		"GuildFrame",
 		"GuildFrameLFGFrame",
 		"GuildFrameColumnHeader1",
