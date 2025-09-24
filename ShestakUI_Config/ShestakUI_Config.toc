@@ -3,11 +3,11 @@
 ## Interface-BCC: 20504
 ## Interface-Wrath: 30403
 ## Interface-Cata: 40402
-## Interface-Mists: 50500
+## Interface-Mists: 50501
 ## Title: ShestakUI (Classic) Config
 ## Notes: In-game configuration for ShestakUI
 ## Author: Shestak
-## Version: 2.19
+## Version: 2.20
 ## X-Curse-Project-ID: 1302482
 ## X-WoWI-ID: *****
 ## X-Wago-ID: ****
