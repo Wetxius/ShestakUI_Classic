@@ -17,7 +17,9 @@ local function LoadSkin()
 	ItemTextCurrentPage:ClearAllPoints()
 	ItemTextCurrentPage:SetPoint("TOP", ItemTextFrame.backdrop, "TOP", 0, -44)
 
-	T.SkinCloseButton(ItemTextCloseButton, ItemTextFrame.backdrop)
+	if T.Mists then
+		T.SkinCloseButton(ItemTextCloseButton, ItemTextFrame.backdrop)
+	end 
 
 	T.SkinNextPrevButton(ItemTextPrevPageButton)
 	ItemTextPrevPageButton:ClearAllPoints()

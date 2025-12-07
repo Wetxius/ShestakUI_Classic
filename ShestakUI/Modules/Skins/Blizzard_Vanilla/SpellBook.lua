@@ -75,8 +75,11 @@ local function LoadSkin()
 		end
 	end
 	SpellButtons(nil, true)
-	hooksecurefunc("SpellButton_UpdateButton", SpellButtons)
 
+	if T.Mists then 
+		hooksecurefunc("SpellButton_UpdateButton", SpellButtons)
+	end
+	
 	SpellBookPageText:SetTextColor(0.6, 0.6, 0.6)
 
 	-- Skill Line Tabs
@@ -112,7 +115,10 @@ local function LoadSkin()
 			end
 		end
 	end
-	hooksecurefunc("SpellBookFrame_UpdateSkillLineTabs", SkinSkillLine)
+
+	if T.Mists then
+		hooksecurefunc("SpellBookFrame_UpdateSkillLineTabs", SkinSkillLine)
+	end
 
 	-- Bottom Tabs
 	SpellBookFrameTabButton1:ClearAllPoints()
