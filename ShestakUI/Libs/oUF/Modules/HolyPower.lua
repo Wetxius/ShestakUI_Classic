@@ -26,7 +26,7 @@ local function Update(self, _, unit, powerType)
 	end
 
 	local cur = UnitPower("player", SPELL_POWER_HOLY_POWER)
-	local max = (oUF:IsClassic() and 3 or 5) -- Cause we don't use :Factory to spawn frames it return sometimes "3"
+	local max = (oUF:IsClassic() and 5 or 3) -- Cause we don't use :Factory to spawn frames it return sometimes "3"
 
 	for i = 1, max do
 		if(i <= cur) then

@@ -407,7 +407,7 @@ local function Shared(self, unit)
 			self.HolyPower:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
 			self.HolyPower:SetSize(player_width, 7)
 
-			local maxHolyPower = T.Classic and 3 or 5
+			local maxHolyPower = T.Classic and (5 or 3)
 			for i = 1, maxHolyPower do
 				self.HolyPower[i] = CreateFrame("StatusBar", self:GetName().."_HolyPower"..i, self.HolyPower)
 				self.HolyPower[i]:SetSize((player_width - (T.Classic and 2 or 4)) / maxHolyPower, 7)
@@ -433,7 +433,7 @@ local function Shared(self, unit)
 			self.ShadowOrbs:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
 			self.ShadowOrbs:SetSize(player_width, 7)
 
-			local maxShadowOrbs = T.Classic and 3 or 5
+			local maxShadowOrbs = T.Classic and 5 or 3
 			for i = 1, maxShadowOrbs do
 				self.ShadowOrbs[i] = CreateFrame("StatusBar", self:GetName().."_ShadowOrbs"..i, self.ShadowOrbs)
 				self.ShadowOrbs[i]:SetSize((player_width - (T.Classic and 2 or 4)) / maxShadowOrbs, 7)
@@ -454,7 +454,6 @@ local function Shared(self, unit)
 
 		-- Soul Shards bar
 		if T.Mists and C.unitframe_class_bar.shard == true and T.class == "WARLOCK" then
-			if C_SpecializationInfo.GetSpecialization() == (1 or 3) then 
 				self.SoulShards = CreateFrame("Frame", self:GetName().."_SoulShardsBar", self)
 				self.SoulShards:CreateBackdrop("Default")
 				self.SoulShards:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
@@ -475,36 +474,8 @@ local function Shared(self, unit)
 					self.SoulShards[i].bg:SetAllPoints()
 					self.SoulShards[i].bg:SetTexture(C.media.texture)
 					self.SoulShards[i].bg:SetVertexColor(0.9, 0.37, 0.37, 0.2)
+					
 				end
-			else 
-				self.SoulShards = CreateFrame("StatusBar", self:GetName().."_SoulShards", self)
-				self.SoulShards:CreateBackdrop("Default")
-				self.SoulShards:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
-				self.SoulShards:SetSize(player_width, 7)
-				self.SoulShards:SetStatusBarTexture(C.media.texture)
-
-				if C.unitframe.own_color == true then
-					self.SoulShards.colorClass = true
-				else
-					self.SoulShards.colorPower = true
-				end
-				if C.unitframe.plugins_smooth_bar == true then
-					self.SoulShards.Smooth = true
-				end
-			
-				self.SoulShards.PreUpdate = T.PreUpdatePower
-			--	self.SoulShards.PostUpdate = T.PostUpdatePower
-				self.SoulShards.PostUpdateColor = T.PostUpdatePowerColor
-			
-				self.SoulShards.bg = self.SoulShards:CreateTexture(nil, "BORDER")
-				self.SoulShards.bg:SetAllPoints()
-				self.SoulShards.bg:SetTexture(C.media.texture)
-			--	self.SoulShards.bg.multiplier = 0.2
-			
-				self.SoulShards.value = T.SetFontString(self.SoulShards, C.font.unit_frames_font, C.font.unit_frames_font_size, C.font.unit_frames_font_style)
-				self.SoulShards.value:SetPoint("RIGHT", self.SoulShards, "RIGHT", 0, 0)
-				self.SoulShards.value:SetJustifyH("RIGHT")
-			end
 		end
 		-- Essence bar
 		if T.Mainline and C.unitframe_class_bar.essence == true and T.class == "EVOKER" then
