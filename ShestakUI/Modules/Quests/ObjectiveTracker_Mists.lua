@@ -91,16 +91,45 @@ end)
 ----------------------------------------------------------------------------------------
 --	Skin WatchFrameCollapseExpandButton
 ----------------------------------------------------------------------------------------
--- TODO: Fixme
---[[
+
 if C.skins.blizzard_frames == true then
-	T.SkinCloseButton(WatchFrameCollapseExpandButton, nil, "-", true)
+	local button = WatchFrameCollapseExpandButton
+	button:SetSize(17, 17)
+	button:StripTextures()
+	button:SetTemplate("Overlay")
+
+	button.minus = button:CreateTexture(nil, "OVERLAY")
+	button.minus:SetSize(7, 1)
+	button.minus:SetPoint("CENTER")
+	button.minus:SetTexture(C.media.blank)
+
+	button.plus = button:CreateTexture(nil, "OVERLAY")
+	button.plus:SetSize(1, 7)
+	button.plus:SetPoint("CENTER")
+	button.plus:SetTexture(C.media.blank)
+
+	button:HookScript("OnEnter", T.SetModifiedBackdrop)
+	button:HookScript("OnLeave", T.SetOriginalBackdrop)
+
+	button.plus:Hide()
+
 	WatchFrameCollapseExpandButton:HookScript("OnClick", function(self)
-		if WatchFrame.collapsed then
-			self.text:SetText("+")
+		if collapsed then
+			button.plus:Show()
+			if C.general.minimize_mouseover then
+				button:SetAlpha(0)
+				button:HookScript("OnEnter", function() button:SetAlpha(1) end)
+				button:HookScript("OnLeave", function() button:SetAlpha(0) end)
+			end
 		else
-			self.text:SetText("-")
+			button.plus:Hide()
+			if C.general.minimize_mouseover then
+				button:SetAlpha(1)
+				button:HookScript("OnEnter", function() button:SetAlpha(1) end)
+				button:HookScript("OnLeave", function() button:SetAlpha(1) end)
+			end
 		end
+		button:SetNormalTexture(0)
+		button:SetPushedTexture(0)
 	end)
 end
---]]
