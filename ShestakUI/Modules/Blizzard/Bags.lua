@@ -251,7 +251,7 @@ function Stuffing:SlotUpdate(b)
 		b.frame:UpdateItemContextMatching() -- Update Scrap items
 	end
 
-	if T.Mainline and b.frame.UpgradeIcon then
+	if (T.Mainline or T.Mists) and b.frame.UpgradeIcon then
 		b.frame.UpgradeIcon:SetPoint("TOPLEFT", C.bag.button_size/2.7, -C.bag.button_size/2.7)
 		b.frame.UpgradeIcon:SetSize(C.bag.button_size/1.7, C.bag.button_size/1.7)
 		-- Use Pawn's (third-party addon) function if present; else fallback to Blizzard's.

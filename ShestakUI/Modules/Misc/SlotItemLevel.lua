@@ -8,6 +8,9 @@ local minItemLevel = 375 -- For missing enchant and gems checking
 local _G = getfenv(0)
 local equiped = {} -- Table to store equiped items
 
+local ItemDB = {}
+
+
 local f = CreateFrame("Frame", nil, _G.PaperDollFrame) -- iLvel number frame
 local g -- iLvel number for Inspect frame
 f:RegisterEvent("ADDON_LOADED")
@@ -17,23 +20,26 @@ local fontObject = CreateFont("iLvLFont")
 fontObject:SetFontObject("SystemFont_Outline_Small")
 
 -- Tooltip and scanning by Phanx @ http://www.wowinterface.com/forums/showthread.php?p=271406
-local itemLevelString = "^"..gsub(ITEM_LEVEL, "%%d", "")
-local function _getRealItemLevel(slotId, unit)
-	local data = C_TooltipInfo.GetInventoryItem(unit, slotId)
-	if not data then return nil end -- With this we don't get ilvl for offhand if we equip 2h weapon
-	local realItemLevel
+local S_ITEM_LEVEL = "^" .. gsub(ITEM_LEVEL, "%%d", "(%%d+)")
 
-	for i = 2, #data.lines do
-		local lineData = data.lines[i]
-		local text = lineData and lineData.leftText
-		if text then
-			local found = strfind(text, itemLevelString)
-			if found then
-				local level = strmatch(text, "(%d+)%)?$")
-				if level and (tonumber(level) > 0) then
-					realItemLevel = level
-					break
-				end
+local scantip = CreateFrame("GameTooltip", "iLvlScanningTooltip2", nil, "GameTooltipTemplate")
+scantip:SetOwner(UIParent, "ANCHOR_NONE")
+
+local function _getRealItemLevel(slotId, unit, link, forced)
+	if (not forced) and ItemDB[link] then return ItemDB[link] end
+
+	local realItemLevel
+	local hasItem = scantip:SetInventoryItem(unit, slotId)
+	if not hasItem then return nil end -- With this we don't get ilvl for offhand if we equip 2h weapon
+
+	for i = 2, scantip:NumLines() do -- Line 1 is always the name so you can skip it.
+		local text = _G["iLvlScanningTooltip2TextLeft"..i]:GetText()
+		if text and text ~= "" then
+			realItemLevel = realItemLevel or strmatch(text, S_ITEM_LEVEL)
+
+			if realItemLevel then
+				ItemDB[link] = tonumber(realItemLevel)
+				return tonumber(realItemLevel)
 			end
 		end
 	end
@@ -221,7 +227,7 @@ local function OnEvent(self, event, ...)
 
 		_G.PaperDollFrame:HookScript("OnShow", function()
 			f:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
-			f:RegisterEvent("ARTIFACT_UPDATE")
+			-- f:RegisterEvent("ARTIFACT_UPDATE")
 			f:RegisterEvent("SOCKET_INFO_UPDATE")
 			f:RegisterEvent("COMBAT_RATING_UPDATE")
 			_updateItems("player", f)
@@ -230,7 +236,7 @@ local function OnEvent(self, event, ...)
 
 		_G.PaperDollFrame:HookScript("OnHide", function()
 			f:UnregisterEvent("PLAYER_EQUIPMENT_CHANGED")
-			f:UnregisterEvent("ARTIFACT_UPDATE")
+			-- f:UnregisterEvent("ARTIFACT_UPDATE")
 			f:UnregisterEvent("SOCKET_INFO_UPDATE")
 			f:UnregisterEvent("COMBAT_RATING_UPDATE")
 			f:Hide()
