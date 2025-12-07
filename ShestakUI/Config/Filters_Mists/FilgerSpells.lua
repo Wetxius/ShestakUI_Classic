@@ -3205,6 +3205,167 @@ C["filger_spells"] = {
 			{slotID = 14, filter = "CD"},
 		},
 	},
+	["MONK"] = {
+		{
+			Name = "P_BUFF_ICON",
+			Direction = "LEFT",
+			Mode = "ICON",
+			Interval = C.filger.buffs_space,
+			Alpha = 1,
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_BUFF_ICON_Anchor},
+
+			-- Fortifying Brew
+			{spellID = 120954, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Touch of Karma
+			{spellID = 125174, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Diffuse Magic
+			{spellID = 122783, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Dampen Harm
+			{spellID = 122278, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Avert Harm
+			{spellID = 115213, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Storm, Earth, and Fire
+			{spellID = 137639, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Zen Meditation
+			{spellID = 131523, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Thunder Focus Tea
+			{spellID = 116680, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Brew-Stache
+			-- {spellID = 214372, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Lifecycles (Vivify)
+			-- {spellID = 197916, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Lifecycles (Enveloping Mist)
+			-- {spellID = 197919, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Fortification
+			-- {spellID = 213341, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Chi Torpedo
+			{spellID = 119085, unitID = "player", caster = "player", filter = "BUFF"},
+
+		},
+		{
+			Name = "P_PROC_ICON",
+			Direction = "RIGHT",
+			Mode = "ICON",
+			Interval = C.filger.buffs_space,
+			Alpha = 1,
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", P_PROC_ICON_Anchor},
+
+			-- Buffs
+			-- Rushing Jade Wind
+			{spellID = 116847, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Blackout Kick!
+			{spellID = 116768, unitID = "player", caster = "player", filter = "BUFF"},
+			-- The Mists of Sheilun
+			-- {spellID = 199888, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Surge of Mists
+			-- {spellID = 246328, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Teachings of the Monastery
+			-- {spellID = 202090, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Transfer the Power
+			-- {spellID = 195321, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Tiger Palm
+			{spellID = 125359, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Hit Combo
+			-- {spellID = 196741, unitID = "player", caster = "player", filter = "BUFF"},
+		},
+		{
+			Name = "T_DEBUFF_ICON",
+			Direction = "RIGHT",
+			Mode = "ICON",
+			Interval = C.filger.buffs_space,
+			Alpha = 1,
+			IconSize = C.filger.buffs_size,
+			Position = {"TOP", T_DEBUFF_ICON_Anchor},
+
+			-- Touch of Death
+			{spellID = 115080, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Heavy Stagger
+			{spellID = 124273, unitID = "player", caster = "player", filter = "DEBUFF"},
+			-- Keg Smash
+			{spellID = 121253, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Breath of Fire
+			{spellID = 123725, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Exploding Keg
+			-- {spellID = 214326, unitID = "target", caster = "player", filter = "DEBUFF"},
+		},
+		{
+			Name = "PVE/PVP_CC",
+			Direction = "DOWN",
+			IconSide = "LEFT",
+			Mode = "BAR",
+			Interval = 3,
+			Alpha = 1,
+			IconSize = 25,
+			BarWidth = 189,
+			Position = {"LEFT", PVE_PVP_CC_Anchor},
+
+			-- Paralysis
+			{spellID = 115078, unitID = "focus", caster = "player", filter = "DEBUFF"},
+		},
+		{
+			Name = "COOLDOWN",
+			Direction = "RIGHT",
+			Mode = "ICON",
+			Interval = C.filger.cooldown_space,
+			Alpha = 1,
+			IconSize = C.filger.cooldown_size,
+			Position = {"TOP", COOLDOWN_Anchor},
+
+			-- Self
+			-- Detox
+			{spellID = 115450, filter = "CD"},
+			-- Spear Hand Strike
+			{spellID = 116705, filter = "CD"},
+			-- Paralysis
+			{spellID = 115078, filter = "CD"},
+			-- Expel Harm
+			{spellID = 115072, filter = "CD"},
+			-- Rising Sun Kick
+			{spellID = 107428, filter = "CD"},
+			-- Provoke
+			{spellID = 115546, filter = "CD"},
+			-- Zen Sphere
+			{spellID = 124081, filter = "CD"},
+			-- Chi Wave
+			{spellID = 115098, filter = "CD"},
+			-- Fists of Fury
+			{spellID = 113656, filter = "CD"},
+			-- Chi Burst
+			{spellID = 123986, filter = "CD"},
+			-- Avert Harm
+			{spellID = 115213, filter = "CD"},
+			-- Zen Meditation
+			{spellID = 115176, filter = "CD"},
+			-- Ring of Peace
+			{spellID = 116844, filter = "CD"},
+			-- Thunder Focus Tea
+			{spellID = 116680, filter = "CD"},
+			-- Dampen Harm
+			{spellID = 122278, filter = "CD"},
+			-- Flying Serpent Kick
+			{spellID = 101545, filter = "CD"},
+			-- Energizing Elixir
+			{spellID = 115288, filter = "CD"},
+			-- Diffuse Magic
+			{spellID = 122783, filter = "CD"},
+			-- Touch of Karma
+			{spellID = 122470, filter = "CD"},
+			-- Touch of Death
+			{spellID = 115080, filter = "CD"},
+			-- Guard
+			{spellID = 115295, filter = "CD"},
+			-- Life Cocoon
+			{spellID = 116849, filter = "CD"},
+			-- Invoke Xuen, the White Tiger
+			{spellID = 123904, filter = "CD"},
+			-- Leg Sweep
+			{spellID = 119381, filter = "CD"},
+			-- Fortifying Brew
+			{spellID = 115203, filter = "CD"},
+		},
+	},
 	["PALADIN"] = {
 		{
 			Name = "P_BUFF_ICON",
@@ -3226,7 +3387,7 @@ C["filger_spells"] = {
 			-- Crusader Aura
 			-- {spellID = 32223, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Devotion Aura
-			-- {spellID = 465, unitID = "player", caster = "player", filter = "BUFF"},
+			{spellID = 31821, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Divine Favor
 			{spellID = 31842, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Divine Plea
@@ -3258,7 +3419,7 @@ C["filger_spells"] = {
 			-- Retribution Aura
 			-- {spellID = 7294, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Sacred Shield
-			-- {spellID = 96263, unitID = "player", caster = "player", filter = "BUFF"},
+			{spellID = 148039, unitID = "player", caster = "player", filter = "BUFF"},			
 
 			-- Selfless
 			-- {spellID = 90811, unitID = "player", caster = "player", filter = "BUFF"},
@@ -3301,6 +3462,10 @@ C["filger_spells"] = {
 			-- {spellID = 85433, unitID = "player", caster = "player", filter = "BUFF"},
 			-- The Art of War
 			{spellID = 59578, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Infusion of Light
+			{spellID = 54149, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Divine Purpose
+			{spellID = 90174, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Item Sets
 			-- Crusader's Wrath (Spell Power, Proc) [Lightforge Armor / Soulforge Armor]
@@ -4178,10 +4343,14 @@ C["filger_spells"] = {
 			{spellID = 31935, filter = "CD"},
 			-- Avenging Wrath
 			{spellID = 31884, filter = "CD"},
+			-- Blinding Light
+			{spellID = 115750, filter = "CD"},
 			-- Consecration
 			{spellID = 26573, filter = "CD"},
 			-- Crusader Strike
 			{spellID = 35395, filter = "CD"},
+			-- Devotion Aura
+			{spellID = 31821, filter = "CD"},
 			-- Divine Favor
 			{spellID = 31842, filter = "CD"},
 			-- Divine Plea
@@ -4192,14 +4361,18 @@ C["filger_spells"] = {
 			{spellID = 642, filter = "CD"},
 			-- Divine Storm
 			{spellID = 53385, filter = "CD"},
+			-- Execution Sentence
+			{spellID = 114157, filter = "CD"},
 			-- Exorcism
 			{spellID = 879, filter = "CD"},
 			-- Guardian of Ancient Kings
-			-- {spellID = 86150, filter = "CD"},
+			{spellID = 86669, filter = "CD"},
 			-- Hand of Freedom
 			{spellID = 1044, filter = "CD"},
 			-- Hand of Protection
 			{spellID = 1022, filter = "CD"},
+			-- Hand of Purity
+			{spellID = 114039, filter = "CD"},
 			-- Hand of Reckoning
 			{spellID = 62124, filter = "CD"},
 			-- Hand of Sacrifice
@@ -4212,6 +4385,10 @@ C["filger_spells"] = {
 			{spellID = 53595, filter = "CD"},
 			-- Hammer of Wrath
 			{spellID = 24275, filter = "CD"},
+			-- Holy Avenger
+			{spellID = 105809, filter = "CD"},
+			-- Holy Prism
+			{spellID = 114165, filter = "CD"},
 			-- Holy Shield
 			{spellID = 20925, filter = "CD", absID = true},
 			-- Holy Shock
@@ -4222,14 +4399,18 @@ C["filger_spells"] = {
 			{spellID = 20271, filter = "CD", absID = true},
 			-- Lay on Hands
 			{spellID = 633, filter = "CD"},
+			-- Light's Hammer
+			{spellID = 114158, filter = "CD"},
 			-- Rebuke
 			{spellID = 96231, filter = "CD"},
 			-- Repentance
 			{spellID = 20066, filter = "CD"},
 			-- Righteous Defense
 			{spellID = 31789, filter = "CD"},
-			-- hield of Righteousness
+			-- Shield of Righteousness
 			{spellID = 53600, filter = "CD"},
+			-- Speed of Light
+			{spellID = 85499, filter = "CD"},
 			-- Turn Evil
 			{spellID = 10326, filter = "CD"},
 			-- Word of Glory
