@@ -66,20 +66,21 @@ local function LoadSkin()
 				_G["SpellButton"..i.."SpellName"]:SetTextColor(0.6, 0.6, 0.6)
 			end
 			_G["SpellButton"..i.."SubSpellName"]:SetTextColor(0.6, 0.6, 0.6)
-			_G["SpellButton"..i.."AutoCastable"]:SetTexture("Interface\\Buttons\\UI-AutoCastableOverlay")
-			_G["SpellButton"..i.."AutoCastable"]:ClearAllPoints()
-			_G["SpellButton"..i.."AutoCastable"]:SetPoint("TOPLEFT", -12, 12)
-			_G["SpellButton"..i.."AutoCastable"]:SetPoint("BOTTOMRIGHT", 14, -14)
-			_G["SpellButton"..i.."AutoCastable"]:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-
+			if _G["SpellButton"..i.."AutoCastable"] then
+				_G["SpellButton"..i.."AutoCastable"]:SetTexture("Interface\\Buttons\\UI-AutoCastableOverlay")
+				_G["SpellButton"..i.."AutoCastable"]:ClearAllPoints()
+				_G["SpellButton"..i.."AutoCastable"]:SetPoint("TOPLEFT", -12, 12)
+				_G["SpellButton"..i.."AutoCastable"]:SetPoint("BOTTOMRIGHT", 14, -14)
+				_G["SpellButton"..i.."AutoCastable"]:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+			end
 		end
 	end
 	SpellButtons(nil, true)
 
-	if T.Mists then 
+	if T.Mists then
 		hooksecurefunc("SpellButton_UpdateButton", SpellButtons)
 	end
-	
+
 	SpellBookPageText:SetTextColor(0.6, 0.6, 0.6)
 
 	-- Skill Line Tabs

@@ -81,6 +81,7 @@ local function LoadSkin()
 	if AddonList.ForceLoad then
 		T.SkinCheckBox(AddonList.ForceLoad)
 		AddonList.ForceLoad:SetSize(25, 25)
+		T.SkinEditBox(AddonList.SearchBox)
 	end
 end
 

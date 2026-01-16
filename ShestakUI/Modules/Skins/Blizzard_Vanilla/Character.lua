@@ -65,7 +65,7 @@ local function LoadSkin()
 
 	HandleResistanceFrame("MagicResFrame")
 
-	if not T.Vanilla then
+	if not T.Vanilla and not T.TBC then
 		T.SkinDropDownBox(PlayerStatFrameLeftDropDown, 140)
 		T.SkinDropDownBox(PlayerStatFrameRightDropDown, 140)
 		PlayerStatFrameLeftDropDownButton:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up")

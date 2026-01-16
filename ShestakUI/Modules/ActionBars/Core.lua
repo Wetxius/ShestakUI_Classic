@@ -479,7 +479,6 @@ if T.Classic and not T.TBC then
 			end
 		else
 			SetCVar("alwaysShowActionBars", 0)
-
 		end
 	end)
 else

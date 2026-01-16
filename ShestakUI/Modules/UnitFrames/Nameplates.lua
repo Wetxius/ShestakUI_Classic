@@ -6,6 +6,7 @@ if C.nameplate.enable ~= true then return end
 ----------------------------------------------------------------------------------------
 local _, ns = ...
 local oUF = ns.oUF
+local noscalemult = T.TBC and T.noscalemult / 2 or T.noscalemult
 
 local frame = CreateFrame("Frame")
 frame:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
@@ -60,7 +61,7 @@ function frame:PLAYER_LOGIN()
 
 	local function changeFont(self, size)
 		local mult = size or 1
-		self:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * mult * T.noscalemult, C.font.nameplates_font_style)
+		self:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * mult * noscalemult, C.font.nameplates_font_style)
 		self:SetShadowOffset(C.font.nameplates_font_shadow and 1 or 0, C.font.nameplates_font_shadow and -1 or 0)
 	end
 	changeFont(SystemFont_NamePlateFixed)
@@ -311,35 +312,35 @@ local function CreateBorderFrame(frame, point)
 
 	frame.backdrop = frame:CreateTexture(nil, "BORDER")
 	frame.backdrop:SetDrawLayer("BORDER", -8)
-	frame.backdrop:SetPoint("TOPLEFT", point, "TOPLEFT", -T.noscalemult * 3, T.noscalemult * 3)
-	frame.backdrop:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", T.noscalemult * 3, -T.noscalemult * 3)
+	frame.backdrop:SetPoint("TOPLEFT", point, "TOPLEFT", -noscalemult * 3, noscalemult * 3)
+	frame.backdrop:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", noscalemult * 3, -noscalemult * 3)
 	frame.backdrop:SetColorTexture(unpack(C.media.backdrop_color))
 
 	frame.bordertop = frame:CreateTexture(nil, "BORDER")
-	frame.bordertop:SetPoint("TOPLEFT", point, "TOPLEFT", -T.noscalemult * 2, T.noscalemult * 2)
-	frame.bordertop:SetPoint("TOPRIGHT", point, "TOPRIGHT", T.noscalemult * 2, T.noscalemult * 2)
-	frame.bordertop:SetHeight(T.noscalemult)
+	frame.bordertop:SetPoint("TOPLEFT", point, "TOPLEFT", -noscalemult * 2, noscalemult * 2)
+	frame.bordertop:SetPoint("TOPRIGHT", point, "TOPRIGHT", noscalemult * 2, noscalemult * 2)
+	frame.bordertop:SetHeight(noscalemult)
 	frame.bordertop:SetColorTexture(unpack(C.media.border_color))
 	frame.bordertop:SetDrawLayer("BORDER", -7)
 
 	frame.borderbottom = frame:CreateTexture(nil, "BORDER")
-	frame.borderbottom:SetPoint("BOTTOMLEFT", point, "BOTTOMLEFT", -T.noscalemult * 2, -T.noscalemult * 2)
-	frame.borderbottom:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", T.noscalemult * 2, -T.noscalemult * 2)
-	frame.borderbottom:SetHeight(T.noscalemult)
+	frame.borderbottom:SetPoint("BOTTOMLEFT", point, "BOTTOMLEFT", -noscalemult * 2, -noscalemult * 2)
+	frame.borderbottom:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", noscalemult * 2, -noscalemult * 2)
+	frame.borderbottom:SetHeight(noscalemult)
 	frame.borderbottom:SetColorTexture(unpack(C.media.border_color))
 	frame.borderbottom:SetDrawLayer("BORDER", -7)
 
 	frame.borderleft = frame:CreateTexture(nil, "BORDER")
-	frame.borderleft:SetPoint("TOPLEFT", point, "TOPLEFT", -T.noscalemult * 2, T.noscalemult * 2)
-	frame.borderleft:SetPoint("BOTTOMLEFT", point, "BOTTOMLEFT", T.noscalemult * 2, -T.noscalemult * 2)
-	frame.borderleft:SetWidth(T.noscalemult)
+	frame.borderleft:SetPoint("TOPLEFT", point, "TOPLEFT", -noscalemult * 2, noscalemult * 2)
+	frame.borderleft:SetPoint("BOTTOMLEFT", point, "BOTTOMLEFT", noscalemult * 2, -noscalemult * 2)
+	frame.borderleft:SetWidth(noscalemult)
 	frame.borderleft:SetColorTexture(unpack(C.media.border_color))
 	frame.borderleft:SetDrawLayer("BORDER", -7)
 
 	frame.borderright = frame:CreateTexture(nil, "BORDER")
-	frame.borderright:SetPoint("TOPRIGHT", point, "TOPRIGHT", T.noscalemult * 2, T.noscalemult * 2)
-	frame.borderright:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", -T.noscalemult * 2, -T.noscalemult * 2)
-	frame.borderright:SetWidth(T.noscalemult)
+	frame.borderright:SetPoint("TOPRIGHT", point, "TOPRIGHT", noscalemult * 2, noscalemult * 2)
+	frame.borderright:SetPoint("BOTTOMRIGHT", point, "BOTTOMRIGHT", -noscalemult * 2, -noscalemult * 2)
+	frame.borderright:SetWidth(noscalemult)
 	frame.borderright:SetColorTexture(unpack(C.media.border_color))
 	frame.borderright:SetDrawLayer("BORDER", -7)
 end
@@ -414,7 +415,7 @@ if T.screenHeight > 1200 then
 	Mult = T.mult
 end
 
-local auraFontHeight = (T.Classic and T.HiDPI) and (C.font.auras_font_size * T.noscalemult * (2/3) / Mult) or (C.font.auras_font_size * T.noscalemult / Mult)
+local auraFontHeight = (T.Classic and T.HiDPI) and (C.font.auras_font_size * noscalemult * (2/3) / Mult) or (C.font.auras_font_size * noscalemult / Mult)
 
 local AurasPostCreateButton = function(element, button)
 	CreateBorderFrame(button)
@@ -496,11 +497,11 @@ local function UpdateTarget(self)
 
 	if isTarget and not isMe then
 		if C.nameplate.ad_height > 0 or C.nameplate.ad_width > 0 then
-			self:SetSize((C.nameplate.width + C.nameplate.ad_width) * T.noscalemult, (C.nameplate.height + C.nameplate.ad_height) * T.noscalemult)
-			self.Castbar:SetPoint("BOTTOMLEFT", self.Health, "BOTTOMLEFT", 0, -8-((C.nameplate.height + C.nameplate.ad_height) * T.noscalemult))
-			self.Castbar.Icon:SetSize(((C.nameplate.height + C.nameplate.ad_height) * 2 * T.noscalemult) + 8, ((C.nameplate.height + C.nameplate.ad_height) * 2 * T.noscalemult) + 8)
+			self:SetSize((C.nameplate.width + C.nameplate.ad_width) * noscalemult, (C.nameplate.height + C.nameplate.ad_height) * noscalemult)
+			self.Castbar:SetPoint("BOTTOMLEFT", self.Health, "BOTTOMLEFT", 0, -8-((C.nameplate.height + C.nameplate.ad_height) * noscalemult))
+			self.Castbar.Icon:SetSize(((C.nameplate.height + C.nameplate.ad_height) * 2 * noscalemult) + 8, ((C.nameplate.height + C.nameplate.ad_height) * 2 * noscalemult) + 8)
 			if C.nameplate.class_icons == true then
-				self.Class.Icon:SetSize(((C.nameplate.height + C.nameplate.ad_height) * 2 * T.noscalemult) + 8, ((C.nameplate.height + C.nameplate.ad_height) * 2 * T.noscalemult) + 8)
+				self.Class.Icon:SetSize(((C.nameplate.height + C.nameplate.ad_height) * 2 * noscalemult) + 8, ((C.nameplate.height + C.nameplate.ad_height) * 2 * noscalemult) + 8)
 			end
 		end
 		if C.nameplate.target_glow then
@@ -509,11 +510,11 @@ local function UpdateTarget(self)
 		self:SetAlpha(1)
 	else
 		if C.nameplate.ad_height > 0 or C.nameplate.ad_width > 0 then
-			self:SetSize(C.nameplate.width * T.noscalemult, C.nameplate.height * T.noscalemult)
-			self.Castbar:SetPoint("BOTTOMLEFT", self.Health, "BOTTOMLEFT", 0, -8-(C.nameplate.height * T.noscalemult))
-			self.Castbar.Icon:SetSize((C.nameplate.height * 2 * T.noscalemult) + 8, (C.nameplate.height * 2 * T.noscalemult) + 8)
+			self:SetSize(C.nameplate.width * noscalemult, C.nameplate.height * noscalemult)
+			self.Castbar:SetPoint("BOTTOMLEFT", self.Health, "BOTTOMLEFT", 0, -8-(C.nameplate.height * noscalemult))
+			self.Castbar.Icon:SetSize((C.nameplate.height * 2 * noscalemult) + 8, (C.nameplate.height * 2 * noscalemult) + 8)
 			if C.nameplate.class_icons == true then
-				self.Class.Icon:SetSize((C.nameplate.height * 2 * T.noscalemult) + 8, (C.nameplate.height * 2 * T.noscalemult) + 8)
+				self.Class.Icon:SetSize((C.nameplate.height * 2 * noscalemult) + 8, (C.nameplate.height * 2 * noscalemult) + 8)
 			end
 		end
 		if C.nameplate.target_glow then
@@ -893,7 +894,7 @@ local function style(self, unit)
 	self.unit = unit
 
 	self:SetPoint("CENTER", nameplate, "CENTER")
-	self:SetSize(C.nameplate.width * T.noscalemult, C.nameplate.height * T.noscalemult)
+	self:SetSize(C.nameplate.width * noscalemult, C.nameplate.height * noscalemult)
 
 	-- Health Bar
 	self.Health = CreateFrame("StatusBar", nil, self)
@@ -918,7 +919,7 @@ local function style(self, unit)
 	-- Health Text
 	if C.nameplate.health_value == true then
 		self.Health.value = self.Health:CreateFontString(nil, "OVERLAY")
-		self.Health.value:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * T.noscalemult, C.font.nameplates_font_style)
+		self.Health.value:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * noscalemult, C.font.nameplates_font_style)
 		self.Health.value:SetShadowOffset(C.font.nameplates_font_shadow and 1 or 0, C.font.nameplates_font_shadow and -1 or 0)
 		self.Health.value:SetPoint("RIGHT", self.Health, "RIGHT", 0, 0)
 		self:Tag(self.Health.value, "[NameplateHealth]")
@@ -928,7 +929,7 @@ local function style(self, unit)
 	self.Power = CreateFrame("StatusBar", nil, self)
 	self.Power:SetStatusBarTexture(C.media.texture)
 	self.Power:SetPoint("TOPLEFT", self.Health, "BOTTOMLEFT", 0, -6)
-	self.Power:SetPoint("BOTTOMRIGHT", self.Health, "BOTTOMRIGHT", 0, -6-(C.nameplate.height * T.noscalemult / 2))
+	self.Power:SetPoint("BOTTOMRIGHT", self.Health, "BOTTOMRIGHT", 0, -6-(C.nameplate.height * noscalemult / 2))
 	self.Power.frequentUpdates = true
 	self.Power.colorPower = true
 	self.Power.PostUpdate = T.PreUpdatePower
@@ -954,7 +955,7 @@ local function style(self, unit)
 
 	-- Name Text
 	self.Name = self:CreateFontString(nil, "OVERLAY")
-	self.Name:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * T.noscalemult, C.font.nameplates_font_style)
+	self.Name:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * noscalemult, C.font.nameplates_font_style)
 	self.Name:SetShadowOffset(C.font.nameplates_font_shadow and 1 or 0, C.font.nameplates_font_shadow and -1 or 0)
 	self.Name:SetPoint("BOTTOMLEFT", self, "TOPLEFT", -3, 4)
 	self.Name:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", 3, 4)
@@ -971,9 +972,9 @@ local function style(self, unit)
 	-- Target Glow
 	if C.nameplate.target_glow then
 		self.Glow = CreateFrame("Frame", nil, self, BackdropTemplateMixin and "BackdropTemplate")
-		self.Glow:SetBackdrop({edgeFile = [[Interface\AddOns\ShestakUI\Media\Textures\Glow.tga]], edgeSize = 4 * T.noscalemult})
-		self.Glow:SetPoint("TOPLEFT", -7 * T.noscalemult, 7 * T.noscalemult)
-		self.Glow:SetPoint("BOTTOMRIGHT", 7 * T.noscalemult, -7 * T.noscalemult)
+		self.Glow:SetBackdrop({edgeFile = [[Interface\AddOns\ShestakUI\Media\Textures\Glow.tga]], edgeSize = 4 * noscalemult})
+		self.Glow:SetPoint("TOPLEFT", -7 * noscalemult, 7 * noscalemult)
+		self.Glow:SetPoint("BOTTOMRIGHT", 7 * noscalemult, -7 * noscalemult)
 		self.Glow:SetBackdropBorderColor(0.8, 0.8, 0.8)
 		self.Glow:SetFrameLevel(0)
 		self.Glow:Hide()
@@ -981,7 +982,7 @@ local function style(self, unit)
 
 	-- Level Text
 	self.Level = self:CreateFontString(nil, "ARTWORK")
-	self.Level:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * T.noscalemult, C.font.nameplates_font_style)
+	self.Level:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * noscalemult, C.font.nameplates_font_style)
 	self.Level:SetShadowOffset(C.font.nameplates_font_shadow and 1 or 0, C.font.nameplates_font_shadow and -1 or 0)
 	self.Level:SetPoint("RIGHT", self.Health, "LEFT", -2, 0)
 	self:Tag(self.Level, "[DiffColor][NameplateLevel][shortclassification]")
@@ -992,7 +993,7 @@ local function style(self, unit)
 	self.Castbar:SetStatusBarTexture(C.media.texture)
 	self.Castbar:SetStatusBarColor(1, 0.8, 0)
 	self.Castbar:SetPoint("TOPLEFT", self.Health, "BOTTOMLEFT", 0, -8)
-	self.Castbar:SetPoint("BOTTOMRIGHT", self.Health, "BOTTOMRIGHT", 0, -8-(C.nameplate.height * T.noscalemult))
+	self.Castbar:SetPoint("BOTTOMRIGHT", self.Health, "BOTTOMRIGHT", 0, -8-(C.nameplate.height * noscalemult))
 	CreateBorderFrame(self.Castbar)
 
 	self.Castbar.bg = self.Castbar:CreateTexture(nil, "BORDER")
@@ -1006,7 +1007,7 @@ local function style(self, unit)
 	-- Cast Time Text
 	self.Castbar.Time = self.Castbar:CreateFontString(nil, "ARTWORK")
 	self.Castbar.Time:SetPoint("RIGHT", self.Castbar, "RIGHT", 0, 0)
-	self.Castbar.Time:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * T.noscalemult, C.font.nameplates_font_style)
+	self.Castbar.Time:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * noscalemult, C.font.nameplates_font_style)
 	self.Castbar.Time:SetShadowOffset(C.font.nameplates_font_shadow and 1 or 0, C.font.nameplates_font_shadow and -1 or 0)
 
 	self.Castbar.CustomTimeText = function(self, duration)
@@ -1018,7 +1019,7 @@ local function style(self, unit)
 		self.Castbar.Text = self.Castbar:CreateFontString(nil, "OVERLAY")
 		self.Castbar.Text:SetPoint("LEFT", self.Castbar, "LEFT", 3, 0)
 		self.Castbar.Text:SetPoint("RIGHT", self.Castbar.Time, "LEFT", -1, 0)
-		self.Castbar.Text:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * T.noscalemult, C.font.nameplates_font_style)
+		self.Castbar.Text:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * noscalemult, C.font.nameplates_font_style)
 		self.Castbar.Text:SetShadowOffset(C.font.nameplates_font_shadow and 1 or 0, C.font.nameplates_font_shadow and -1 or 0)
 		self.Castbar.Text:SetHeight(C.font.nameplates_font_size)
 		self.Castbar.Text:SetJustifyH("LEFT")
@@ -1029,20 +1030,20 @@ local function style(self, unit)
 	self.Castbar.Icon = self.CastbarIcon:CreateTexture(nil, "OVERLAY")
 	self.Castbar.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 	self.Castbar.Icon:SetDrawLayer("ARTWORK")
-	self.Castbar.Icon:SetSize((C.nameplate.height * 2 * T.noscalemult) + 8, (C.nameplate.height * 2 * T.noscalemult) + 8)
+	self.Castbar.Icon:SetSize((C.nameplate.height * 2 * noscalemult) + 8, (C.nameplate.height * 2 * noscalemult) + 8)
 	self.Castbar.Icon:SetPoint("TOPLEFT", self.Health, "TOPRIGHT", 8, 0)
 	CreateBorderFrame(self.CastbarIcon, self.Castbar.Icon)
 
 	-- Raid Icon
 	self.RaidTargetIndicator = self:CreateTexture(nil, "OVERLAY", nil, 7)
-	self.RaidTargetIndicator:SetSize((C.nameplate.height * 2 * T.noscalemult) + 8, (C.nameplate.height * 2 * T.noscalemult) + 8)
+	self.RaidTargetIndicator:SetSize((C.nameplate.height * 2 * noscalemult) + 8, (C.nameplate.height * 2 * noscalemult) + 8)
 	self.RaidTargetIndicator:SetPoint("BOTTOM", self.Health, "TOP", 0, C.nameplate.track_debuffs == true and 38 or 16)
 
 	-- Class Icon
 	if C.nameplate.class_icons == true then
 		self.Class = CreateFrame("Frame", nil, self)
 		self.Class.Icon = self.Class:CreateTexture(nil, "OVERLAY")
-		self.Class.Icon:SetSize((C.nameplate.height * 2 * T.noscalemult) + 8, (C.nameplate.height * 2 * T.noscalemult) + 8)
+		self.Class.Icon:SetSize((C.nameplate.height * 2 * noscalemult) + 8, (C.nameplate.height * 2 * noscalemult) + 8)
 		self.Class.Icon:SetPoint("TOPRIGHT", self.Health, "TOPLEFT", -8, 0)
 		self.Class.Icon:SetTexture("Interface\\WorldStateFrame\\Icons-Classes")
 		self.Class.Icon:SetTexCoord(0, 0, 0, 0)
@@ -1053,7 +1054,7 @@ local function style(self, unit)
 	if C.nameplate.totem_icons == true then
 		self.Totem = CreateFrame("Frame", nil, self)
 		self.Totem.Icon = self.Totem:CreateTexture(nil, "OVERLAY")
-		self.Totem.Icon:SetSize((C.nameplate.height * 2 * T.noscalemult) + 8, (C.nameplate.height * 2 * T.noscalemult) + 8)
+		self.Totem.Icon:SetSize((C.nameplate.height * 2 * noscalemult) + 8, (C.nameplate.height * 2 * noscalemult) + 8)
 		self.Totem.Icon:SetPoint("BOTTOM", self.Health, "TOP", 0, 16)
 		self.Totem.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 		CreateBorderFrame(self.Totem, self.Totem.Icon)
@@ -1070,17 +1071,17 @@ local function style(self, unit)
 	-- Quest Icon
 	if T.Mainline and C.nameplate.quests then
 		self.QuestIcon = self:CreateTexture(nil, "OVERLAY", nil, 7)
-		self.QuestIcon:SetSize((C.nameplate.height * 2 * T.noscalemult), (C.nameplate.height * 2 * T.noscalemult))
+		self.QuestIcon:SetSize((C.nameplate.height * 2 * noscalemult), (C.nameplate.height * 2 * noscalemult))
 		self.QuestIcon:SetPoint("RIGHT", self.Health, "LEFT", -5, 0)
 		self.QuestIcon:Hide()
 
 		self.QuestIcon.Text = self:CreateFontString(nil, "OVERLAY")
 		self.QuestIcon.Text:SetPoint("RIGHT", self.QuestIcon, "LEFT", -1, 0)
-		self.QuestIcon.Text:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * T.noscalemult * 2, C.font.nameplates_font_style)
+		self.QuestIcon.Text:SetFont(C.font.nameplates_font, C.font.nameplates_font_size * noscalemult * 2, C.font.nameplates_font_style)
 		self.QuestIcon.Text:SetShadowOffset(C.font.nameplates_font_shadow and 1 or 0, C.font.nameplates_font_shadow and -1 or 0)
 
 		self.QuestIcon.Item = self:CreateTexture(nil, "OVERLAY")
-		self.QuestIcon.Item:SetSize((C.nameplate.height * 2 * T.noscalemult) - 2, (C.nameplate.height * 2 * T.noscalemult) - 2)
+		self.QuestIcon.Item:SetSize((C.nameplate.height * 2 * noscalemult) - 2, (C.nameplate.height * 2 * noscalemult) - 2)
 		self.QuestIcon.Item:SetPoint("RIGHT", self.QuestIcon.Text, "LEFT", -2, 0)
 		self.QuestIcon.Item:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 	end
@@ -1095,8 +1096,8 @@ local function style(self, unit)
 		self.Auras.numDebuffs = C.nameplate.track_debuffs and 6 or 0
 		self.Auras.numBuffs = C.nameplate.track_buffs and 4 or 0
 		self.Auras:SetSize(20 + C.nameplate.width, C.nameplate.auras_size)
-		self.Auras.spacing = 5 * T.noscalemult
-		self.Auras.size = C.nameplate.auras_size * T.noscalemult - 3
+		self.Auras.spacing = 5 * noscalemult
+		self.Auras.size = C.nameplate.auras_size * noscalemult - 3
 		self.Auras.disableMouse = true
 
 		self.Auras.FilterAura = AurasCustomFilter
