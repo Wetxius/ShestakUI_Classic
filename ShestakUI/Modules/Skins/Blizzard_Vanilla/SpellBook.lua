@@ -21,6 +21,10 @@ local function LoadSkin()
 		T.SkinCheckBox(ShowAllSpellRanksCheckBox)
 		ShowAllSpellRanksCheckBox:SetPoint("TOPLEFT", _G.SpellButton1, "TOPLEFT", -7, 32)
 	end
+	if T.TBC then
+		T.SkinCheckBox(ShowAllSpellRanksCheckbox)
+		ShowAllSpellRanksCheckbox:SetPoint("TOPLEFT", _G.SpellButton1, "TOPLEFT", -7, 32)
+	end
 
 	SpellBookTitleText:ClearAllPoints()
 	SpellBookTitleText:SetPoint("TOP", SpellBookFrame.backdrop, "TOP", 0, -6)

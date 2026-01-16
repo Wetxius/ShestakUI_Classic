@@ -62,6 +62,7 @@ end
 local function SetChatStyle(frame)
 	local id = frame:GetID()
 	local chat = frame:GetName()
+	local editBox = _G[chat.."EditBox"]
 
 	_G[chat]:SetFrameLevel(5)
 
@@ -167,22 +168,41 @@ local function SetChatStyle(frame)
 		end
 
 		-- Update border color according where we talk
-		hooksecurefunc("ChatEdit_UpdateHeader", function()
-			local chatType = _G[chat.."EditBox"]:GetAttribute("chatType")
-			if not chatType then return end
+		if T.TBC then
+			hooksecurefunc(editBox, "UpdateHeader", function()
+				local chatType = editBox:GetAttribute("chatType")
+				if not chatType then return end
 
-			local chanTarget = _G[chat.."EditBox"]:GetAttribute("channelTarget")
-			local chanName = chanTarget and GetChannelName(chanTarget)
-			if chanName and chatType == "CHANNEL" then
-				if chanName == 0 then
-					colorize(unpack(C.media.border_color))
+				local chanTarget = editBox:GetAttribute("channelTarget")
+				local chanName = chanTarget and GetChannelName(chanTarget)
+				if chanName and chatType == "CHANNEL" then
+					if chanName == 0 then
+						colorize(unpack(C.media.border_color))
+					else
+						colorize(ChatTypeInfo[chatType..chanName].r, ChatTypeInfo[chatType..chanName].g, ChatTypeInfo[chatType..chanName].b)
+					end
 				else
-					colorize(ChatTypeInfo[chatType..chanName].r, ChatTypeInfo[chatType..chanName].g, ChatTypeInfo[chatType..chanName].b)
+					colorize(ChatTypeInfo[chatType].r, ChatTypeInfo[chatType].g, ChatTypeInfo[chatType].b)
 				end
-			else
-				colorize(ChatTypeInfo[chatType].r, ChatTypeInfo[chatType].g, ChatTypeInfo[chatType].b)
-			end
-		end)
+			end)
+		else
+			hooksecurefunc("ChatEdit_UpdateHeader", function()
+				local chatType = _G[chat.."EditBox"]:GetAttribute("chatType")
+				if not chatType then return end
+
+				local chanTarget = _G[chat.."EditBox"]:GetAttribute("channelTarget")
+				local chanName = chanTarget and GetChannelName(chanTarget)
+				if chanName and chatType == "CHANNEL" then
+					if chanName == 0 then
+						colorize(unpack(C.media.border_color))
+					else
+						colorize(ChatTypeInfo[chatType..chanName].r, ChatTypeInfo[chatType..chanName].g, ChatTypeInfo[chatType..chanName].b)
+					end
+				else
+					colorize(ChatTypeInfo[chatType].r, ChatTypeInfo[chatType].g, ChatTypeInfo[chatType].b)
+				end
+			end)
+		end
 	end
 
 	-- Rename combat log tab

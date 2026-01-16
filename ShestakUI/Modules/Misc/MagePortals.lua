@@ -1,5 +1,6 @@
 local T, C, L = unpack(ShestakUI)
 if T.class ~= "MAGE" or T.level < 11 then return end
+if T.TBC then return end
 
 ----------------------------------------------------------------------------------------
 --	Mage portals menu(by Foof and Tohveli)
@@ -125,7 +126,7 @@ tinsert(UISpecialFrames, "TeleportMenu")
 for i, spell in pairs(spells) do
 	local teleport = GetSpellInfo(spell[1])
 
-	local b = CreateFrame("Button", nil, frame, "SecureActionButtonTemplate")
+	local b = CreateFrame("Button", nil, frame, "SecureActionButtonTemplate") -- Error in TBC
 	b:CreatePanel("Transparent", C.minimap.size, 20, "BOTTOMLEFT", frame, "BOTTOMLEFT", 0, ((i - 1) * 21))
 	b:SetBackdropBorderColor(unpack(C.media.classborder_color))
 	b:SetFrameStrata("HIGH")
@@ -155,7 +156,11 @@ end
 
 local learnSpell = CreateFrame("Frame")
 learnSpell:RegisterEvent("PLAYER_LOGIN")
-learnSpell:RegisterEvent("LEARNED_SPELL_IN_TAB")
+if T.TBC then
+	learnSpell:RegisterEvent("LEARNED_SPELL_IN_SKILL_LINE")
+else
+	learnSpell:RegisterEvent("LEARNED_SPELL_IN_TAB")
+end
 learnSpell:SetScript("OnEvent", function()
 	for i, spell in pairs(spells) do
 		if not IsSpellKnown(spell[1]) then
