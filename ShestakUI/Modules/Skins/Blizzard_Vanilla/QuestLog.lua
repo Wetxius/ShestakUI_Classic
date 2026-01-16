@@ -115,7 +115,7 @@ local function LoadSkin()
 				Mixin(frame, BackdropTemplateMixin) -- 9.0 to set backdrop
 			end
 
-			if quality then
+			if quality and quality > 1 then
 				if frame then
 					local R, G, B = GetItemQualityColor(quality)
 					frame:SetBackdropBorderColor(R, G, B)
@@ -123,7 +123,7 @@ local function LoadSkin()
 				text:SetTextColor(GetItemQualityColor(quality) or 1, 1, 1)
 			else
 				if frame then
-					frame:SetBackdropBorderColor(unpack(C.media.backdrop_color))
+					frame:SetBackdropBorderColor(unpack(C.media.border_color))
 				end
 				text:SetTextColor(1, 1, 1)
 			end

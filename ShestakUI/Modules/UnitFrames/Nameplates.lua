@@ -415,7 +415,7 @@ if T.screenHeight > 1200 then
 	Mult = T.mult
 end
 
-local auraFontHeight = (T.Classic and T.HiDPI) and (C.font.auras_font_size * noscalemult * (2/3) / Mult) or (C.font.auras_font_size * noscalemult / Mult)
+local auraFontHeight = (T.Classic and not T.TBC and T.HiDPI) and (C.font.auras_font_size * noscalemult * (2/3) / Mult) or (C.font.auras_font_size * noscalemult / Mult)
 
 local AurasPostCreateButton = function(element, button)
 	CreateBorderFrame(button)
@@ -437,6 +437,7 @@ local AurasPostCreateButton = function(element, button)
 	if C.aura.show_spiral == true then
 		element.disableCooldown = false
 		button.Cooldown:SetReverse(true)
+		button.Cooldown:SetHideCountdownNumbers(true)
 		button.parent = CreateFrame("Frame", nil, button)
 		button.parent:SetFrameLevel(button.Cooldown:GetFrameLevel() + 1)
 		button.Count:SetParent(button.parent)

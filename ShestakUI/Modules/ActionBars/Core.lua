@@ -38,6 +38,8 @@ frame:SetScript("OnEvent", function()
 		BagsBar:Hide()
 		BagsBar:UnregisterAllEvents()
 		MainActionBar.ActionBarPageNumber:Hide()
+		MainActionBar:SetScale(0.00001)
+		MainMenuBar:EnableMouse(false)
 	end
 
 	if T.Mainline or T.TBC then
@@ -637,7 +639,7 @@ T.PetBarUpdate = function()
 		if isActive and name ~= "PET_ACTION_FOLLOW" then
 			petActionButton:SetChecked(true)
 			if IsPetAttackAction(i) then
-				if T.Classic then
+				if T.Classic and not T.TBC then
 					PetActionButton_StartFlash(petActionButton)
 				else
 					petActionButton:StartFlash()
@@ -647,7 +649,7 @@ T.PetBarUpdate = function()
 		else
 			petActionButton:SetChecked(false)
 			if IsPetAttackAction(i) then
-				if T.Classic then
+				if T.Classic and not T.TBC then
 					PetActionButton_StopFlash(petActionButton)
 				else
 					petActionButton:StopFlash()

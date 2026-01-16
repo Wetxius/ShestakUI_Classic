@@ -171,6 +171,11 @@ local function StyleNormalButton(button, size)
 			autocast:SetPoint("CENTER", button, 0, 0)
 		end
 
+		local autocast = button.AutoCastOverlay
+		if autocast then
+			autocast:SetSize(C.actionbar.button_size * 1.05, C.actionbar.button_size * 1.05)
+		end
+
 		if shine then
 			shine:SetSize(C.actionbar.button_size, C.actionbar.button_size)
 		end
@@ -232,10 +237,18 @@ local function StyleSmallButton(normal, button, icon, name, pet)
 		icon:SetDrawLayer("BACKGROUND", 7)
 
 		if pet then
-			local autocast = button.AutoCastable or _G[name.."AutoCastable"] or button.AutoCastOverlay
-			autocast:SetSize((C.actionbar.button_size * 2) - 10, (C.actionbar.button_size * 2) - 10)
-			autocast:ClearAllPoints()
-			autocast:SetPoint("CENTER", button, 0, 0)
+			local autocast = button.AutoCastable or _G[name.."AutoCastable"]
+			if autocast then
+				autocast:SetSize((C.actionbar.button_size * 2) - 10, (C.actionbar.button_size * 2) - 10)
+				autocast:ClearAllPoints()
+				autocast:SetPoint("CENTER", button, 0, 0)
+			end
+
+			local autocast = button.AutoCastOverlay
+			if autocast then
+				autocast:SetSize(C.actionbar.button_size * 1.05, C.actionbar.button_size * 1.05)
+				autocast:SetPoint("CENTER", 0, 0)
+			end
 
 			local shine = _G[name.."Shine"]
 			if shine then

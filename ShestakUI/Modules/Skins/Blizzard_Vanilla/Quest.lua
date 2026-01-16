@@ -10,8 +10,8 @@ local function LoadSkin()
 	QuestFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)
 
 	if T.TBC then
-		QuestFrame.backdrop:SetPoint("TOPLEFT", 0, 0)
-		QuestFrame.backdrop:SetPoint("BOTTOMRIGHT", 0, 0)
+		QuestFrame.backdrop:SetPoint("TOPLEFT", -2, 2)
+		QuestFrame.backdrop:SetPoint("BOTTOMRIGHT", 2, -2)
 	end
 
 	if QuestFramePortrait then
@@ -92,6 +92,22 @@ local function LoadSkin()
 		T.SkinScrollBar(_G[scrollbar])
 	end
 
+	local function SkinReward(button, mapReward)
+		if button.NameFrame then button.NameFrame:Hide() end
+		if button.CircleBackground then button.CircleBackground:Hide() end
+		if button.CircleBackgroundGlow then button.CircleBackgroundGlow:Hide() end
+		if button.ValueText then button.ValueText:SetPoint("BOTTOMRIGHT", button.Icon, 0, 0) end
+		if button.IconBorder then button.IconBorder:SetAlpha(0) end
+		button.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+		button:CreateBackdrop("Default")
+		button.backdrop:ClearAllPoints()
+		button.backdrop:SetPoint("TOPLEFT", button.Icon, -2, 2)
+		button.backdrop:SetPoint("BOTTOMRIGHT", button.Icon, 2, -2)
+		if mapReward then
+			button.Icon:SetSize(26, 26)
+		end
+	end
+
 	local textR, textG, textB = 1, 1, 1
 	local titleR, titleG, titleB = 1, 0.80, 0
 	hooksecurefunc('QuestInfo_Display', function()
@@ -107,6 +123,10 @@ local function LoadSkin()
 		_G.QuestInfoGroupSize:SetTextColor(textR, textG, textB)
 		_G.QuestInfoRewardText:SetTextColor(textR, textG, textB)
 		_G.QuestInfoQuestType:SetTextColor(textR, textG, textB)
+		QuestInfoSpellObjectiveLearnLabel:SetTextColor(1, 1, 1)
+		QuestInfoSpellObjectiveLearnLabel:SetShadowOffset(1, -1)
+		QuestInfoQuestType:SetTextColor(1, 1, 1)
+		QuestInfoQuestType:SetShadowOffset(1, -1)
 
 		local numObjectives = GetNumQuestLeaderBoards()
 		for i = 1, numObjectives do
@@ -129,9 +149,10 @@ local function LoadSkin()
 		for spellHeader, _ in _G.QuestInfoFrame.rewardsFrame.spellHeaderPool:EnumerateActive() do
 			spellHeader:SetVertexColor(1, 1, 1)
 		end
-		for spellIcon, _ in _G.QuestInfoFrame.rewardsFrame.spellRewardPool:EnumerateActive() do
-			if not spellIcon.template then
-				handleItemButton(spellIcon)
+		for spellReward in QuestInfoFrame.rewardsFrame.spellRewardPool:EnumerateActive() do
+			if not spellReward.isSkinned then
+				SkinReward(spellReward)
+				spellReward.isSkinned = true
 			end
 		end
 
@@ -144,22 +165,6 @@ local function LoadSkin()
 			end
 		end
 	end)
-
-	local function SkinReward(button, mapReward)
-		if button.NameFrame then button.NameFrame:Hide() end
-		if button.CircleBackground then button.CircleBackground:Hide() end
-		if button.CircleBackgroundGlow then button.CircleBackgroundGlow:Hide() end
-		if button.ValueText then button.ValueText:SetPoint("BOTTOMRIGHT", button.Icon, 0, 0) end
-		if button.IconBorder then button.IconBorder:SetAlpha(0) end
-		button.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-		button:CreateBackdrop("Default")
-		button.backdrop:ClearAllPoints()
-		button.backdrop:SetPoint("TOPLEFT", button.Icon, -2, 2)
-		button.backdrop:SetPoint("BOTTOMRIGHT", button.Icon, 2, -2)
-		if mapReward then
-			button.Icon:SetSize(26, 26)
-		end
-	end
 
 	hooksecurefunc("QuestInfo_GetRewardButton", function(rewardsFrame, index)
 		local button = rewardsFrame.RewardButtons[index]

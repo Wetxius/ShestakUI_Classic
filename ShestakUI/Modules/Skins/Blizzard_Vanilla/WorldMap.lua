@@ -12,15 +12,15 @@ local function LoadSkin()
 
 	WorldMapFrame.BorderFrame:SetFrameStrata(WorldMapFrame:GetFrameStrata())
 
-	T.SkinDropDownBox(WorldMapContinentDropDown)
-	T.SkinDropDownBox(WorldMapZoneDropDown)
+	T.SkinDropDownBox(WorldMapContinentDropdown)
+	T.SkinDropDownBox(WorldMapZoneDropdown)
 
 	if not T.Vanilla then
-		T.SkinDropDownBox(WorldMapZoneMinimapDropDown)
+		T.SkinDropDownBox(WorldMapZoneMinimapDropdown)
 	end
 
-	WorldMapZoneDropDown:SetPoint("LEFT", WorldMapContinentDropDown, "RIGHT", -24, 0)
-	WorldMapZoomOutButton:SetPoint("LEFT", WorldMapZoneDropDown, "RIGHT", -4, 3)
+	WorldMapZoneDropdown:SetPoint("LEFT", WorldMapContinentDropdown, "RIGHT", -24, 0)
+	WorldMapZoomOutButton:SetPoint("LEFT", WorldMapZoneDropdown, "RIGHT", -4, 3)
 
 	WorldMapZoomOutButton:SkinButton()
 

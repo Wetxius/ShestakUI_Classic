@@ -76,6 +76,11 @@ local function LoadSkin()
 		PlayerTitleDropDown:SetPoint("TOP", -7, -51)
 	end
 
+	if T.TBC then
+		T.SkinDropDownBox(PlayerStatFrameLeftDropdown, 140)
+		T.SkinDropDownBox(PlayerStatFrameRightDropdown, 140)
+	end
+
 	local slots = {
 		"HeadSlot",
 		"NeckSlot",

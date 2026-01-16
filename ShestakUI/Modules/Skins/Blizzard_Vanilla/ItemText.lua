@@ -8,8 +8,10 @@ local function LoadSkin()
 	ItemTextFrame:StripTextures(true)
 	ItemTextScrollFrame:StripTextures()
 	ItemTextFrame:CreateBackdrop("Transparent")
-	ItemTextFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
-	ItemTextFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)
+	if not T.TBC then
+		ItemTextFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
+		ItemTextFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)
+	end
 
 	ItemTextTitleText:ClearAllPoints()
 	ItemTextTitleText:SetPoint("TOP", ItemTextFrame.backdrop, "TOP", 0, -6)
@@ -19,7 +21,9 @@ local function LoadSkin()
 
 	if T.Mists then
 		T.SkinCloseButton(ItemTextCloseButton, ItemTextFrame.backdrop)
-	end 
+	elseif T.TBC then
+		T.SkinCloseButton(ItemTextFrameCloseButton, ItemTextFrame.backdrop)
+	end
 
 	T.SkinNextPrevButton(ItemTextPrevPageButton)
 	ItemTextPrevPageButton:ClearAllPoints()
