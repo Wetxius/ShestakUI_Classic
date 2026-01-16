@@ -334,7 +334,9 @@ function Addon:PLAYER_LOGIN(event)
 
 			if type(PetActionBar.actionButtons) == "table" then
 				for _, button in pairs(PetActionBar.actionButtons) do
-					hooksecurefunc(button, "OnUpdate", petButton_OnUpdate)
+					if not T.TBC then
+						hooksecurefunc(button, "OnUpdate", petButton_OnUpdate) -- FIXME
+					end
 					hooksecurefunc(button, "StartFlash", button_StartFlash)
 				end
 			end

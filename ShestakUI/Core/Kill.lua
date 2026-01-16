@@ -63,7 +63,9 @@ frame:SetScript("OnEvent", function(_, _, addon)
 		-- Advanced_UIScaleSlider:Kill()
 		-- BagHelpBox:Kill()
 	else
-		TutorialFrameAlertButton:Kill()
+		if TutorialFrameAlertButton then
+			TutorialFrameAlertButton:Kill()
+		end
 	end
 	SetCVarBitfield("closedInfoFrames", LE_FRAME_TUTORIAL_WORLD_MAP_FRAME, true)
 	SetCVarBitfield("closedInfoFrames", LE_FRAME_TUTORIAL_PET_JOURNAL, true)

@@ -53,6 +53,7 @@ local isWrath = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 local isCata = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
 local isEra = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 local isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
+local isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 local InCombatLockdownRestriction
 if isRetail or isEra or isCata or isMists then
     InCombatLockdownRestriction = function(unit) return InCombatLockdown() and not UnitCanAttack("player", unit) end
@@ -1348,7 +1349,9 @@ function lib:activate()
         local frame = CreateFrame("Frame")
         self.frame = frame
 
-        frame:RegisterEvent("LEARNED_SPELL_IN_TAB")
+        if not isTBC then
+			frame:RegisterEvent("LEARNED_SPELL_IN_TAB")
+		end
         frame:RegisterEvent("CHARACTER_POINTS_CHANGED")
         frame:RegisterEvent("SPELLS_CHANGED")
 

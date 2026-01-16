@@ -46,7 +46,7 @@ local function MainMenuBarVehicleLeaveButtonUpdateHook()
 	end
 end
 
-if T.Classic then
+if T.Classic and not T.TBC then
 	hooksecurefunc("MainMenuBarVehicleLeaveButton_Update", MainMenuBarVehicleLeaveButtonUpdateHook)
 else
 	hooksecurefunc(MainMenuBarVehicleLeaveButton, "Update", MainMenuBarVehicleLeaveButtonUpdateHook)

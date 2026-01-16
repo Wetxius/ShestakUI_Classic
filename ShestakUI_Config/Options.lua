@@ -3967,17 +3967,69 @@ end
 ----------------------------------------------------------------------------------------
 --	Button in GameMenuButton frame
 ----------------------------------------------------------------------------------------
-local menuButton = CreateFrame("Button", "GameMenuButtonSettingsUI", GameMenuFrame, "GameMenuButtonTemplate")
-menuButton:SetText("ShestakUI")
-menuButton:SetPoint("TOP", GetLocale() ~= "koKR" and "GameMenuButtonAddons" or "GameMenuButtonRatings", "BOTTOM", 0, -1)
+if WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
+	local function openGUI()
+		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
+		HideUIPanel(GameMenuFrame)
+		options:Show()
+	end
 
-GameMenuFrame:HookScript("OnShow", function(self)
-	self:SetHeight(self:GetHeight() + menuButton:GetHeight())
-	GameMenuButtonLogout:SetPoint("TOP", menuButton, "BOTTOM", 0, -16)
-end)
+	local button = CreateFrame("Button", "ShestakUI_GameMenuButton", GameMenuFrame, "MainMenuFrameButtonTemplate")
+	button:SetScript("OnClick", openGUI)
+	button:SetSize(150, 28)
+	button:SetText("ShestakUI")
 
-menuButton:SetScript("OnClick", function()
-	PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
-	HideUIPanel(GameMenuFrame)
-	options:Show()
-end)
+	GameMenuFrame.ShestakUI = button
+
+	local gameMenuLastButtons = {
+		[_G.GAMEMENU_OPTIONS] = 1,
+		[_G.BLIZZARD_STORE] = 2
+	}
+
+	local function PositionGameMenuButton()
+		if not ShestakUI then return end
+		local anchorIndex = (C_StorePublic.IsEnabled and C_StorePublic.IsEnabled() and 2) or 1
+		for button in GameMenuFrame.buttonPool:EnumerateActive() do
+			local text = button:GetText()
+
+			local lastIndex = gameMenuLastButtons[text]
+			if lastIndex == anchorIndex and GameMenuFrame.ShestakUI then
+				GameMenuFrame.ShestakUI:SetPoint("TOPLEFT", button, "BOTTOMLEFT", 0, -14)
+			elseif not lastIndex then
+				local point, anchor, point2, x, y = button:GetPoint()
+				button:SetPoint(point, anchor, point2, x, y - 35)
+			end
+
+			-- Replace EditMode with our moving system
+			if text and text == HUD_EDIT_MODE_MENU then
+				button:SetScript("OnClick", function()
+					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
+					SlashCmdList.MOVING()
+					HideUIPanel(GameMenuFrame)
+				end)
+			end
+
+			local fstring = button:GetFontString()
+			fstring:SetFont(C.media.normal_font, 14)
+		end
+
+		GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + 14)
+	end
+
+	hooksecurefunc(GameMenuFrame, "Layout", PositionGameMenuButton)
+else
+	local menuButton = CreateFrame("Button", "GameMenuButtonSettingsUI", GameMenuFrame, "GameMenuButtonTemplate")
+	menuButton:SetText("ShestakUI")
+	menuButton:SetPoint("TOP", GetLocale() ~= "koKR" and "GameMenuButtonAddons" or "GameMenuButtonRatings", "BOTTOM", 0, -1)
+
+	GameMenuFrame:HookScript("OnShow", function(self)
+		self:SetHeight(self:GetHeight() + menuButton:GetHeight())
+		GameMenuButtonLogout:SetPoint("TOP", menuButton, "BOTTOM", 0, -16)
+	end)
+
+	menuButton:SetScript("OnClick", function()
+		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
+		HideUIPanel(GameMenuFrame)
+		options:Show()
+	end)
+end

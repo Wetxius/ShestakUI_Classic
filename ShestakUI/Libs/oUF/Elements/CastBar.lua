@@ -594,7 +594,7 @@ local function Enable(self, unit)
 		element:SetScript('OnUpdate', element.OnUpdate or onUpdate)
 
 		if(self.unit == 'player' and not (self.hasChildren or self.isChild or self.isNamePlate)) then
-			if(oUF:IsClassic()) then
+			if(oUF:IsClassic()) and not oUF:IsTBC() then
 				CastingBarFrame_SetUnit(CastingBarFrame, nil)
 				CastingBarFrame_SetUnit(PetCastingBarFrame, nil)
 			else

@@ -10,7 +10,7 @@ frame:SetScript("OnEvent", function()
 	MainMenuBar:SetScale(0.00001)
 	MainMenuBar:EnableMouse(false)
 
-	if T.Classic then
+	if T.Classic and not T.TBC then
 		PetActionBarFrame:EnableMouse(false)
 		StanceBarFrame:EnableMouse(false)
 	else
@@ -34,7 +34,13 @@ frame:SetScript("OnEvent", function()
 		BagsBar:UnregisterAllEvents()
 	end
 
-	if T.Mainline then
+	if T.TBC then
+		BagsBar:Hide()
+		BagsBar:UnregisterAllEvents()
+		MainActionBar.ActionBarPageNumber:Hide()
+	end
+
+	if T.Mainline or T.TBC then
 		if not C.actionbar.micromenu then
 			MicroMenu:Hide()
 			TalentMicroButton:ClearAllPoints()
@@ -425,7 +431,7 @@ end
 ----------------------------------------------------------------------------------------
 --	Show grid function
 ----------------------------------------------------------------------------------------
-if T.Classic then
+if T.Classic and not T.TBC then
 	local frame = CreateFrame("Frame")
 	frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 	frame:SetScript("OnEvent", function(self)
@@ -473,7 +479,7 @@ if T.Classic then
 			end
 		else
 			SetCVar("alwaysShowActionBars", 0)
-			
+
 		end
 	end)
 else
@@ -626,16 +632,26 @@ T.PetBarUpdate = function()
 			end
 		end
 
-		if autoCastAllowed then
-			petAutoCastableTexture:Show()
+		if not T.TBC then
+			if autoCastAllowed then
+				petAutoCastableTexture:Show()
+			else
+				petAutoCastableTexture:Hide()
+			end
 		else
-			petAutoCastableTexture:Hide()
+			local petAutoCastOverlay = _G["PetActionButton"..i].AutoCastOverlay
+			if petAutoCastOverlay then
+				petAutoCastOverlay:SetShown(autoCastAllowed)
+				petAutoCastOverlay:ShowAutoCastEnabled(autoCastEnabled)
+			end
 		end
 
-		if autoCastEnabled then
-			AutoCastShine_AutoCastStart(petAutoCastShine)
-		else
-			AutoCastShine_AutoCastStop(petAutoCastShine)
+		if not T.TBC then
+			if autoCastEnabled then
+				AutoCastShine_AutoCastStart(petAutoCastShine)
+			else
+				AutoCastShine_AutoCastStop(petAutoCastShine)
+			end
 		end
 
 		if name then

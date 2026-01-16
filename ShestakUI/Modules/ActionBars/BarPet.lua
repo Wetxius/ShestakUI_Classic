@@ -27,7 +27,7 @@ bar:SetScript("OnEvent", function(self, event)
 		T.StylePet()
 		PetActionBar_ShowGrid = T.dummy
 		PetActionBar_HideGrid = T.dummy
-		if T.Classic then
+		if T.Classic and not T.TBC then
 			PetActionBarFrame.showgrid = nil
 		else
 			PetActionBar.showgrid = nil
@@ -58,7 +58,7 @@ bar:SetScript("OnEvent", function(self, event)
 		else
 			RegisterStateDriver(self, "visibility", "[pet,novehicleui,nopossessbar,nopetbattle] show; hide")
 		end
-		if T.Classic then
+		if T.Classic and not T.TBC then
 			hooksecurefunc("PetActionBar_Update", T.PetBarUpdate)
 		else
 			hooksecurefunc(PetActionBar, "Update", T.PetBarUpdate)

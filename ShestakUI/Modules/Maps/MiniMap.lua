@@ -207,7 +207,7 @@ Minimap:SetFrameLevel(2)
 -- Hide Border
 if T.Classic then
 	MinimapBorder:Hide()
-	MinimapBorderTop:Hide()
+	if MinimapBorderTop then MinimapBorderTop:Hide() end
 else
 	MinimapCompassTexture:Hide()
 	MinimapCluster.BorderTop:StripTextures()
@@ -581,7 +581,7 @@ elseif T.TBC or T.Wrath or T.Cata or T.Mists then
 	if C.minimap.tracking_icon then
 		MiniMapTrackingBackground:Hide()
 		MiniMapTracking:ClearAllPoints()
-		if T.Wrath or T.Cata or T.Mists then
+		if T.Wrath or T.Cata or T.Mists or T.TBC then
 			MiniMapTracking:SetPoint("BOTTOMLEFT", MinimapAnchor, "BOTTOMLEFT", -1, -5)
 			MiniMapTrackingButtonBorder:Hide()
 			MiniMapTrackingButton:SetHighlightTexture(0)
