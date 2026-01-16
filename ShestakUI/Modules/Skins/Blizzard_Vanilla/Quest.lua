@@ -9,6 +9,15 @@ local function LoadSkin()
 	QuestFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
 	QuestFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)
 
+	if T.TBC then
+		QuestFrame.backdrop:SetPoint("TOPLEFT", 0, 0)
+		QuestFrame.backdrop:SetPoint("BOTTOMRIGHT", 0, 0)
+	end
+
+	if QuestFramePortrait then
+		QuestFramePortrait:SetAlpha(0)
+	end
+
 	QuestFrameNpcNameText:ClearAllPoints()
 	QuestFrameNpcNameText:SetPoint("TOP", QuestFrame.backdrop, "TOP", 0, -6)
 
