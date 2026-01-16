@@ -1,13 +1,13 @@
 ## Interface: 110007
 ## Interface-Classic: 11508
-## Interface-BCC: 20504
+## Interface-BCC: 20505
 ## Interface-Wrath: 30403
 ## Interface-Cata: 40402
 ## Interface-Mists: 50502
 ## Title: ShestakUI (Classic)
 ## Notes: A total UI overhaul for World of Warcraft
 ## Author: Shestak
-## Version: 2.21
+## Version: 2.22
 ## X-Curse-Project-ID: 1302482
 ## X-WoWI-ID: *****
 ## X-Wago-ID: ****
