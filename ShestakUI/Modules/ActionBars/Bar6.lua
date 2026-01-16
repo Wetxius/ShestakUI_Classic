@@ -17,7 +17,7 @@ MultiBar5:SetParent(bar)
 
 bar:RegisterEvent("PLAYER_ENTERING_WORLD")
 bar:SetScript("OnEvent", function(self, event)
-	if not T.Classic then
+	if not T.Classic or T.TBC then
 		Settings.SetValue("PROXY_SHOW_ACTIONBAR_6", true)
 	end
 	local NumPerRows = C.actionbar.bar6_row

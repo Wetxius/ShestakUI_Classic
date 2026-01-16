@@ -431,7 +431,7 @@ end
 ----------------------------------------------------------------------------------------
 --	Show grid function
 ----------------------------------------------------------------------------------------
-if T.Classic and not T.TBC then
+if T.Classic then
 	local frame = CreateFrame("Frame")
 	frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 	frame:SetScript("OnEvent", function(self)
@@ -444,32 +444,57 @@ if T.Classic and not T.TBC then
 				local button = _G[format("ActionButton%d", i)]
 				button.noGrid = nil
 				button:SetAttribute("showgrid", 1)
-				ActionButton_ShowGrid(button, reason)
-				button:SetAttribute("statehidden", true)
+				if T.TBC then
+					button:SetShowGrid(true, reason)
+					button:Show()
+				else
+					ActionButton_ShowGrid(button, reason)
+					button:SetAttribute("statehidden", true)
+				end
 
 				button = _G[format("MultiBarRightButton%d", i)]
 				button.noGrid = nil
 				button:SetAttribute("showgrid", 1)
-				ActionButton_ShowGrid(button, reason)
-				button:SetAttribute("statehidden", true)
+				if T.TBC then
+					button:SetShowGrid(true, reason)
+					button:Show()
+				else
+					ActionButton_ShowGrid(button, reason)
+					button:SetAttribute("statehidden", true)
+				end
 
 				button = _G[format("MultiBarBottomRightButton%d", i)]
 				button.noGrid = nil
 				button:SetAttribute("showgrid", 1)
-				ActionButton_ShowGrid(button, reason)
-				button:SetAttribute("statehidden", true)
+				if T.TBC then
+					button:SetShowGrid(true, reason)
+					button:Show()
+				else
+					ActionButton_ShowGrid(button, reason)
+					button:SetAttribute("statehidden", true)
+				end
 
 				button = _G[format("MultiBarLeftButton%d", i)]
 				button.noGrid = nil
 				button:SetAttribute("showgrid", 1)
-				ActionButton_ShowGrid(button, reason)
-				button:SetAttribute("statehidden", true)
+				if T.TBC then
+					button:SetShowGrid(true, reason)
+					button:Show()
+				else
+					ActionButton_ShowGrid(button, reason)
+					button:SetAttribute("statehidden", true)
+				end
 
 				button = _G[format("MultiBarBottomLeftButton%d", i)]
 				button.noGrid = nil
 				button:SetAttribute("showgrid", 1)
-				ActionButton_ShowGrid(button, reason)
-				button:SetAttribute("statehidden", true)
+				if T.TBC then
+					button:SetShowGrid(true, reason)
+					button:Show()
+				else
+					ActionButton_ShowGrid(button, reason)
+					button:SetAttribute("statehidden", true)
+				end
 
 				if T.Wrath or T.Cata or T.Mists then
 					if _G["VehicleMenuBarActionButton"..i] then
