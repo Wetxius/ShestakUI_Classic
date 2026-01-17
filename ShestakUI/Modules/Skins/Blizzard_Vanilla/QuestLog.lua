@@ -25,12 +25,12 @@ local function LoadSkin()
 		QuestLogFrameCloseButton:SetPoint("TOPRIGHT", -5, -16)
 
 		QuestLogListScrollFrame:StripTextures()
-		QuestLogListScrollFrame:CreateBackdrop("Default", true)
+		QuestLogListScrollFrame:CreateBackdrop("Overlay")
 		QuestLogListScrollFrame.backdrop:SetPoint("TOPLEFT", -4, 4)
 		QuestLogListScrollFrame:SetSize(301, 373)
 
 		QuestLogDetailScrollFrame:StripTextures()
-		QuestLogDetailScrollFrame:CreateBackdrop("Default", true)
+		QuestLogDetailScrollFrame:CreateBackdrop("Overlay")
 		QuestLogDetailScrollFrame.backdrop:SetPoint("TOPLEFT", -4, 2)
 		QuestLogDetailScrollFrame:SetSize(300, 375)
 		QuestLogDetailScrollFrame:ClearAllPoints()
@@ -92,15 +92,16 @@ local function LoadSkin()
 			local count = _G["QuestLogItem"..i.."Count"]
 
 			item:StripTextures()
-			item:SetTemplate("Default")
-			item:StyleButton()
+			-- item:SetTemplate("Default")
+			-- item:StyleButton()
 			item:SetSize(143, 40)
 			item:SetFrameLevel(item:GetFrameLevel() + 2)
 
+			icon:SkinIcon()
 			icon:SetSize(32, 32)
 			icon:SetDrawLayer("OVERLAY")
 			icon:SetPoint("TOPLEFT", 4, -4)
-			icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+			-- icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 
 			-- count:SetParent(item.backdrop)
 			count:SetDrawLayer("OVERLAY")
@@ -280,52 +281,52 @@ local function LoadSkin()
 		T.SkinExpandOrCollapse(QuestLogCollapseAllButton)
 
 		--[[
-        local function UpdateQuests() -- causing issues
-            local numEntries, numQuests = GetNumQuestLogEntries()
-            local offset = FauxScrollFrame_GetOffset(QuestLogListScrollFrame)
-            local index, questLogTitle, highlight, text
+		local function UpdateQuests() -- causing issues
+			local numEntries, numQuests = GetNumQuestLogEntries()
+			local offset = FauxScrollFrame_GetOffset(QuestLogListScrollFrame)
+			local index, questLogTitle, highlight, text
 
-            for i = 1, QUESTS_DISPLAYED do
-                questLogTitle = _G["QuestLogTitle"..i]
-                highlight = _G["QuestLogTitle"..i.."Highlight"]
-                text = _G["QuestLogTitle"..i.."NormalText"]
-                index = offset + i
+			for i = 1, QUESTS_DISPLAYED do
+				questLogTitle = _G["QuestLogTitle"..i]
+				highlight = _G["QuestLogTitle"..i.."Highlight"]
+				text = _G["QuestLogTitle"..i.."NormalText"]
+				index = offset + i
 
-                if index <= numEntries then
-                    questLogTitleText, level, questTag, isHeader, isCollapsed, isComplete, frequency, questID, startEvent, displayQuestID, isOnMap, hasLocalPOI, isTask, isBounty, isStory, isHidden, isScaling = GetQuestLogTitle(index)
-                    if isHeader then
-                        questLogTitle:SetSize(14, 14)
-                        questLogTitle:SetPoint("CENTER")
-                        questLogTitle:SetHitRectInsets(1, 1, 1, 1)
+				if index <= numEntries then
+					questLogTitleText, level, questTag, isHeader, isCollapsed, isComplete, frequency, questID, startEvent, displayQuestID, isOnMap, hasLocalPOI, isTask, isBounty, isStory, isHidden, isScaling = GetQuestLogTitle(index)
+					if isHeader then
+						questLogTitle:SetSize(14, 14)
+						questLogTitle:SetPoint("CENTER")
+						questLogTitle:SetHitRectInsets(1, 1, 1, 1)
 
-                        highlight:SetTexture(0)
-                        highlight.SetTexture = T.dummy
+						highlight:SetTexture(0)
+						highlight.SetTexture = T.dummy
 
-                        text:ClearAllPoints()
-                        text:SetPoint("LEFT", questLogTitle, "RIGHT", 6, 0)
+						text:ClearAllPoints()
+						text:SetPoint("LEFT", questLogTitle, "RIGHT", 6, 0)
 
-                        hooksecurefunc(questLogTitle, "SetNormalTexture", function(self, texture)
-                            self:StripTextures()
-                            self:SetTemplate("Overlay")
+						hooksecurefunc(questLogTitle, "SetNormalTexture", function(self, texture)
+							self:StripTextures()
+							self:SetTemplate("Overlay")
 
-                            self.minus = self:CreateTexture(nil, "OVERLAY")
-                            self.minus:SetSize(7, 1)
-                            self.minus:SetPoint("CENTER")
-                            self.minus:SetTexture(C.media.blank)
+							self.minus = self:CreateTexture(nil, "OVERLAY")
+							self.minus:SetSize(7, 1)
+							self.minus:SetPoint("CENTER")
+							self.minus:SetTexture(C.media.blank)
 
-                            if not string.find(texture, "MinusButton") then
-                                self.plus = self:CreateTexture(nil, "OVERLAY")
-                                self.plus:SetSize(1, 7)
-                                self.plus:SetPoint("CENTER")
-                                self.plus:SetTexture(C.media.blank)
-                            end
-                        end)
-                    end
-                end
-            end
-        end
-        hooksecurefunc("QuestLog_Update", UpdateQuests)
-        --]]
+							if not string.find(texture, "MinusButton") then
+								self.plus = self:CreateTexture(nil, "OVERLAY")
+								self.plus:SetSize(1, 7)
+								self.plus:SetPoint("CENTER")
+								self.plus:SetTexture(C.media.blank)
+							end
+						end)
+					end
+				end
+			end
+		end
+		hooksecurefunc("QuestLog_Update", UpdateQuests)
+		--]]
 	end
 end
 

@@ -9,6 +9,8 @@ local function LoadSkin()
 
 	WorldMapFrame:StripTextures()
 	WorldMapFrame:CreateBackdrop("Transparent")
+	WorldMapFrame.backdrop:SetPoint("TOPLEFT", 9, -4)
+	WorldMapFrame.backdrop:SetPoint("BOTTOMRIGHT", -8, 26)
 
 	WorldMapFrame.BorderFrame:SetFrameStrata(WorldMapFrame:GetFrameStrata())
 
@@ -19,12 +21,22 @@ local function LoadSkin()
 		T.SkinDropDownBox(WorldMapZoneMinimapDropdown)
 	end
 
-	WorldMapZoneDropdown:SetPoint("LEFT", WorldMapContinentDropdown, "RIGHT", -24, 0)
-	WorldMapZoomOutButton:SetPoint("LEFT", WorldMapZoneDropdown, "RIGHT", -4, 3)
+	if WorldMapFrame.MiniBorderFrame then
+		WorldMapFrame.MiniBorderFrame:StripTextures()
+	end
+
+	WorldMapZoneDropdown:SetPoint("LEFT", WorldMapContinentDropdown, "RIGHT", 3, 0)
+	WorldMapZoomOutButton:SetPoint("LEFT", WorldMapZoneDropdown, "RIGHT", 6, 0)
 
 	WorldMapZoomOutButton:SkinButton()
 
 	T.SkinCloseButton(WorldMapFrameCloseButton, WorldMapFrame.backdrop)
+	WorldMapFrameCloseButton.SetPoint = T.dummy
+
+	if WorldMapFrame.MaximizeMinimizeFrame then
+		T.SkinMaxMinFrame(WorldMapFrame.MaximizeMinimizeFrame, WorldMapFrameCloseButton)
+		WorldMapFrame.MaximizeMinimizeFrame.SetPoint = T.dummy
+	end
 
 	if Questie_Toggle then
 		Questie_Toggle:SkinButton()

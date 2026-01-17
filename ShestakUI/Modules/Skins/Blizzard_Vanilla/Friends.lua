@@ -128,7 +128,9 @@ local function LoadSkin()
 	else
 		T.SkinEditBox(WhoFrameEditBox, WhoFrameEditBox:GetWidth() + 30, WhoFrameEditBox:GetHeight() - 15)
 	end
+	WhoFrameEditBox:ClearAllPoints()
 	WhoFrameEditBox:SetPoint("BOTTOM", WhoFrame, "BOTTOM", 0, 31)
+	WhoFrameTotals:SetPoint("BOTTOM", WhoFrameEditBox, "TOP", 0, 3)
 
 	T.SkinEditBox(AddFriendNameEditBox)
 	AddFriendNameEditBox:SetHeight(AddFriendNameEditBox:GetHeight() - 5)
@@ -265,6 +267,10 @@ local function LoadSkin()
 	T.SkinDropDownBox(WhoFrameDropdown, 150)
 	T.SkinDropDownBox(FriendsFrameStatusDropdown, 70)
 	T.SkinDropDownBox(FriendsFriendsFrameDropdown)
+
+	FriendsFrameStatusDropdown.Text:SetFont(C.media.normal_font, 12, "")
+	FriendsFrameStatusDropdown.Text:ClearAllPoints()
+	FriendsFrameStatusDropdown.Text:SetPoint("LEFT", FriendsFrameStatusDropdown, "LEFT", 7, -1)
 
 	-- Bottom Tabs
 	FriendsFrameTab1:ClearAllPoints()

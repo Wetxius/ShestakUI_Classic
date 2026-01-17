@@ -356,7 +356,7 @@ SkinBlizzUI:SetScript("OnEvent", function(_, _, addon)
 			if title then
 				title:StripTextures()
 				title:ClearAllPoints()
-				title:SetPoint("TOP", frame, 0, 7)
+				title:SetPoint("TOP", frame, 0, 0)
 			end
 		end
 
