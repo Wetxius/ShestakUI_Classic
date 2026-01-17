@@ -277,7 +277,7 @@ local function LoadSkin()
 
 			factionBar:StripTextures()
 			factionBar:SetStatusBarTexture(C.media.blank)
-			factionBar:CreateBackdrop("Default")
+			factionBar:CreateBackdrop("Overlay")
 
 			factionButton:SetSize(14, 14)
 			factionButton:SetHighlightTexture(0)
@@ -294,7 +294,7 @@ local function LoadSkin()
 			local war = _G["ReputationBar"..i.."AtWarCheck"]
 
 			bar:StripTextures()
-			bar:CreateBackdrop("Default")
+			bar:CreateBackdrop("Overlay")
 			bar:SetStatusBarTexture(C.media.blank)
 			bar:SetSize(108, 13)
 
@@ -400,7 +400,7 @@ local function LoadSkin()
 		local border = _G["SkillRankFrame"..i.."Border"]
 		local background = _G["SkillRankFrame"..i.."Background"]
 
-		bar:CreateBackdrop("Default")
+		bar:CreateBackdrop("Overlay")
 		bar:SetStatusBarTexture(C.media.blank)
 
 		border:StripTextures()
@@ -437,7 +437,7 @@ local function LoadSkin()
 
 	SkillDetailStatusBar:StripTextures()
 	SkillDetailStatusBar:SetParent(SkillDetailScrollFrame)
-	SkillDetailStatusBar:CreateBackdrop("Default")
+	SkillDetailStatusBar:CreateBackdrop("Overlay")
 	SkillDetailStatusBar:SetStatusBarTexture(C.media.blank)
 
 	T.SkinCloseButton(SkillDetailStatusBarUnlearnButton)

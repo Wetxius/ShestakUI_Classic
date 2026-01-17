@@ -10,6 +10,11 @@ local function LoadSkin()
 	DressUpFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
 	DressUpFrame.backdrop:SetPoint("BOTTOMRIGHT", -34, 76)
 
+	if T.TBC then
+		DressUpFrame.backdrop:SetPoint("TOPLEFT", -2, 2)
+		DressUpFrame.backdrop:SetPoint("BOTTOMRIGHT", 2, -2)
+	end
+
 	DressUpFramePortrait:Hide()
 
 	T.SkinCloseButton(DressUpFrameCloseButton, DressUpFrame.backdrop)
