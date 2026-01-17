@@ -1,6 +1,5 @@
 local T, C, L = unpack(ShestakUI)
 if T.class ~= "MAGE" or T.level < 11 then return end
-if T.TBC then return end
 
 ----------------------------------------------------------------------------------------
 --	Mage portals menu(by Foof and Tohveli)
@@ -126,7 +125,7 @@ tinsert(UISpecialFrames, "TeleportMenu")
 for i, spell in pairs(spells) do
 	local teleport = GetSpellInfo(spell[1])
 
-	local b = CreateFrame("Button", nil, frame, "SecureActionButtonTemplate") -- Error in TBC
+	local b = CreateFrame("Button", nil, frame, T.TBC and "InsecureActionButtonTemplate" or "SecureActionButtonTemplate") -- Error in TBC
 	b:CreatePanel("Transparent", C.minimap.size, 20, "BOTTOMLEFT", frame, "BOTTOMLEFT", 0, ((i - 1) * 21))
 	b:SetBackdropBorderColor(unpack(C.media.classborder_color))
 	b:SetFrameStrata("HIGH")
