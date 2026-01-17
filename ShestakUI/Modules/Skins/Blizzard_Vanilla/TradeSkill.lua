@@ -1,5 +1,5 @@
 local T, C, L = unpack(ShestakUI)
-if C.skins.blizzard_frames ~= true then return else return end -- incomplete
+if C.skins.blizzard_frames ~= true then return end -- incomplete
 
 ----------------------------------------------------------------------------------------
 --	TradeSkillUI skin
@@ -16,25 +16,26 @@ local function LoadSkin()
 	TradeSkillFrame.backdrop:SetPoint("BOTTOMRIGHT", -34, 0)
 	TradeSkillFrame:SetSize(720, 508)
 
-	TradeSkillFrame.bg1 = CreateFrame("Frame", nil, TradeSkillFrame)
-	TradeSkillFrame.bg1:SetTemplate("Transparent")
-	TradeSkillFrame.bg1:SetPoint("TOPLEFT", 14, -92)
-	TradeSkillFrame.bg1:SetPoint("BOTTOMRIGHT", -367, 4)
-	TradeSkillFrame.bg1:SetFrameLevel(TradeSkillFrame.bg1:GetFrameLevel() - 1)
+	-- Without bg looks good
+	-- TradeSkillFrame.bg1 = CreateFrame("Frame", nil, TradeSkillFrame)
+	-- TradeSkillFrame.bg1:SetTemplate("Transparent")
+	-- TradeSkillFrame.bg1:SetPoint("TOPLEFT", 14, -92)
+	-- TradeSkillFrame.bg1:SetPoint("BOTTOMRIGHT", -367, 4)
+	-- TradeSkillFrame.bg1:SetFrameLevel(TradeSkillFrame.bg1:GetFrameLevel() - 1)
 
-	TradeSkillFrame.bg2 = CreateFrame("Frame", nil, TradeSkillFrame)
-	TradeSkillFrame.bg2:SetTemplate("Transparent")
-	TradeSkillFrame.bg2:SetPoint("TOPLEFT", TradeSkillFrame.bg1, "TOPRIGHT", 3, 0)
-	TradeSkillFrame.bg2:SetPoint("BOTTOMRIGHT", TradeSkillFrame, "BOTTOMRIGHT", -38, 4)
-	TradeSkillFrame.bg2:SetFrameLevel(TradeSkillFrame.bg2:GetFrameLevel() - 1)
+	-- TradeSkillFrame.bg2 = CreateFrame("Frame", nil, TradeSkillFrame)
+	-- TradeSkillFrame.bg2:SetTemplate("Transparent")
+	-- TradeSkillFrame.bg2:SetPoint("TOPLEFT", TradeSkillFrame.bg1, "TOPRIGHT", 3, 0)
+	-- TradeSkillFrame.bg2:SetPoint("BOTTOMRIGHT", TradeSkillFrame, "BOTTOMRIGHT", -38, 4)
+	-- TradeSkillFrame.bg2:SetFrameLevel(TradeSkillFrame.bg2:GetFrameLevel() - 1)
 
 	TradeSkillRankFrameBorder:StripTextures()
 
 	TradeSkillRankFrame:StripTextures()
-	TradeSkillRankFrame:CreateBackdrop()
+	TradeSkillRankFrame:CreateBackdrop("Overlay")
 	TradeSkillRankFrame:SetSize(420, 18)
 	TradeSkillRankFrame:ClearAllPoints()
-	TradeSkillRankFrame:SetPoint("TOP", -10, -38)
+	TradeSkillRankFrame:SetPoint("TOP", -10, -34)
 	TradeSkillRankFrame:SetStatusBarTexture(C.media.blank)
 
 	TradeSkillListScrollFrame:StripTextures()
@@ -55,12 +56,18 @@ local function LoadSkin()
 	T.SkinScrollBar(TradeSkillDetailScrollFrameScrollBar)
 	TradeSkillDetailScrollFrameScrollBar:SetPoint("TOPLEFT", TradeSkillDetailScrollFrame, "TOPRIGHT", 3, -16)
 
---	T.SkinDropDownBox(TradeSkillInvSlotDropDown, 160)
---	TradeSkillInvSlotDropDown:ClearAllPoints()
---	TradeSkillInvSlotDropDown:SetPoint("RIGHT", TradeSkillRankFrame, "RIGHT", 9, -30)
+	local dropdown = TradeSkillInvSlotDropDown or TradeSkillInvSlotDropdown
+	if dropdown then
+		T.SkinDropDownBox(dropdown, 160)
+		dropdown:ClearAllPoints()
+		dropdown:SetPoint("RIGHT", TradeSkillRankFrame, "RIGHT", 9, -30)
+	end
 
---	T.SkinDropDownBox(TradeSkillSubClassDropDown, 160)
---	TradeSkillSubClassDropDown:SetPoint("RIGHT", TradeSkillInvSlotDropDown, "LEFT", 10, 0)
+	local dropdownSub = TradeSkillSubClassDropDown or TradeSkillSubClassDropdown
+	if dropdown then
+		T.SkinDropDownBox(dropdownSub, 160)
+		dropdownSub:SetPoint("RIGHT", dropdown, "LEFT", -10, 0)
+	end
 
 	TradeSkillCancelButton:SetWidth(75)
 	TradeSkillCancelButton:ClearAllPoints()
@@ -73,16 +80,18 @@ local function LoadSkin()
 	TradeSkillCreateButton:SkinButton()
 
 	TradeSkillCreateAllButton:ClearAllPoints()
-	TradeSkillCreateAllButton:SetPoint("TOPLEFT", TradeSkillDetailScrollFrame, "BOTTOMLEFT", 0, -3)
+	TradeSkillCreateAllButton:SetPoint("TOPLEFT", TradeSkillDetailScrollFrame, "BOTTOMLEFT", -10, -3)
 	TradeSkillCreateAllButton:SkinButton()
 
 	T.SkinNextPrevButton(TradeSkillDecrementButton)
+	TradeSkillDecrementButton:SetSize(20, 20)
 
 	T.SkinEditBox(TradeSkillInputBox)
 	TradeSkillInputBox:SetSize(40, 16)
 	TradeSkillInputBox:SetPoint("LEFT", TradeSkillDecrementButton, "RIGHT", 4, 0)
 
 	T.SkinNextPrevButton(TradeSkillIncrementButton)
+	TradeSkillIncrementButton:SetSize(20, 20)
 	TradeSkillIncrementButton:SetPoint("LEFT", TradeSkillInputBox, "RIGHT", 4, 0)
 
 	TradeSkillSkillIcon:StripTextures()
@@ -106,6 +115,9 @@ local function LoadSkin()
 	TradeSkillCollapseAllButton:SetSize(14, 14)
 	TradeSkillCollapseAllButton:SetPoint("CENTER")
 	TradeSkillCollapseAllButton:SetHitRectInsets(1, 1, 1, 1)
+
+	T.SkinCheckBox(TradeSkillFrameAvailableFilterCheckButton)
+	TradeSkillFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", 60, -55)
 
 	hooksecurefunc(TradeSkillCollapseAllButton, "SetNormalTexture", function(self, texture)
 		self:StripTextures()
@@ -182,14 +194,14 @@ local function LoadSkin()
 		local name = _G["TradeSkillReagent"..i.."Name"]
 		local nameFrame = _G["TradeSkillReagent"..i.."NameFrame"]
 
-		reagent:SetTemplate("Default")
-		reagent:StyleButton(true)
+		-- reagent:SetTemplate("Default")
+		-- reagent:StyleButton(true)
 		reagent:SetSize(143, 40)
 
 		icon.backdrop = CreateFrame("Frame", nil, reagent)
 		icon.backdrop:SetTemplate("Default")
-		icon.backdrop:SetPoint("TOPLEFT", icon, -1, 1)
-		icon.backdrop:SetPoint("BOTTOMRIGHT", icon, 1, -1)
+		icon.backdrop:SetPoint("TOPLEFT", icon, -2, 2)
+		icon.backdrop:SetPoint("BOTTOMRIGHT", icon, 2, -2)
 
 		icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 		icon:SetDrawLayer("OVERLAY")
@@ -206,7 +218,8 @@ local function LoadSkin()
 	end
 
 	TradeSkillReagentLabel:ClearAllPoints()
-	TradeSkillReagentLabel:SetPoint("TOPLEFT", TradeSkillSkillIcon, "BOTTOMLEFT", 5, -10)
+	TradeSkillReagentLabel:SetPoint("TOPLEFT", TradeSkillSkillIcon, "BOTTOMLEFT", 5, -15)
+	TradeSkillReagentLabel.SetPoint = T.dummy
 
 	TradeSkillReagent1:SetPoint("TOPLEFT", TradeSkillReagentLabel, "BOTTOMLEFT", -3, -3)
 	TradeSkillReagent2:SetPoint("LEFT", TradeSkillReagent1, "RIGHT", 3, 0)
@@ -253,10 +266,10 @@ local function LoadSkin()
 
 			if reagentLink then
 				local _, _, quality = C_Item.GetItemInfo(string.match(reagentLink, "item:(%d+)"))
-				if quality then
+				if quality and quality > 1 then
 					local R, G, B = C_Item.GetItemQualityColor(quality)
 					icon.backdrop:SetBackdropBorderColor(R, G, B)
-					reagent:SetBackdropBorderColor(R, G, B)
+					-- reagent:SetBackdropBorderColor(R, G, B)
 					if playerReagentCount < reagentCount then
 						name:SetTextColor(0.5, 0.5, 0.5)
 					else
@@ -265,7 +278,7 @@ local function LoadSkin()
 					count:ClearAllPoints()
 					count:SetPoint("BOTTOMLEFT", icon, "BOTTOMLEFT", 0, -1)
 				else
-					reagent:SetBackdropBorderColor(unpack(C.media.border_color))
+					-- reagent:SetBackdropBorderColor(unpack(C.media.border_color))
 					icon.backdrop:SetBackdropBorderColor(unpack(C.media.border_color))
 				end
 			end
