@@ -23,8 +23,6 @@ local function LoadSkin()
 	ClassTrainerTrainButton:SetPoint("RIGHT", ClassTrainerCancelButton, "LEFT", -2, 0)
 
 	T.SkinDropDownBox(ClassTrainerFrame.FilterDropdown)
-	-- ClassTrainerFrameFilterDropdown:ClearAllPoints()
-	-- ClassTrainerFrameFilterDropdown:SetPoint("TOPLEFT", ClassTrainerFrame.backdrop, "TOPRIGHT", -182, -56)
 
 	ClassTrainerListScrollFrame:StripTextures()
 	T.SkinScrollBar(ClassTrainerListScrollFrameScrollBar)
@@ -51,7 +49,7 @@ local function LoadSkin()
 	T.SkinExpandOrCollapse(ClassTrainerCollapseAllButton)
 
 	for i = 1, CLASS_TRAINER_SKILLS_DISPLAYED do
-		T.SkinExpandOrCollapse(_G["ClassTrainerSkill"..i])
+		-- T.SkinExpandOrCollapse(_G["ClassTrainerSkill"..i]) -- FIXME
 	end
 end
 
