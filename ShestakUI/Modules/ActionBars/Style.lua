@@ -207,6 +207,10 @@ local function StyleSmallButton(normal, button, icon, name, pet)
 			button.IconMask:Hide()
 		end
 
+		if button.SlotBackground then
+			button.SlotBackground:SetAlpha(0)
+		end
+
 		hooksecurefunc(button, "SetNormalTexture", function(self, texture)
 			if texture and texture ~= "" then
 				self:SetNormalTexture(0)
