@@ -22,6 +22,10 @@ local BuffsAnchor = CreateFrame("Frame", "BuffsAnchor", UIParent)
 BuffsAnchor:SetPoint(unpack(C.position.player_buffs))
 BuffsAnchor:SetSize((15 * C.aura.player_buff_size) + 42, (C.aura.player_buff_size * 2) + 3)
 
+if BuffFrame.ConsolidatedBuffs then
+	BuffFrame.ConsolidatedBuffs.Icon:SetTexture("Interface\\Icons\\Spell_ChargePositive")
+end
+
 local function UpdateDuration(aura, timeLeft)
 	local duration = aura.Duration
 	if timeLeft and C.aura.show_timer == true then
