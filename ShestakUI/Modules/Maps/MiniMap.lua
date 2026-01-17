@@ -348,7 +348,11 @@ local micromenu = {
 	end},
 	{text = TALENTS_BUTTON, notCheckable = 1, func = function()
 		if not PlayerTalentFrame then
-			LoadAddOn("Blizzard_TalentUI")
+			if T.TBC then
+				TalentFrame_LoadUI()
+			else
+				LoadAddOn("Blizzard_TalentUI")
+			end
 		end
 		if T.level >= 10 then
 			ToggleTalentFrame()
