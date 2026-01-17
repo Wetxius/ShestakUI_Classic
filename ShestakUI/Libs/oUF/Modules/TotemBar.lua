@@ -89,7 +89,7 @@ local function Enable(self)
 	if element then
 		self:RegisterEvent("PLAYER_TOTEM_UPDATE", Event, true)
 		element.colors = setmetatable(element.colors or {}, {__index = colors})
-		if element.Destroy then
+		if element.Destroy and not T.TBC then -- FIXME find a way for TBC
 			if oUF:IsClassic() then
 				for i = 1, MAX_TOTEMS do
 					if element[i] then
