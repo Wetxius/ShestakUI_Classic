@@ -1302,7 +1302,9 @@ if experience.enabled then
 				local standing, factionID, standingText = 0, 0
 				repname, standing, minrep, maxrep, currep = NONE, 0, 0, 0, 0, 0
 				local data = C_Reputation.GetWatchedFactionData()
-				if T.Mainline then
+				if data then
+					repname, standing, minrep, maxrep, currep, factionID = data.name, data.reaction, data.currentReactionThreshold, data.nextReactionThreshold, data.currentStanding, data.factionID
+					if not factionID then factionID = 0 end
 					local reputationInfo = C_GossipInfo.GetFriendshipReputation(factionID)
 					local friendshipID = reputationInfo and reputationInfo.friendshipFactionID
 					if friendshipID and friendshipID > 0 then
@@ -1337,6 +1339,8 @@ if experience.enabled then
 							standingText = PARAGON
 						end
 					end
+				elseif GetWatchedFactionInfo then
+					repname, standing, minrep, maxrep, currep, factionID = GetWatchedFactionInfo()
 				end
 				if not repname then repname = NONE end
 				local color = {}
@@ -1407,9 +1411,16 @@ if experience.enabled then
 			elseif conf.ExpMode == "rep" then
 				if repname == NONE then GameTooltip:Hide() return end
 				local desc, war, watched
-				for i = 1, C_Reputation.GetNumFactions() do
-					_, desc, _, _, _, _, war, _, _, _, _, watched = C_Reputation.GetFactionDataByIndex(i)
-					if watched then break end
+				if T.Mainline then
+					for i = 1, C_Reputation.GetNumFactions() do
+						_, desc, _, _, _, _, war, _, _, _, _, watched = C_Reputation.GetFactionDataByIndex(i)
+						if watched then break end
+					end
+				else
+					for i = 1, GetNumFactions() do
+						_, desc, _, _, _, _, war, _, _, _, _, watched = GetFactionInfo(i)
+						if watched then break end
+					end
 				end
 				GameTooltip:AddLine(repname, tthead.r, tthead.g, tthead.b)
 				GameTooltip:AddLine(desc, ttsubh.r, ttsubh.g, ttsubh.b, 1)
