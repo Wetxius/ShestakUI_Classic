@@ -138,7 +138,7 @@ function RightBarMouseOver(alpha)
 	end
 
 	if C.actionbar.rightbars > 2 then
-		if T.Classic then
+		if T.Classic and not T.TBC then
 			if MultiBarBottomRight:IsShown() then
 				for i = 1, 12 do
 					local b = _G["MultiBarBottomRightButton"..i]
@@ -599,7 +599,7 @@ T.ShiftBarUpdate = function()
 			CooldownFrame_Set(cooldown, start, duration, enable)
 
 			if isActive then
-				if T.Classic then
+				if T.Classic and not T.TBC then
 					StanceBarFrame.lastSelected = button:GetID()
 				end
 				button:SetChecked(true)
@@ -702,7 +702,7 @@ T.PetBarUpdate = function()
 		end
 
 		if not PetHasActionBar() and texture and name ~= "PET_ACTION_FOLLOW" then
-			if T.Classic then
+			if T.Classic and not T.TBC then
 				PetActionButton_StopFlash(petActionButton)
 			else
 				petActionButton:StopFlash()

@@ -53,7 +53,7 @@ bar:SetScript("OnEvent", function(self, event)
 			button:Show()
 			self:SetAttribute("addchild", button)
 		end
-		if T.Classic then
+		if T.Classic and not T.TBC then
 			RegisterStateDriver(self, "visibility", "[pet,nooverridebar,novehicleui,nopossessbar] show; hide")
 		else
 			RegisterStateDriver(self, "visibility", "[pet,novehicleui,nopossessbar,nopetbattle] show; hide")
@@ -67,7 +67,7 @@ bar:SetScript("OnEvent", function(self, event)
 	or event == "UNIT_FLAGS" or event == "UNIT_PET" or event == "UNIT_AURA" then
 		T.PetBarUpdate()
 	elseif event == "PET_BAR_UPDATE_COOLDOWN" then
-		if T.Classic then
+		if T.Classic and not T.TBC then
 			PetActionBar_UpdateCooldowns()
 		else
 			PetActionBar:UpdateCooldowns()
