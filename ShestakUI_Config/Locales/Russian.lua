@@ -212,7 +212,7 @@ L_GUI_UF_PLAYER_PARTY = "Отображать рамку игрока в гру�
 L_GUI_UF_SHOW_TANK = "Рамки танков рейда"
 L_GUI_UF_SHOW_TANK_TT = "Рамки целей цели танков"
 L_GUI_UF_RAID_GROUP = "Количество групп в рейде"
-L_GUI_UF_RAID_PETS = "Show pets in raid (Only for heal layout)" -- Needs review
+L_GUI_UF_RAID_PETS = "Отображать петов в рейде (только для раскладки 'Лекарь')"
 L.raidframe_party_vertical = "Расположить рамки группы вертикально"
 L.raidframe_raid_groups_vertical = "Расположить рамки рейда вертикально"
 L.raidframe_raid_groups_vertical_desc = "Только для раскладки 'Лекарь'"
@@ -551,7 +551,7 @@ L.automation_resurrection = "Принятие воскрешений"
 L.automation_summon = "Принятие призыва"
 L.automation_summon_desc = "Суммон от игроков"
 L.automation_whisper_invite = "Авто приглашение по ключевым словам"
-L.automation_invite_known_only = "Only allow auto invite from friends and guild members" -- Needs review
+L.automation_invite_known_only = "Разрешать приглашение только от друзей и согильдийцев"
 L.automation_invite_keyword = "Список слов (через пробел)"
 L.automation_invite_keyword_desc = "Если вам напишут в личку ключевое слово, то сработает приглашение в группу"
 
