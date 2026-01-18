@@ -56,6 +56,7 @@ frame:SetScript("OnEvent", function(_, _, addon)
 				HideFrames()
 			end
 		end
+		UIParent:UnregisterEvent("GROUP_ROSTER_UPDATE")
 	end
 
 	if T.Classic then

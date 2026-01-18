@@ -155,7 +155,7 @@ function oUF:DisableBlizzard(unit)
 			end
 		end
 	elseif(unit:match('party%d?$')) then
-		if(oUF:IsClassic()) then
+		if(oUF:IsClassic() and not oUF:IsTBC()) then
 			local id = unit:match('party(%d)')
 			if(id) then
 				handleFrame('PartyMemberFrame' .. id)
