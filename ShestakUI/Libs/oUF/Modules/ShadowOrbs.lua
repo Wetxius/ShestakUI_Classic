@@ -1,5 +1,5 @@
 local T, C, L = unpack(ShestakUI)
-if C.unitframe.enable ~= true or ((T.class ~= "PRIEST") and (T.Spec ~= 2)) then return end
+if C.unitframe.enable ~= true or ((T.class ~= "PRIEST") and (T.Spec ~= 3)) then return end
 
 local _, ns = ...
 local oUF = ns.oUF
@@ -53,7 +53,7 @@ local function Path(self, ...)
 end
 
 local function Visibility(self, event, unit)
-	if(T.Spec ~= 2 or UnitHasVehiclePlayerFrameUI('player')) then
+	if(T.Spec ~= 3 or UnitHasVehiclePlayerFrameUI('player')) then
 		if(self.ShadowOrbs:IsShown()) then
 			self.ShadowOrbs:Hide()
 			self:UnregisterEvent('UNIT_AURA', Path)
