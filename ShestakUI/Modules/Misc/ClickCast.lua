@@ -185,14 +185,43 @@ end
 
 SpellBinder.ToggleButtons = function()
 	for i = 1, SPELLS_PER_PAGE do
-		SpellBinder.spellbuttons[i]:Hide()
+		local button = SpellBinder.spellbuttons[i]
+		button:Hide()
 		if SpellBinder.sbOpen and SpellBookFrame.bookType ~= BOOKTYPE_PROFESSION then
 			local slot = SpellBook_GetSpellBookSlot(SpellBinder.spellbuttons[i]:GetParent())
 			if slot then
 				local spellname = GetSpellBookItemName(slot, SpellBookFrame.bookType)
 				if spellname then
 					SpellBinder.spellbuttons[i]:Show()
-					AutoCastShine_AutoCastStart(SpellBinder.spellbuttons[i])
+					if T.TBC then
+						if not button.Glow then
+							local Glow = button:CreateTexture(nil, "ARTWORK")
+							Glow:SetAtlas("UI-HUD-ActionBar-Proc-Loop-Flipbook")
+							Glow:SetPoint("TOPLEFT", -10, 10)
+							Glow:SetPoint("BOTTOMRIGHT", 10, -10)
+							button.Glow = Glow
+
+							local Animation = button:CreateAnimationGroup()
+							Animation:SetLooping("REPEAT")
+
+							local FlipBook = Animation:CreateAnimation("FlipBook")
+							FlipBook:SetTarget(Glow)
+							FlipBook:SetDuration(1)
+							FlipBook:SetFlipBookColumns(5)
+							FlipBook:SetFlipBookRows(6)
+							FlipBook:SetFlipBookFrames(30)
+
+							button:HookScript("OnShow", function()
+								Animation:Play()
+							end)
+
+							button:HookScript("OnHide", function()
+								Animation:Stop()
+							end)
+						end
+					else
+						AutoCastShine_AutoCastStart(SpellBinder.spellbuttons[i])
+					end
 				end
 			end
 		end
@@ -342,7 +371,7 @@ SpellBinder:SetScript("OnEvent", function(self, event)
 
 		for i = 1, SPELLS_PER_PAGE do
 			local parent = _G["SpellButton"..i]
-			local button = CreateFrame("Button", "SpellBinderFakeButton"..i, parent, "AutoCastShineTemplate")
+			local button = CreateFrame("Button", "SpellBinderFakeButton"..i, parent, T.TBC and "SecureActionButtonTemplate" or "AutoCastShineTemplate")
 			button:SetID(parent:GetID())
 			button:RegisterForClicks("AnyDown")
 			button:SetAllPoints(parent)
