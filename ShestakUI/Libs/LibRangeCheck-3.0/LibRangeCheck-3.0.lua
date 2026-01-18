@@ -1349,7 +1349,9 @@ function lib:activate()
         local frame = CreateFrame("Frame")
         self.frame = frame
 
-        if not isTBC then
+        if isTBC then
+			frame:RegisterEvent("LEARNED_SPELL_IN_SKILL_LINE")
+		else
 			frame:RegisterEvent("LEARNED_SPELL_IN_TAB")
 		end
         frame:RegisterEvent("CHARACTER_POINTS_CHANGED")

@@ -23,7 +23,7 @@ local function Update(self, event)
 	local inRange, checkedRange
 	local connected = UnitIsConnected(unit)
 	if(connected) then
-		if(LibRangeCheck) then
+		if(LibRangeCheck) and not InCombatLockdown() then
 			-- GetRange(unit, checkVisible, noItems)
 			_, inRange = LibRangeCheck:GetRange(unit, true, true)
 		else
