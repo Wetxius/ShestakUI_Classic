@@ -415,8 +415,8 @@ if T.screenHeight > 1200 then
 	Mult = T.mult
 end
 
-local auraFontHeight = (T.Classic and not T.TBC and T.HiDPI) and (C.font.auras_font_size * noscalemult * (2/3) / Mult) or (C.font.auras_font_size * noscalemult / Mult)
-
+-- local auraFontHeight = (T.Classic and not T.TBC and T.HiDPI) and (C.font.auras_font_size * noscalemult * (2/3) / Mult) or (C.font.auras_font_size * noscalemult / Mult)
+local auraFontHeight = (C.font.auras_font_size * noscalemult / Mult)
 local AurasPostCreateButton = function(element, button)
 	CreateBorderFrame(button)
 
