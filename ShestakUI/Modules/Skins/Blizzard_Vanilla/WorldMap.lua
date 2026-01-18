@@ -17,7 +17,7 @@ local function LoadSkin()
 	T.SkinDropDownBox(WorldMapContinentDropdown)
 	T.SkinDropDownBox(WorldMapZoneDropdown)
 
-	if not T.Vanilla then
+	if WorldMapZoneMinimapDropdown then
 		T.SkinDropDownBox(WorldMapZoneMinimapDropdown)
 	end
 
