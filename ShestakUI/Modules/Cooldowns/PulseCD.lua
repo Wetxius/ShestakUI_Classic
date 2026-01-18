@@ -130,7 +130,7 @@ local function OnUpdate(_, update)
 		end
 		for i, getCooldownDetails in pairs(cooldowns) do
             local cooldown = getCooldownDetails()
-			if cooldown then
+			if cooldown and cooldown.start then -- can nil
 				local remaining = cooldown.duration - (GetTime() - cooldown.start)
 				if remaining <= 0.2 then
 					tinsert(animating, {cooldown.texture, cooldown.isPet, cooldown.name})
