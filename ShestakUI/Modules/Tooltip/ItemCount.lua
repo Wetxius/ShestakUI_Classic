@@ -9,12 +9,14 @@ local function OnTooltipSetItem(self, data)
 	local num
 	if T.Classic and not T.Mists then
 		local _, link = self:GetItem()
-		num = C_Item.GetItemCount(link, true)
+		if link then
+			num = C_Item.GetItemCount(link, true)
+		end
 	else
 		num = C_Item.GetItemCount(data.id, true)
 	end
 
-	if num > 1 then
+	if num and num > 1 then
 		self:AddLine("|cffffffff"..L_TOOLTIP_ITEM_COUNT.." "..num.."|r")
 	end
 end
