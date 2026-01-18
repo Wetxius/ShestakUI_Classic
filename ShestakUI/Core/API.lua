@@ -980,7 +980,7 @@ function T.SkinIconSelectionFrame(frame, numIcons, buttonNameTemplate, frameName
 	editBox:DisableDrawLayer("BACKGROUND")
 	T.SkinEditBox(editBox)
 
-	if T.Classic then
+	if T.Classic and not T.TBC then
 		if buttonNameTemplate then
 			for i = 1, numIcons do
 				local button = _G[buttonNameTemplate..i]
@@ -1014,25 +1014,42 @@ function T.SkinIconSelectionFrame(frame, numIcons, buttonNameTemplate, frameName
 			end
 		end
 
-		for _, button in next, {frame.IconSelector.ScrollBox.ScrollTarget:GetChildren()} do
-			local texture = button.Icon:GetTexture()
-			button:StripTextures()
-			button:StyleButton(true)
-			button:SetTemplate("Default")
+		hooksecurefunc(frame.IconSelector.ScrollBox, "Update", function(self)
+			for i = 1, self.ScrollTarget:GetNumChildren() do
+				local child = select(i, self.ScrollTarget:GetChildren())
+				if child.Icon and not child.styled then
+					local texture = child.Icon:GetTexture()
+					child:StripTextures()
+					child:StyleButton(true)
+					child:SetTemplate("Default")
 
-			button.Icon:ClearAllPoints()
-			button.Icon:SetPoint("TOPLEFT", 2, -2)
-			button.Icon:SetPoint("BOTTOMRIGHT", -2, 2)
-			button.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-			if texture then
-				button.Icon:SetTexture(texture)
+					child.Icon:ClearAllPoints()
+					child.Icon:SetPoint("TOPLEFT", 2, -2)
+					child.Icon:SetPoint("BOTTOMRIGHT", -2, 2)
+					child.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+					if texture then
+						child.Icon:SetTexture(texture)
+					end
+					child.styled = true
+				end
 			end
-		end
+		end)
 	end
 
-	local dropdown = frame.BorderBox.IconTypeDropDown and frame.BorderBox.IconTypeDropDown.DropDownMenu
+	local dropdown = frame.BorderBox.IconTypeDropDown and frame.BorderBox.IconTypeDropDown.DropDownMenu or frame.BorderBox.IconTypeDropdown
 	if dropdown then
 		T.SkinDropDownBox(dropdown)
+	end
+
+	if frame.DepositSettingsMenu then
+		frame.DepositSettingsMenu:DisableDrawLayer("OVERLAY")
+		for _, child in pairs({frame.DepositSettingsMenu:GetChildren()}) do
+			if child:IsObjectType("CheckButton") then
+				T.SkinCheckBox(child, 22)
+			elseif child.Arrow then
+				T.SkinDropDownBox(child)
+			end
+		end
 	end
 end
 
