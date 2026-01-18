@@ -114,7 +114,7 @@ end)
 -- Cooldown
 AutoButton.cd = CreateFrame("Cooldown", nil, AutoButton, "CooldownFrameTemplate")
 AutoButton.cd:SetAllPoints(AutoButton.t)
-AutoButton.cd:SetFrameLevel()
+AutoButton.cd:SetFrameLevel(1)
 
 local function startScanningBags()
 	AutoButtonHide()
