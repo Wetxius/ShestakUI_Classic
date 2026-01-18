@@ -7,11 +7,11 @@ if C.nameplate.enable ~= true then return end
 --	Take the number ID at the end of the URL, and add it to the list
 ----------------------------------------------------------------------------------------
 local function SpellName(id)
-	local name = C_Spell.GetSpellInfo(id)
+	local name = GetSpellInfo(id)
 	if name then
 		return name
 	else
-		print("|cffff0000ShestakUI: spell ID ["..tostring(id).."] no longer exists!|r")
+		print("|cffff0000ShestakUI: Nameplates spell ID ["..tostring(id).."] no longer exists!|r")
 		return "Empty"
 	end
 end
