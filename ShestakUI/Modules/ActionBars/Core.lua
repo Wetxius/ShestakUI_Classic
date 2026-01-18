@@ -438,7 +438,7 @@ if T.Classic then
 	frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 	frame:SetScript("OnEvent", function(self)
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-		SetActionBarToggles(1, 1, 1, 1, 0)
+		SetActionBarToggles(1, 1, 1, 1, false)
 		if C.actionbar.show_grid == true then
 			SetCVar("alwaysShowActionBars", 1)
 			for i = 1, 12 do
