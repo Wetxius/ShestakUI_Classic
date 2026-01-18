@@ -33,7 +33,7 @@ bar:SetFrameStrata("LOW")
 
 bar:RegisterEvent("PLAYER_ENTERING_WORLD")
 bar:SetScript("OnEvent", function(self, event)
-	if not T.Classic or T.TBC then
+	if not T.Classic then
 		Settings.SetValue("PROXY_SHOW_ACTIONBAR_5", true)
 	end
 	local NumPerRows = C.actionbar.bar5_row
