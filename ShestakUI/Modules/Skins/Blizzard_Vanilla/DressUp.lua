@@ -25,7 +25,6 @@ local function LoadSkin()
 	DressUpFrameDescriptionText:ClearAllPoints()
 	DressUpFrameDescriptionText:SetPoint("TOP", DressUpFrame.backdrop, "TOP", 0, -25)
 
-
 	T.SkinRotateButton(DressUpModelFrameRotateLeftButton)
 	DressUpModelFrameRotateLeftButton:SetPoint("TOPLEFT", 3, -3)
 

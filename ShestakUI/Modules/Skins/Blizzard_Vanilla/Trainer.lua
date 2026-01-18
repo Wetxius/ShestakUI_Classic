@@ -22,10 +22,10 @@ local function LoadSkin()
 	ClassTrainerTrainButton:ClearAllPoints()
 	ClassTrainerTrainButton:SetPoint("RIGHT", ClassTrainerCancelButton, "LEFT", -2, 0)
 
-	if T.Vanilla then
-		T.SkinFilter(ClassTrainerFrame.FilterDropdown)
-	else
+	if T.TBC then
 		T.SkinDropDownBox(ClassTrainerFrame.FilterDropdown)
+	else
+		T.SkinFilter(ClassTrainerFrame.FilterDropdown)
 	end
 
 	ClassTrainerListScrollFrame:StripTextures()
@@ -53,7 +53,7 @@ local function LoadSkin()
 	T.SkinExpandOrCollapse(ClassTrainerCollapseAllButton)
 
 	for i = 1, CLASS_TRAINER_SKILLS_DISPLAYED do
-		-- T.SkinExpandOrCollapse(_G["ClassTrainerSkill"..i]) -- FIXME
+		-- T.SkinExpandOrCollapse(_G["ClassTrainerSkill"..i]) -- FIXME looks weird
 	end
 end
 
