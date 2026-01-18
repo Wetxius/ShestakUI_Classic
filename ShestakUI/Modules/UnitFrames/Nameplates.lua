@@ -6,7 +6,7 @@ if C.nameplate.enable ~= true then return end
 ----------------------------------------------------------------------------------------
 local _, ns = ...
 local oUF = ns.oUF
-local noscalemult = T.TBC and T.noscalemult / 2 or T.noscalemult
+local noscalemult = T.HiDPI and T.noscalemult / 2 or T.noscalemult
 
 local frame = CreateFrame("Frame")
 frame:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
