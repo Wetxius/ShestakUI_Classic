@@ -7,13 +7,20 @@ if C.skins.blizzard_frames ~= true then return end
 local function LoadSkin()
 	InspectFrame:StripTextures(true)
 	InspectFrame:CreateBackdrop("Transparent")
-	InspectFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
-	InspectFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)
+	if T.TBC then
+		InspectFrame.backdrop:SetPoint("TOPLEFT", -2, 2)
+		InspectFrame.backdrop:SetPoint("BOTTOMRIGHT", 2, -2)
+	else
+		InspectFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
+		InspectFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)
+	end
+
+	if InspectFramePortrait then InspectFramePortrait:SetAlpha(0) end
 
 	T.SkinCloseButton(InspectFrameCloseButton, InspectFrame.backdrop)
 
 	InspectNameText:ClearAllPoints()
-    InspectNameText:SetPoint("TOP", InspectFrame.backdrop, "TOP", 0, -6)
+	InspectNameText:SetPoint("TOP", InspectFrame.backdrop, "TOP", 0, -6)
 
 	InspectFrameTab1:ClearAllPoints()
 	InspectFrameTab1:SetPoint("TOPLEFT", InspectFrame.backdrop, "BOTTOMLEFT", 2, -2)
@@ -93,14 +100,16 @@ local function LoadSkin()
 
 	-- Talent Frame
 	if not T.Cata and InspectTalentFrame then
-		if not T.Wrath and not T.Cata then
+		if InspectTalentFrameCancelButton then
 			InspectTalentFrameCancelButton:Kill()
 		end
-		InspectTalentFrameCloseButton:Kill()
 
 		InspectTalentFrame:StripTextures(true)
 
-		T.SkinCloseButton(InspectTalentFrameCloseButton, InspectFrame.backdrop)
+		if InspectTalentFrameCloseButton then
+			InspectTalentFrameCloseButton:Kill()
+			T.SkinCloseButton(InspectTalentFrameCloseButton, InspectFrame.backdrop)
+		end
 
 		for i = 1, 3 do
 			local tab = _G["InspectTalentFrameTab"..i]
@@ -109,21 +118,25 @@ local function LoadSkin()
 			if lastTab then
 				tab:SetPoint("LEFT", lastTab, "RIGHT", 4, 0)
 			else
-				tab:SetPoint("TOPLEFT", 70, -48)
+				tab:SetPoint("TOPLEFT", 40, -48)
 			end
-			T.SkinTab(tab)
+			T.SkinTab(tab, true)
 		end
 
 		InspectTalentFrameScrollFrame:StripTextures()
-		InspectTalentFrameScrollFrame:CreateBackdrop("Default")
-		InspectTalentFrameScrollFrame.backdrop:SetPoint("TOPLEFT", -1, 1)
-		InspectTalentFrameScrollFrame.backdrop:SetPoint("BOTTOMRIGHT", 6, -1)
+		-- InspectTalentFrameScrollFrame:CreateBackdrop("Default")
+		-- InspectTalentFrameScrollFrame.backdrop:SetPoint("TOPLEFT", -1, 1)
+		-- InspectTalentFrameScrollFrame.backdrop:SetPoint("BOTTOMRIGHT", 6, -1)
 
 		T.SkinScrollBar(InspectTalentFrameScrollFrameScrollBar)
 		InspectTalentFrameScrollFrameScrollBar:SetPoint("TOPLEFT", InspectTalentFrameScrollFrame, "TOPRIGHT", 10, -16)
 
-		if not T.Wrath and not T.Cata then
+		if InspectTalentFrameSpentPoints then
 			InspectTalentFrameSpentPoints:SetPoint("BOTTOMLEFT", InspectTalentFrame, "BOTTOMLEFT", 8, 84)
+		end
+
+		if InspectTalentFramePointsBar then
+			InspectTalentFramePointsBar:StripTextures()
 		end
 
 		for i = 1, MAX_NUM_TALENTS do
