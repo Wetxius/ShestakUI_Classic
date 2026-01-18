@@ -1301,7 +1301,7 @@ if experience.enabled then
 			elseif (event == "UPDATE_FACTION" or event == "PLAYER_LOGIN") and conf.ExpMode == "rep" then
 				local standing, factionID, standingText = 0, 0
 				repname, standing, minrep, maxrep, currep = NONE, 0, 0, 0, 0, 0
-				local data = C_Reputation.GetWatchedFactionData()
+				local data = C_Reputation and C_Reputation.GetWatchedFactionData and C_Reputation.GetWatchedFactionData()
 				if data then
 					repname, standing, minrep, maxrep, currep, factionID = data.name, data.reaction, data.currentReactionThreshold, data.nextReactionThreshold, data.currentStanding, data.factionID
 					if not factionID then factionID = 0 end
