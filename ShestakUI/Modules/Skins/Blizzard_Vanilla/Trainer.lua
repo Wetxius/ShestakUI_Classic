@@ -36,15 +36,16 @@ local function LoadSkin()
 
 	if ClassTrainerSkillIcon then
 		ClassTrainerSkillIcon:StripTextures()
-		ClassTrainerSkillIcon:SkinButton()
+		ClassTrainerSkillIcon:SetTemplate("Default")
 	end
 
 	hooksecurefunc("ClassTrainer_SetSelection", function()
-		if ClassTrainerSkillIcon:GetNormalTexture() then
+		if ClassTrainerSkillIcon:GetNormalTexture() and not ClassTrainerSkillIcon.styled then
 			ClassTrainerSkillIcon:GetNormalTexture():ClearAllPoints()
 			ClassTrainerSkillIcon:GetNormalTexture():SetPoint("TOPLEFT", 2, -2)
 			ClassTrainerSkillIcon:GetNormalTexture():SetPoint("BOTTOMRIGHT", -2, 2)
 			ClassTrainerSkillIcon:GetNormalTexture():SetTexCoord(0.1, 0.9, 0.1, 0.9)
+			ClassTrainerSkillIcon.styled = true
 		end
 	end)
 
