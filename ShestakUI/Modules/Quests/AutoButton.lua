@@ -46,7 +46,7 @@ AutoButtonAnchor:SetPoint(unpack(C.position.auto_button))
 AutoButtonAnchor:SetSize(40, 40)
 
 -- Create button
-local AutoButton = CreateFrame("Button", "AutoButton", UIParent, "SecureActionButtonTemplate")
+local AutoButton = CreateFrame("Button", "AutoButton", UIParent, T.TBC and "InsecureActionButtonTemplate" or "SecureActionButtonTemplate")
 AutoButton:SetSize(40, 40)
 AutoButton:SetPoint("CENTER", AutoButtonAnchor, "CENTER", 0, 0)
 AutoButton:SetTemplate("Default")
