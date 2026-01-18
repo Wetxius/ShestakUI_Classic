@@ -56,6 +56,7 @@ frame:SetScript("OnEvent", function(_, _, addon)
 				HideFrames()
 			end
 		end
+		SetCVar("useCompactPartyFrames", 1)
 		UIParent:UnregisterEvent("GROUP_ROSTER_UPDATE")
 	end
 
