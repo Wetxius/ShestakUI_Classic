@@ -145,32 +145,18 @@ end
 
 local function registerStyle(myProfile)
 	if not BigWigs then return end
-	if T.Classic then
-		local bars = BigWigs:GetPlugin("Bars", true)
-		if not bars then return end
-		bars:RegisterBarStyle("ShestakUI", {
-			apiVersion = 1,
-			version = 1,
-			GetSpacing = function() return T.Scale(13) end,
-			ApplyStyle = applystyle,
-			BarStopped = freestyle,
-			GetStyleName = function() return "ShestakUI" end,
-		})
-	else
-		BigWigsAPI:RegisterBarStyle("ShestakUI", {
-			apiVersion = 1,
-			version = 1,
-			GetSpacing = function() return T.Scale(13) end,
-			ApplyStyle = applystyle,
-			BarStopped = freestyle,
-			GetStyleName = function() return "ShestakUI" end,
-		})
-	end
+	BigWigsAPI:RegisterBarStyle("ShestakUI", {
+		apiVersion = 1,
+		version = 10,
+		GetSpacing = function() return T.Scale(13) end,
+		ApplyStyle = applystyle,
+		BarStopped = freestyle,
+		GetStyleName = function() return "ShestakUI" end,
+	})
 
 	if BigWigsLoader and myProfile and myProfile.barStyle == "ShestakUI" then
 		BigWigsLoader.RegisterMessage("BigWigs_Plugins", "BigWigs_FrameCreated", function()
 			BigWigsProximityAnchor:SetTemplate("Transparent")
-			BigWigsInfoBox:SetTemplate("Transparent")
 		end)
 
 		BigWigsLoader.RegisterMessage("BigWigs_Plugins", "BigWigs_BarEmphasized", function(_, _, bar)
@@ -188,20 +174,11 @@ f:SetScript("OnEvent", function(_, event, addon)
 	if event == "ADDON_LOADED" then
 		if addon == "BigWigs_Plugins" then
 			local myProfile
-			if BigWigsClassicDB then
-				if BigWigsClassicDB.profileKeys and BigWigsClassicDB.namespaces and BigWigsClassicDB.namespaces.BigWigs_Plugins_Bars and BigWigsClassicDB.namespaces.BigWigs_Plugins_Bars.profiles then
-					myProfile = BigWigsClassicDB.namespaces.BigWigs_Plugins_Bars.profiles[BigWigsClassicDB.profileKeys[UnitName("player").." - "..GetRealmName()]]
-				end
-				if not myProfile or myProfile.InstalledBars ~= C.actionbar.bottombars then
-					StaticPopup_Show("SETTINGS_BIGWIGS")
-				end
-			end
-
 			if BigWigs3DB then
 				if BigWigs3DB.profileKeys and BigWigs3DB.namespaces and BigWigs3DB.namespaces.BigWigs_Plugins_Bars and BigWigs3DB.namespaces.BigWigs_Plugins_Bars.profiles then
 					myProfile = BigWigs3DB.namespaces.BigWigs_Plugins_Bars.profiles[BigWigs3DB.profileKeys[UnitName("player").." - "..GetRealmName()]]
 				end
-				if not myProfile or myProfile.InstalledBars ~= C.actionbar.bottombars then
+				if not myProfile then
 					StaticPopup_Show("SETTINGS_BIGWIGS")
 				end
 			end
@@ -231,50 +208,43 @@ function T.UploadBW()
 	local bars = BigWigs:GetPlugin("Bars", true)
 	if bars then
 		bars.db.profile.barStyle = "ShestakUI"
-		bars.db.profile.fontName = C.font.stylization_font
-		bars.db.profile.BigWigsAnchor_width = 185
-		bars.db.profile.BigWigsAnchor_x = 188 / UIParent:GetEffectiveScale()
-		bars.db.profile.BigWigsEmphasizeAnchor_width = 184
-		bars.db.profile.BigWigsEmphasizeAnchor_x = 620
+		bars.db.profile.fontName = "Hooge"
+		--FIXME bars.db.profile.BigWigsAnchor_width = 185
+		-- bars.db.profile.BigWigsAnchor_x = 188 / UIParent:GetEffectiveScale()
+		-- bars.db.profile.BigWigsEmphasizeAnchor_width = 184
+		-- bars.db.profile.BigWigsEmphasizeAnchor_x = 620
 		bars.db.profile.emphasizeGrowup = true
-		bars.db.profile.InstalledBars = C.actionbar.bottombars
-		if C.actionbar.bottombars == 1 then
-			bars.db.profile.BigWigsAnchor_y = 185 * UIParent:GetEffectiveScale()
-			bars.db.profile.BigWigsEmphasizeAnchor_y = 344 * UIParent:GetEffectiveScale()
-		elseif C.actionbar.bottombars == 2 then
-			bars.db.profile.BigWigsAnchor_y = 213 * UIParent:GetEffectiveScale()
-			bars.db.profile.BigWigsEmphasizeAnchor_y = 372 * UIParent:GetEffectiveScale()
-		elseif C.actionbar.bottombars == 3 then
-			bars.db.profile.BigWigsAnchor_y = 241 * UIParent:GetEffectiveScale()
-			bars.db.profile.BigWigsEmphasizeAnchor_y = 400 * UIParent:GetEffectiveScale()
-		end
+		-- bars.db.profile.InstalledBars = C.actionbar.bottombars
+		-- if C.actionbar.bottombars == 1 then
+			-- bars.db.profile.BigWigsAnchor_y = 185 * UIParent:GetEffectiveScale()
+			-- bars.db.profile.BigWigsEmphasizeAnchor_y = 344 * UIParent:GetEffectiveScale()
+		-- elseif C.actionbar.bottombars == 2 then
+			-- bars.db.profile.BigWigsAnchor_y = 213 * UIParent:GetEffectiveScale()
+			-- bars.db.profile.BigWigsEmphasizeAnchor_y = 372 * UIParent:GetEffectiveScale()
+		-- elseif C.actionbar.bottombars == 3 then
+			-- bars.db.profile.BigWigsAnchor_y = 241 * UIParent:GetEffectiveScale()
+			-- bars.db.profile.BigWigsEmphasizeAnchor_y = 400 * UIParent:GetEffectiveScale()
+		-- end
 	end
 	local mess = BigWigs:GetPlugin("Messages")
 	if mess then
 		mess.db.profile.fontName = "Calibri"
 		mess.db.profile.fontSize = 20
 		mess.db.profile.emphFontName = "Calibri"
-		mess.db.profile.BWMessageAnchor_x = 615
-		mess.db.profile.BWMessageAnchor_y = 440
-		mess.db.profile.BWEmphasizeMessageAnchor_x = 618
-		mess.db.profile.BWEmphasizeMessageAnchor_y = 495
-		mess.db.profile.BWEmphasizeCountdownMessageAnchor_x = 665
-		mess.db.profile.BWEmphasizeCountdownMessageAnchor_y = 477
+		--FIXME mess.db.profile.BWMessageAnchor_x = 615
+		-- mess.db.profile.BWMessageAnchor_y = 440
+		-- mess.db.profile.BWEmphasizeMessageAnchor_x = 618
+		-- mess.db.profile.BWEmphasizeMessageAnchor_y = 495
+		-- mess.db.profile.BWEmphasizeCountdownMessageAnchor_x = 665
+		-- mess.db.profile.BWEmphasizeCountdownMessageAnchor_y = 477
 	end
 	local prox = BigWigs:GetPlugin("Proximity")
 	if prox then
 		prox.db.profile.fontName = "Calibri"
 		prox.db.profile.objects.ability = false
 	end
-	local altpower = BigWigs:GetPlugin("AltPower")
-	if altpower then
-		altpower.db.profile.fontName = "Calibri"
-	end
-	if T.Classic then
-		BigWigsIconClassicDB.hide = true
-	else
-		BigWigsIconDB.hide = true
-	end
+	BigWigs:GetPlugin("AltPower").db.profile.fontName = "Calibri"
+	BigWigsIconDB.hide = true
 	if InCombatLockdown() then
 		print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r")
 		print("|cffffff00Reload your UI to apply skin.|r")
@@ -300,18 +270,17 @@ SlashCmdList.BWTEST = function(msg)
 		SlashCmdList["BigWigs"]()
 		HideUIPanel(InterfaceOptionsFrame)
 		StaticPopup_Show("SETTINGS_BIGWIGS")
-	elseif msg == "test" then
-		SlashCmdList["BigWigs"]()
-		BigWigs:GetPlugin("Proximity").Test(BigWigs:GetPlugin("Proximity"))
-		HideUIPanel(InterfaceOptionsFrame)
-		BigWigs:Test()
-		BigWigs:Test()
-		BigWigs:Test()
-		BigWigs:Test()
-		BigWigs:Test()
+	-- elseif msg == "test" then
+		-- SlashCmdList["BigWigs"]()
+		-- HideUIPanel(InterfaceOptionsFrame)
+		-- BigWigs:Test()
+		-- BigWigs:Test()
+		-- BigWigs:Test()
+		-- BigWigs:Test()
+		-- BigWigs:Test()
 	else
 		print("|cffffff00Type /bwtest apply to apply BigWigs settings.|r")
-		print("|cffffff00Type /bwtest test to launch BigWigs testmode.|r")
+		-- print("|cffffff00Type /bwtest test to launch BigWigs testmode.|r")
 	end
 end
 SLASH_BWTEST1 = "/bwtest"
