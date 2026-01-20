@@ -68,7 +68,7 @@ if C.raidcooldown.enable == true then
 		{16190, 300},	-- Mana Tide Totem
 		-- Other
 		{34477, 120},	-- Misdirection
-		{6346, 30},		-- Fear Ward
+		{6346, 180},	-- Fear Ward
 		{10060, 180},	-- Power Infusion
 		-- {29858, 300},	-- Soulshatter
 	}
