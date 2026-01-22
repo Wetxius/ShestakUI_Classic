@@ -1866,7 +1866,7 @@ do
 		HideOptions(classic)
 	elseif IsCataBuild() then
 		HideOptions(cata)
-	elseif IsMistsBuild() then 
+	elseif IsMistsBuild() then
 		HideOptions(mists)
 	else
 		HideOptions(mainline)
@@ -1917,7 +1917,7 @@ do
 
 	local totem_other = ns.CreateCheckBox(parent, "totem_other")
 	totem_other:SetPoint("TOPLEFT", totem, "BOTTOMLEFT", 20, 0)
-	
+
 	local shadow = ns.CreateCheckBox(parent, "shadow", L_GUI_UF_PLUGINS_SHADOW_BAR)
 	shadow:SetPoint("TOPLEFT", totem_other, "BOTTOMLEFT", 0, 0)
 
@@ -3978,29 +3978,19 @@ if WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
 	button:SetScript("OnClick", openGUI)
 	button:SetSize(150, 28)
 	button:SetText("ShestakUI")
-
 	GameMenuFrame.ShestakUI = button
-
-	local gameMenuLastButtons = {
-		[_G.GAMEMENU_OPTIONS] = 1,
-		[_G.BLIZZARD_STORE] = 2
-	}
 
 	local function PositionGameMenuButton()
 		if not ShestakUI then return end
-		local anchorIndex = (C_StorePublic.IsEnabled and C_StorePublic.IsEnabled() and 2) or 1
-		for button in GameMenuFrame.buttonPool:EnumerateActive() do
-			local text = button:GetText()
 
-			local lastIndex = gameMenuLastButtons[text]
-			if lastIndex == anchorIndex and GameMenuFrame.ShestakUI then
-				GameMenuFrame.ShestakUI:SetPoint("TOPLEFT", button, "BOTTOMLEFT", 0, -14)
-			elseif not lastIndex then
-				local point, anchor, point2, x, y = button:GetPoint()
-				button:SetPoint(point, anchor, point2, x, y - 35)
-			end
+		for button in GameMenuFrame.buttonPool:EnumerateActive() do
+			GameMenuFrame.ShestakUI:SetPoint("TOPLEFT", GameMenuFrame, "TOPLEFT", 28, -25)
+
+			local point, anchor, point2, x, y = button:GetPoint()
+			button:SetPoint(point, anchor, point2, x, y - 40)
 
 			-- Replace EditMode with our moving system
+			local text = button:GetText()
 			if text and text == HUD_EDIT_MODE_MENU then
 				button:SetScript("OnClick", function()
 					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
@@ -4013,7 +4003,7 @@ if WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
 			fstring:SetFont(C.media.normal_font, 14)
 		end
 
-		GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + 14)
+		GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + 20)
 	end
 
 	hooksecurefunc(GameMenuFrame, "Layout", PositionGameMenuButton)
