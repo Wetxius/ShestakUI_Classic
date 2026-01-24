@@ -26,7 +26,31 @@ local function Update(self, _, unit, powerType)
 	end
 
 	local cur = UnitPower("player", SPELL_POWER_SHADOW_ORBS)
-	local max = (oUF:IsClassic() and 5 or 3) -- Cause we don't use :Factory to spawn frames it return sometimes "3"
+	local max = UnitPowerMax("player", SPELL_POWER_SHADOW_ORBS)
+	local spacing = select(4, element[3]:GetPoint())
+	local barWidth = element:GetWidth()
+	local lastBar = 0
+
+	if element.max ~= max then
+		if max == 3 then
+			element[4]:Hide()
+			element[5]:Hide()
+		elseif max == 5 then
+			element[4]:Show()
+			element[5]:Show()
+		end
+
+		for i = 1, max do
+			if i ~= max then
+				element[i]:SetWidth(barWidth / max - spacing)
+				lastBar = lastBar + (barWidth / max)
+			else
+				element[i]:SetWidth(barWidth - lastBar)
+			end
+		end
+
+		element.max = max
+	end
 
 	for i = 1, max do
 		if(i <= cur) then
@@ -53,7 +77,7 @@ local function Path(self, ...)
 end
 
 local function ForceUpdate(element)
-	return VisibilityPath(element.__owner, 'ForceUpdate', element.__owner.unit)
+	return Path(element.__owner, 'ForceUpdate', element.__owner.unit)
 end
 
 local function Visibility(self)
@@ -77,6 +101,7 @@ local function Enable(self)
 
 		self:RegisterEvent("UNIT_DISPLAYPOWER", Path)
 		self:RegisterEvent("UNIT_POWER_UPDATE", Path)
+		self:RegisterEvent("UNIT_MAXPOWER", Path)
 
 		element.handler = CreateFrame("Frame", nil, element)	-- ShestakUI
 		element.handler:RegisterEvent("PLAYER_TALENT_UPDATE")
@@ -99,9 +124,12 @@ local function Disable(self)
 	if(element) then
 		element:Hide()
 
-		self:UnregisterEvent('UNIT_DISPLAYPOWER', VisibilityPath)
-		self:UnregisterEvent('PLAYER_TALENT_UPDATE', VisibilityPath)
+		self:UnregisterEvent('UNIT_DISPLAYPOWER', Path)
+		self:UnregisterEvent('UNIT_POWER_UPDATE', Path)
+		self:UnregisterEvent('UNIT_MAXPOWER', Path)
+		element.handler:UnregisterEvent('PLAYER_TALENT_UPDATE')
+		element.handler:UnregisterEvent('PLAYER_ENTERING_WORLD')
 	end
 end
 
-oUF:AddElement('ShadowOrbs', VisibilityPath, Enable, Disable)
+oUF:AddElement('ShadowOrbs', Path, Enable, Disable)
