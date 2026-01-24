@@ -587,11 +587,7 @@ function Stuffing:BagFrameSlotNew(p, slot)
 			SetItemButtonTextureVertexColor(ret.frame, 1.0, 1.0, 1.0)
 		end
 	else
-		if T.Classic then
-			ret.frame = CreateFrame(T.Classic and "CheckButton" or "ItemButton", "StuffingFBag"..slot.."Slot", p, "BagSlotButtonTemplate")
-		else
-			ret.frame = CreateFrame(T.Classic and "CheckButton" or "ItemButton", "StuffingFBag"..(slot + 1).."Slot", p, "")
-		end
+		ret.frame = CreateFrame("ItemButton", "StuffingFBag"..(slot + 1).."Slot", p, "")
 		Mixin(ret.frame, BackdropTemplateMixin)
 
 		ret.frame.ID = C_Container.ContainerIDToInventoryID(slot + 1)
@@ -607,10 +603,6 @@ function Stuffing:BagFrameSlotNew(p, slot)
 			PutItemInBag(self:GetID())
 		end)
 
-		local tooltip_hide = function()
-			GameTooltip:Hide()
-		end
-
 		local tooltip_show = function(self)
 			GameTooltip:SetOwner(self, "ANCHOR_LEFT", 19, 7)
 			GameTooltip:ClearLines()
@@ -624,16 +616,14 @@ function Stuffing:BagFrameSlotNew(p, slot)
 		end
 
 		ret.frame:HookScript("OnEnter", tooltip_show)
-		ret.frame:HookScript("OnLeave", tooltip_hide)
-
-		ret.frame:SetTemplate("Default")
+		ret.frame:HookScript("OnLeave", function() GameTooltip:Hide() end)
 
 		local quality = GetInventoryItemQuality("player", ret.frame.ID)
 		if quality then
 			ret.frame.quality = quality
-			-- else
+		-- else
 			-- C_Timer.After(1, function() -- TODO: Test it if quality not returned after first open
-			-- ret.frame.quality = GetInventoryItemQuality("player", ret.frame.ID)
+				-- ret.frame.quality = GetInventoryItemQuality("player", ret.frame.ID)
 			-- end)
 		end
 
@@ -1491,11 +1481,11 @@ function Stuffing:ADDON_LOADED(addon)
 		self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW")
 		self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE")
 		self:RegisterEvent("PLAYERREAGENTBANKSLOTS_CHANGED")
-		self:RegisterEvent("BAG_CONTAINER_UPDATE")
 	end
 	self:RegisterEvent("BAG_CLOSED")
 	self:RegisterEvent("BAG_UPDATE_COOLDOWN")
 	self:RegisterEvent("BAG_UPDATE_DELAYED")
+	self:RegisterEvent("BAG_CONTAINER_UPDATE")
 
 	self:InitBags()
 
