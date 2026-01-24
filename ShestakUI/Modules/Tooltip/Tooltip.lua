@@ -408,7 +408,7 @@ end
 ----------------------------------------------------------------------------------------
 if T.Classic then
 	-- TODO: Revisit this
-	hooksecurefunc("GameTooltip_AnchorComparisonTooltips", function(self, anchorFrame, shoppingTooltip1, shoppingTooltip2, _, secondaryItemShown)
+	hooksecurefunc("GameTooltip_AnchorComparisonTooltips", function(_, anchorFrame, shoppingTooltip1, shoppingTooltip2, _, secondaryItemShown)
 		local point = shoppingTooltip1:GetPoint()
 		if secondaryItemShown then
 			if point == "TOPLEFT" then
