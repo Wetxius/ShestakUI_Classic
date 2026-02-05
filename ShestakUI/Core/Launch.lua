@@ -127,11 +127,7 @@ local function InstallUI()
 		ShestakUISettings.Reputation = true
 	end
 
-	if T.Mainline then
-		if C_ClassTrial.IsClassTrialCharacter() and IsWetxius then
-			SlashCmdList.ONLY_UI()
-		end
-
+	if T.Mainline or T.TBC then
 		-- Set to default layout of Blizzard Edit Mode
 		C_EditMode.SetActiveLayout(1)
 	end
