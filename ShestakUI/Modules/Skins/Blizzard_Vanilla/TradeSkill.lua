@@ -165,22 +165,25 @@ local function LoadSkin()
 					text:ClearAllPoints()
 					text:SetPoint("LEFT", button, "RIGHT", 6, 0)
 
-					hooksecurefunc(button, "SetNormalTexture", function(self, texture)
-						self:StripTextures()
-						self:SetTemplate("Overlay")
+					if not button.hooked then
+						hooksecurefunc(button, "SetNormalTexture", function(self, texture)
+							self:StripTextures()
+							self:SetTemplate("Overlay")
 
-						self.minus = self:CreateTexture(nil, "OVERLAY")
-						self.minus:SetSize(7, 1)
-						self.minus:SetPoint("CENTER")
-						self.minus:SetTexture(C.media.blank)
+							self.minus = self:CreateTexture(nil, "OVERLAY")
+							self.minus:SetSize(7, 1)
+							self.minus:SetPoint("CENTER")
+							self.minus:SetTexture(C.media.blank)
 
-						if not string.find(texture, "MinusButton") then
-							self.plus = self:CreateTexture(nil, "OVERLAY")
-							self.plus:SetSize(1, 7)
-							self.plus:SetPoint("CENTER")
-							self.plus:SetTexture(C.media.blank)
-						end
-					end)
+							if not string.find(texture, "MinusButton") then
+								self.plus = self:CreateTexture(nil, "OVERLAY")
+								self.plus:SetSize(1, 7)
+								self.plus:SetPoint("CENTER")
+								self.plus:SetTexture(C.media.blank)
+							end
+						end)
+						button.hooked = true
+					end
 				end
 			end
 		end
