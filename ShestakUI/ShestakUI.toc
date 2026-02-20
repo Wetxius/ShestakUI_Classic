@@ -7,7 +7,7 @@
 ## Title: ShestakUI (Classic)
 ## Notes: A total UI overhaul for World of Warcraft
 ## Author: Shestak
-## Version: 2.2.5
+## Version: 2.2.6
 ## X-Curse-Project-ID: 1302482
 ## X-WoWI-ID: *****
 ## X-Wago-ID: ****
