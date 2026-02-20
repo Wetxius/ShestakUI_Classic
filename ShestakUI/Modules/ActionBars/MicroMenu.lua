@@ -8,7 +8,7 @@ local frame = CreateFrame("Frame", "MicroAnchor", T_PetBattleFrameHider or UIPar
 frame:SetPoint(unpack(C.position.micro_menu))
 frame:SetSize(250, 25)
 
-if T.Classic then
+if T.Classic and not T.TBC then
 	UpdateMicroButtonsParent(frame)
 end
 
@@ -18,7 +18,7 @@ if C.actionbar.micromenu_mouseover then
 	frame:SetScript("OnLeave", function() frame:SetAlpha(0) end)
 end
 
-local MICRO_BUTTONS = T.Vanilla and MICRO_BUTTONS or {
+local MICRO_BUTTONS = (T.Vanilla or T.TBC) and MICRO_BUTTONS or {
 	"CharacterMicroButton",
 	"SpellbookMicroButton",
 	"TalentMicroButton",
@@ -38,14 +38,14 @@ for i, button in pairs(MICRO_BUTTONS) do
 	local normal = bu:GetNormalTexture()
 	local pushed = bu:GetPushedTexture()
 	local disabled = bu:GetDisabledTexture()
-	if T.Mainline then
+	if T.Mainline or T.TBC then
 		bu:SetSize(22, 29)
 	end
 
 	local point = bu:GetPoint()
 	if point then
 		bu:ClearAllPoints()
-		if T.Classic then
+		if T.Classic and not T.TBC then
 			if i == 1 then
 				bu:SetPoint("TOPLEFT", frame, "TOPLEFT", -1, 28)
 			else
@@ -70,7 +70,7 @@ for i, button in pairs(MICRO_BUTTONS) do
 	local f = CreateFrame("Frame", nil, bu)
 	f:SetFrameLevel(1)
 	f:SetFrameStrata("BACKGROUND")
-	if T.Classic then
+	if T.Classic and not T.TBC then
 		f:SetPoint("BOTTOMLEFT", bu, "BOTTOMLEFT", 2, 0)
 		f:SetPoint("TOPRIGHT", bu, "TOPRIGHT", -2, -28)
 	else
