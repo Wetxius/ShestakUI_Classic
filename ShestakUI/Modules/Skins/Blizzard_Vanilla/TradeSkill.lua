@@ -38,6 +38,11 @@ local function LoadSkin()
 	TradeSkillRankFrame:SetPoint("TOP", -10, -34)
 	TradeSkillRankFrame:SetStatusBarTexture(C.media.blank)
 
+	T.SkinEditBox(TradeSearchInputBox, 100)
+	TradeSearchInputBox:ClearAllPoints()
+	TradeSearchInputBox:SetPoint("BOTTOMLEFT", TradeSkillInvSlotDropdown, "BOTTOMRIGHT", 8, 3)
+	-- /run TradeSearchInputBox:Show()
+
 	TradeSkillListScrollFrame:StripTextures()
 	TradeSkillListScrollFrame:SetSize(310, 405)
 	TradeSkillListScrollFrame:ClearAllPoints()
@@ -140,55 +145,28 @@ local function LoadSkin()
 		CreateFrame("Button", "TradeSkillSkill"..i, TradeSkillFrame, "TradeSkillSkillButtonTemplate"):SetPoint("TOPLEFT", _G["TradeSkillSkill"..i - 1], "BOTTOMLEFT")
 	end
 
-	local function UpdateTradeskill()
-		local numSkills = GetNumTradeSkills()
-		local offset = FauxScrollFrame_GetOffset(TradeSkillListScrollFrame)
-		local index, button, highlight, text
+	-- local function UpdateTradeskill()
+		-- local numSkills = GetNumTradeSkills()
+		-- local offset = FauxScrollFrame_GetOffset(TradeSkillListScrollFrame)
+		-- local index, button
 
-		for i = 1, TRADE_SKILLS_DISPLAYED do
-			button = _G["TradeSkillSkill"..i]
-			highlight = _G["TradeSkillSkill"..i.."Highlight"]
-			text = _G["TradeSkillSkill"..i.."Text"]
-			index = offset + i
+		-- for i = 1, TRADE_SKILLS_DISPLAYED do
+			-- button = _G["TradeSkillSkill"..i]
+			-- index = offset + i
 
-			if index <= numSkills then
-				local skillName, skillType, numAvailable, isExpanded = GetTradeSkillInfo(index)
+			-- if index <= numSkills then
+				-- local _, skillType = GetTradeSkillInfo(index)
 
-				if skillType == "header" then
-					button:SetSize(14, 14)
-					button:SetPoint("CENTER")
-					button:SetHitRectInsets(1, 1, 1, 1)
-
-					highlight:SetTexture(0)
-					highlight.SetTexture = T.dummy
-
-					text:ClearAllPoints()
-					text:SetPoint("LEFT", button, "RIGHT", 6, 0)
-
-					if not button.hooked then
-						hooksecurefunc(button, "SetNormalTexture", function(self, texture)
-							self:StripTextures()
-							self:SetTemplate("Overlay")
-
-							self.minus = self:CreateTexture(nil, "OVERLAY")
-							self.minus:SetSize(7, 1)
-							self.minus:SetPoint("CENTER")
-							self.minus:SetTexture(C.media.blank)
-
-							if not string.find(texture, "MinusButton") then
-								self.plus = self:CreateTexture(nil, "OVERLAY")
-								self.plus:SetSize(1, 7)
-								self.plus:SetPoint("CENTER")
-								self.plus:SetTexture(C.media.blank)
-							end
-						end)
-						button.hooked = true
-					end
-				end
-			end
-		end
-	end
-	hooksecurefunc("TradeSkillFrame_Update", UpdateTradeskill)
+				-- if skillType == "header" then
+					-- if not button.hooked then
+						-- T.SkinExpandOrCollapse(button)
+						-- button.hooked = true
+					-- end
+				-- end
+			-- end
+		-- end
+	-- end
+	-- hooksecurefunc("TradeSkillFrame_Update", UpdateTradeskill)
 
 	for i = 1, MAX_TRADE_SKILL_REAGENTS do
 		local reagent = _G["TradeSkillReagent"..i]
