@@ -25,6 +25,7 @@
 
 	<Script file="Auction.lua"/>
 	<Script file="Character.lua"/>			<!-- TODO -->
+	<Script file="Craft.lua"/>
 	<Script file="Communities.lua"/>
 	<Script file="Container.lua"/>
 	<Script file="DressUp.lua"/>
