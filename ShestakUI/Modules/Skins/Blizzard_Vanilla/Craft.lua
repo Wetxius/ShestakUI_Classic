@@ -28,9 +28,9 @@ local function LoadSkin()
 		T.SkinDropDownBox(frame.Dropdown)
 	end
 
+	T.SkinScrollBar(CraftListScrollFrameScrollBar)
 	T.SkinScrollBar(CraftDetailScrollFrameScrollBar)
 
-	_G.CraftDetailScrollFrameScrollBar:SetAlpha(0)
 	_G.CraftDetailScrollFrameTop:SetAlpha(0)
 	_G.CraftDetailScrollFrameBottom:SetAlpha(0)
 
