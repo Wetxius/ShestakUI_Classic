@@ -34,6 +34,7 @@ local function LoadSkin()
 		for i = 1, SPELLS_PER_PAGE do
 			local button = _G["SpellButton"..i]
 			local icon = _G["SpellButton"..i.."IconTexture"]
+			local highlight = _G["SpellButton"..i.."Highlight"]
 
 			if first then
 				-- _G["SpellButton"..i.."SlotFrame"]:SetAlpha(0)
@@ -45,12 +46,18 @@ local function LoadSkin()
 				-- button.UnlearnedFrame:SetAlpha(0)
 				button:SetCheckedTexture(0)
 				button:SetPushedTexture(0)
+
+				hooksecurefunc(highlight, "SetTexture", function(button, texture)
+					if texture and texture == [[Interface\Buttons\ButtonHilight-Square]] then
+						button:SetColorTexture(1, 1, 1, 0.3)
+					end
+				end)
 			end
 
-			if _G["SpellButton"..i.."Highlight"] then
-				_G["SpellButton"..i.."Highlight"]:SetColorTexture(1, 1, 1, 0.3)
-				_G["SpellButton"..i.."Highlight"]:ClearAllPoints()
-				_G["SpellButton"..i.."Highlight"]:SetAllPoints(icon)
+			if highlight then
+				highlight:SetColorTexture(1, 1, 1, 0.3)
+				highlight:ClearAllPoints()
+				highlight:SetAllPoints(icon)
 			end
 
 			if icon then
@@ -131,15 +138,18 @@ local function LoadSkin()
 	for i = 1, 3 do
 		local tab = _G["SpellBookFrameTabButton"..i]
 		local lastTab = _G["SpellBookFrameTabButton"..(i-1)]
-		if lastTab then
-			tab:ClearAllPoints()
+		tab:ClearAllPoints()
+		if i == 1 then
+			tab:SetPoint("TOPLEFT", _G.SpellBookFrame, "BOTTOMLEFT", 5, 90)
+		else
 			tab:SetPoint("LEFT", lastTab, "RIGHT", -16, 0)
 		end
 		tab:StripTextures()
 		tab:SetNormalTexture(0)
 		tab:SetHighlightTexture(0)
-		tab:SetSize(tab:GetWidth() * 0.75, 32)
 		T.SkinTab(tab)
+		tab.backdrop:SetPoint("TOPLEFT", 10, -15)
+		tab.backdrop:SetPoint("BOTTOMRIGHT", -10, 15)
 	end
 	C_Timer.After(0.1, function()
 		if CliqueSpellbookTabButton then
