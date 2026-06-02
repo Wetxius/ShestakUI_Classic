@@ -50,7 +50,7 @@ local function LoadSkin()
 	}
 
 	for _, object in pairs(QuestStrip) do
-		_G[object]:StripTextures(true)
+		_G[object]:StripTextures()
 	end
 
 	QuestFrameDetailPanel:SetPoint("TOPLEFT", -5, -12)

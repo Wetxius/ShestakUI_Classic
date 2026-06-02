@@ -162,11 +162,11 @@ local function LoadSkin()
 				end
 
 				if child.BaseTab then
-					child.BaseTab:StripTextures(true)
+					child.BaseTab:StripTextures()
 					T.SkinTab(child.BaseTab, true)
 				end
 				if child.RaidTab then
-					child.RaidTab:StripTextures(true)
+					child.RaidTab:StripTextures()
 					T.SkinTab(child.RaidTab, true)
 				end
 				if child.BaseQualityControls then

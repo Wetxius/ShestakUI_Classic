@@ -73,7 +73,7 @@ local function LoadSkin()
 				for button in buttonsContainer.buttonPool:EnumerateActive() do
 					if not button.isSkinned then
 						if IsAnima then
-							button:StripTextures(true)
+							button:StripTextures()
 						end
 						-- if i == 1 or (hasArtwork and i == 2) then
 							button:SkinButton()

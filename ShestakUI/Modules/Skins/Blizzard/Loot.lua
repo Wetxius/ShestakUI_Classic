@@ -193,7 +193,7 @@ local function LoadSkin()
 			name.border.backdrop:SetPoint("BOTTOMRIGHT", name, -8, 12)
 		end
 	else
-		LootFrame:StripTextures(true)
+		LootFrame:StripTextures()
 		LootFrame:SetTemplate("Transparent")
 		T.SkinCloseButton(LootFrame.ClosePanelButton)
 

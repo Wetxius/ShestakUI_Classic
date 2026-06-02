@@ -3967,7 +3967,7 @@ end
 ----------------------------------------------------------------------------------------
 --	Button in GameMenuButton frame
 ----------------------------------------------------------------------------------------
-if WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
+if WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or WOW_PROJECT_MISTS_CLASSIC then
 	local function openGUI()
 		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
 		HideUIPanel(GameMenuFrame)
@@ -3994,7 +3994,7 @@ if WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
 
 			local lastIndex = gameMenuLastButtons[text]
 			if lastIndex == anchorIndex and GameMenuFrame.ShestakUI then
-				GameMenuFrame.ShestakUI:SetPoint("TOPLEFT", button, "BOTTOMLEFT", 0, -14)
+				GameMenuFrame.ShestakUI:SetPoint("TOPLEFT", button, "BOTTOMLEFT", 0, -28)
 			elseif not lastIndex then
 				local point, anchor, point2, x, y = button:GetPoint()
 				button:SetPoint(point, anchor, point2, x, y - 35)
@@ -4017,7 +4017,7 @@ if WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
 	end
 
 	hooksecurefunc(GameMenuFrame, "Layout", PositionGameMenuButton)
-else
+else 
 	local menuButton = CreateFrame("Button", "GameMenuButtonSettingsUI", GameMenuFrame, "GameMenuButtonTemplate")
 	menuButton:SetText("ShestakUI")
 	menuButton:SetPoint("TOP", GetLocale() ~= "koKR" and "GameMenuButtonAddons" or "GameMenuButtonRatings", "BOTTOM", 0, -1)

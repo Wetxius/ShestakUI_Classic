@@ -19,7 +19,7 @@ frame:SetScript("OnEvent", function()
 	VanasKoS_FontFriendly:SetFont(C.media.pixel_font, C.media.pixel_font_size, C.media.pixel_font_style)
 	VanasKoS_FontNormal:SetFont(C.media.pixel_font, C.media.pixel_font_size, C.media.pixel_font_style)
 
-	VanasKoSFrame:StripTextures(true)
+	VanasKoSFrame:StripTextures()
 	VanasKoSFrame:CreateBackdrop("Transparent")
 	VanasKoSFrame.backdrop:SetPoint("TOPLEFT", 16, -12)
 	VanasKoSFrame.backdrop:SetPoint("BOTTOMRIGHT", -30, 75)

@@ -8,7 +8,7 @@ local function LoadSkin()
 	if C.bag.enable == true or (IsAddOnLoaded("AdiBags") or C_AddOns.IsAddOnLoaded("ArkInventory") or C_AddOns.IsAddOnLoaded("cargBags_Nivaya") or C_AddOns.IsAddOnLoaded("cargBags") or C_AddOns.IsAddOnLoaded("Bagnon") or C_AddOns.IsAddOnLoaded("Combuctor") or C_AddOns.IsAddOnLoaded("TBag") or C_AddOns.IsAddOnLoaded("BaudBag") or C_AddOns.IsAddOnLoaded("Baganator")) then return end
 
 	-- Container Frame
-	BagItemSearchBox:StripTextures(true)
+	BagItemSearchBox:StripTextures()
 	BagItemSearchBox:CreateBackdrop("Overlay")
 	BagItemSearchBox.backdrop:SetPoint("TOPLEFT", 13, 0)
 	BagItemSearchBox.backdrop:SetPoint("BOTTOMRIGHT", -2, 0)
@@ -26,7 +26,7 @@ local function LoadSkin()
 	BagItemAutoSortButton:GetNormalTexture():SetPoint("TOPLEFT", 2, -2)
 	BagItemAutoSortButton:GetNormalTexture():SetPoint("BOTTOMRIGHT", -2, 2)
 
-	ContainerFrameCombinedBags:StripTextures(true)
+	ContainerFrameCombinedBags:StripTextures()
 	ContainerFrameCombinedBags:CreateBackdrop("Transparent")
 	ContainerFrameCombinedBags.Bg:Hide()
 	T.SkinCloseButton(ContainerFrameCombinedBags.CloseButton)
@@ -64,7 +64,7 @@ local function LoadSkin()
 		local frame = _G["ContainerFrame"..i]
 		local close = _G["ContainerFrame"..i].CloseButton
 
-		frame:StripTextures(true)
+		frame:StripTextures()
 		frame:CreateBackdrop("Transparent")
 		frame.backdrop:SetPoint("TOPLEFT", 4, -2)
 		frame.backdrop:SetPoint("BOTTOMRIGHT", 0, 2)
@@ -110,7 +110,7 @@ local function LoadSkin()
 		end)
 	end
 
-	BackpackTokenFrame:StripTextures(true)
+	BackpackTokenFrame:StripTextures()
 	hooksecurefunc(_G.BackpackTokenFrame, "Update", function (container)
 		for _, token in next, container.Tokens do
 			if not token.Icon.styled then
@@ -123,12 +123,12 @@ local function LoadSkin()
 	end)
 
 	-- Bank Frame
-	BankFrame:StripTextures(true)
+	BankFrame:StripTextures()
 	BankFrame:CreateBackdrop("Transparent")
 	BankFrame.backdrop:SetAllPoints()
 	BankFramePortrait:SetAlpha(0)
 
-	BankItemSearchBox:StripTextures(true)
+	BankItemSearchBox:StripTextures()
 	BankItemSearchBox:CreateBackdrop("Overlay")
 	BankItemSearchBox.backdrop:SetPoint("TOPLEFT", 13, 0)
 	BankItemSearchBox.backdrop:SetPoint("BOTTOMRIGHT", -2, 0)

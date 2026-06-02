@@ -10,7 +10,7 @@ local function LoadSkin()
 	UIPanelWindows["TradeSkillFrame"] = {area = "doublewide", pushable = 0, whileDead = 1}
 
 	local TradeSkillFrame = _G["TradeSkillFrame"]
-	TradeSkillFrame:StripTextures(true)
+	TradeSkillFrame:StripTextures()
 	TradeSkillFrame:CreateBackdrop("Transparent")
 	TradeSkillFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
 	TradeSkillFrame.backdrop:SetPoint("BOTTOMRIGHT", -34, 0)

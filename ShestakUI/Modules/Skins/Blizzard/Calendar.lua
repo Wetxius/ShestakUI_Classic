@@ -127,7 +127,7 @@ local function LoadSkin()
 	T.SkinCloseButton(CalendarViewRaidCloseButton)
 
 	-- Holiday View
-	CalendarViewHolidayFrame:StripTextures(true)
+	CalendarViewHolidayFrame:StripTextures()
 	CalendarViewHolidayFrame:SetTemplate("Transparent")
 	CalendarViewHolidayFrame:SetPoint("TOPLEFT", CalendarFrame, "TOPRIGHT", 3, 0)
 	T.SkinCloseButton(CalendarViewHolidayCloseButton)

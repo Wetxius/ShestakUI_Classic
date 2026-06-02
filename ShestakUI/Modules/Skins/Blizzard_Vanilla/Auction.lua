@@ -6,7 +6,7 @@ if C.skins.blizzard_frames ~= true then return end
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
 	T.SkinCloseButton(AuctionFrameCloseButton)
-	AuctionFrame:StripTextures(true)
+	AuctionFrame:StripTextures()
 	AuctionFrame:SetTemplate("Transparent")
 
 	BrowseTitle:ClearAllPoints()

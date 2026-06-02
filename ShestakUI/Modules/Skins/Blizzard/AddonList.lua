@@ -5,7 +5,7 @@ if C.skins.blizzard_frames ~= true then return end
 --	AddonList skin
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
-	if not T.TBC then
+	if not T.TBC and not T.Mists then
 		local buttons = {
 			"AddonListEnableAllButton",
 			"AddonListDisableAllButton",
@@ -40,7 +40,7 @@ local function LoadSkin()
 	AddonListInset:SetTemplate("Overlay")
 	AddonListInset:SetPoint("BOTTOMRIGHT", -6, 29)
 
-	if T.Classic and not T.TBC then
+	if T.Classic and not T.TBC and not T.Mists then
 		for i = 1, MAX_ADDONS_DISPLAYED do
 			T.SkinCheckBox(_G["AddonListEntry"..i.."Enabled"], nil, true)
 			_G["AddonListEntry"..i.."Load"]:SkinButton()
@@ -66,7 +66,7 @@ local function LoadSkin()
 		end)
 	end
 
-	if T.Classic and not T.TBC then
+	if T.Classic and not T.TBC and not T.Mists then
 		AddonListScrollFrame:StripTextures()
 		T.SkinScrollBar(AddonListScrollFrameScrollBar)
 	else

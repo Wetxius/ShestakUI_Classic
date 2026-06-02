@@ -67,7 +67,7 @@ local function LoadSkin()
 	GarrisonBuildingFrame.GarrCorners:Hide()
 
 	for _, button in pairs({GarrisonBuildingFrame.TownHallBox.UpgradeButton, GarrisonBuildingFrame.InfoBox.UpgradeButton}) do
-		button:StripTextures(true)
+		button:StripTextures()
 		button:SkinButton()
 	end
 
@@ -541,10 +541,10 @@ local function LoadSkin()
 	hooksecurefunc(GarrisonShipyardFrameFollowers, "ShowFollower", onShowFollower)
 
 	-- ShipYard
-	GarrisonShipyardFrame:StripTextures(true)
+	GarrisonShipyardFrame:StripTextures()
 	GarrisonShipyardFrame:CreateBackdrop("Transparent")
 	GarrisonShipyardFrame.BorderFrame.GarrCorners:StripTextures()
-	GarrisonShipyardFrame.BorderFrame:StripTextures(true)
+	GarrisonShipyardFrame.BorderFrame:StripTextures()
 	GarrisonShipyardFrame.BorderFrame.TitleText:SetPoint("TOP", -6, -1)
 	T.SkinCloseButton(GarrisonShipyardFrame.BorderFrame.CloseButton2)
 	T.SkinTab(GarrisonShipyardFrameTab1)
@@ -640,7 +640,7 @@ local function LoadSkin()
 	skinFollowerTraitsAndEquipment(GarrisonShipyardFrame.FollowerTab)
 
 	-- Recruiter frame
-	GarrisonRecruiterFrame:StripTextures(true)
+	GarrisonRecruiterFrame:StripTextures()
 	GarrisonRecruiterFrame:SetTemplate("Transparent")
 	T.SkinCloseButton(GarrisonRecruiterFrame.CloseButton)
 	GarrisonRecruiterFrame.UnavailableFrame:GetChildren():SkinButton()
@@ -754,7 +754,7 @@ local function LoadSkin()
 	end)
 
 	-- Capacitive display frame
-	GarrisonCapacitiveDisplayFrame:StripTextures(true)
+	GarrisonCapacitiveDisplayFrame:StripTextures()
 	GarrisonCapacitiveDisplayFrame:SetTemplate("Transparent")
 	GarrisonCapacitiveDisplayFrame:SetFrameLevel(5)
 	GarrisonCapacitiveDisplayFramePortrait:SetAlpha(0)

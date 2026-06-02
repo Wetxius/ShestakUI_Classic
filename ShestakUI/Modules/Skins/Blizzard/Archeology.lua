@@ -5,7 +5,7 @@ if C.skins.blizzard_frames ~= true then return end
 --	ArchaeologyUI skin
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
-	ArchaeologyFrame:StripTextures(true)
+	ArchaeologyFrame:StripTextures()
 	ArchaeologyFrame:SetTemplate("Transparent")
 	ArchaeologyFramePortrait:SetAlpha(0)
 

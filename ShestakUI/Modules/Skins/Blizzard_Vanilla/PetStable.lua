@@ -5,7 +5,7 @@ if C.skins.blizzard_frames ~= true then return end
 --	PetStable skin
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
-	PetStableFrame:StripTextures(true)
+	PetStableFrame:StripTextures()
 	PetStableFrame:CreateBackdrop("Transparent")
 	PetStableFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
 	PetStableFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)

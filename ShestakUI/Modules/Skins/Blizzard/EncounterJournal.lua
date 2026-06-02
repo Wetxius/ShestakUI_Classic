@@ -39,15 +39,15 @@ end)
 
 if C.skins.blizzard_frames ~= true then return end
 local function LoadSkin()
-	EncounterJournal:StripTextures(true)
-	EncounterJournal.inset:StripTextures(true)
+	EncounterJournal:StripTextures()
+	EncounterJournal.inset:StripTextures()
 	EncounterJournal:CreateBackdrop("Transparent")
 	EncounterJournal.backdrop:SetPoint("TOPLEFT", -3, 0)
 	EncounterJournal.backdrop:SetPoint("BOTTOMRIGHT", 0, -2)
 	EncounterJournalPortrait:SetAlpha(0)
 
-	EncounterJournalNavBar:StripTextures(true)
-	EncounterJournalNavBar.overlay:StripTextures(true)
+	EncounterJournalNavBar:StripTextures()
+	EncounterJournalNavBar.overlay:StripTextures()
 
 	EncounterJournalNavBar:CreateBackdrop("Transparent")
 	EncounterJournalNavBar.backdrop:SetPoint("TOPLEFT", -3, 1)

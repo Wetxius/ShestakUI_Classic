@@ -21,7 +21,7 @@ local function LoadSkin()
 	}
 
 	for _, frame in pairs(frames) do
-		_G[frame]:StripTextures(true)
+		_G[frame]:StripTextures()
 	end
 
 	local noname_frames = {
@@ -258,7 +258,7 @@ local function LoadSkin()
 	for i = 1, 7 do
 		local frame = _G["AchievementFrameAchievementsContainerButton"..i]
 		_G["AchievementFrameAchievementsContainerButton"..i.."Highlight"]:Kill()
-		frame:StripTextures(true)
+		frame:StripTextures()
 
 		-- Initiate method of creating a backdrop
 		frame.bg1 = frame:CreateTexture(nil, "BACKGROUND")

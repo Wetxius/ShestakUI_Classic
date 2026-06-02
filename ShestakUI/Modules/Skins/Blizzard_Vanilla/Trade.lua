@@ -5,7 +5,7 @@ if C.skins.blizzard_frames ~= true then return end
 --	Trade skin
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
-	TradeFrame:StripTextures(true)
+	Tradeframe:StripTextures()
 	TradeFrameInset:StripTextures()
 	TradePlayerItemsInset:StripTextures()
 	TradeRecipientItemsInset:StripTextures()

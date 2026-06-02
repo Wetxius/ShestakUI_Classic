@@ -31,7 +31,11 @@ local function OnEvent(self, event)
 	if event == "PLAYER_LOGIN" then
 		if not self.icon:GetTexture() then
 			self:UnregisterAllEvents()
-			self:RegisterEvent("LEARNED_SPELL_IN_TAB")
+			if T.TBC or T.Mists then
+				self:RegisterEvent("LEARNED_SPELL_IN_SKILL_LINE")
+			else
+				self:RegisterEvent("LEARNED_SPELL_IN_TAB")
+			end
 		end
 		return
 	end

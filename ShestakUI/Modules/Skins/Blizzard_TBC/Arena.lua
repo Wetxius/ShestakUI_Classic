@@ -5,7 +5,7 @@ if C.skins.blizzard_frames ~= true then return end
 --	Arena skin
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
-	ArenaFrame:StripTextures(true)
+	ArenaFrame:StripTextures()
 	ArenaFrame:CreateBackdrop("Transparent")
 	ArenaFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
 	ArenaFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)

@@ -5,7 +5,7 @@ if C.skins.blizzard_frames ~= true then return end
 --	TrainerUI skin
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
-	ClassTrainerFrame:StripTextures(true)
+	ClassTrainerFrame:StripTextures()
 	ClassTrainerFrame:CreateBackdrop("Transparent")
 	ClassTrainerFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
 	ClassTrainerFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)

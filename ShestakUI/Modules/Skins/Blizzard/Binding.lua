@@ -57,7 +57,7 @@ local function LoadSkin()
 	hooksecurefunc("BindingButtonTemplate_SetupBindingButton", function(_, button)
 		if not button.IsSkinned then
 			button:SetHeight(button:GetHeight() - 1)
-			button:StripTextures(true)
+			button:StripTextures()
 			button:StyleButton()
 			button:SetTemplate("Overlay")
 

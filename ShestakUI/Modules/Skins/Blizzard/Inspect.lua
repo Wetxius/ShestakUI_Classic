@@ -5,8 +5,8 @@ if C.skins.blizzard_frames ~= true then return end
 --	InspectUI skin
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
-	InspectFrame:StripTextures(true)
-	InspectFrameInset:StripTextures(true)
+	InspectFrame:StripTextures()
+	InspectFrameInset:StripTextures()
 	InspectFrame:CreateBackdrop("Transparent")
 	InspectFrame.backdrop:SetAllPoints()
 	T.SkinCloseButton(InspectFrameCloseButton)
