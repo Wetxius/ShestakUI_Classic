@@ -6,7 +6,7 @@ if C.nameplate.enable ~= true then return end
 ----------------------------------------------------------------------------------------
 local _, ns = ...
 local oUF = ns.oUF
-local noscalemult = T.HiDPI and T.noscalemult / 2 or T.noscalemult
+local noscalemult = 1
 
 local frame = CreateFrame("Frame")
 frame:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
@@ -416,7 +416,7 @@ if T.screenHeight > 1200 then
 end
 
 -- local auraFontHeight = (T.Classic and not T.TBC and T.HiDPI) and (C.font.auras_font_size * noscalemult * (2/3) / Mult) or (C.font.auras_font_size * noscalemult / Mult)
-local auraFontHeight = (C.font.auras_font_size * noscalemult / Mult)
+local auraFontHeight = (C.font.auras_font_size * 1)
 local AurasPostCreateButton = function(element, button)
 	CreateBorderFrame(button)
 
