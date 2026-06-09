@@ -3967,7 +3967,7 @@ end
 ----------------------------------------------------------------------------------------
 --	Button in GameMenuButton frame
 ----------------------------------------------------------------------------------------
-if WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or WOW_PROJECT_MISTS_CLASSIC then
+if WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC then
 	local function openGUI()
 		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
 		HideUIPanel(GameMenuFrame)
