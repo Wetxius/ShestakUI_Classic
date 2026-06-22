@@ -155,8 +155,10 @@ local function registerStyle(myProfile)
 	})
 
 	if BigWigsLoader and myProfile and myProfile.barStyle == "ShestakUI" then
-		BigWigsLoader.RegisterMessage("BigWigs_Plugins", "BigWigs_FrameCreated", function()
-			BigWigsProximityAnchor:SetTemplate("Transparent")
+		BigWigsLoader.RegisterMessage("BigWigs_Plugins", "BigWigs_FrameCreated", function(_, frame, name)
+			if name == "Proximity" and frame and frame.SetTemplate then
+				frame:SetTemplate("Transparent")
+			end
 		end)
 
 		BigWigsLoader.RegisterMessage("BigWigs_Plugins", "BigWigs_BarEmphasized", function(_, _, bar)
