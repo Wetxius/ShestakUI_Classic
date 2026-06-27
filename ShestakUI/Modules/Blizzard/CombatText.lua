@@ -468,11 +468,13 @@ CombatText:SetScript("OnEvent", nil)
 CombatText:SetScript("OnUpdate", nil)
 
 -- Steal external messages sent by other addons using CombatText_AddMessage
-hooksecurefunc("CombatText_AddMessage", function(message, _, r, g, b)
-	local lastEntry = COMBAT_TEXT_TO_ANIMATE[#COMBAT_TEXT_TO_ANIMATE]
-	CombatText_RemoveMessage(lastEntry)
-	xCT3:AddMessage(message, r, g, b)
-end)
+if not T.Mists then
+	hooksecurefunc("CombatText_AddMessage", function(message, _, r, g, b)
+		local lastEntry = COMBAT_TEXT_TO_ANIMATE[#COMBAT_TEXT_TO_ANIMATE]
+		CombatText_RemoveMessage(lastEntry)
+		xCT3:AddMessage(message, r, g, b)
+	end)
+end
 
 -- Color printer
 local pr = function(msg)
