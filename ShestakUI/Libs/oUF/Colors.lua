@@ -139,7 +139,16 @@ if(not customClassColors()) then
 	end)
 end
 
-for debuffType, color in next, _G.DebuffTypeColor do
+local DEBUFF_DISPLAY_INFO = {
+	["Magic"] = DEBUFF_TYPE_MAGIC_COLOR,
+	["Curse"] = DEBUFF_TYPE_CURSE_COLOR,
+	["Disease"] = DEBUFF_TYPE_DISEASE_COLOR,
+	["Poison"] = DEBUFF_TYPE_POISON_COLOR,
+	["Bleed"] = DEBUFF_TYPE_BLEED_COLOR,
+	["None"] = DEBUFF_TYPE_NONE_COLOR
+}
+
+for debuffType, color in next, DEBUFF_DISPLAY_INFO do
 	colors.debuff[debuffType] = oUF:CreateColor(color.r, color.g, color.b)
 end
 
