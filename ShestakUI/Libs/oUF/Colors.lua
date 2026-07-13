@@ -148,9 +148,24 @@ local DEBUFF_DISPLAY_INFO = {
 	["None"] = DEBUFF_TYPE_NONE_COLOR
 }
 
+-- Era still uses the global variables, this should backfill those if they exist (era)
+--
+-- TODO: there's a UI fix coming July 19th 2026 for Era, check if this is still needed after
+if _G.DebuffTypeColor then
+	for debuffType, color in next, _G.DebuffTypeColor do
+		if not DEBUFF_DISPLAY_INFO[debuffType] then
+			DEBUFF_DISPLAY_INFO[debuffType] = color
+		end
+	end
+end
+
 for debuffType, color in next, DEBUFF_DISPLAY_INFO do
 	colors.debuff[debuffType] = oUF:CreateColor(color.r, color.g, color.b)
 end
+
+-- oUF uses none, we use None, just defining both.
+colors.debuff.None = colors.debuff.None or colors.debuff.none or oUF:CreateColor(0.8, 0, 0)
+colors.debuff.none = colors.debuff.none or colors.debuff.None
 
 for eclass, color in next, _G.FACTION_BAR_COLORS do
 	colors.reaction[eclass] = oUF:CreateColor(color.r, color.g, color.b)
