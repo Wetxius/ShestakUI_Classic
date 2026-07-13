@@ -172,19 +172,19 @@ end
 ----------------------------------------------------------------------------------------
 --	Spec switching(by Monolit)
 ----------------------------------------------------------------------------------------
-if T.TBC or T.SoD or T.Wrath or T.Cata or T.Mists then
-	SlashCmdList.SPEC = function()
-		if GetNumSpecGroups() == 1 then
+
+SlashCmdList.SPEC = function()
+	if T.Vanilla or T.TBC or T.SoD or T.Wrath or T.Cata or T.Mists then
+		if GetNumTalentGroups() == 1 then
 			print("|cffffff00No dual spec|r")
 			return
 		end
-		SetActiveTalentGroup(GetActiveTalentGroup() % 2 + 1)
-	end
-	SLASH_SPEC1 = "/ss"
-	SLASH_SPEC2 = "/spec"
-	SLASH_SPEC3 = "/ыы"
-elseif T.Mainline then
-	SlashCmdList.SPEC = function(spec)
+		if T.Vanilla then
+			C_SpecializationInfo.SetActiveSpecGroup(C_SpecializationInfo.GetActiveSpecGroup() % 2 + 1)
+		else
+			SetActiveTalentGroup(GetActiveTalentGroup() % 2 + 1)
+		end
+	elseif T.Mainline then
 		local canUse, failureReason = C_SpecializationInfo.CanPlayerUseTalentSpecUI()
 		if canUse then
 			if GetSpecialization() ~= tonumber(spec) then
@@ -194,21 +194,10 @@ elseif T.Mainline then
 			print("|cffffff00"..failureReason.."|r")
 		end
 	end
-	SLASH_SPEC1 = "/ss"
-	SLASH_SPEC2 = "/spec"
-	SLASH_SPEC3 = "/ыы"
-elseif T.Vanilla then
-	SlashCmdList.SPEC = function()
-		if GetNumTalentGroups() == 1 then
-			print("|cffffff00No dual spec|r")
-			return
-		end
-		C_SpecializationInfo.SetActiveSpecGroup(C_SpecializationInfo.GetActiveSpecGroup() % 2 + 1)
-	end
-	SLASH_SPEC1 = "/ss"
-	SLASH_SPEC2 = "/spec"
-	SLASH_SPEC3 = "/ыы"
 end
+SLASH_SPEC1 = "/ss"
+SLASH_SPEC2 = "/spec"
+SLASH_SPEC3 = "/ыы"
 
 ----------------------------------------------------------------------------------------
 --	Get target NPC name and ID
