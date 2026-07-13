@@ -454,28 +454,27 @@ local function Shared(self, unit)
 
 		-- Soul Shards bar
 		if T.Mists and C.unitframe_class_bar.shard == true and T.class == "WARLOCK" then
-				self.SoulShards = CreateFrame("Frame", self:GetName().."_SoulShardsBar", self)
-				self.SoulShards:CreateBackdrop("Default")
-				self.SoulShards:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
-				self.SoulShards:SetSize(player_width, 7)
+			self.SoulShards = CreateFrame("Frame", self:GetName().."_SoulShardsBar", self)
+			self.SoulShards:CreateBackdrop("Default")
+			self.SoulShards:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
+			self.SoulShards:SetSize(player_width, 7)
 
-				for i = 1, (MAX_COMBO_POINTS - 1) do
-					self.SoulShards[i] = CreateFrame("StatusBar", self:GetName().."_SoulShards"..i, self.SoulShards)
-					self.SoulShards[i]:SetSize((player_width - 4) / 4, 7)
-					if i == 1 then
-						self.SoulShards[i]:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
-					else
-						self.SoulShards[i]:SetPoint("TOPLEFT", self.SoulShards[i-1], "TOPRIGHT", 1, 0)
-					end
-					self.SoulShards[i]:SetStatusBarTexture(C.media.texture)
-					self.SoulShards[i]:SetStatusBarColor(0.9, 0.37, 0.37)
-
-					self.SoulShards[i].bg = self.SoulShards[i]:CreateTexture(nil, "BORDER")
-					self.SoulShards[i].bg:SetAllPoints()
-					self.SoulShards[i].bg:SetTexture(C.media.texture)
-					self.SoulShards[i].bg:SetVertexColor(0.9, 0.37, 0.37, 0.2)
-					
+			for i = 1, (MAX_COMBO_POINTS - 1) do
+				self.SoulShards[i] = CreateFrame("StatusBar", self:GetName().."_SoulShards"..i, self.SoulShards)
+				self.SoulShards[i]:SetSize((player_width - 4) / 4, 7)
+				if i == 1 then
+					self.SoulShards[i]:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
+				else
+					self.SoulShards[i]:SetPoint("TOPLEFT", self.SoulShards[i-1], "TOPRIGHT", 1, 0)
 				end
+				self.SoulShards[i]:SetStatusBarTexture(C.media.texture)
+				self.SoulShards[i]:SetStatusBarColor(0.9, 0.37, 0.37)
+
+				self.SoulShards[i].bg = self.SoulShards[i]:CreateTexture(nil, "BORDER")
+				self.SoulShards[i].bg:SetAllPoints()
+				self.SoulShards[i].bg:SetTexture(C.media.texture)
+				self.SoulShards[i].bg:SetVertexColor(0.9, 0.37, 0.37, 0.2)
+			end
 		end
 		-- Essence bar
 		if T.Mainline and C.unitframe_class_bar.essence == true and T.class == "EVOKER" then

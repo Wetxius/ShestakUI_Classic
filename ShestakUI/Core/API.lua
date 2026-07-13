@@ -729,7 +729,7 @@ function T.SkinDropDownBox(frame, width, pos)
 	if frame.Arrow then
 		frame.Background:SetAlpha(0)
 		frame:CreateBackdrop("Overlay")
-		frame.backdrop:SetPoint("TOPLEFT", -2, -1)
+		frame.backdrop:SetPoint("TOPLEFT", -2, 0)
 		frame.backdrop:SetPoint("BOTTOMRIGHT", 0, 1)
 		frame:SetFrameLevel(frame:GetFrameLevel() + 2)
 		frame.Arrow:SetAlpha(0)

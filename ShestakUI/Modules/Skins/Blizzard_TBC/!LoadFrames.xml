@@ -25,6 +25,7 @@
 
 	<Script file="..\Blizzard_Vanilla\Auction.lua"/>
 	<Script file="..\Blizzard_Vanilla\Character.lua"/>			<!-- TODO -->
+	<Script file="..\Blizzard_Vanilla\Craft.lua"/>
 	<Script file="..\Blizzard_Vanilla\Communities.lua"/>
 	<Script file="..\Blizzard_Vanilla\Container.lua"/>
 	<Script file="..\Blizzard_Vanilla\DressUp.lua"/>

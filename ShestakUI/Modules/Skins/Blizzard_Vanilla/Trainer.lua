@@ -53,9 +53,28 @@ local function LoadSkin()
 	ClassTrainerCollapseAllButton:StripTextures()
 	T.SkinExpandOrCollapse(ClassTrainerCollapseAllButton)
 
-	for i = 1, CLASS_TRAINER_SKILLS_DISPLAYED do
-		-- T.SkinExpandOrCollapse(_G["ClassTrainerSkill"..i]) -- FIXME looks weird
-	end
+	-- local function UpdateFrame()
+		-- local numSkills = GetNumTrainerServices()
+		-- local offset = FauxScrollFrame_GetOffset(ClassTrainerListScrollFrame)
+		-- local index, button
+
+		-- for i = 1, CLASS_TRAINER_SKILLS_DISPLAYED do
+			-- button = _G["ClassTrainerSkill"..i]
+			-- index = offset + i
+
+			-- if index <= numSkills then
+				-- local _, _, serviceType = GetTrainerServiceInfo(index)
+
+				-- if serviceType == "header" then
+					-- if not button.hooked then
+						-- T.SkinExpandOrCollapse(button)
+						-- button.hooked = true
+					-- end
+				-- end
+			-- end
+		-- end
+	-- end
+	-- hooksecurefunc("ClassTrainerFrame_Update", UpdateFrame)
 end
 
 T.SkinFuncs["Blizzard_TrainerUI"] = LoadSkin
