@@ -172,10 +172,13 @@ end
 ----------------------------------------------------------------------------------------
 --	Spec switching(by Monolit)
 ----------------------------------------------------------------------------------------
-if T.SoD or T.Wrath or T.Cata or T.Mists then
+if T.TBC or T.SoD or T.Wrath or T.Cata or T.Mists then
 	SlashCmdList.SPEC = function()
-		local spec = GetActiveTalentGroup()
-		if spec == 1 then SetActiveTalentGroup(2) elseif spec == 2 then SetActiveTalentGroup(1) end
+		if GetNumSpecGroups() == 1 then
+			print("|cffffff00No dual spec|r")
+			return
+		end
+		SetActiveTalentGroup(GetActiveTalentGroup() % 2 + 1)
 	end
 	SLASH_SPEC1 = "/ss"
 	SLASH_SPEC2 = "/spec"
@@ -190,6 +193,17 @@ elseif T.Mainline then
 		else
 			print("|cffffff00"..failureReason.."|r")
 		end
+	end
+	SLASH_SPEC1 = "/ss"
+	SLASH_SPEC2 = "/spec"
+	SLASH_SPEC3 = "/ыы"
+elseif T.Vanilla then
+	SlashCmdList.SPEC = function()
+		if GetNumTalentGroups() == 1 then
+			print("|cffffff00No dual spec|r")
+			return
+		end
+		C_SpecializationInfo.SetActiveSpecGroup(C_SpecializationInfo.GetActiveSpecGroup() % 2 + 1)
 	end
 	SLASH_SPEC1 = "/ss"
 	SLASH_SPEC2 = "/spec"
