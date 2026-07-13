@@ -764,7 +764,7 @@ if T.Classic then
 				end
 			else
 				if C.aura.debuff_color_type == true then
-					local color = DebuffTypeColor[dispelName] or DebuffTypeColor.none
+					local color = oUF.colors.debuff[dispelName] or oUF.colors.debuff.None
 					button:SetBackdropBorderColor(color.r, color.g, color.b)
 					button.Icon:SetDesaturated(false)
 				else
@@ -825,7 +825,7 @@ else
 				end
 			else
 				if C.aura.debuff_color_type == true then
-					local color = DebuffTypeColor[data.dispelName] or DebuffTypeColor.none
+					local color = oUF.colors.debuff[data.dispelName] or oUF.colors.debuff.None
 					button:SetBackdropBorderColor(color.r, color.g, color.b)
 					button.Icon:SetDesaturated(false)
 				else

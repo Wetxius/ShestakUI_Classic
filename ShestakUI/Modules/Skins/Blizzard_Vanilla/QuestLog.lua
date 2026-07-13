@@ -65,7 +65,7 @@ local function LoadSkin()
 		for i = 1, getn(QuestStrip) do
 			local object = _G[QuestStrip[i]]
 			if object then
-				object:StripTextures(true)
+				object:StripTextures()
 			end
 		end
 

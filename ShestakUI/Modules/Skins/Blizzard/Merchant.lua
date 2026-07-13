@@ -6,7 +6,7 @@ if C.skins.blizzard_frames ~= true then return end
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
 	-- Main frames
-	MerchantFrame:StripTextures(true)
+	MerchantFrame:StripTextures()
 	MerchantFrame:CreateBackdrop("Transparent")
 	MerchantFrame.backdrop:SetPoint("TOPLEFT", 0, 0)
 	MerchantFrame.backdrop:SetPoint("BOTTOMRIGHT", 2, 0)
@@ -32,7 +32,7 @@ local function LoadSkin()
 		local item_bar = _G["MerchantItem"..i]
 		local c = _G["MerchantItem"..i.."AltCurrencyFrameItem1"]
 
-		item_bar:StripTextures(true)
+		item_bar:StripTextures()
 		item_bar:CreateBackdrop("Overlay")
 
 		b:StripTextures()
@@ -71,7 +71,7 @@ local function LoadSkin()
 	end
 
 	-- Buyback item frame + icon
-	MerchantBuyBackItem:StripTextures(true)
+	MerchantBuyBackItem:StripTextures()
 	MerchantBuyBackItem:CreateBackdrop("Overlay")
 	MerchantBuyBackItem.backdrop:SetPoint("TOPLEFT", -2, 6)
 	MerchantBuyBackItem.backdrop:SetPoint("BOTTOMRIGHT", 2, -5)

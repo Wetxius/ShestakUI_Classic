@@ -1349,7 +1349,7 @@ function lib:activate()
         local frame = CreateFrame("Frame")
         self.frame = frame
 
-        if isTBC then
+        if isTBC or isMists then
 			frame:RegisterEvent("LEARNED_SPELL_IN_SKILL_LINE")
 		else
 			frame:RegisterEvent("LEARNED_SPELL_IN_TAB")

@@ -13,7 +13,7 @@ local function LoadSkin()
 		{0.21875, 0.78125, 0.4765625, 0.546875}		-- Shadow
 	}
 
-	CharacterFrame:StripTextures(true)
+	CharacterFrame:StripTextures()
 	CharacterFrame:CreateBackdrop("Transparent")
 	CharacterFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
 	CharacterFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)
@@ -448,7 +448,7 @@ local function LoadSkin()
 
 	-- Honor Frame
 	if T.Vanilla then
-		HonorFrame:StripTextures(true)
+		HonorFrame:StripTextures()
 
 		HonorFrameProgressBar:ClearAllPoints()
 		HonorFrameProgressBar:SetPoint("TOP", CharacterFrame.backdrop, "TOP", 1, -65)
@@ -459,7 +459,7 @@ local function LoadSkin()
 
 	-- PVP Frame
 	if not T.Vanilla then
-		PVPFrame:StripTextures(true)
+		PVPFrame:StripTextures()
 
 		if T.Wrath then
 			PVPFrame:CreateBackdrop("Transparent")

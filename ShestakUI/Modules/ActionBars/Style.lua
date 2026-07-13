@@ -310,17 +310,17 @@ frame:SetScript("OnEvent", function(self, event)
 		StyleNormalButton(_G["MultiBarLeftButton"..i], C.actionbar.editor and C.actionbar.bar3_size)
 		StyleNormalButton(_G["MultiBarRightButton"..i], C.actionbar.editor and C.actionbar.bar4_size)
 		StyleNormalButton(_G["MultiBarBottomRightButton"..i], C.actionbar.editor and C.actionbar.bar5_size)
-		if T.Wrath or T.Cata or T.Mists then
+		if T.Wrath or T.Cata then
 			StyleNormalButton(_G["MultiCastActionButton"..i])
 		end
-		if T.Mainline then
+		if T.Mainline or T.Mists then
 			StyleNormalButton(_G["MultiBar5Button"..i], C.actionbar.editor and C.actionbar.bar6_size)
 			StyleNormalButton(_G["MultiBar6Button"..i], C.actionbar.bar7_size)
 			StyleNormalButton(_G["MultiBar7Button"..i], C.actionbar.bar8_size)
 		end
 	end
 
-	if T.Mainline then
+	if T.Mainline or T.Mists then
 		StyleNormalButton(ExtraActionButton1)
 	end
 end)
@@ -360,7 +360,7 @@ local function StyleFlyoutButton(self)
 	end
 end
 
-if T.Mainline then
+if T.Mainline or T.Mists then
 	SpellFlyout:HookScript("OnShow", StyleFlyoutButton)
 	SpellFlyout.Background:Hide()
 end
@@ -418,10 +418,10 @@ if C.actionbar.hotkey == true then
 			UpdateHotkey(_G["MultiBarBottomRightButton"..i])
 			UpdateHotkey(_G["MultiBarLeftButton"..i])
 			UpdateHotkey(_G["MultiBarRightButton"..i])
-			if T.Wrath or T.Cata or T.Mists then
+			if T.Wrath or T.Cata then
 				UpdateHotkey(_G["MultiCastActionButton"..i])
 			end
-			if T.Mainline then
+			if T.Mainline or T.Mists then
 				UpdateHotkey(_G["MultiBar5Button"..i])
 				UpdateHotkey(_G["MultiBar6Button"..i])
 				UpdateHotkey(_G["MultiBar7Button"..i])

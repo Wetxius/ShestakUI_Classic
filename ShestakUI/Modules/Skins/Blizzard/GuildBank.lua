@@ -7,7 +7,7 @@ if C.skins.blizzard_frames ~= true then return end
 local function LoadSkin()
 	GuildBankFrame:StripTextures()
 	GuildBankFrame:SetTemplate("Transparent")
-	GuildBankFrame.Emblem:StripTextures(true)
+	GuildBankFrame.Emblem:StripTextures()
 	if T.Mainline then
 		GuildBankFrame.MoneyFrameBG:StripTextures()
 	end
@@ -45,7 +45,7 @@ local function LoadSkin()
 	GuildBankFrame.inset:SetPoint("BOTTOMRIGHT", -17, 61)
 
 	if T.Mainline then
-		GuildItemSearchBox:StripTextures(true)
+		GuildItemSearchBox:StripTextures()
 		GuildItemSearchBox:CreateBackdrop("Overlay")
 		GuildItemSearchBox.backdrop:SetPoint("TOPLEFT", 13, 0)
 		GuildItemSearchBox.backdrop:SetPoint("BOTTOMRIGHT", -2, 0)
@@ -76,7 +76,7 @@ local function LoadSkin()
 		if tab then
 			local button = tab.Button
 			local texture = button.IconTexture
-			tab:StripTextures(true)
+			tab:StripTextures()
 
 			button:StripTextures()
 			button:StyleButton()

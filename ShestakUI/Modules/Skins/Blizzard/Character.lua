@@ -304,7 +304,7 @@ local function LoadSkin()
 	if T.Classic then
 		local function UpdateFactionSkins()
 			-- ReputationListScrollFrame:StripTextures()
-			ReputationFrame:StripTextures(true)
+			ReputationFrame:StripTextures()
 			local factionOffset = FauxScrollFrame_GetOffset(ReputationListScrollFrame)
 			for i = 1, GetNumFactions() do
 				local statusbar = _G["ReputationBar"..i.."ReputationBar"]

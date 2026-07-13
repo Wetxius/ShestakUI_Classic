@@ -284,8 +284,8 @@ local function LoadSkin()
 			end
 		end)
 
-		t.MessageFrame:StripTextures(true)
-		t.MessageFrame.MessageScroll:StripTextures(true)
+		t.MessageFrame:StripTextures()
+		t.MessageFrame.MessageScroll:StripTextures()
 
 		t.MessageFrame.MessageScroll:CreateBackdrop("Overlay")
 		t.MessageFrame.MessageScroll.backdrop:SetPoint("TOPLEFT", -4, 5)

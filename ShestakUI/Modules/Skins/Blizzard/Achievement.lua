@@ -18,10 +18,10 @@ local function LoadSkin()
 	}
 
 	for _, frame in pairs(frames) do
-		_G[frame]:StripTextures(true)
+		_G[frame]:StripTextures()
 	end
 
-	AchievementFrame.Header:StripTextures(true)
+	AchievementFrame.Header:StripTextures()
 
 	select(3, _G.AchievementFrameAchievements:GetChildren()):Hide()
 	_G.AchievementFrameSummary:GetChildren():Hide()
@@ -171,7 +171,7 @@ local function LoadSkin()
 	hooksecurefunc(_G.AchievementFrameAchievements.ScrollBox, "Update", function(frame)
 		for _, child in next, { frame.ScrollTarget:GetChildren() } do
 			if not child.isSkinned then
-				child:StripTextures(true)
+				child:StripTextures()
 				child.Background:SetAlpha(0)
 				child.Highlight:SetAlpha(0)
 				child.Icon.frame:Hide()

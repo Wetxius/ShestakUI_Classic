@@ -93,7 +93,7 @@ local function Update(object, _, unit)
 	if object.unit ~= unit then return end
 	local debuffType, texture = GetDebuffType(unit, object.DebuffHighlightFilter)
 	if debuffType then
-		local color = DebuffTypeColor[debuffType]
+		local color = oUF.colors.debuff[debuffType] or oUF.colors.debuff.None
 		if object.DebuffHighlightBackdrop or object.DebuffHighlightBackdropBorder then
 			if object.DebuffHighlightBackdrop then
 				object:SetBackdropColor(color.r, color.g, color.b, object.DebuffHighlightAlpha or 1)

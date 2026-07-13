@@ -10,7 +10,7 @@ frame:SetScript("OnEvent", function()
 	MainMenuBar:SetScale(0.00001)
 	MainMenuBar:EnableMouse(false)
 
-	if T.Classic and not T.TBC then
+	if T.Classic and not T.TBC and not T.Mists then
 		PetActionBarFrame:EnableMouse(false)
 		StanceBarFrame:EnableMouse(false)
 	else
@@ -34,7 +34,7 @@ frame:SetScript("OnEvent", function()
 		BagsBar:UnregisterAllEvents()
 	end
 
-	if T.TBC then
+	if T.TBC or T.Mists then
 		BagsBar:Hide()
 		BagsBar:UnregisterAllEvents()
 		MainActionBar.ActionBarPageNumber:Hide()
@@ -42,7 +42,7 @@ frame:SetScript("OnEvent", function()
 		MainMenuBar:EnableMouse(false)
 	end
 
-	if T.Mainline or T.TBC then
+	if T.Mainline or T.TBC or T.Mists then
 		if not C.actionbar.micromenu then
 			MicroMenu:Hide()
 			TalentMicroButton:ClearAllPoints()
@@ -56,7 +56,7 @@ frame:SetScript("OnEvent", function()
 	MainMenuBar:SetAttribute("ignoreFramePositionManager", true)
 
 	local elements = {
-		MainMenuBar, MainMenuBarArtFrame, OverrideActionBar, PossessBarFrame, PetActionBarFrame, StanceBarFrame,
+		MainMenuBar, BagsBar, MainMenuBarArtFrame, OverrideActionBar, PossessBarFrame, PetActionBarFrame, StanceBarFrame,
 		MultiBarBottomLeft.QuickKeybindGlow, MultiBarLeft.QuickKeybindGlow, MultiBarBottomRight.QuickKeybindGlow, MultiBarRight.QuickKeybindGlow,
 		StatusTrackingBarManager
 	}
@@ -138,7 +138,7 @@ function RightBarMouseOver(alpha)
 	end
 
 	if C.actionbar.rightbars > 2 then
-		if T.Classic and not T.TBC then
+		if T.Classic and not (T.TBC or T.Mists) then
 			if MultiBarBottomRight:IsShown() then
 				for i = 1, 12 do
 					local b = _G["MultiBarBottomRightButton"..i]
@@ -433,7 +433,7 @@ end
 ----------------------------------------------------------------------------------------
 --	Show grid function
 ----------------------------------------------------------------------------------------
-if T.Classic then
+if T.Classic and not T.Mists then
 	local frame = CreateFrame("Frame")
 	frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 	frame:SetScript("OnEvent", function(self)
@@ -498,7 +498,7 @@ if T.Classic then
 					button:SetAttribute("statehidden", true)
 				end
 
-				if T.Wrath or T.Cata or T.Mists then
+				if T.Wrath or T.Cata then
 					if _G["VehicleMenuBarActionButton"..i] then
 						_G["VehicleMenuBarActionButton"..i]:SetAttribute("statehidden", true)
 					end
@@ -599,7 +599,7 @@ T.ShiftBarUpdate = function()
 			CooldownFrame_Set(cooldown, start, duration, enable)
 
 			if isActive then
-				if T.Classic and not T.TBC then
+				if T.Classic and not T.TBC and not T.Mists then
 					StanceBarFrame.lastSelected = button:GetID()
 				end
 				button:SetChecked(true)
@@ -639,7 +639,7 @@ T.PetBarUpdate = function()
 		if isActive and name ~= "PET_ACTION_FOLLOW" then
 			petActionButton:SetChecked(true)
 			if IsPetAttackAction(i) then
-				if T.Classic and not T.TBC then
+				if T.Classic and not T.TBC and not T.Mists then
 					PetActionButton_StartFlash(petActionButton)
 				else
 					petActionButton:StartFlash()
@@ -649,7 +649,7 @@ T.PetBarUpdate = function()
 		else
 			petActionButton:SetChecked(false)
 			if IsPetAttackAction(i) then
-				if T.Classic and not T.TBC then
+				if T.Classic and not T.TBC and not T.Mists then
 					PetActionButton_StopFlash(petActionButton)
 				else
 					petActionButton:StopFlash()
@@ -658,7 +658,7 @@ T.PetBarUpdate = function()
 			end
 		end
 
-		if not T.TBC then
+		if not T.TBC and not T.Mists then
 			if autoCastAllowed then
 				petAutoCastableTexture:Show()
 			else
@@ -672,7 +672,7 @@ T.PetBarUpdate = function()
 			end
 		end
 
-		if not T.TBC then
+		if not T.TBC and not T.Mists then
 			if autoCastEnabled then
 				AutoCastShine_AutoCastStart(petAutoCastShine)
 			else
@@ -702,7 +702,7 @@ T.PetBarUpdate = function()
 		end
 
 		if not PetHasActionBar() and texture and name ~= "PET_ACTION_FOLLOW" then
-			if T.Classic and not T.TBC then
+			if T.Classic and not T.TBC and not T.Mists then
 				PetActionButton_StopFlash(petActionButton)
 			else
 				petActionButton:StopFlash()

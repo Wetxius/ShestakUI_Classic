@@ -5,7 +5,7 @@ if C.skins.blizzard_frames ~= true then return end
 --	Petition skin
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
-	PetitionFrame:StripTextures(true)
+	PetitionFrame:StripTextures()
 	PetitionFrame:CreateBackdrop("Transparent")
 
 	if T.Classic then

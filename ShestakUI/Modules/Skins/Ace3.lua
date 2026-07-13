@@ -106,7 +106,7 @@ AceGUI.RegisterAsWidget = function(self, widget)
 		button:SkinButton()
 	elseif TYPE == "Button" then
 		local frame = widget.frame
-		frame:StripTextures(true)
+		frame:StripTextures()
 		frame:CreateBackdrop("Overlay")
 		frame.backdrop:SetPoint("TOPLEFT", 2, -2)
 		frame.backdrop:SetPoint("BOTTOMRIGHT", -2, 1)

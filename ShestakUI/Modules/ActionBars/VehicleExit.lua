@@ -46,7 +46,7 @@ local function MainMenuBarVehicleLeaveButtonUpdateHook()
 	end
 end
 
-if T.Classic and not T.TBC then
+if T.Classic and not T.TBC and not T.Mists then
 	hooksecurefunc("MainMenuBarVehicleLeaveButton_Update", MainMenuBarVehicleLeaveButtonUpdateHook)
 else
 	hooksecurefunc(MainMenuBarVehicleLeaveButton, "Update", MainMenuBarVehicleLeaveButtonUpdateHook)
@@ -85,9 +85,9 @@ local function PossessBarUpdateHook()
 	end
 end
 
-if T.Wrath or T.Cata or T.Mists then
+if T.Wrath or T.Cata then
 	hooksecurefunc("PossessBar_UpdateState", PossessBarUpdateHook)
-elseif T.Mainline then
+elseif T.Mainline or T.Mists then
 	hooksecurefunc(PossessActionBar, "UpdateState", PossessBarUpdateHook)
 end
 

@@ -1,11 +1,11 @@
 local T, C, L = unpack(ShestakUI)
-if C.skins.blizzard_frames ~= true then return end
+if C.skins.blizzard_frames ~= true or T.Mists then return end
 
 ----------------------------------------------------------------------------------------
 --	GuildRegistrar skin
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
-	GuildRegistrarFrame:StripTextures(true)
+	GuildRegistrarFrame:StripTextures()
 	GuildRegistrarFrame:CreateBackdrop("Transparent")
 	if T.Classic then
 		GuildRegistrarFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
@@ -33,7 +33,7 @@ local function LoadSkin()
 	PetitionFrameNpcNameText:ClearAllPoints()
 	PetitionFrameNpcNameText:SetPoint("TOP", GuildRegistrarFrame.backdrop, "TOP", 0, -6)
 
-	GuildRegistrarFrameEditBox:StripTextures(true)
+	GuildRegistrarFrameEditBox:StripTextures()
 	T.SkinEditBox(GuildRegistrarFrameEditBox, nil, GuildRegistrarFrameEditBox:GetHeight() - 15)
 
 	for i = 1, 2 do

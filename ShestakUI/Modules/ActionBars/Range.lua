@@ -215,7 +215,7 @@ function Addon:PLAYER_LOGIN(event)
 	-- the method varies between classic and shadowlands, as action buttons in
 	-- shadowlands use ActionBarActionButtonMixin
 	local ActionBarActionButtonMixin = ActionBarActionButtonDerivedMixin or ActionBarActionButtonMixin
-	if ActionBarActionButtonMixin and not T.Vanilla and not T.Cata and not T.Mists then -- TODO: Does this need fixing?
+	if ActionBarActionButtonMixin and not T.Vanilla and not T.Cata then -- TODO: Does this need fixing?
 		local function actionButton_OnLoad(button)
 			button:SetScript("OnUpdate", nil)
 			button:HookScript("OnShow", actionButton_OnShowHide)
@@ -334,7 +334,7 @@ function Addon:PLAYER_LOGIN(event)
 
 			if type(PetActionBar.actionButtons) == "table" then
 				for _, button in pairs(PetActionBar.actionButtons) do
-					if not T.TBC then
+					if not T.TBC and not T.Mists then
 						hooksecurefunc(button, "OnUpdate", petButton_OnUpdate) -- FIXME
 					end
 					hooksecurefunc(button, "StartFlash", button_StartFlash)

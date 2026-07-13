@@ -5,7 +5,7 @@ if C.skins.blizzard_frames ~= true then return end
 --	InspectUI skin
 ----------------------------------------------------------------------------------------
 local function LoadSkin()
-	InspectFrame:StripTextures(true)
+	InspectFrame:StripTextures()
 	InspectFrame:CreateBackdrop("Transparent")
 	if T.TBC then
 		InspectFrame.backdrop:SetPoint("TOPLEFT", -2, 2)
@@ -84,7 +84,7 @@ local function LoadSkin()
 
 	-- Honor Frame
 	if InspectHonorFrame then
-		InspectHonorFrame:StripTextures(true)
+		InspectHonorFrame:StripTextures()
 
 		InspectHonorFrameProgressBar:ClearAllPoints()
 		InspectHonorFrameProgressBar:SetPoint("TOP", InspectFrame.backdrop, "TOP", 1, -65)
@@ -95,7 +95,7 @@ local function LoadSkin()
 
 	-- PVP Frame
 	if InspectPVPFrame then
-		InspectPVPFrame:StripTextures(true)
+		InspectPVPFrame:StripTextures()
 	end
 
 	-- Talent Frame
@@ -104,7 +104,7 @@ local function LoadSkin()
 			InspectTalentFrameCancelButton:Kill()
 		end
 
-		InspectTalentFrame:StripTextures(true)
+		InspectTalentFrame:StripTextures()
 
 		if InspectTalentFrameCloseButton then
 			InspectTalentFrameCloseButton:Kill()
