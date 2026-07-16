@@ -861,6 +861,7 @@ local function callback(self, event, unit)
 				if nameplate.UnitFrame.WidgetContainer then
 					nameplate.UnitFrame.WidgetContainer:SetParent(nameplate)
 				end
+				oUF:DisableNamePlate(nameplate)
 			end
 
 			if C.nameplate.only_name then
