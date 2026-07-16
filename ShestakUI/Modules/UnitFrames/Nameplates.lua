@@ -857,11 +857,19 @@ local function callback(self, event, unit)
 			end
 
 			local nameplate = C_NamePlate.GetNamePlateForUnit(unit)
-			if nameplate.UnitFrame then
-				if nameplate.UnitFrame.WidgetContainer then
-					nameplate.UnitFrame.WidgetContainer:SetParent(nameplate)
+			if nameplate then
+				local blizz = nameplate.UnitFrame
+				if blizz and blizz.WidgetContainer then
+					blizz.WidgetContainer:SetParent(nameplate)
 				end
 				oUF:DisableNamePlate(nameplate)
+				if blizz and not blizz:IsForbidden() then
+					blizz:SetAlpha(0)
+					if not blizz.shHidden then
+						blizz.shHidden = true
+						blizz:HookScript("OnShow", function(f) f:SetAlpha(0) end)
+					end
+				end
 			end
 
 			if C.nameplate.only_name then
