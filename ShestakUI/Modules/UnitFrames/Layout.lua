@@ -502,6 +502,32 @@ local function Shared(self, unit)
 			end
 		end
 
+		-- Druid mana line along the bottom of the power bar, shown while shapeshifted
+		-- into a form that doesn't use mana. Driven by T.UpdateClassMana.
+		if C.unitframe_class_bar.druid_mana == true and T.class == "DRUID" then
+			local r, g, b = unpack(T.oUF_colors.power.MANA)
+
+			self.ClassManaBar = self.Power:CreateTexture(nil, "ARTWORK", nil, 2)
+			self.ClassManaBar:SetTexture(C.media.texture)
+			self.ClassManaBar:SetVertexColor(r, g, b)
+			self.ClassManaBar:SetPoint("BOTTOMLEFT", self.Power, "BOTTOMLEFT", 0, 0)
+			self.ClassManaBar:SetHeight(2)
+			self.ClassManaBar:Hide()
+
+			self.ClassManaBar.bg = self.Power:CreateTexture(nil, "ARTWORK", nil, 1)
+			self.ClassManaBar.bg:SetTexture(C.media.texture)
+			self.ClassManaBar.bg:SetVertexColor(r * 0.2, g * 0.2, b * 0.2)
+			self.ClassManaBar.bg:SetPoint("BOTTOMLEFT", self.Power, "BOTTOMLEFT", 0, 0)
+			self.ClassManaBar.bg:SetPoint("BOTTOMRIGHT", self.Power, "BOTTOMRIGHT", 0, 0)
+			self.ClassManaBar.bg:SetHeight(2)
+			self.ClassManaBar.bg:Hide()
+
+			self.Power.value:SetDrawLayer("OVERLAY")
+			if self.Level then
+				self.Level:SetDrawLayer("OVERLAY")
+			end
+		end
+
 		-- Rogue/Druid Combo bar
 		if C.unitframe_class_bar.combo == true and C.unitframe_class_bar.combo_old ~= true and (T.class == "ROGUE" or T.class == "DRUID") then
 			self.ComboPoints = CreateFrame("Frame", self:GetName().."_ComboBar", self)
@@ -589,6 +615,9 @@ local function Shared(self, unit)
 			CreateFrame("Frame"):SetScript("OnUpdate", function() T.UpdateClassMana(self) end)
 			self.ClassMana = T.SetFontString(self.Power, C.font.unit_frames_font, C.font.unit_frames_font_size, C.font.unit_frames_font_style)
 			self.ClassMana:SetTextColor(1, 0.49, 0.04)
+			if self.ClassManaBar then
+				self.ClassMana:SetDrawLayer("OVERLAY")
+			end
 		end
 
 		-- Eclipse bar

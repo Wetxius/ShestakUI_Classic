@@ -472,6 +472,16 @@ T.UpdateClassMana = function(self)
 			StopFlash(self.FlashInfo)
 		end
 
+		if self.ClassManaBar then
+			if min > 0 and max > 0 then
+				self.ClassManaBar:SetWidth(self.Power:GetWidth() * min / max)
+				self.ClassManaBar:Show()
+			else
+				self.ClassManaBar:Hide()
+			end
+			self.ClassManaBar.bg:Show()
+		end
+
 		if min ~= max then
 			if self.Power.value:GetText() then
 				self.ClassMana:SetPoint("RIGHT", self.Power.value, "LEFT", -1, 0)
@@ -487,6 +497,11 @@ T.UpdateClassMana = function(self)
 
 		self.ClassMana:SetAlpha(1)
 	else
+		if self.ClassManaBar then
+			self.ClassManaBar:Hide()
+			self.ClassManaBar.bg:Hide()
+		end
+
 		self.ClassMana:SetAlpha(0)
 	end
 end

@@ -468,7 +468,7 @@ CombatText:SetScript("OnEvent", nil)
 CombatText:SetScript("OnUpdate", nil)
 
 -- Steal external messages sent by other addons using CombatText_AddMessage
-if not T.Mists then
+if type(CombatText_AddMessage) == "function" then
 	hooksecurefunc("CombatText_AddMessage", function(message, _, r, g, b)
 		local lastEntry = COMBAT_TEXT_TO_ANIMATE[#COMBAT_TEXT_TO_ANIMATE]
 		CombatText_RemoveMessage(lastEntry)
