@@ -167,6 +167,7 @@ C["unitframe_class_bar"] = {
 	["combo"] = true,							-- Rogue/Druid Combo bar
 	["combo_always"] = false,					-- Always show Combo bar for Druid
 	["combo_old"] = false,						-- Show combo point on the target
+	["druid_mana"] = false,						-- Mana bar for Druid while shapeshifted
 	["arcane"] = true,							-- Arcane Charge bar
 	["chi"] = true,								-- Chi bar
 	["essence"] = true,							-- Essence bar

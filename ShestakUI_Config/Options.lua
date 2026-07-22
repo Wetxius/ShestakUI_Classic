@@ -1888,8 +1888,11 @@ do
 
 	combo.children = {combo_always, combo_old}
 
+	local druid_mana = ns.CreateCheckBox(parent, "druid_mana", L_GUI_UF_PLUGINS_DRUID_MANA_BAR)
+	druid_mana:SetPoint("TOPLEFT", combo_old, "BOTTOMLEFT", -20, 0)
+
 	local arcane = ns.CreateCheckBox(parent, "arcane", L_GUI_UF_PLUGINS_ARCANE_BAR)
-	arcane:SetPoint("TOPLEFT", combo_old, "BOTTOMLEFT", -20, 0)
+	arcane:SetPoint("TOPLEFT", druid_mana, "BOTTOMLEFT", 0, 0)
 
 	local chi = ns.CreateCheckBox(parent, "chi", L_GUI_UF_PLUGINS_CHI_BAR)
 	chi:SetPoint("TOPLEFT", arcane, "BOTTOMLEFT", 0, 0)
