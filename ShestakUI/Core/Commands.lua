@@ -179,11 +179,7 @@ SlashCmdList.SPEC = function()
 			print("|cffffff00No dual spec|r")
 			return
 		end
-		if T.Vanilla then
-			C_SpecializationInfo.SetActiveSpecGroup(C_SpecializationInfo.GetActiveSpecGroup() % 2 + 1)
-		else
-			SetActiveTalentGroup(GetActiveTalentGroup() % 2 + 1)
-		end
+		C_SpecializationInfo.SetActiveSpecGroup(C_SpecializationInfo.GetActiveSpecGroup() % 2 + 1)
 	elseif T.Mainline then
 		local canUse, failureReason = C_SpecializationInfo.CanPlayerUseTalentSpecUI()
 		if canUse then

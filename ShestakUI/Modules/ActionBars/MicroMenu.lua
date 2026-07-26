@@ -8,44 +8,56 @@ local frame = CreateFrame("Frame", "MicroAnchor", T_PetBattleFrameHider or UIPar
 frame:SetPoint(unpack(C.position.micro_menu))
 frame:SetSize(250, 25)
 
-if T.Classic and not T.TBC then
-	UpdateMicroButtonsParent(frame)
-end
-
 if C.actionbar.micromenu_mouseover then
 	frame:SetAlpha(0)
 	frame:SetScript("OnEnter", function() frame:SetAlpha(1) end)
 	frame:SetScript("OnLeave", function() frame:SetAlpha(0) end)
 end
 
-local MICRO_BUTTONS = (T.Vanilla or T.TBC) and MICRO_BUTTONS or {
-	"CharacterMicroButton",
-	"SpellbookMicroButton",
-	"TalentMicroButton",
-	"AchievementMicroButton",
-	"QuestLogMicroButton",
-	"GuildMicroButton",
-	"PVPMicroButton",
-	"LFGMicroButton",
-	"EJMicroButton",
-	"CollectionsMicroButton",
-	"StoreMicroButton",
-	"MainMenuMicroButton",
-}
+-- Era/TBC lay the micro menu out through MicroMenu's layoutIndex rather than a fixed list
+local modernMicro = (T.Vanilla or T.TBC) and MicroMenu ~= nil
+local MICRO_BUTTONS
+if modernMicro then
+	MICRO_BUTTONS = {}
+	for _, child in ipairs({MicroMenu:GetChildren()}) do
+		if child.layoutIndex and child:GetName() then
+			tinsert(MICRO_BUTTONS, child)
+		end
+	end
+	table.sort(MICRO_BUTTONS, function(a, b) return a.layoutIndex < b.layoutIndex end)
+	for i, child in ipairs(MICRO_BUTTONS) do
+		MICRO_BUTTONS[i] = child:GetName()
+	end
+else
+	MICRO_BUTTONS = (T.Vanilla or T.TBC) and MICRO_BUTTONS or {
+		"CharacterMicroButton",
+		"SpellbookMicroButton",
+		"TalentMicroButton",
+		"AchievementMicroButton",
+		"QuestLogMicroButton",
+		"GuildMicroButton",
+		"PVPMicroButton",
+		"LFGMicroButton",
+		"EJMicroButton",
+		"CollectionsMicroButton",
+		"StoreMicroButton",
+		"MainMenuMicroButton",
+	}
+end
 
 for i, button in pairs(MICRO_BUTTONS) do
 	local bu = _G[button]
 	local normal = bu:GetNormalTexture()
 	local pushed = bu:GetPushedTexture()
 	local disabled = bu:GetDisabledTexture()
-	if T.Mainline or T.TBC then
+	if T.Mainline or T.TBC or modernMicro then
 		bu:SetSize(22, 29)
 	end
 
 	local point = bu:GetPoint()
 	if point then
 		bu:ClearAllPoints()
-		if T.Classic and not T.TBC then
+		if T.Classic and not T.TBC and not modernMicro then
 			if i == 1 then
 				bu:SetPoint("TOPLEFT", frame, "TOPLEFT", -1, 28)
 			else
@@ -70,7 +82,7 @@ for i, button in pairs(MICRO_BUTTONS) do
 	local f = CreateFrame("Frame", nil, bu)
 	f:SetFrameLevel(1)
 	f:SetFrameStrata("BACKGROUND")
-	if T.Classic and not T.TBC then
+	if T.Classic and not T.TBC and not modernMicro then
 		f:SetPoint("BOTTOMLEFT", bu, "BOTTOMLEFT", 2, 0)
 		f:SetPoint("TOPRIGHT", bu, "TOPRIGHT", -2, -28)
 	else
@@ -149,6 +161,10 @@ for i, button in pairs(MICRO_BUTTONS) do
 	if bu.Shadow then bu.Shadow:SetTexture() end
 	if bu.PushedBackground then bu.PushedBackground:SetAlpha(0) end
 	if bu.PortraitMask then bu.PortraitMask:Hide() end
+end
+
+if modernMicro and MicroMenu then
+	MicroMenu.UpdateHelpTicketButtonAnchor = T.dummy
 end
 
 -- Fix textures for buttons

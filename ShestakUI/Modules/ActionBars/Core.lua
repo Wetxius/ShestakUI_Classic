@@ -10,33 +10,35 @@ frame:SetScript("OnEvent", function()
 	MainMenuBar:SetScale(0.00001)
 	MainMenuBar:EnableMouse(false)
 
-	if T.Classic and not T.TBC and not T.Mists then
-		PetActionBarFrame:EnableMouse(false)
-		StanceBarFrame:EnableMouse(false)
-	else
-		PetActionBar:EnableMouse(false)
-		PetActionBar:UnregisterAllEvents()
-		StanceBar:EnableMouse(false)
-		StanceBar:UnregisterAllEvents()
-	end
+	PetActionBar:EnableMouse(false)
+	PetActionBar:UnregisterAllEvents()
+	StanceBar:EnableMouse(false)
+	StanceBar:UnregisterAllEvents()
 
 	if T.Wrath or T.Cata or T.Mists or T.Mainline then
 		OverrideActionBar:SetScale(0.00001)
 		OverrideActionBar:EnableMouse(false)
 	end
 
-	if T.Mainline then
+	if MicroButtonAndBagsBar then
 		MicroButtonAndBagsBar:SetScale(0.00001)
 		MicroButtonAndBagsBar:EnableMouse(false)
 		MicroButtonAndBagsBar:ClearAllPoints()
 		MicroButtonAndBagsBar:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, -99) -- Prevent scaling for right panels
+	end
+
+	if BagsBar then
+		for _, name in ipairs({"BagsBar", "MainMenuBarBackpackButton", "CharacterBag0Slot", "CharacterBag1Slot", "CharacterBag2Slot", "CharacterBag3Slot", "CharacterReagentBag0Slot", "KeyRingButton", "BagBarExpandToggle"}) do
+			local button = _G[name]
+			if button then
+				button:EnableMouse(false)
+			end
+		end
 		BagsBar:Hide()
 		BagsBar:UnregisterAllEvents()
 	end
 
-	if T.TBC or T.Mists then
-		BagsBar:Hide()
-		BagsBar:UnregisterAllEvents()
+	if T.Classic and MainActionBar then
 		MainActionBar.ActionBarPageNumber:Hide()
 		MainActionBar:SetScale(0.00001)
 		MainMenuBar:EnableMouse(false)
@@ -434,6 +436,13 @@ end
 --	Show grid function
 ----------------------------------------------------------------------------------------
 if T.Classic and not T.Mists then
+	local function ShowGrid(button, reason)
+		if not button then return end
+		button.noGrid = nil
+		button:SetShowGrid(true, reason)
+		button:Show()
+	end
+
 	local frame = CreateFrame("Frame")
 	frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 	frame:SetScript("OnEvent", function(self)
@@ -443,60 +452,11 @@ if T.Classic and not T.Mists then
 			SetCVar("alwaysShowActionBars", 1)
 			for i = 1, 12 do
 				local reason = ACTION_BUTTON_SHOW_GRID_REASON_EVENT or 2
-				local button = _G[format("ActionButton%d", i)]
-				button.noGrid = nil
-				button:SetAttribute("showgrid", 1)
-				if T.TBC then
-					button:SetShowGrid(true, reason)
-					button:Show()
-				else
-					ActionButton_ShowGrid(button, reason)
-					button:SetAttribute("statehidden", true)
-				end
-
-				button = _G[format("MultiBarRightButton%d", i)]
-				button.noGrid = nil
-				button:SetAttribute("showgrid", 1)
-				if T.TBC then
-					button:SetShowGrid(true, reason)
-					button:Show()
-				else
-					ActionButton_ShowGrid(button, reason)
-					button:SetAttribute("statehidden", true)
-				end
-
-				button = _G[format("MultiBarBottomRightButton%d", i)]
-				button.noGrid = nil
-				button:SetAttribute("showgrid", 1)
-				if T.TBC then
-					button:SetShowGrid(true, reason)
-					button:Show()
-				else
-					ActionButton_ShowGrid(button, reason)
-					button:SetAttribute("statehidden", true)
-				end
-
-				button = _G[format("MultiBarLeftButton%d", i)]
-				button.noGrid = nil
-				button:SetAttribute("showgrid", 1)
-				if T.TBC then
-					button:SetShowGrid(true, reason)
-					button:Show()
-				else
-					ActionButton_ShowGrid(button, reason)
-					button:SetAttribute("statehidden", true)
-				end
-
-				button = _G[format("MultiBarBottomLeftButton%d", i)]
-				button.noGrid = nil
-				button:SetAttribute("showgrid", 1)
-				if T.TBC then
-					button:SetShowGrid(true, reason)
-					button:Show()
-				else
-					ActionButton_ShowGrid(button, reason)
-					button:SetAttribute("statehidden", true)
-				end
+				ShowGrid(_G[format("ActionButton%d", i)], reason)
+				ShowGrid(_G[format("MultiBarRightButton%d", i)], reason)
+				ShowGrid(_G[format("MultiBarBottomRightButton%d", i)], reason)
+				ShowGrid(_G[format("MultiBarLeftButton%d", i)], reason)
+				ShowGrid(_G[format("MultiBarBottomLeftButton%d", i)], reason)
 
 				if T.Wrath or T.Cata then
 					if _G["VehicleMenuBarActionButton"..i] then
@@ -574,6 +534,30 @@ else
 end
 
 ----------------------------------------------------------------------------------------
+--	Force icon update on login
+----------------------------------------------------------------------------------------
+do
+	local bars = {"ActionButton", "MultiBarBottomLeftButton", "MultiBarBottomRightButton", "MultiBarLeftButton", "MultiBarRightButton", "MultiBar5Button", "MultiBar6Button", "MultiBar7Button"}
+
+	local iconFrame = CreateFrame("Frame")
+	iconFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+	iconFrame:SetScript("OnEvent", function(self)
+		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+		C_Timer.After(0.05, function()
+			if InCombatLockdown() then return end
+			for _, prefix in ipairs(bars) do
+				for i = 1, 12 do
+					local button = _G[prefix..i]
+					if button then
+						button:UpdateAction(true)
+					end
+				end
+			end
+		end)
+	end)
+end
+
+----------------------------------------------------------------------------------------
 --	Pet/StanceBar style functions
 ----------------------------------------------------------------------------------------
 T.ShiftBarUpdate = function()
@@ -617,13 +601,11 @@ T.ShiftBarUpdate = function()
 end
 
 T.PetBarUpdate = function()
-	local petActionButton, petActionIcon, petAutoCastableTexture, petAutoCastShine
+	local petActionButton, petActionIcon
 	for i = 1, NUM_PET_ACTION_SLOTS, 1 do
 		local buttonName = "PetActionButton"..i
 		petActionButton = _G[buttonName]
 		petActionIcon = _G[buttonName.."Icon"]
-		petAutoCastableTexture = _G["PetActionButton"..i].AutoCastable or _G[buttonName.."AutoCastable"]
-		petAutoCastShine = _G[buttonName.."Shine"]
 		local name, texture, isToken, isActive, autoCastAllowed, autoCastEnabled = GetPetActionInfo(i)
 
 		if not isToken then
@@ -639,45 +621,21 @@ T.PetBarUpdate = function()
 		if isActive and name ~= "PET_ACTION_FOLLOW" then
 			petActionButton:SetChecked(true)
 			if IsPetAttackAction(i) then
-				if T.Classic and not T.TBC and not T.Mists then
-					PetActionButton_StartFlash(petActionButton)
-				else
-					petActionButton:StartFlash()
-					petActionButton:GetCheckedTexture():SetAlpha(0.5)
-				end
+				petActionButton:StartFlash()
+				petActionButton:GetCheckedTexture():SetAlpha(0.5)
 			end
 		else
 			petActionButton:SetChecked(false)
 			if IsPetAttackAction(i) then
-				if T.Classic and not T.TBC and not T.Mists then
-					PetActionButton_StopFlash(petActionButton)
-				else
-					petActionButton:StopFlash()
-					petActionButton:GetCheckedTexture():SetAlpha(1.0)
-				end
+				petActionButton:StopFlash()
+				petActionButton:GetCheckedTexture():SetAlpha(1.0)
 			end
 		end
 
-		if not T.TBC and not T.Mists then
-			if autoCastAllowed then
-				petAutoCastableTexture:Show()
-			else
-				petAutoCastableTexture:Hide()
-			end
-		else
-			local petAutoCastOverlay = _G["PetActionButton"..i].AutoCastOverlay
-			if petAutoCastOverlay then
-				petAutoCastOverlay:SetShown(autoCastAllowed)
-				petAutoCastOverlay:ShowAutoCastEnabled(autoCastEnabled)
-			end
-		end
-
-		if not T.TBC and not T.Mists then
-			if autoCastEnabled then
-				AutoCastShine_AutoCastStart(petAutoCastShine)
-			else
-				AutoCastShine_AutoCastStop(petAutoCastShine)
-			end
+		local petAutoCastOverlay = _G["PetActionButton"..i].AutoCastOverlay
+		if petAutoCastOverlay then
+			petAutoCastOverlay:SetShown(autoCastAllowed)
+			petAutoCastOverlay:ShowAutoCastEnabled(autoCastEnabled)
 		end
 
 		if name then
@@ -702,11 +660,7 @@ T.PetBarUpdate = function()
 		end
 
 		if not PetHasActionBar() and texture and name ~= "PET_ACTION_FOLLOW" then
-			if T.Classic and not T.TBC and not T.Mists then
-				PetActionButton_StopFlash(petActionButton)
-			else
-				petActionButton:StopFlash()
-			end
+			petActionButton:StopFlash()
 			SetDesaturation(petActionIcon, 1)
 			petActionButton:SetChecked(false)
 		end

@@ -22,6 +22,110 @@ local BuffsAnchor = CreateFrame("Frame", "BuffsAnchor", UIParent)
 BuffsAnchor:SetPoint(unpack(C.position.player_buffs))
 BuffsAnchor:SetSize((15 * C.aura.player_buff_size) + 42, (C.aura.player_buff_size * 2) + 3)
 
+----------------------------------------------------------------------------------------
+--	Modern buff frame
+----------------------------------------------------------------------------------------
+if BuffFrame.AuraContainer then
+	SetCVar("collapseExpandBuffs", 0)
+	if BuffFrame.CollapseAndExpandButton then
+		BuffFrame.CollapseAndExpandButton:Kill()
+	end
+
+	DebuffFrame.AuraContainer:Hide()
+
+	local function UpdateDuration(aura, timeLeft)
+		local duration = aura.Duration
+		if timeLeft and C.aura.show_timer == true then
+			duration:SetVertexColor(1, 1, 1)
+			duration:SetFormattedText(GetFormattedTime(timeLeft))
+		else
+			duration:Hide()
+		end
+	end
+
+	local styling
+	hooksecurefunc(BuffFrame.AuraContainer, "UpdateGridLayout", function(self, auras)
+		if styling then return end
+		styling = true
+
+		local previousBuff, aboveBuff
+		for index, aura in ipairs(auras) do
+			aura:SetSize(C.aura.player_buff_size, C.aura.player_buff_size)
+
+			if not aura.isSkinned then
+				aura:SetTemplate("Default")
+				if C.aura.classcolor_border == true then
+					aura:SetBackdropBorderColor(unpack(C.media.classborder_color))
+				end
+
+				if aura.TempEnchantBorder then
+					aura.TempEnchantBorder:SetAlpha(0)
+				end
+
+				local duration = aura.Duration
+				duration:ClearAllPoints()
+				duration:SetPoint("CENTER", 2, 1)
+				duration:SetDrawLayer("ARTWORK")
+				duration:SetFont(C.font.auras_font, C.font.auras_font_size, C.font.auras_font_style)
+				duration:SetShadowOffset(C.font.auras_font_shadow and 1 or 0, C.font.auras_font_shadow and -1 or 0)
+
+				hooksecurefunc(aura, "UpdateDuration", UpdateDuration)
+
+				if C.aura.player_buff_mouseover then
+					aura:SetParent(BuffsAnchor)
+					aura:HookScript("OnEnter", function()
+						BuffsAnchor:SetAlpha(1)
+					end)
+					aura:HookScript("OnLeave", function()
+						BuffsAnchor:SetAlpha(alpha)
+					end)
+				end
+
+				aura.isSkinned = true
+			end
+
+			aura.Icon:CropIcon()
+			aura.Icon:SetDrawLayer("BORDER")
+			aura.Icon:ClearAllPoints()
+			aura.Icon:SetPoint("TOPLEFT", aura, "TOPLEFT", 2, -2)
+			aura.Icon:SetPoint("BOTTOMRIGHT", aura, "BOTTOMRIGHT", -2, 2)
+
+			aura.Count:ClearAllPoints()
+			aura.Count:SetPoint("BOTTOMRIGHT", 2, 0)
+			aura.Count:SetDrawLayer("ARTWORK")
+			aura.Count:SetFont(C.font.auras_font, C.font.auras_font_size, C.font.auras_font_style)
+			aura.Count:SetShadowOffset(C.font.auras_font_shadow and 1 or 0, C.font.auras_font_shadow and -1 or 0)
+
+			aura:ClearAllPoints()
+			if (index > 1) and (mod(index, rowbuffs) == 1) then
+				aura:SetPoint("TOP", aboveBuff, "BOTTOM", 0, -3)
+				aboveBuff = aura
+			elseif index == 1 then
+				aura:SetPoint("TOPRIGHT", BuffsAnchor, "TOPRIGHT", 0, 0)
+				aboveBuff = aura
+			else
+				aura:SetPoint("RIGHT", previousBuff, "LEFT", -3, 0)
+			end
+			previousBuff = aura
+		end
+
+		styling = false
+	end)
+
+	-- Mouseover
+	if C.aura.player_buff_mouseover then
+		BuffsAnchor:SetAlpha(alpha)
+		BuffsAnchor:HookScript("OnEnter", function()
+			BuffsAnchor:SetAlpha(1)
+		end)
+		BuffsAnchor:HookScript("OnLeave", function()
+			BuffsAnchor:SetAlpha(alpha)
+		end)
+	end
+
+	return
+end
+
 if TemporaryEnchantFrame then
 	TemporaryEnchantFrame:SetPoint("TOPRIGHT", BuffsAnchor, "TOPRIGHT", 0, 0)
 end

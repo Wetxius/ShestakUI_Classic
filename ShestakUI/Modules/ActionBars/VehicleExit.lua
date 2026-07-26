@@ -46,11 +46,7 @@ local function MainMenuBarVehicleLeaveButtonUpdateHook()
 	end
 end
 
-if T.Classic and not T.TBC and not T.Mists then
-	hooksecurefunc("MainMenuBarVehicleLeaveButton_Update", MainMenuBarVehicleLeaveButtonUpdateHook)
-else
-	hooksecurefunc(MainMenuBarVehicleLeaveButton, "Update", MainMenuBarVehicleLeaveButtonUpdateHook)
-end
+hooksecurefunc(MainMenuBarVehicleLeaveButton, "Update", MainMenuBarVehicleLeaveButtonUpdateHook)
 
 if T.Wrath then
 	vehicle:RegisterEvent("PLAYER_ENTERING_WORLD")

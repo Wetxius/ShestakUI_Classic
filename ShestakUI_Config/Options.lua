@@ -2719,7 +2719,7 @@ do
 	local enable = ns.CreateCheckBox(parent, "enable", L_GUI_NAMEPLATE_ENABLE)
 	enable:SetPoint("TOPLEFT", parent.subText, "BOTTOMLEFT", 0, 0)
 
-	local distance = ns.CreateNumberSlider(parent, "distance", nil, nil, 0, IsClassicBuild() and 41 or 200, 1, true, L_GUI_NAMEPLATE_DISTANCE)
+	local distance = ns.CreateNumberSlider(parent, "distance", nil, nil, 0, (IsVanillaBuild() or IsTBCBuild()) and 60 or IsClassicBuild() and 41 or 200, 1, true, L_GUI_NAMEPLATE_DISTANCE)
 	distance:SetPoint("TOPLEFT", enable, "BOTTOMLEFT", 0, -20)
 
 	local width = ns.CreateNumberSlider(parent, "width", nil, nil, 0, 150 / multScale, 1, true, L_GUI_NAMEPLATE_WIDTH)
@@ -2875,7 +2875,6 @@ do
 	mob_color:SetPoint("TOPLEFT", mob_color_enable, "BOTTOMLEFT", 24, -4)
 
 	local vanilla = {
-		distance, -- broken in Classic
 		quests,
 		offtank_color,
 		extra_color,
@@ -3976,59 +3975,42 @@ end
 ----------------------------------------------------------------------------------------
 --	Button in GameMenuButton frame
 ----------------------------------------------------------------------------------------
-if WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC or WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC then
-	local function openGUI()
-		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
-		HideUIPanel(GameMenuFrame)
-		options:Show()
-	end
+local function openGUI()
+	PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
+	HideUIPanel(GameMenuFrame)
+	options:Show()
+end
 
-	local button = CreateFrame("Button", "ShestakUI_GameMenuButton", GameMenuFrame, "MainMenuFrameButtonTemplate")
-	button:SetScript("OnClick", openGUI)
-	button:SetSize(150, 28)
-	button:SetText("ShestakUI")
-	GameMenuFrame.ShestakUI = button
+local button = CreateFrame("Button", "ShestakUI_GameMenuButton", GameMenuFrame, "MainMenuFrameButtonTemplate")
+button:SetScript("OnClick", openGUI)
+button:SetSize(150, 28)
+button:SetText("ShestakUI")
+GameMenuFrame.ShestakUI = button
 
-	local function PositionGameMenuButton()
-		if not ShestakUI then return end
+local function PositionGameMenuButton()
+	if not ShestakUI then return end
 
-		for button in GameMenuFrame.buttonPool:EnumerateActive() do
-			GameMenuFrame.ShestakUI:SetPoint("TOPLEFT", GameMenuFrame, "TOPLEFT", 28, -25)
+	for button in GameMenuFrame.buttonPool:EnumerateActive() do
+		GameMenuFrame.ShestakUI:SetPoint("TOPLEFT", GameMenuFrame, "TOPLEFT", 28, -25)
 
-			local point, anchor, point2, x, y = button:GetPoint()
-			button:SetPoint(point, anchor, point2, x, y - 40)
+		local point, anchor, point2, x, y = button:GetPoint()
+		button:SetPoint(point, anchor, point2, x, y - 40)
 
-			-- Replace EditMode with our moving system
-			local text = button:GetText()
-			if text and text == HUD_EDIT_MODE_MENU then
-				button:SetScript("OnClick", function()
-					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
-					SlashCmdList.MOVING()
-					HideUIPanel(GameMenuFrame)
-				end)
-			end
-
-			local fstring = button:GetFontString()
-			fstring:SetFont(C.media.normal_font, 14)
+		-- Replace EditMode with our moving system
+		local text = button:GetText()
+		if text and text == HUD_EDIT_MODE_MENU then
+			button:SetScript("OnClick", function()
+				PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
+				SlashCmdList.MOVING()
+				HideUIPanel(GameMenuFrame)
+			end)
 		end
 
-		GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + 20)
+		local fstring = button:GetFontString()
+		fstring:SetFont(C.media.normal_font, 14)
 	end
 
-	hooksecurefunc(GameMenuFrame, "Layout", PositionGameMenuButton)
-else 
-	local menuButton = CreateFrame("Button", "GameMenuButtonSettingsUI", GameMenuFrame, "GameMenuButtonTemplate")
-	menuButton:SetText("ShestakUI")
-	menuButton:SetPoint("TOP", GetLocale() ~= "koKR" and "GameMenuButtonAddons" or "GameMenuButtonRatings", "BOTTOM", 0, -1)
-
-	GameMenuFrame:HookScript("OnShow", function(self)
-		self:SetHeight(self:GetHeight() + menuButton:GetHeight())
-		GameMenuButtonLogout:SetPoint("TOP", menuButton, "BOTTOM", 0, -16)
-	end)
-
-	menuButton:SetScript("OnClick", function()
-		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
-		HideUIPanel(GameMenuFrame)
-		options:Show()
-	end)
+	GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + 20)
 end
+
+hooksecurefunc(GameMenuFrame, "Layout", PositionGameMenuButton)

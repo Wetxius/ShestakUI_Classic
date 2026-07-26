@@ -10,9 +10,6 @@ local MAX_BOSS_FRAMES = _G.MAX_BOSS_FRAMES or 5
 -- sourced from FrameXML/RaidFrame.lua
 local MEMBERS_PER_RAID_GROUP = _G.MEMBERS_PER_RAID_GROUP or 5
 
--- sourced from FrameXML/PartyMemberFrame.lua
-local MAX_PARTY_MEMBERS = _G.MAX_PARTY_MEMBERS or 4
-
 local hookedFrames = {}
 local hookedNameplates = {}
 local isArenaHooked = false
@@ -155,28 +152,17 @@ function oUF:DisableBlizzard(unit)
 			end
 		end
 	elseif(unit:match('party%d?$')) then
-		if(oUF:IsClassic() and not oUF:IsTBC()) then
-			local id = unit:match('party(%d)')
-			if(id) then
-				handleFrame('PartyMemberFrame' .. id)
-			else
-				for i = 1, MAX_PARTY_MEMBERS do
-					handleFrame('PartyMemberFrame' .. i)
-				end
+		if(not isPartyHooked) then
+			isPartyHooked = true
+
+			handleFrame(PartyFrame)
+
+			for frame in PartyFrame.PartyMemberFramePool:EnumerateActive() do
+				handleFrame(frame, true)
 			end
-		else
-			if(not isPartyHooked) then
-				isPartyHooked = true
 
-				handleFrame(PartyFrame)
-
-				for frame in PartyFrame.PartyMemberFramePool:EnumerateActive() do
-					handleFrame(frame, true)
-				end
-
-				for i = 1, MEMBERS_PER_RAID_GROUP do
-					handleFrame('CompactPartyFrameMember' .. i)
-				end
+			for i = 1, MEMBERS_PER_RAID_GROUP do
+				handleFrame('CompactPartyFrameMember' .. i)
 			end
 		end
 	elseif(unit:match('arena%d?$')) then
