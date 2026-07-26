@@ -121,9 +121,6 @@ local function LoadSkin()
 	TradeSkillCollapseAllButton:SetPoint("CENTER")
 	TradeSkillCollapseAllButton:SetHitRectInsets(1, 1, 1, 1)
 
-	T.SkinCheckBox(TradeSkillFrameAvailableFilterCheckButton)
-	TradeSkillFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", 60, -55)
-
 	hooksecurefunc(TradeSkillCollapseAllButton, "SetNormalTexture", function(self, texture)
 		self:StripTextures()
 		self:SetTemplate("Overlay")

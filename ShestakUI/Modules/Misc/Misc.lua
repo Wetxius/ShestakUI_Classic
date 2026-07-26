@@ -1,27 +1,22 @@
 local T, C, L = unpack(ShestakUI)
 
 ----------------------------------------------------------------------------------------
---	Force readycheck warning
-----------------------------------------------------------------------------------------
-local ShowReadyCheckHook = function(_, initiator)
-	if initiator ~= "player" then
-		PlaySound(SOUNDKIT.READY_CHECK, "Master")
-	end
-end
-hooksecurefunc("ShowReadyCheck", ShowReadyCheckHook)
-
-----------------------------------------------------------------------------------------
 --	Force other warning
 ----------------------------------------------------------------------------------------
 local ForceWarning = CreateFrame("Frame")
 ForceWarning:RegisterEvent("UPDATE_BATTLEFIELD_STATUS")
+ForceWarning:RegisterEvent("READY_CHECK")
 if T.Mainline then
 	ForceWarning:RegisterEvent("PET_BATTLE_QUEUE_PROPOSE_MATCH")
 	ForceWarning:RegisterEvent("LFG_PROPOSAL_SHOW")
 end
 ForceWarning:RegisterEvent("RESURRECT_REQUEST")
-ForceWarning:SetScript("OnEvent", function(_, event)
-	if event == "UPDATE_BATTLEFIELD_STATUS" then
+ForceWarning:SetScript("OnEvent", function(_, event, arg1)
+	if event == "READY_CHECK" then
+		if arg1 ~= UnitName("player") then
+			PlaySound(SOUNDKIT.READY_CHECK, "Master")
+		end
+	elseif event == "UPDATE_BATTLEFIELD_STATUS" then
 		for i = 1, GetMaxBattlefieldID() do
 			local status = GetBattlefieldStatus(i)
 			if status == "confirm" then

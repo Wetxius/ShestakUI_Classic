@@ -4,29 +4,32 @@ if C.skins.details ~= true or not C_AddOns.IsAddOnLoaded("Details") then return 
 ----------------------------------------------------------------------------------------
 --	Details skin
 ----------------------------------------------------------------------------------------
-hooksecurefunc(_detalhes.gump, "CreateNewLine", function(_, instancia, index)
-	local bar = _G["DetailsBarra_"..instancia.meu_id.."_"..index]
-	local icon = _G["DetailsBarra_IconFrame_"..instancia.meu_id.."_"..index]
+-- CreateNewLine was removed in Details 2.0, keep the skin working on older builds
+if _detalhes.gump.CreateNewLine then
+	hooksecurefunc(_detalhes.gump, "CreateNewLine", function(_, instancia, index)
+		local bar = _G["DetailsBarra_"..instancia.meu_id.."_"..index]
+		local icon = _G["DetailsBarra_IconFrame_"..instancia.meu_id.."_"..index]
 
-	if bar and not bar.backdrop then
-		bar:CreateBackdrop("Defalt")
-		bar.backdrop:SetPoint("TOPLEFT", icon, -2, 2)
+		if bar and not bar.backdrop then
+			bar:CreateBackdrop("Defalt")
+			bar.backdrop:SetPoint("TOPLEFT", icon, -2, 2)
 
-		bar.bg = bar:CreateTexture(nil, "BORDER")
-		bar.bg:SetAllPoints(bar)
-		bar.bg:SetTexture(C.media.texture)
-		bar.bg:SetVertexColor(.6, .6, .6, 0.25)
-	end
+			bar.bg = bar:CreateTexture(nil, "BORDER")
+			bar.bg:SetAllPoints(bar)
+			bar.bg:SetTexture(C.media.texture)
+			bar.bg:SetVertexColor(.6, .6, .6, 0.25)
+		end
 
-	local frame = _G["DetailsUpFrameInstance"..instancia.meu_id]
-	if not frame.b then
-		frame.b = CreateFrame("Frame", nil, frame:GetParent())
-		frame.b:SetTemplate("Overlay")
-		frame.b:SetPoint("TOPLEFT", frame, "TOPLEFT", -23, 2)
-		frame.b:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 34, 4)
-		frame.b:SetFrameLevel(frame:GetFrameLevel() - 1)
-	end
-end)
+		local frame = _G["DetailsUpFrameInstance"..instancia.meu_id]
+		if not frame.b then
+			frame.b = CreateFrame("Frame", nil, frame:GetParent())
+			frame.b:SetTemplate("Overlay")
+			frame.b:SetPoint("TOPLEFT", frame, "TOPLEFT", -23, 2)
+			frame.b:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 34, 4)
+			frame.b:SetFrameLevel(frame:GetFrameLevel() - 1)
+		end
+	end)
+end
 
 hooksecurefunc(_detalhes, "SetFontOutline", function(_, fontString)
 	local fonte, size = fontString:GetFont()

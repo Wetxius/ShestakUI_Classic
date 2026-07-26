@@ -3008,8 +3008,14 @@ do
 	local scrollable = ns.CreateCheckBox(parent, "scrollable", L_GUI_COMBATTEXT_SCROLLABLE)
 	scrollable:SetPoint("TOPLEFT", killingblow, "BOTTOMLEFT", 0, 0)
 
+	local dodge_parry_miss = ns.CreateCheckBox(parent, "dodge_parry_miss")
+	dodge_parry_miss:SetPoint("TOPLEFT", scrollable, "BOTTOMLEFT", 0, 0)
+
+	local low_health_mana = ns.CreateCheckBox(parent, "low_health_mana")
+	low_health_mana:SetPoint("TOPLEFT", dodge_parry_miss, "BOTTOMLEFT", 0, 0)
+
 	local crit_prefix = ns.CreateEditBox(parent, "crit_prefix", true, L_GUI_COMBATTEXT_CRIT_PREFIX)
-	crit_prefix:SetPoint("TOPLEFT", scrollable, "BOTTOMLEFT", 6, -8)
+	crit_prefix:SetPoint("TOPLEFT", low_health_mana, "BOTTOMLEFT", 6, -8)
 
 	local crit_postfix = ns.CreateEditBox(parent, "crit_postfix", true, L_GUI_COMBATTEXT_CRIT_POSTFIX)
 	crit_postfix:SetPoint("TOPLEFT", crit_prefix, "BOTTOMLEFT", 0, -10)

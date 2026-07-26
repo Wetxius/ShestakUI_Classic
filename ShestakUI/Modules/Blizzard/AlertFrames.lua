@@ -1,5 +1,6 @@
 local T, C, L = unpack(ShestakUI)
 if C_AddOns.IsAddOnLoaded("MoveAnything") then return end
+if not AlertFrame then return end
 
 ----------------------------------------------------------------------------------------
 --	AlertFrameMove(by Gethe)

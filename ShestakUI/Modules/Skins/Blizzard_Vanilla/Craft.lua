@@ -13,8 +13,6 @@ local function LoadSkin()
 
 	T.SkinCloseButton(CraftFrameCloseButton, frame.backdrop)
 
-	T.SkinCheckBox(CraftFrameAvailableFilterCheckButton)
-
 	CraftRankFrame:StripTextures()
 	CraftRankFrame:CreateBackdrop("Overlay")
 	CraftRankFrame:SetStatusBarTexture(C.media.blank)

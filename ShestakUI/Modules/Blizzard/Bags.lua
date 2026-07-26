@@ -2063,9 +2063,9 @@ StaticPopupDialogs.BUY_BANK_SLOT = {
 	text = CONFIRM_BUY_BANK_SLOT,
 	button1 = YES,
 	button2 = NO,
-	OnAccept = PurchaseSlot,
+	OnAccept = function() PurchaseSlot() end,
 	OnShow = function(self)
-		MoneyFrame_Update(self.moneyFrame, GetBankSlotCost())
+		MoneyFrame_Update(self.MoneyFrame, GetBankSlotCost(GetNumBankSlots()))
 	end,
 	hasMoneyFrame = 1,
 	timeout = 0,

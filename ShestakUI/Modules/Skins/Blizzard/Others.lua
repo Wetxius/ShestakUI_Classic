@@ -67,7 +67,7 @@ SkinBlizzUI:SetScript("OnEvent", function(_, _, addon)
 			end
 		end
 
-		if T.TBC then
+		if GameMenuFrame.InitButtons then
 			local function SetModifiedBackdrop(self)
 				if self:IsEnabled() then
 					self.backdrop:SetBackdropBorderColor(unpack(C.media.classborder_color))
@@ -300,7 +300,7 @@ SkinBlizzUI:SetScript("OnEvent", function(_, _, addon)
 		end
 
 		--	Blizzard_Menu skin
-		do
+		if Menu and Menu.GetManager then
 			local backdrops = {}
 			local function SkinFrame(frame)
 				frame:StripTextures()
@@ -316,6 +316,10 @@ SkinBlizzUI:SetScript("OnEvent", function(_, _, addon)
 						T.SkinScrollBar(frame.ScrollBar)
 					end
 				end
+
+				local level = frame:GetFrameLevel()
+				frame.backdrop:SetFrameLevel(level - 1 >= 0 and level - 1 or 0)
+				frame.backdrop:Show()
 			end
 
 			local function OpenMenu(manager, _, menuDescription)
@@ -326,7 +330,7 @@ SkinBlizzUI:SetScript("OnEvent", function(_, _, addon)
 				end
 			end
 
-			local manager = _G.Menu.GetManager()
+			local manager = Menu.GetManager()
 			hooksecurefunc(manager, "OpenMenu", OpenMenu)
 			hooksecurefunc(manager, "OpenContextMenu", OpenMenu)
 		end

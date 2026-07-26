@@ -132,6 +132,7 @@
 	<Script file="Modules\Automation\TabBinder.lua"/>
 
 	<Include file="Modules\Blizzard\TaintLess.xml"/>
+	<Script file="Modules\Blizzard\AlertFrames.lua"/>
 	<Script file="Modules\Blizzard\Bags.lua"/>
 	<Script file="Modules\Blizzard\ClassColorNames_Vanilla.lua"/>
 	<Script file="Modules\Blizzard\ColorPicker.lua"/>

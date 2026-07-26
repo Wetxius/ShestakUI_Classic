@@ -1761,7 +1761,9 @@ end
 if ping.enabled then
 	Inject("Ping", {
 		OnLoad = function(self)
-			self:RegisterEvent("MINIMAP_PING")
+			if C_EventUtils.IsEventValid("MINIMAP_PING") then
+				self:RegisterEvent("MINIMAP_PING")
+			end
 			self.animGroup = self.text:CreateAnimationGroup()
 			self.anim = self.animGroup:CreateAnimation("Alpha")
 			self.animGroup:SetScript("OnFinished", function() self.text:Hide() end)
@@ -1793,6 +1795,7 @@ if gold.enabled then
 	local titleName
 	local function Currency(id, weekly, capped)
 		local info = C_CurrencyInfo.GetCurrencyInfo(id)
+		if not info then return end
 		local name, amount, tex, week, weekmax, maxed, discovered = info.name, info.quantity, info.iconFileID, info.canEarnPerWeek, info.maxWeeklyQuantity, info.maxQuantity, info.discovered
 		if amount == 0 then return end
 		if titleName then
@@ -1888,7 +1891,7 @@ if gold.enabled then
 			GameTooltip:AddDoubleLine(TOTAL, formatgold(5, total), ttsubh.r, ttsubh.g, ttsubh.b, 1, 1, 1)
 			GameTooltip:AddLine(" ")
 
-			if T.Mainline then
+			if C_CurrencyInfo.GetCurrencyListSize then
 				local currencies = 0
 				for i = 1, C_CurrencyInfo.GetCurrencyListSize() do
 					local info = C_CurrencyInfo.GetCurrencyListInfo(i)

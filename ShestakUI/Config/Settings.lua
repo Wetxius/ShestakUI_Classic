@@ -482,6 +482,8 @@ C["combattext"] = {
 	["show_hots"] = true,						-- Show periodic healing effects in healing frame
 	["show_overhealing"] = true,				-- Show outgoing overhealing
 	["incoming"] = true,						-- Show incoming damage and healing
+	["dodge_parry_miss"] = true,				-- Show incoming miss/dodge/parry/evade messages
+	["low_health_mana"] = true,					-- Show a warning when your health or mana is low
 	["damage_color"] = true,					-- Display damage numbers depending on school of magic
 	["dispel"] = true,							-- Tells you about your dispels (works only with ["damage"] = true)
 	["interrupt"] = true,						-- Tells you about your interrupts (works only with ["damage"] = true)

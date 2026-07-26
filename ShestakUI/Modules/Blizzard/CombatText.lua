@@ -61,15 +61,24 @@ local function SetScroll()
 	end
 end
 
--- Partial resists styler
-local part = "-%s [%s %s]"
+-- Incoming miss types, toggled by C.combattext.dodge_parry_miss
+local missEvents = {
+	["MISS"] = MISS, ["SPELL_MISS"] = MISS,
+	["DODGE"] = DODGE, ["SPELL_DODGE"] = DODGE,
+	["PARRY"] = PARRY, ["SPELL_PARRY"] = PARRY,
+	["EVADE"] = EVADE, ["SPELL_EVADE"] = EVADE,
+	["IMMUNE"] = IMMUNE, ["SPELL_IMMUNE"] = IMMUNE,
+	["DEFLECT"] = DEFLECT, ["SPELL_DEFLECT"] = DEFLECT,
+	["REFLECT"] = REFLECT, ["SPELL_REFLECT"] = REFLECT,
+}
+
 local r, g, b, lowMana, lowHealth
 
 -- Function, handles everything
-local function OnEvent(_, event, subevent, powerType)
+local function OnEvent(_, event, subevent)
 	if event == "COMBAT_TEXT_UPDATE" then
 		local arg2, arg3 = GetCurrentCombatTextEventInfo()
-		if not CVarCallbackRegistry:GetCVarValueBool("enableFloatingCombatText") then
+		if not GetCVarBool("enableFloatingCombatText") then
 			return
 		else
 			if subevent == "DAMAGE" then
@@ -98,11 +107,7 @@ local function OnEvent(_, event, subevent, powerType)
 						arg3 = T.ShortValue(arg3)
 					end
 					if arg2 then
-						if CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextFriendlyHealers") then
-							xCT2:AddMessage(arg2.." +"..arg3, 0.1, 0.75, 0.1)
-						else
-							xCT2:AddMessage("+"..arg3, 0.1, 0.75, 0.1)
-						end
+						xCT2:AddMessage("+"..arg3, 0.1, 0.75, 0.1)
 					end
 				end
 			elseif subevent == "HEAL_CRIT" then
@@ -111,11 +116,7 @@ local function OnEvent(_, event, subevent, powerType)
 						arg3 = T.ShortValue(arg3)
 					end
 					if arg2 then
-						if CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextFriendlyHealers") then
-							xCT2:AddMessage(arg2.." +"..arg3, 0.1, 1, 0.1)
-						else
-							xCT2:AddMessage("+"..arg3, 0.1, 1, 0.1)
-						end
+						xCT2:AddMessage("+"..arg3, 0.1, 1, 0.1)
 					end
 				end
 			elseif subevent == "PERIODIC_HEAL" then
@@ -125,169 +126,40 @@ local function OnEvent(_, event, subevent, powerType)
 					end
 					xCT2:AddMessage("+"..arg3, 0.1, 0.5, 0.1)
 				end
-			elseif T.Mainline and subevent == "ABSORB_ADDED" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextCombatHealingAbsorbSelf") then
+			elseif T.Mainline and subevent == "ABSORB_ADDED" and GetCVarBool("floatingCombatTextCombatHealingAbsorbSelf") then
 				if arg3 >= C.combattext.heal_treshold then
 					if C.combattext.short_numbers == true then
 						arg3 = T.ShortValue(arg3)
 					end
 					if arg2 then
-						if CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextFriendlyHealers") then
-							xCT2:AddMessage(arg2.." +"..arg3, 0.6, 0.65, 0.1)
-						else
-							xCT2:AddMessage("+"..arg3, 0.6, 0.65, 0.1)
-						end
+						xCT2:AddMessage("+"..arg3, 0.6, 0.65, 0.1)
 					end
 				end
 			elseif subevent == "SPELL_CAST" then
 				xCT3:AddMessage(arg2, 1, 0.82, 0)
-			elseif subevent == "MISS" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(MISS, 0.5, 0.5, 0.5)
-			elseif subevent == "DODGE" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(DODGE, 0.5, 0.5, 0.5)
-			elseif subevent == "PARRY" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(PARRY, 0.5, 0.5, 0.5)
-			elseif subevent == "EVADE" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(EVADE, 0.5, 0.5, 0.5)
-			elseif subevent == "IMMUNE" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(IMMUNE, 0.5, 0.5, 0.5)
-			elseif subevent == "DEFLECT" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(DEFLECT, 0.5, 0.5, 0.5)
-			elseif subevent == "REFLECT" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(REFLECT, 0.5, 0.5, 0.5)
-			elseif subevent == "SPELL_MISS" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(MISS, 0.5, 0.5, 0.5)
-			elseif subevent == "SPELL_DODGE"and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(DODGE, 0.5, 0.5, 0.5)
-			elseif subevent == "SPELL_PARRY" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(PARRY, 0.5, 0.5, 0.5)
-			elseif subevent == "SPELL_EVADE" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(EVADE, 0.5, 0.5, 0.5)
-			elseif subevent == "SPELL_IMMUNE" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(IMMUNE, 0.5, 0.5, 0.5)
-			elseif subevent == "SPELL_DEFLECT" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(DEFLECT, 0.5, 0.5, 0.5)
-			elseif subevent == "SPELL_REFLECT" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDodgeParryMiss") then
-				xCT1:AddMessage(REFLECT, 0.5, 0.5, 0.5)
-			elseif subevent == "RESIST" then
+			elseif missEvents[subevent] then
+				if C.combattext.dodge_parry_miss then
+					xCT1:AddMessage(missEvents[subevent], 0.5, 0.5, 0.5)
+				end
+			elseif subevent == "RESIST" or subevent == "BLOCK" or subevent == "ABSORB" then
 				if arg3 then
 					if C.combattext.short_numbers == true then
 						arg2 = T.ShortValue(arg2)
-						arg3 = T.ShortValue(arg3)
 					end
-					if CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDamageReduction") then
-						xCT1:AddMessage(part:format(arg2, RESIST, arg3), 0.75, 0.5, 0.5)
-					else
-						xCT1:AddMessage("-"..arg2, 0.75, 0.1, 0.1)
-					end
-				elseif CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDamageReduction") then
-					xCT1:AddMessage(RESIST, 0.5, 0.5, 0.5)
+					xCT1:AddMessage("-"..arg2, 0.75, 0.1, 0.1)
 				end
-			elseif subevent == "BLOCK" then
+			elseif subevent == "SPELL_RESIST" or subevent == "SPELL_BLOCK" or subevent == "SPELL_ABSORB" then
 				if arg3 then
 					if C.combattext.short_numbers == true then
 						arg2 = T.ShortValue(arg2)
-						arg3 = T.ShortValue(arg3)
 					end
-					if CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDamageReduction") then
-						xCT1:AddMessage(part:format(arg2, BLOCK, arg3), 0.75, 0.5, 0.5)
-					else
-						xCT1:AddMessage("-"..arg2, 0.75, 0.1, 0.1)
-					end
-				elseif CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDamageReduction") then
-					xCT1:AddMessage(BLOCK, 0.5, 0.5, 0.5)
+					xCT1:AddMessage("-"..arg2, 0.75, 0.3, 0.85)
 				end
-			elseif subevent == "ABSORB" then
-				if arg3 then
-					if C.combattext.short_numbers == true then
-						arg2 = T.ShortValue(arg2)
-						arg3 = T.ShortValue(arg3)
-					end
-					if CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDamageReduction") then
-						xCT1:AddMessage(part:format(arg2, ABSORB, arg3), 0.75, 0.5, 0.5)
-					else
-						xCT1:AddMessage("-"..arg2, 0.75, 0.1, 0.1)
-					end
-				elseif CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDamageReduction") then
-					xCT1:AddMessage(ABSORB, 0.5, 0.5, 0.5)
-				end
-			elseif subevent == "SPELL_RESIST" then
-				if arg3 then
-					if C.combattext.short_numbers == true then
-						arg2 = T.ShortValue(arg2)
-						arg3 = T.ShortValue(arg3)
-					end
-					if CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDamageReduction") then
-						xCT1:AddMessage(part:format(arg2, RESIST, arg3), 0.5, 0.3, 0.5)
-					else
-						xCT1:AddMessage("-"..arg2, 0.75, 0.3, 0.85)
-					end
-				elseif CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDamageReduction") then
-					xCT1:AddMessage(RESIST, 0.5, 0.5, 0.5)
-				end
-			elseif subevent == "SPELL_BLOCK" then
-				if arg3 then
-					if C.combattext.short_numbers == true then
-						arg2 = T.ShortValue(arg2)
-						arg3 = T.ShortValue(arg3)
-					end
-					if CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDamageReduction") then
-						xCT1:AddMessage(part:format(arg2, BLOCK, arg3), 0.5, 0.3, 0.5)
-					else
-						xCT1:AddMessage("-"..arg2, 0.75, 0.3, 0.85)
-					end
-				elseif CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDamageReduction") then
-					xCT1:AddMessage(BLOCK, 0.5, 0.5, 0.5)
-				end
-			elseif subevent == "SPELL_ABSORB" then
-				if arg3 then
-					if C.combattext.short_numbers == true then
-						arg2 = T.ShortValue(arg2)
-						arg3 = T.ShortValue(arg3)
-					end
-					if CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDamageReduction") then
-						xCT1:AddMessage(part:format(arg2, ABSORB, arg3), 0.5, 0.3, 0.5)
-					else
-						xCT1:AddMessage("-"..arg2, 0.75, 0.3, 0.85)
-					end
-				elseif CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextDamageReduction") then
-					xCT1:AddMessage(ABSORB, 0.5, 0.5, 0.5)
-				end
-			elseif (subevent == "ENERGIZE" or subevent == "PERIODIC_ENERGIZE") and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextEnergyGains") then
-				if tonumber(arg2) > 0 then
-					if arg3 then
-						if arg3 == "MANA" or arg3 == "RAGE" or arg3 == "FOCUS" or arg3 == "ENERGY" or arg3 == "RUNIC_POWER" or arg3 == "DEMONIC_FURY" then
-							xCT3:AddMessage("+"..arg2.." ".._G[arg3], PowerBarColor[arg3].r, PowerBarColor[arg3].g, PowerBarColor[arg3].b)
-						elseif arg3 == "HOLY_POWER" or arg3 == "SOUL_SHARDS" or arg3 == "CHI" or arg3 == "ARCANE_CHARGES" then
-							local numPower = UnitPower("player", GetPowerEnumFromEnergizeString(arg3))
-							xCT3:AddMessage("<"..numPower.." ".._G[arg3]..">", PowerBarColor[arg3].r, PowerBarColor[arg3].g, PowerBarColor[arg3].b)
-						end
-					end
-				end
-			elseif subevent == "SPELL_AURA_START" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextAuras") then
-				xCT3:AddMessage("+"..arg2, 1, 0.5, 0.5)
-			elseif subevent == "SPELL_AURA_END" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextAuras") then
-				xCT3:AddMessage("-"..arg2, 0.5, 0.5, 0.5)
-			elseif subevent == "SPELL_AURA_START_HARMFUL" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextAuras") then
-				xCT3:AddMessage("+"..arg2, 1, 0.1, 0.1)
-			elseif subevent == "SPELL_AURA_END_HARMFUL" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextAuras") then
-				xCT3:AddMessage("-"..arg2, 0.1, 1, 0.1)
-			elseif subevent == "HONOR_GAINED" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextHonorGains") then
-				arg2 = tonumber(arg2)
-				if arg2 and abs(arg2) > 1 then
-					arg2 = floor(arg2)
-					if arg2 > 0 then
-						xCT3:AddMessage(HONOR.." +"..arg2, 0.1, 0.1, 1)
-					end
-				end
-			elseif subevent == "FACTION" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextRepChanges") then
-				xCT3:AddMessage(arg2.." +"..arg3, 0.1, 0.1, 1)
-			elseif subevent == "SPELL_ACTIVE" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextReactives") then
-				xCT3:AddMessage(arg2, 1, 0.82, 0)
 			end
 		end
-	elseif event == "UNIT_HEALTH" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextLowManaHealth") then
+	elseif event == "UNIT_HEALTH" then
 		if subevent == ct.unit then
-			if UnitHealth(ct.unit) / UnitHealthMax(ct.unit) <= COMBAT_TEXT_LOW_HEALTH_THRESHOLD then
+			if UnitHealth(ct.unit) / UnitHealthMax(ct.unit) <= (COMBAT_TEXT_LOW_HEALTH_THRESHOLD or 0.2) then
 				if not lowHealth then
 					xCT3:AddMessage(HEALTH_LOW, 1, 0.1, 0.1)
 					lowHealth = true
@@ -296,32 +168,16 @@ local function OnEvent(_, event, subevent, powerType)
 				lowHealth = nil
 			end
 		end
-	elseif event == "UNIT_MANA" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextLowManaHealth") then
+	elseif event == "UNIT_MANA" then
 		if subevent == ct.unit then
 			local _, powerToken = UnitPowerType(ct.unit)
-			if powerToken == "MANA" and (UnitPower(ct.unit) / UnitPowerMax(ct.unit)) <= COMBAT_TEXT_LOW_MANA_THRESHOLD then
+			if powerToken == "MANA" and (UnitPower(ct.unit) / UnitPowerMax(ct.unit)) <= (COMBAT_TEXT_LOW_MANA_THRESHOLD or 0.2) then
 				if not lowMana then
 					xCT3:AddMessage(MANA_LOW, 1, 0.1, 0.1)
 					lowMana = true
 				end
 			else
 				lowMana = nil
-			end
-		end
-	elseif event == "PLAYER_REGEN_ENABLED" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextCombatState") then
-		xCT3:AddMessage("-"..LEAVING_COMBAT, 0.1, 1, 0.1)
-	elseif event == "PLAYER_REGEN_DISABLED" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextCombatState") then
-		xCT3:AddMessage("+"..ENTERING_COMBAT, 1, 0.1, 0.1)
-	elseif event == "UNIT_POWER_UPDATE" and CVarCallbackRegistry:GetCVarValueBool("floatingCombatTextEnergyGains") then
-		if subevent == ct.unit then
-			if powerType and powerType ~= 'COMBO_POINTS' then return end
-			local cp = UnitPower(ct.unit, Enum.PowerType.ComboPoints)
-			if cp > 0 then
-				r, g, b = 1, 0.82, 0
-				if cp == MAX_COMBO_POINTS then
-					r, g, b = 0, 0.82, 1
-				end
-				xCT3:AddMessage(format(COMBAT_TEXT_COMBO_POINTS, cp), r, g, b)
 			end
 		end
 	elseif event == "RUNE_POWER_UPDATE" then
@@ -374,22 +230,18 @@ if C.combattext.damage_style then
 end
 
 -- Hide blizzard combat text
-if C.combattext.blizz_head_numbers ~= true then
-	SetCVar("floatingCombatTextCombatHealing", 0)
-	SetCVar("floatingCombatTextCombatDamage", 0)
-else
-	SetCVar("floatingCombatTextCombatHealing", 1)
-	SetCVar("floatingCombatTextCombatDamage", 1)
-end
+if GetCVar("floatingCombatTextCombatDamage") ~= nil then
+	local show = C.combattext.blizz_head_numbers == true and 1 or 0
+	SetCVar("floatingCombatTextCombatHealing", show)
+	SetCVar("floatingCombatTextCombatDamage", show)
 
-local frame = CreateFrame("Frame")
-frame:RegisterEvent("PLAYER_LOGOUT")
-frame:SetScript("OnEvent", function(_, event)
-	if event == "PLAYER_LOGOUT" then
+	local frame = CreateFrame("Frame")
+	frame:RegisterEvent("PLAYER_LOGOUT")
+	frame:SetScript("OnEvent", function()
 		SetCVar("floatingCombatTextCombatHealing", 1)
 		SetCVar("floatingCombatTextCombatDamage", 1)
-	end
-end)
+	end)
+end
 
 -- Frames
 ct.locked = true
@@ -448,11 +300,10 @@ end
 -- Register events
 local xCT = CreateFrame("Frame")
 xCT:RegisterEvent("COMBAT_TEXT_UPDATE")
-xCT:RegisterEvent("UNIT_HEALTH")
-xCT:RegisterEvent("UNIT_MANA")
-xCT:RegisterEvent("PLAYER_REGEN_DISABLED")
-xCT:RegisterEvent("PLAYER_REGEN_ENABLED")
-xCT:RegisterEvent("UNIT_POWER_UPDATE")
+if C.combattext.low_health_mana then
+	xCT:RegisterEvent("UNIT_HEALTH")
+	xCT:RegisterEvent("UNIT_MANA")
+end
 if C.combattext.dk_runes and T.class == "DEATHKNIGHT" then
 	xCT:RegisterEvent("RUNE_POWER_UPDATE")
 end
