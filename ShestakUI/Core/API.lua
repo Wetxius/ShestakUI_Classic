@@ -379,6 +379,31 @@ local function FadeOut(f)
 	UIFrameFadeOut(f, 0.8, f:GetAlpha(), 0)
 end
 
+----------------------------------------------------------------------------------------
+--	Combat-safe RegisterForClicks
+----------------------------------------------------------------------------------------
+do
+	local pending = {}
+	local watcher
+	function T.RegisterClicks(frame, ...)
+		if not InCombatLockdown() then
+			frame:RegisterForClicks(...)
+			return
+		end
+		pending[frame] = {...}
+		if not watcher then
+			watcher = CreateFrame("Frame")
+			watcher:RegisterEvent("PLAYER_REGEN_ENABLED")
+			watcher:SetScript("OnEvent", function()
+				for f, args in next, pending do
+					f:RegisterForClicks(unpack(args))
+					pending[f] = nil
+				end
+			end)
+		end
+	end
+end
+
 local function addAPI(object)
 	local mt = getmetatable(object).__index
 	if not object.SetOutside then mt.SetOutside = SetOutside end

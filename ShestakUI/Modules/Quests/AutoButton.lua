@@ -48,7 +48,29 @@ AutoButtonAnchor:SetSize(40, 40)
 -- Create button
 local AutoButton = CreateFrame("Button", "AutoButton", UIParent, T.TBC and "InsecureActionButtonTemplate" or "SecureActionButtonTemplate")
 AutoButton:SetSize(40, 40)
-AutoButton:SetPoint("CENTER", AutoButtonAnchor, "CENTER", 0, 0)
+AutoButton:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+
+-- AutoButton is protected, so it can't stay anchored to the mover: dragging the mover in
+-- combat would move a protected frame. Copy the mover's position onto UIParent instead.
+local function PinAutoButton()
+	if InCombatLockdown() then return end
+	local left, bottom = AutoButtonAnchor:GetLeft(), AutoButtonAnchor:GetBottom()
+	if not left or not bottom then return end
+
+	local scale = AutoButtonAnchor:GetEffectiveScale() / AutoButton:GetEffectiveScale()
+	AutoButton:ClearAllPoints()
+	AutoButton:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", left * scale, bottom * scale)
+end
+
+local function QueuePin() C_Timer.After(0, PinAutoButton) end
+QueuePin()
+hooksecurefunc(AutoButtonAnchor, "SetPoint", QueuePin)
+
+local pinFrame = CreateFrame("Frame")
+pinFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
+pinFrame:RegisterEvent("UI_SCALE_CHANGED")
+pinFrame:RegisterEvent("DISPLAY_SIZE_CHANGED")
+pinFrame:SetScript("OnEvent", QueuePin)
 AutoButton:SetTemplate("Default")
 AutoButton:StyleButton(true)
 AutoButton:RegisterForClicks("AnyUp", "AnyDown")

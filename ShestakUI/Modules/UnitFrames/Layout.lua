@@ -24,7 +24,7 @@ local function Shared(self, unit)
 	self.colors = T.oUF_colors
 
 	-- Register click
-	self:RegisterForClicks("AnyUp")
+	T.RegisterClicks(self, "AnyUp")
 	self:SetScript("OnEnter", UnitFrame_OnEnter)
 	self:SetScript("OnLeave", UnitFrame_OnLeave)
 
