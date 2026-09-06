@@ -20,6 +20,10 @@ local function LoadSkin()
 
 	T.SkinCloseButton(CharacterFrameCloseButton, CharacterFrame.backdrop)
 
+	if CharacterFramePortrait then
+		CharacterFramePortrait:Hide()
+	end
+
 	CharacterNameText:ClearAllPoints()
 	CharacterNameText:SetPoint("TOP", CharacterFrame.backdrop, "TOP", 0, -6)
 
