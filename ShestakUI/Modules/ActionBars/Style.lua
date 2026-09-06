@@ -187,10 +187,6 @@ local function StyleNormalButton(button, size)
 
 		button:StyleButton()
 
-		if C.actionbar.show_grid then
-			button:SetAttribute("showgrid", 1)
-		end
-
 		button.isSkinned = true
 	end
 end
